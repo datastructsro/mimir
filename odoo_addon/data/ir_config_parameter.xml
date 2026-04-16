@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="foreqcast_enabled" model="ir.config_parameter">
+            <field name="key">foreqcast.enabled</field>
+            <field name="value">False</field>
+        </record>
+        <record id="foreqcast_horizon_days" model="ir.config_parameter">
+            <field name="key">foreqcast.horizon_days</field>
+            <field name="value">30</field>
+        </record>
+        <record id="foreqcast_time_bucket" model="ir.config_parameter">
+            <field name="key">foreqcast.time_bucket</field>
+            <field name="value">daily</field>
+        </record>
+        <record id="foreqcast_service_level" model="ir.config_parameter">
+            <field name="key">foreqcast.service_level</field>
+            <field name="value">0.85</field>
+        </record>
+        <record id="foreqcast_review_period_days" model="ir.config_parameter">
+            <field name="key">foreqcast.review_period_days</field>
+            <field name="value">7</field>
+        </record>
+        <record id="foreqcast_default_lead_time" model="ir.config_parameter">
+            <field name="key">foreqcast.default_lead_time</field>
+            <field name="value">7</field>
+        </record>
+        <record id="foreqcast_min_data_points" model="ir.config_parameter">
+            <field name="key">foreqcast.min_data_points</field>
+            <field name="value">4</field>
+        </record>
+        <record id="foreqcast_min_demand_threshold" model="ir.config_parameter">
+            <field name="key">foreqcast.min_demand_threshold</field>
+            <field name="value">0.1</field>
+        </record>
+        <record id="foreqcast_input_source" model="ir.config_parameter">
+            <field name="key">foreqcast.input_source</field>
+            <field name="value">attachment</field>
+        </record>
+        <record id="foreqcast_auto_push" model="ir.config_parameter">
+            <field name="key">foreqcast.auto_push</field>
+            <field name="value">False</field>
+        </record>
+        <!-- Inventory position settings -->
+        <record id="foreqcast_inventory_mode" model="ir.config_parameter">
+            <field name="key">foreqcast.inventory_mode</field>
+            <field name="value">ignore</field>
+        </record>
+        <record id="foreqcast_respect_reservations" model="ir.config_parameter">
+            <field name="key">foreqcast.respect_reservations</field>
+            <field name="value">True</field>
+        </record>
+        <record id="foreqcast_include_incoming_supply" model="ir.config_parameter">
+            <field name="key">foreqcast.include_incoming_supply</field>
+            <field name="value">True</field>
+        </record>
+        <record id="foreqcast_include_outgoing_demand" model="ir.config_parameter">
+            <field name="key">foreqcast.include_outgoing_demand</field>
+            <field name="value">False</field>
+        </record>
+        <record id="foreqcast_overstock_threshold_days" model="ir.config_parameter">
+            <field name="key">foreqcast.overstock_threshold_days</field>
+            <field name="value">90</field>
+        </record>
+        <record id="foreqcast_understock_threshold_days" model="ir.config_parameter">
+            <field name="key">foreqcast.understock_threshold_days</field>
+            <field name="value">3</field>
+        </record>
+        <record id="foreqcast_overstock_skip" model="ir.config_parameter">
+            <field name="key">foreqcast.overstock_skip</field>
+            <field name="value">True</field>
+        </record>
+        <record id="foreqcast_understock_service_level_bump" model="ir.config_parameter">
+            <field name="key">foreqcast.understock_service_level_bump</field>
+            <field name="value">0.03</field>
+        </record>
+        <record id="foreqcast_parquet_input_dir" model="ir.config_parameter">
+            <field name="key">foreqcast.parquet_input_dir</field>
+            <field name="value"></field>
+        </record>
+        <record id="foreqcast_parquet_output_dir" model="ir.config_parameter">
+            <field name="key">foreqcast.parquet_output_dir</field>
+            <field name="value"></field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,689 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * foreqcast
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-16 00:00+0000\n"
+"PO-Revision-Date: 2026-04-16 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Finnish\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: foreqcast
+#: model:ir.model,name:foreqcast.model_foreqcast_run
+msgid "Foreqcast Run History"
+msgstr "Foreqcast-ajohistoria"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__run_date
+msgid "Run Date"
+msgstr "Ajopäivämäärä"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__parquet_source_dir
+msgid "Input Source"
+msgstr "Syötelähde"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_analyzed
+msgid "Products Analyzed"
+msgstr "Analysoidut tuotteet"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_forecasted
+msgid "Products Forecasted"
+msgstr "Ennustetut tuotteet"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_created
+msgid "Rules Created"
+msgstr "Luodut säännöt"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_updated
+msgid "Rules Updated"
+msgstr "Päivitetyt säännöt"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_skipped
+msgid "Rules Skipped"
+msgstr "Ohitetut säännöt"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__duration_seconds
+msgid "Duration (s)"
+msgstr "Kesto (s)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__status
+msgid "Status"
+msgstr "Tila"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__error_message
+msgid "Error Message"
+msgstr "Virheilmoitus"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__forecast_horizon_days
+msgid "Horizon (days)"
+msgstr "Horisontti (päivää)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__safety_factor
+msgid "Safety Factor Used"
+msgstr "Käytetty varmuuskerroin"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__time_bucket
+msgid "Time Bucket"
+msgstr "Aikajakso"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__attachment_count
+msgid "Output Files"
+msgstr "Tulostiedostot"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Running"
+msgstr "Käynnissä"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Complete"
+msgstr "Valmis"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Error"
+msgstr "Virhe"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Odoo Attachments (from Parqcast)"
+msgstr "Odoo-liitteet (Parqcast-viennistä)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Server Filesystem"
+msgstr "Palvelimen tiedostojärjestelmä"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Daily"
+msgstr "Päivittäin"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Weekly"
+msgstr "Viikoittain"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Ignore (forecast only)"
+msgstr "Ohita (vain ennuste)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Analyze (add inventory columns)"
+msgstr "Analysoi (lisää varastosarakkeet)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Adjust (modify replenishment)"
+msgstr "Säädä (muokkaa täydennystä)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_enabled
+msgid "Enable Foreqcast"
+msgstr "Ota Foreqcast käyttöön"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Input Source"
+msgstr "Syötelähde"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_horizon_days
+msgid "Forecast Horizon (days)"
+msgstr "Ennustehorisontti (päivää)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Time Bucket"
+msgstr "Aikajakso"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_service_level
+msgid "Service Level"
+msgstr "Palvelutaso"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_review_period_days
+msgid "Review Period (days)"
+msgstr "Tarkastusjakso (päivää)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_default_lead_time
+msgid "Default Lead Time (days)"
+msgstr "Oletustoimitusaika (päivää)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_data_points
+msgid "Minimum Data Points"
+msgstr "Vähimmäisdatapisteet"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
+msgid "Minimum Demand Threshold"
+msgstr "Vähimmäiskysynnän kynnysarvo"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_auto_push
+msgid "Auto-push to Orderpoints"
+msgstr "Automaattinen päivitys tilauspisteisiin"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
+msgid "Parquet Input Directory"
+msgstr "Parquet-syötehakemisto"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
+msgid "Parquet Output Directory"
+msgstr "Parquet-tulostehakemisto"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_config_db_path
+msgid "Config Database Path"
+msgstr "Asetustietokannan polku"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Inventory Mode"
+msgstr "Varastotila"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_respect_reservations
+msgid "Respect Reservations"
+msgstr "Huomioi varaukset"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_incoming
+msgid "Include Incoming Supply"
+msgstr "Sisällytä tuleva tarjonta"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_outgoing
+msgid "Include Outgoing Demand"
+msgstr "Sisällytä lähtevä kysyntä"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_days
+msgid "Overstock Threshold (days)"
+msgstr "Ylivarastoinnin kynnysarvo (päivää)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_days
+msgid "Understock Threshold (days)"
+msgstr "Alivarastoinnin kynnysarvo (päivää)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_skip
+msgid "Skip Overstocked Products"
+msgstr "Ohita ylivarastoidut tuotteet"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_bump
+msgid "Understock Service Level Bump"
+msgstr "Alivarastoinnin palvelutason korotus"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_enabled
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Ota käyttöön kysynnän ennustaminen ja täydennyssääntöjen luonti"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Where to read parqcast export files from"
+msgstr "Mistä Parqcast-vientitiedostot luetaan"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_horizon_days
+msgid "Number of days to project demand forward"
+msgstr "Kuinka monta päivää kysyntää ennustetaan eteenpäin"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Granularity of demand aggregation"
+msgstr "Kysynnän koostamisen tarkkuustaso"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_service_level
+msgid "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. Higher values require more safety stock. Start at 0.85 and increase per category as needed."
+msgstr "Tavoitetäyttöaste (0,0–1,0). Aseta 0,90 normaalille palvelulle tai 0,95 kriittisille tuotteille. Korkeammat arvot vaativat enemmän varmuusvarastoa. Aloita arvosta 0,85 ja nosta kategorioittain tarpeen mukaan."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_review_period_days
+msgid "Days between replenishment reviews — affects max_qty calculation"
+msgstr "Päivät täydennystarkastusten välillä — vaikuttaa max_qty-laskentaan"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_default_lead_time
+msgid "Fallback lead time when no supplier info exists for a product"
+msgstr "Varotoimitusaika, kun tuotteelle ei ole toimittajatietoja"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_data_points
+msgid "Minimum number of observations required to fit a regression"
+msgstr "Regression sovittamiseen vaadittu vähimmäishavaintomäärä"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
+msgid "Skip products with average daily demand below this value"
+msgstr "Ohita tuotteet, joiden keskimääräinen päiväkysyntä on alle tämän arvon"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_auto_push
+msgid "Automatically update orderpoints after forecast run (vs. parquet-only)"
+msgstr "Päivitä tilauspisteet automaattisesti ennusteajon jälkeen (vs. vain parquet)"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
+msgid "Path to parqcast export directory"
+msgstr "Polku Parqcast-vientihakemistoon"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
+msgid "Path to write forecast and rules parquet files"
+msgstr "Polku ennuste- ja sääntö-parquet-tiedostojen kirjoittamiseen"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_config_db_path
+msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+msgstr "Polku Foreqcast SQLite -asetustietokantaan (tuotekohtaisille ohituksille)"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "How to account for current inventory when computing replenishment rules"
+msgstr "Miten nykyinen varasto huomioidaan täydennyssääntöjä laskettaessa"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_respect_reservations
+msgid "Subtract reserved quantities from on-hand (conservative). Disable to let planner reallocate all stock."
+msgstr "Vähennä varatut määrät käsivarastosta (varovainen). Poista käytöstä, jotta suunnittelija voi kohdentaa kaiken varaston uudelleen."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_incoming
+msgid "Count open PO and in-transit quantities as available inventory"
+msgstr "Laske avoimet ostotilaukset ja kuljetuksessa olevat määrät käytettävissä olevaksi varastoksi"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_outgoing
+msgid "Subtract confirmed SO quantities. Off by default to avoid double-counting with forecast."
+msgstr "Vähennä vahvistetut myyntitilausmäärät. Oletuksena pois päältä ennusteen kaksinkertaisen laskennan välttämiseksi."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_days
+msgid "Products with more than this many days of coverage are flagged as overstock"
+msgstr "Tuotteet, joilla on tätä enemmän kattavuuspäiviä, merkitään ylivarastoiduiksi"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_days
+msgid "Products with fewer than this many days of coverage are flagged as understock"
+msgstr "Tuotteet, joilla on tätä vähemmän kattavuuspäiviä, merkitään alivarastoiduiksi"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_skip
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "Säätötilassa älä luo tilauspisteitä ylivarastoiduille tuotteille"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_bump
+msgid "In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)"
+msgstr "Säätötilassa nosta palvelutasoa tällä määrällä alivarastoiduille tuotteille (esim. 0,95 → 0,98)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Demand Forecasting"
+msgstr "Kysynnän ennustaminen"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Enable Foreqcast"
+msgstr "Ota Foreqcast käyttöön"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Ota käyttöön kysynnän ennustaminen ja täydennyssääntöjen luonti"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Forecast Parameters"
+msgstr "Ennusteparametrit"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Forecast Horizon"
+msgstr "Ennustehorisontti"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "How many days ahead to project demand"
+msgstr "Kuinka monta päivää eteenpäin kysyntää ennustetaan"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Granularity of demand aggregation for regression"
+msgstr "Kysynnän koostamisen tarkkuustaso regressiota varten"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
+msgstr "Tavoitetäyttöaste. Aseta 0,90 normaalille palvelulle tai 0,95 kriittisille tuotteille. Korkeammat arvot vaativat enemmän varmuusvarastoa."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Review Period"
+msgstr "Tarkastusjakso"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days between replenishment checks (affects max qty)"
+msgstr "Päivät täydennystarkastusten välillä (vaikuttaa enimmäismäärään)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Default Lead Time"
+msgstr "Oletustoimitusaika"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Fallback when no supplier info exists for a product"
+msgstr "Varahtoarvo, kun tuotteelle ei ole toimittajatietoja"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Data Quality"
+msgstr "Datan laatu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Require at least this many observations to forecast"
+msgstr "Vaadi vähintään näin monta havaintoa ennustamiseen"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Skip products with daily demand below this"
+msgstr "Ohita tuotteet, joiden päiväkysyntä on alle tämän"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Integration"
+msgstr "Integraatio"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Where to read parqcast export data from"
+msgstr "Mistä Parqcast-vientitiedot luetaan"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Odoo Attachments"
+msgstr "Odoo-liitteet"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
+msgstr "Foreqcast lukee suoraan viimeisimmän Parqcast-vientiajon liitteistä. Tiedostopolkuja ei tarvita."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Reads parquet files from the latest completed Parqcast export. Output files are stored as attachments on the Forecast Run record."
+msgstr "Lukee parquet-tiedostot viimeisimmästä valmistuneesta Parqcast-viennistä. Tulostiedostot tallennetaan liitteinä ennusteajotietueeseen."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Parquet Directories"
+msgstr "Parquet-hakemistot"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Server file paths for parqcast input and forecast output"
+msgstr "Palvelimen tiedostopolut Parqcast-syötteelle ja ennustetulosteelle"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Auto-push to Orderpoints"
+msgstr "Automaattinen päivitys tilauspisteisiin"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Automatically update Odoo reorder rules after each forecast run"
+msgstr "Päivitä Odoon tilauspisteet automaattisesti jokaisen ennusteajon jälkeen"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Config Database"
+msgstr "Asetustietokanta"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "SQLite database for per-product overrides and audit trail"
+msgstr "SQLite-tietokanta tuotekohtaisille ohituksille ja muutoslokille"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run Pipeline"
+msgstr "Suorita putkilinja"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Execute the forecast pipeline now with current settings"
+msgstr "Suorita ennusteputkilinja nyt nykyisillä asetuksilla"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run Now"
+msgstr "Suorita nyt"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run the forecast pipeline with current settings?"
+msgstr "Suoritetaanko ennusteputkilinja nykyisillä asetuksilla?"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Position"
+msgstr "Varastotilanne"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Mode"
+msgstr "Varastotila"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "How to account for current inventory state"
+msgstr "Miten nykyinen varastotilanne huomioidaan"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Respect Reservations"
+msgstr "Huomioi varaukset"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Subtract reserved stock from available position (conservative)"
+msgstr "Vähennä varattu varasto käytettävissä olevasta (varovainen)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Include Incoming Supply"
+msgstr "Sisällytä tuleva tarjonta"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Count open PO and in-transit quantities"
+msgstr "Laske avoimet ostotilaukset ja kuljetuksessa olevat määrät"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Include Outgoing Demand"
+msgstr "Sisällytä lähtevä kysyntä"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
+msgstr "Vähennä vahvistetut myyntitilausmäärät (oletuksena pois kaksinkertaisen laskennan välttämiseksi)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Thresholds"
+msgstr "Varastokynnysarvot"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Overstock Threshold"
+msgstr "Ylivarastoinnin kynnysarvo"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days of coverage above which a product is flagged as overstocked"
+msgstr "Kattavuuspäivät, joiden yläpuolella tuote merkitään ylivarastoiduksi"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Understock Threshold"
+msgstr "Alivarastoinnin kynnysarvo"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days of coverage below which a product is flagged as understocked"
+msgstr "Kattavuuspäivät, joiden alapuolella tuote merkitään alivarastoiduksi"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Skip Overstocked"
+msgstr "Ohita ylivarastoidut"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "Säätötilassa älä luo tilauspisteitä ylivarastoiduille tuotteille"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Understock SL Bump"
+msgstr "Alivarastoinnin palvelutason korotus"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "In adjust mode, raise service level by this for understocked products"
+msgstr "Säätötilassa nosta palvelutasoa tällä määrällä alivarastoiduille tuotteille"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download All (ZIP)"
+msgstr "Lataa kaikki (ZIP)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Excel"
+msgstr "Lataa Excel"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Rules"
+msgstr "Lataa säännöt"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Forecast"
+msgstr "Lataa ennuste"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Inventory"
+msgstr "Lataa varastotiedot"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Run Info"
+msgstr "Ajotiedot"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Parameters"
+msgstr "Parametrit"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Results"
+msgstr "Tulokset"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Error"
+msgstr "Virhe"
+
+#. module: foreqcast
+#: model:ir.actions.act_window,name:foreqcast.foreqcast_run_action
+msgid "Forecast Runs"
+msgstr "Ennusteajot"
+
+#. module: foreqcast
+#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_root
+msgid "Foreqcast"
+msgstr "Foreqcast"
+
+#. module: foreqcast
+#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_runs
+msgid "Forecast Runs"
+msgstr "Ennusteajot"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Foreqcast Complete"
+msgstr "Foreqcast valmis"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Foreqcast Error"
+msgstr "Foreqcast-virhe"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#: code:addons/foreqcast/models/foreqcast_run.py:0
+#, python-format
+msgid "Foreqcast"
+msgstr "Foreqcast"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Please configure Parquet Input Directory first."
+msgstr "Määritä ensin Parquet-syötehakemisto."
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Please configure Parquet Output Directory first."
+msgstr "Määritä ensin Parquet-tulostehakemisto."
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_run.py:0
+#, python-format
+msgid "No %s found for this run."
+msgstr "Tälle ajolle ei löytynyt kohdetta %s."
