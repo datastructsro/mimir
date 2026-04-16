@@ -1,0 +1,690 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * foreqcast
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-16 00:00+0000\n"
+"PO-Revision-Date: 2026-04-16 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Greek\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: foreqcast
+#: model:ir.model,name:foreqcast.model_foreqcast_run
+msgid "Foreqcast Run History"
+msgstr "Ιστορικό εκτελέσεων Foreqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__run_date
+msgid "Run Date"
+msgstr "Ημερομηνία εκτέλεσης"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__parquet_source_dir
+msgid "Input Source"
+msgstr "Πηγή εισόδου"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_analyzed
+msgid "Products Analyzed"
+msgstr "Αναλυθέντα προϊόντα"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_forecasted
+msgid "Products Forecasted"
+msgstr "Προβλεφθέντα προϊόντα"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_created
+msgid "Rules Created"
+msgstr "Δημιουργημένοι κανόνες"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_updated
+msgid "Rules Updated"
+msgstr "Ενημερωμένοι κανόνες"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_skipped
+msgid "Rules Skipped"
+msgstr "Παραλειφθέντες κανόνες"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__duration_seconds
+msgid "Duration (s)"
+msgstr "Διάρκεια (δ)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__status
+msgid "Status"
+msgstr "Κατάσταση"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__error_message
+msgid "Error Message"
+msgstr "Μήνυμα σφάλματος"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__forecast_horizon_days
+msgid "Horizon (days)"
+msgstr "Ορίζοντας (ημέρες)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__safety_factor
+msgid "Safety Factor Used"
+msgstr "Χρησιμοποιούμενος συντελεστής ασφαλείας"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__time_bucket
+msgid "Time Bucket"
+msgstr "Χρονικό διάστημα"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__attachment_count
+msgid "Output Files"
+msgstr "Αρχεία εξόδου"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Running"
+msgstr "Εκτελείται"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Complete"
+msgstr "Ολοκληρώθηκε"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Error"
+msgstr "Σφάλμα"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Odoo Attachments (from Parqcast)"
+msgstr "Συνημμένα Odoo (από Parqcast)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Server Filesystem"
+msgstr "Σύστημα αρχείων διακομιστή"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Daily"
+msgstr "Ημερήσιο"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Weekly"
+msgstr "Εβδομαδιαίο"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Ignore (forecast only)"
+msgstr "Αγνόηση (μόνο πρόβλεψη)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Analyze (add inventory columns)"
+msgstr "Ανάλυση (προσθήκη στηλών αποθέματος)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Adjust (modify replenishment)"
+msgstr "Προσαρμογή (τροποποίηση αναπλήρωσης)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_enabled
+msgid "Enable Foreqcast"
+msgstr "Ενεργοποίηση Foreqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Input Source"
+msgstr "Πηγή εισόδου"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_horizon_days
+msgid "Forecast Horizon (days)"
+msgstr "Ορίζοντας πρόβλεψης (ημέρες)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Time Bucket"
+msgstr "Χρονικό διάστημα"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_service_level
+msgid "Service Level"
+msgstr "Επίπεδο εξυπηρέτησης"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_review_period_days
+msgid "Review Period (days)"
+msgstr "Περίοδος αναθεώρησης (ημέρες)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_default_lead_time
+msgid "Default Lead Time (days)"
+msgstr "Προεπιλεγμένος χρόνος παράδοσης (ημέρες)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_data_points
+msgid "Minimum Data Points"
+msgstr "Ελάχιστα σημεία δεδομένων"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
+msgid "Minimum Demand Threshold"
+msgstr "Ελάχιστο όριο ζήτησης"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_auto_push
+msgid "Auto-push to Orderpoints"
+msgstr "Αυτόματη ώθηση σε σημεία παραγγελίας"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
+msgid "Parquet Input Directory"
+msgstr "Κατάλογος εισόδου Parquet"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
+msgid "Parquet Output Directory"
+msgstr "Κατάλογος εξόδου Parquet"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_config_db_path
+msgid "Config Database Path"
+msgstr "Διαδρομή βάσης ρυθμίσεων"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Inventory Mode"
+msgstr "Λειτουργία αποθέματος"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_respect_reservations
+msgid "Respect Reservations"
+msgstr "Σεβασμός κρατήσεων"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_incoming
+msgid "Include Incoming Supply"
+msgstr "Συμπερίληψη εισερχόμενου εφοδιασμού"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_outgoing
+msgid "Include Outgoing Demand"
+msgstr "Συμπερίληψη εξερχόμενης ζήτησης"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_days
+msgid "Overstock Threshold (days)"
+msgstr "Όριο υπεραποθέματος (ημέρες)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_days
+msgid "Understock Threshold (days)"
+msgstr "Όριο υποαποθέματος (ημέρες)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_skip
+msgid "Skip Overstocked Products"
+msgstr "Παράλειψη προϊόντων με υπεραπόθεμα"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_bump
+msgid "Understock Service Level Bump"
+msgstr "Αύξηση επιπέδου εξυπηρέτησης υποαποθέματος"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_enabled
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Ενεργοποίηση πρόβλεψης ζήτησης και δημιουργίας κανόνων αναπλήρωσης"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Where to read parqcast export files from"
+msgstr "Από πού να διαβαστούν τα αρχεία εξαγωγής Parqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_horizon_days
+msgid "Number of days to project demand forward"
+msgstr "Αριθμός ημερών για προβολή ζήτησης μπροστά"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Granularity of demand aggregation"
+msgstr "Ανάλυση συγκέντρωσης ζήτησης"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_service_level
+msgid "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. Higher values require more safety stock. Start at 0.85 and increase per category as needed."
+msgstr "Στόχος ποσοστού πλήρωσης (0,0-1,0). Ορίστε 0,90 για τυπική εξυπηρέτηση ή 0,95 για κρίσιμα είδη. Υψηλότερες τιμές απαιτούν περισσότερο απόθεμα ασφαλείας. Ξεκινήστε από 0,85 και αυξήστε ανά κατηγορία ανάλογα με τις ανάγκες."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_review_period_days
+msgid "Days between replenishment reviews — affects max_qty calculation"
+msgstr "Ημέρες μεταξύ αναθεωρήσεων αναπλήρωσης — επηρεάζει τον υπολογισμό max_qty"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_default_lead_time
+msgid "Fallback lead time when no supplier info exists for a product"
+msgstr "Εφεδρικός χρόνος παράδοσης όταν δεν υπάρχουν πληροφορίες προμηθευτή για ένα προϊόν"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_data_points
+msgid "Minimum number of observations required to fit a regression"
+msgstr "Ελάχιστος αριθμός παρατηρήσεων που απαιτούνται για προσαρμογή παλινδρόμησης"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
+msgid "Skip products with average daily demand below this value"
+msgstr "Παράλειψη προϊόντων με μέση ημερήσια ζήτηση κάτω από αυτή την τιμή"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_auto_push
+msgid "Automatically update orderpoints after forecast run (vs. parquet-only)"
+msgstr "Αυτόματη ενημέρωση σημείων παραγγελίας μετά την εκτέλεση πρόβλεψης (έναντι μόνο parquet)"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
+msgid "Path to parqcast export directory"
+msgstr "Διαδρομή προς τον κατάλογο εξαγωγής Parqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
+msgid "Path to write forecast and rules parquet files"
+msgstr "Διαδρομή για εγγραφή αρχείων parquet πρόβλεψης και κανόνων"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_config_db_path
+msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+msgstr "Διαδρομή προς τη βάση δεδομένων ρυθμίσεων SQLite Foreqcast (για παρακάμψεις ανά προϊόν)"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "How to account for current inventory when computing replenishment rules"
+msgstr "Πώς να ληφθεί υπόψη το τρέχον απόθεμα κατά τον υπολογισμό κανόνων αναπλήρωσης"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_respect_reservations
+msgid "Subtract reserved quantities from on-hand (conservative). Disable to let planner reallocate all stock."
+msgstr "Αφαίρεση δεσμευμένων ποσοτήτων από το διαθέσιμο απόθεμα (συντηρητικό). Απενεργοποιήστε για να αφήσετε τον σχεδιαστή να ανακατανείμει όλο το απόθεμα."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_incoming
+msgid "Count open PO and in-transit quantities as available inventory"
+msgstr "Υπολογισμός ανοικτών παραγγελιών αγοράς και ποσοτήτων σε μεταφορά ως διαθέσιμο απόθεμα"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_outgoing
+msgid "Subtract confirmed SO quantities. Off by default to avoid double-counting with forecast."
+msgstr "Αφαίρεση επιβεβαιωμένων ποσοτήτων παραγγελιών πώλησης. Απενεργοποιημένο εξ ορισμού για αποφυγή διπλού υπολογισμού με την πρόβλεψη."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_days
+msgid "Products with more than this many days of coverage are flagged as overstock"
+msgstr "Προϊόντα με περισσότερες από αυτές τις ημέρες κάλυψης επισημαίνονται ως υπεραπόθεμα"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_days
+msgid "Products with fewer than this many days of coverage are flagged as understock"
+msgstr "Προϊόντα με λιγότερες από αυτές τις ημέρες κάλυψης επισημαίνονται ως υποαπόθεμα"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_skip
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "Σε λειτουργία προσαρμογής, μη δημιουργείτε σημεία παραγγελίας για προϊόντα με υπεραπόθεμα"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_bump
+msgid "In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)"
+msgstr "Σε λειτουργία προσαρμογής, αυξήστε το επίπεδο εξυπηρέτησης κατά αυτό το ποσό για προϊόντα με υποαπόθεμα (π.χ. 0,95 → 0,98)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Demand Forecasting"
+msgstr "Πρόβλεψη ζήτησης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Enable Foreqcast"
+msgstr "Ενεργοποίηση Foreqcast"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Ενεργοποίηση πρόβλεψης ζήτησης και δημιουργίας κανόνων αναπλήρωσης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Forecast Parameters"
+msgstr "Παράμετροι πρόβλεψης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Forecast Horizon"
+msgstr "Ορίζοντας πρόβλεψης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "How many days ahead to project demand"
+msgstr "Πόσες ημέρες μπροστά να προβληθεί η ζήτηση"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Granularity of demand aggregation for regression"
+msgstr "Ανάλυση συγκέντρωσης ζήτησης για παλινδρόμηση"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
+msgstr "Στόχος ποσοστού πλήρωσης. Ορίστε 0,90 για τυπική εξυπηρέτηση ή 0,95 για κρίσιμα είδη. Υψηλότερες τιμές χρειάζονται περισσότερο απόθεμα ασφαλείας."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Review Period"
+msgstr "Περίοδος αναθεώρησης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days between replenishment checks (affects max qty)"
+msgstr "Ημέρες μεταξύ ελέγχων αναπλήρωσης (επηρεάζει μέγιστη ποσότητα)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Default Lead Time"
+msgstr "Προεπιλεγμένος χρόνος παράδοσης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Fallback when no supplier info exists for a product"
+msgstr "Εφεδρική τιμή όταν δεν υπάρχουν πληροφορίες προμηθευτή για ένα προϊόν"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Data Quality"
+msgstr "Ποιότητα δεδομένων"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Require at least this many observations to forecast"
+msgstr "Απαίτηση τουλάχιστον τόσων παρατηρήσεων για πρόβλεψη"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Skip products with daily demand below this"
+msgstr "Παράλειψη προϊόντων με ημερήσια ζήτηση κάτω από αυτό"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Integration"
+msgstr "Ενσωμάτωση"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Where to read parqcast export data from"
+msgstr "Από πού να διαβαστούν τα δεδομένα εξαγωγής Parqcast"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Odoo Attachments"
+msgstr "Συνημμένα Odoo"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
+msgstr "Το Foreqcast διαβάζει απευθείας από τα συνημμένα της τελευταίας εξαγωγής Parqcast. Δεν χρειάζονται διαδρομές αρχείων."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Reads parquet files from the latest completed Parqcast export. Output files are stored as attachments on the Forecast Run record."
+msgstr "Διαβάζει αρχεία parquet από την τελευταία ολοκληρωμένη εξαγωγή Parqcast. Τα αρχεία εξόδου αποθηκεύονται ως συνημμένα στην εγγραφή εκτέλεσης πρόβλεψης."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Parquet Directories"
+msgstr "Κατάλογοι Parquet"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Server file paths for parqcast input and forecast output"
+msgstr "Διαδρομές αρχείων διακομιστή για είσοδο Parqcast και έξοδο πρόβλεψης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Auto-push to Orderpoints"
+msgstr "Αυτόματη ώθηση σε σημεία παραγγελίας"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Automatically update Odoo reorder rules after each forecast run"
+msgstr "Αυτόματη ενημέρωση κανόνων αναπαραγγελίας Odoo μετά από κάθε εκτέλεση πρόβλεψης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Config Database"
+msgstr "Βάση δεδομένων ρυθμίσεων"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "SQLite database for per-product overrides and audit trail"
+msgstr "Βάση δεδομένων SQLite για παρακάμψεις ανά προϊόν και ίχνος ελέγχου"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run Pipeline"
+msgstr "Εκτέλεση αγωγού"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Execute the forecast pipeline now with current settings"
+msgstr "Εκτέλεση του αγωγού πρόβλεψης τώρα με τις τρέχουσες ρυθμίσεις"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run Now"
+msgstr "Εκτέλεση τώρα"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run the forecast pipeline with current settings?"
+msgstr "Εκτέλεση του αγωγού πρόβλεψης με τις τρέχουσες ρυθμίσεις;"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Position"
+msgstr "Θέση αποθέματος"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Mode"
+msgstr "Λειτουργία αποθέματος"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "How to account for current inventory state"
+msgstr "Πώς να ληφθεί υπόψη η τρέχουσα κατάσταση αποθέματος"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Respect Reservations"
+msgstr "Σεβασμός κρατήσεων"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Subtract reserved stock from available position (conservative)"
+msgstr "Αφαίρεση δεσμευμένου αποθέματος από τη διαθέσιμη θέση (συντηρητικό)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Include Incoming Supply"
+msgstr "Συμπερίληψη εισερχόμενου εφοδιασμού"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Count open PO and in-transit quantities"
+msgstr "Υπολογισμός ανοικτών παραγγελιών αγοράς και ποσοτήτων σε μεταφορά"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Include Outgoing Demand"
+msgstr "Συμπερίληψη εξερχόμενης ζήτησης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
+msgstr "Αφαίρεση επιβεβαιωμένων ποσοτήτων παραγγελιών πώλησης (απενεργοποιημένο εξ ορισμού για αποφυγή διπλού υπολογισμού)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Thresholds"
+msgstr "Όρια αποθέματος"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Overstock Threshold"
+msgstr "Όριο υπεραποθέματος"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days of coverage above which a product is flagged as overstocked"
+msgstr "Ημέρες κάλυψης πάνω από τις οποίες ένα προϊόν επισημαίνεται ως υπεραπόθεμα"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Understock Threshold"
+msgstr "Όριο υποαποθέματος"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days of coverage below which a product is flagged as understocked"
+msgstr "Ημέρες κάλυψης κάτω από τις οποίες ένα προϊόν επισημαίνεται ως υποαπόθεμα"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Skip Overstocked"
+msgstr "Παράλειψη υπεραποθέματος"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "Σε λειτουργία προσαρμογής, μη δημιουργείτε σημεία παραγγελίας για προϊόντα με υπεραπόθεμα"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Understock SL Bump"
+msgstr "Αύξηση ΕΕ υποαποθέματος"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "In adjust mode, raise service level by this for understocked products"
+msgstr "Σε λειτουργία προσαρμογής, αυξήστε το επίπεδο εξυπηρέτησης κατά αυτό για προϊόντα με υποαπόθεμα"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download All (ZIP)"
+msgstr "Λήψη όλων (ZIP)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Excel"
+msgstr "Λήψη Excel"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Rules"
+msgstr "Λήψη κανόνων"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Forecast"
+msgstr "Λήψη πρόβλεψης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Inventory"
+msgstr "Λήψη αποθέματος"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Run Info"
+msgstr "Πληροφορίες εκτέλεσης"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Parameters"
+msgstr "Παράμετροι"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Results"
+msgstr "Αποτελέσματα"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Error"
+msgstr "Σφάλμα"
+
+#. module: foreqcast
+#: model:ir.actions.act_window,name:foreqcast.foreqcast_run_action
+msgid "Forecast Runs"
+msgstr "Εκτελέσεις πρόβλεψης"
+
+#. module: foreqcast
+#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_root
+msgid "Foreqcast"
+msgstr "Foreqcast"
+
+#. module: foreqcast
+#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_runs
+msgid "Forecast Runs"
+msgstr "Εκτελέσεις πρόβλεψης"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Foreqcast Complete"
+msgstr "Foreqcast ολοκληρώθηκε"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Foreqcast Error"
+msgstr "Σφάλμα Foreqcast"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#: code:addons/foreqcast/models/foreqcast_run.py:0
+#, python-format
+msgid "Foreqcast"
+msgstr "Foreqcast"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Please configure Parquet Input Directory first."
+msgstr "Παρακαλώ ρυθμίστε πρώτα τον κατάλογο εισόδου Parquet."
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Please configure Parquet Output Directory first."
+msgstr "Παρακαλώ ρυθμίστε πρώτα τον κατάλογο εξόδου Parquet."
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_run.py:0
+#, python-format
+msgid "No %s found for this run."
+msgstr "Δεν βρέθηκε %s για αυτή την εκτέλεση."

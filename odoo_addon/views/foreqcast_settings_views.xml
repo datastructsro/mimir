@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_foreqcast" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.foreqcast</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Foreqcast" data-string="Foreqcast" name="foreqcast">
+                    <block title="Demand Forecasting">
+                        <setting string="Enable Foreqcast" help="Turn on demand forecasting and replenishment rule generation">
+                            <field name="foreqcast_enabled"/>
+                        </setting>
+                    </block>
+
+                    <block title="Forecast Parameters" invisible="not foreqcast_enabled">
+                        <setting string="Forecast Horizon" help="How many days ahead to project demand">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_horizon_days"/>
+                                    <field name="foreqcast_horizon_days" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Time Bucket" help="Granularity of demand aggregation for regression">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_time_bucket"/>
+                                    <field name="foreqcast_time_bucket" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Service Level" help="Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock.">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_service_level"/>
+                                    <field name="foreqcast_service_level" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Review Period" help="Days between replenishment checks (affects max qty)">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_review_period_days"/>
+                                    <field name="foreqcast_review_period_days" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Default Lead Time" help="Fallback when no supplier info exists for a product">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_default_lead_time"/>
+                                    <field name="foreqcast_default_lead_time" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Data Quality" invisible="not foreqcast_enabled">
+                        <setting string="Minimum Data Points" help="Require at least this many observations to forecast">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_min_data_points"/>
+                                    <field name="foreqcast_min_data_points" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Minimum Demand Threshold" help="Skip products with daily demand below this">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_min_demand_threshold"/>
+                                    <field name="foreqcast_min_demand_threshold" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Integration" invisible="not foreqcast_enabled">
+                        <setting string="Input Source" help="Where to read parqcast export data from">
+                            <field name="foreqcast_input_source" widget="radio"/>
+                        </setting>
+                        <setting string="Odoo Attachments"
+                                 help="Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
+                                 invisible="foreqcast_input_source != 'attachment'">
+                            <div class="text-muted">
+                                Reads parquet files from the latest completed Parqcast export.
+                                Output files are stored as attachments on the Forecast Run record.
+                            </div>
+                        </setting>
+                        <setting string="Parquet Directories" help="Server file paths for parqcast input and forecast output"
+                                 invisible="foreqcast_input_source != 'filesystem'">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_parquet_input_dir"/>
+                                    <field name="foreqcast_parquet_input_dir" class="col-lg-6" placeholder="/data/parqcast/exports/latest"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_parquet_output_dir"/>
+                                    <field name="foreqcast_parquet_output_dir" class="col-lg-6" placeholder="/data/foreqcast/output"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Auto-push to Orderpoints" help="Automatically update Odoo reorder rules after each forecast run">
+                            <field name="foreqcast_auto_push"/>
+                        </setting>
+                        <setting string="Config Database" help="SQLite database for per-product overrides and audit trail">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_config_db_path"/>
+                                    <field name="foreqcast_config_db_path" class="col-lg-6" placeholder="/data/foreqcast/foreqcast_config.db"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Run Pipeline" help="Execute the forecast pipeline now with current settings">
+                            <button name="action_run_foreqcast" type="object"
+                                    string="Run Now" class="btn-primary"
+                                    icon="fa-play"
+                                    confirm="Run the forecast pipeline with current settings?"/>
+                        </setting>
+                    </block>
+
+                    <block title="Inventory Position" invisible="not foreqcast_enabled">
+                        <setting string="Inventory Mode" help="How to account for current inventory state">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_inventory_mode"/>
+                                    <field name="foreqcast_inventory_mode" class="col-lg-4"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Respect Reservations" help="Subtract reserved stock from available position (conservative)" invisible="foreqcast_inventory_mode == 'ignore'">
+                            <field name="foreqcast_respect_reservations"/>
+                        </setting>
+                        <setting string="Include Incoming Supply" help="Count open PO and in-transit quantities" invisible="foreqcast_inventory_mode == 'ignore'">
+                            <field name="foreqcast_include_incoming"/>
+                        </setting>
+                        <setting string="Include Outgoing Demand" help="Subtract confirmed SO quantities (off by default to avoid double-counting)" invisible="foreqcast_inventory_mode == 'ignore'">
+                            <field name="foreqcast_include_outgoing"/>
+                        </setting>
+                    </block>
+
+                    <block title="Inventory Thresholds" invisible="foreqcast_inventory_mode == 'ignore' or not foreqcast_enabled">
+                        <setting string="Overstock Threshold" help="Days of coverage above which a product is flagged as overstocked">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_overstock_days"/>
+                                    <field name="foreqcast_overstock_days" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Understock Threshold" help="Days of coverage below which a product is flagged as understocked">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_understock_days"/>
+                                    <field name="foreqcast_understock_days" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Skip Overstocked" help="In adjust mode, don't create orderpoints for overstocked products" invisible="foreqcast_inventory_mode != 'adjust'">
+                            <field name="foreqcast_overstock_skip"/>
+                        </setting>
+                        <setting string="Understock SL Bump" help="In adjust mode, raise service level by this for understocked products" invisible="foreqcast_inventory_mode != 'adjust'">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_understock_bump"/>
+                                    <field name="foreqcast_understock_bump" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

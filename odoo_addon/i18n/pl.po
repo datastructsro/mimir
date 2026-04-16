@@ -1,0 +1,689 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * foreqcast
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-16 00:00+0000\n"
+"PO-Revision-Date: 2026-04-16 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Polish\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: foreqcast
+#: model:ir.model,name:foreqcast.model_foreqcast_run
+msgid "Foreqcast Run History"
+msgstr "Historia uruchomień Foreqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__run_date
+msgid "Run Date"
+msgstr "Data uruchomienia"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__parquet_source_dir
+msgid "Input Source"
+msgstr "Źródło danych wejściowych"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_analyzed
+msgid "Products Analyzed"
+msgstr "Przeanalizowane produkty"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_forecasted
+msgid "Products Forecasted"
+msgstr "Prognozowane produkty"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_created
+msgid "Rules Created"
+msgstr "Utworzone reguły"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_updated
+msgid "Rules Updated"
+msgstr "Zaktualizowane reguły"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_skipped
+msgid "Rules Skipped"
+msgstr "Pominięte reguły"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__duration_seconds
+msgid "Duration (s)"
+msgstr "Czas trwania (s)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__status
+msgid "Status"
+msgstr "Status"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__error_message
+msgid "Error Message"
+msgstr "Komunikat błędu"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__forecast_horizon_days
+msgid "Horizon (days)"
+msgstr "Horyzont (dni)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__safety_factor
+msgid "Safety Factor Used"
+msgstr "Użyty współczynnik bezpieczeństwa"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__time_bucket
+msgid "Time Bucket"
+msgstr "Okres czasu"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__attachment_count
+msgid "Output Files"
+msgstr "Pliki wyjściowe"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Running"
+msgstr "W toku"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Complete"
+msgstr "Zakończone"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Error"
+msgstr "Błąd"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Odoo Attachments (from Parqcast)"
+msgstr "Załączniki Odoo (z eksportu Parqcast)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Server Filesystem"
+msgstr "System plików serwera"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Daily"
+msgstr "Dziennie"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Weekly"
+msgstr "Tygodniowo"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Ignore (forecast only)"
+msgstr "Ignoruj (tylko prognoza)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Analyze (add inventory columns)"
+msgstr "Analizuj (dodaj kolumny magazynowe)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Adjust (modify replenishment)"
+msgstr "Dostosuj (modyfikuj uzupełnianie)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_enabled
+msgid "Enable Foreqcast"
+msgstr "Włącz Foreqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Input Source"
+msgstr "Źródło danych wejściowych"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_horizon_days
+msgid "Forecast Horizon (days)"
+msgstr "Horyzont prognozy (dni)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Time Bucket"
+msgstr "Okres czasu"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_service_level
+msgid "Service Level"
+msgstr "Poziom obsługi"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_review_period_days
+msgid "Review Period (days)"
+msgstr "Okres przeglądu (dni)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_default_lead_time
+msgid "Default Lead Time (days)"
+msgstr "Domyślny czas realizacji (dni)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_data_points
+msgid "Minimum Data Points"
+msgstr "Minimalna liczba punktów danych"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
+msgid "Minimum Demand Threshold"
+msgstr "Minimalny próg popytu"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_auto_push
+msgid "Auto-push to Orderpoints"
+msgstr "Automatyczna aktualizacja reguł uzupełniania"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
+msgid "Parquet Input Directory"
+msgstr "Katalog wejściowy Parquet"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
+msgid "Parquet Output Directory"
+msgstr "Katalog wyjściowy Parquet"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_config_db_path
+msgid "Config Database Path"
+msgstr "Ścieżka bazy konfiguracji"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Inventory Mode"
+msgstr "Tryb magazynu"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_respect_reservations
+msgid "Respect Reservations"
+msgstr "Uwzględniaj rezerwacje"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_incoming
+msgid "Include Incoming Supply"
+msgstr "Uwzględnij dostawy przychodzące"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_outgoing
+msgid "Include Outgoing Demand"
+msgstr "Uwzględnij popyt wychodzący"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_days
+msgid "Overstock Threshold (days)"
+msgstr "Próg nadmiernego zapasu (dni)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_days
+msgid "Understock Threshold (days)"
+msgstr "Próg niedoboru zapasu (dni)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_skip
+msgid "Skip Overstocked Products"
+msgstr "Pomiń produkty z nadmiernym zapasem"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_bump
+msgid "Understock Service Level Bump"
+msgstr "Podwyższenie poziomu obsługi przy niedoborze"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_enabled
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Włącz prognozowanie popytu i generowanie reguł uzupełniania"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Where to read parqcast export files from"
+msgstr "Skąd odczytywać pliki eksportu Parqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_horizon_days
+msgid "Number of days to project demand forward"
+msgstr "Liczba dni do prognozowania popytu w przód"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Granularity of demand aggregation"
+msgstr "Szczegółowość agregacji popytu"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_service_level
+msgid "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. Higher values require more safety stock. Start at 0.85 and increase per category as needed."
+msgstr "Docelowy współczynnik realizacji (0,0–1,0). Ustaw 0,90 dla standardowej obsługi lub 0,95 dla pozycji krytycznych. Wyższe wartości wymagają większego zapasu bezpieczeństwa. Zacznij od 0,85 i zwiększaj w poszczególnych kategoriach w razie potrzeby."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_review_period_days
+msgid "Days between replenishment reviews — affects max_qty calculation"
+msgstr "Dni między przeglądami uzupełnień — wpływa na obliczenie max_qty"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_default_lead_time
+msgid "Fallback lead time when no supplier info exists for a product"
+msgstr "Awaryjny czas realizacji, gdy dla produktu brak danych o dostawcy"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_data_points
+msgid "Minimum number of observations required to fit a regression"
+msgstr "Minimalna liczba obserwacji wymagana do dopasowania regresji"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
+msgid "Skip products with average daily demand below this value"
+msgstr "Pomiń produkty ze średnim dziennym popytem poniżej tej wartości"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_auto_push
+msgid "Automatically update orderpoints after forecast run (vs. parquet-only)"
+msgstr "Automatycznie aktualizuj reguły uzupełniania po uruchomieniu prognozy (vs. tylko parquet)"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
+msgid "Path to parqcast export directory"
+msgstr "Ścieżka do katalogu eksportu Parqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
+msgid "Path to write forecast and rules parquet files"
+msgstr "Ścieżka do zapisu plików parquet z prognozami i regułami"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_config_db_path
+msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+msgstr "Ścieżka do bazy konfiguracji Foreqcast SQLite (dla nadpisań per produkt)"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "How to account for current inventory when computing replenishment rules"
+msgstr "Jak uwzględniać bieżący stan magazynu przy obliczaniu reguł uzupełniania"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_respect_reservations
+msgid "Subtract reserved quantities from on-hand (conservative). Disable to let planner reallocate all stock."
+msgstr "Odejmij zarezerwowane ilości od stanu na stanie (konserwatywne). Wyłącz, aby planista mógł realokować cały zapas."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_incoming
+msgid "Count open PO and in-transit quantities as available inventory"
+msgstr "Licz otwarte zamówienia zakupu i ilości w tranzycie jako dostępny zapas"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_outgoing
+msgid "Subtract confirmed SO quantities. Off by default to avoid double-counting with forecast."
+msgstr "Odejmij potwierdzone ilości zamówień sprzedaży. Domyślnie wyłączone, aby uniknąć podwójnego liczenia z prognozą."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_days
+msgid "Products with more than this many days of coverage are flagged as overstock"
+msgstr "Produkty z większą liczbą dni pokrycia niż ta wartość są oznaczane jako nadmierny zapas"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_days
+msgid "Products with fewer than this many days of coverage are flagged as understock"
+msgstr "Produkty z mniejszą liczbą dni pokrycia niż ta wartość są oznaczane jako niedobór zapasu"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_skip
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "W trybie dostosowania nie twórz reguł uzupełniania dla produktów z nadmiernym zapasem"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_bump
+msgid "In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)"
+msgstr "W trybie dostosowania podwyższ poziom obsługi o tę wartość dla produktów z niedoborem (np. 0,95 → 0,98)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Demand Forecasting"
+msgstr "Prognozowanie popytu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Enable Foreqcast"
+msgstr "Włącz Foreqcast"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Włącz prognozowanie popytu i generowanie reguł uzupełniania"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Forecast Parameters"
+msgstr "Parametry prognozy"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Forecast Horizon"
+msgstr "Horyzont prognozy"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "How many days ahead to project demand"
+msgstr "Na ile dni w przód prognozować popyt"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Granularity of demand aggregation for regression"
+msgstr "Szczegółowość agregacji popytu dla regresji"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
+msgstr "Docelowy współczynnik realizacji. Ustaw 0,90 dla standardowej obsługi lub 0,95 dla pozycji krytycznych. Wyższe wartości wymagają większego zapasu bezpieczeństwa."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Review Period"
+msgstr "Okres przeglądu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days between replenishment checks (affects max qty)"
+msgstr "Dni między kontrolami uzupełnień (wpływa na maks. ilość)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Default Lead Time"
+msgstr "Domyślny czas realizacji"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Fallback when no supplier info exists for a product"
+msgstr "Wartość awaryjna, gdy dla produktu brak danych o dostawcy"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Data Quality"
+msgstr "Jakość danych"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Require at least this many observations to forecast"
+msgstr "Wymagaj co najmniej tylu obserwacji do prognozowania"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Skip products with daily demand below this"
+msgstr "Pomiń produkty z dziennym popytem poniżej tej wartości"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Integration"
+msgstr "Integracja"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Where to read parqcast export data from"
+msgstr "Skąd odczytywać dane eksportu Parqcast"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Odoo Attachments"
+msgstr "Załączniki Odoo"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
+msgstr "Foreqcast odczytuje bezpośrednio z załączników ostatniego uruchomienia eksportu Parqcast. Ścieżki plików nie są potrzebne."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Reads parquet files from the latest completed Parqcast export. Output files are stored as attachments on the Forecast Run record."
+msgstr "Odczytuje pliki parquet z ostatniego ukończonego eksportu Parqcast. Pliki wyjściowe są przechowywane jako załączniki w rekordzie uruchomienia prognozy."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Parquet Directories"
+msgstr "Katalogi Parquet"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Server file paths for parqcast input and forecast output"
+msgstr "Ścieżki plików serwera dla wejścia Parqcast i wyjścia prognozy"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Auto-push to Orderpoints"
+msgstr "Automatyczna aktualizacja reguł uzupełniania"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Automatically update Odoo reorder rules after each forecast run"
+msgstr "Automatycznie aktualizuj reguły uzupełniania Odoo po każdym uruchomieniu prognozy"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Config Database"
+msgstr "Baza konfiguracji"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "SQLite database for per-product overrides and audit trail"
+msgstr "Baza danych SQLite dla nadpisań per produkt i ścieżki audytu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run Pipeline"
+msgstr "Uruchom potok przetwarzania"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Execute the forecast pipeline now with current settings"
+msgstr "Uruchom potok prognozy teraz z bieżącymi ustawieniami"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run Now"
+msgstr "Uruchom teraz"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run the forecast pipeline with current settings?"
+msgstr "Uruchomić potok prognozy z bieżącymi ustawieniami?"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Position"
+msgstr "Pozycja magazynowa"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Mode"
+msgstr "Tryb magazynu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "How to account for current inventory state"
+msgstr "Jak uwzględniać bieżący stan magazynu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Respect Reservations"
+msgstr "Uwzględniaj rezerwacje"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Subtract reserved stock from available position (conservative)"
+msgstr "Odejmij zarezerwowany zapas od dostępnej pozycji (konserwatywne)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Include Incoming Supply"
+msgstr "Uwzględnij dostawy przychodzące"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Count open PO and in-transit quantities"
+msgstr "Licz otwarte zamówienia zakupu i ilości w tranzycie"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Include Outgoing Demand"
+msgstr "Uwzględnij popyt wychodzący"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
+msgstr "Odejmij potwierdzone ilości zamówień sprzedaży (domyślnie wyłączone, aby uniknąć podwójnego liczenia)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Thresholds"
+msgstr "Progi magazynowe"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Overstock Threshold"
+msgstr "Próg nadmiernego zapasu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days of coverage above which a product is flagged as overstocked"
+msgstr "Dni pokrycia, powyżej których produkt jest oznaczany jako nadmierny zapas"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Understock Threshold"
+msgstr "Próg niedoboru zapasu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days of coverage below which a product is flagged as understocked"
+msgstr "Dni pokrycia, poniżej których produkt jest oznaczany jako niedobór zapasu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Skip Overstocked"
+msgstr "Pomiń z nadmiernym zapasem"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "W trybie dostosowania nie twórz reguł uzupełniania dla produktów z nadmiernym zapasem"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Understock SL Bump"
+msgstr "Podwyższenie poziomu obsługi przy niedoborze"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "In adjust mode, raise service level by this for understocked products"
+msgstr "W trybie dostosowania podwyższ poziom obsługi o tę wartość dla produktów z niedoborem"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download All (ZIP)"
+msgstr "Pobierz wszystko (ZIP)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Excel"
+msgstr "Pobierz Excel"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Rules"
+msgstr "Pobierz reguły"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Forecast"
+msgstr "Pobierz prognozę"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Inventory"
+msgstr "Pobierz dane magazynowe"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Run Info"
+msgstr "Informacje o uruchomieniu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Parameters"
+msgstr "Parametry"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Results"
+msgstr "Wyniki"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Error"
+msgstr "Błąd"
+
+#. module: foreqcast
+#: model:ir.actions.act_window,name:foreqcast.foreqcast_run_action
+msgid "Forecast Runs"
+msgstr "Uruchomienia prognozy"
+
+#. module: foreqcast
+#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_root
+msgid "Foreqcast"
+msgstr "Foreqcast"
+
+#. module: foreqcast
+#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_runs
+msgid "Forecast Runs"
+msgstr "Uruchomienia prognozy"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Foreqcast Complete"
+msgstr "Foreqcast zakończony"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Foreqcast Error"
+msgstr "Błąd Foreqcast"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#: code:addons/foreqcast/models/foreqcast_run.py:0
+#, python-format
+msgid "Foreqcast"
+msgstr "Foreqcast"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Please configure Parquet Input Directory first."
+msgstr "Proszę najpierw skonfigurować katalog wejściowy Parquet."
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Please configure Parquet Output Directory first."
+msgstr "Proszę najpierw skonfigurować katalog wyjściowy Parquet."
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_run.py:0
+#, python-format
+msgid "No %s found for this run."
+msgstr "Nie znaleziono %s dla tego uruchomienia."

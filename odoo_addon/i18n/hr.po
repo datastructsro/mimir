@@ -1,0 +1,689 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * foreqcast
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-16 00:00+0000\n"
+"PO-Revision-Date: 2026-04-16 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Croatian\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: foreqcast
+#: model:ir.model,name:foreqcast.model_foreqcast_run
+msgid "Foreqcast Run History"
+msgstr "Povijest pokretanja Foreqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__run_date
+msgid "Run Date"
+msgstr "Datum pokretanja"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__parquet_source_dir
+msgid "Input Source"
+msgstr "Ulazni izvor"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_analyzed
+msgid "Products Analyzed"
+msgstr "Analizirani proizvodi"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_forecasted
+msgid "Products Forecasted"
+msgstr "Prognozirani proizvodi"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_created
+msgid "Rules Created"
+msgstr "Stvorena pravila"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_updated
+msgid "Rules Updated"
+msgstr "Ažurirana pravila"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_skipped
+msgid "Rules Skipped"
+msgstr "Preskočena pravila"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__duration_seconds
+msgid "Duration (s)"
+msgstr "Trajanje (s)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__status
+msgid "Status"
+msgstr "Status"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__error_message
+msgid "Error Message"
+msgstr "Poruka o pogrešci"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__forecast_horizon_days
+msgid "Horizon (days)"
+msgstr "Horizont (dana)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__safety_factor
+msgid "Safety Factor Used"
+msgstr "Korišteni sigurnosni faktor"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__time_bucket
+msgid "Time Bucket"
+msgstr "Vremenski period"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__attachment_count
+msgid "Output Files"
+msgstr "Izlazne datoteke"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Running"
+msgstr "U tijeku"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Complete"
+msgstr "Završeno"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
+msgid "Error"
+msgstr "Pogreška"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Odoo Attachments (from Parqcast)"
+msgstr "Odoo privici (iz Parqcast izvoza)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Server Filesystem"
+msgstr "Datotečni sustav poslužitelja"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Daily"
+msgstr "Dnevno"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Weekly"
+msgstr "Tjedno"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Ignore (forecast only)"
+msgstr "Zanemari (samo prognoza)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Analyze (add inventory columns)"
+msgstr "Analiziraj (dodaj stupce zaliha)"
+
+#. module: foreqcast
+#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Adjust (modify replenishment)"
+msgstr "Prilagodi (izmijeni dopunu)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_enabled
+msgid "Enable Foreqcast"
+msgstr "Omogući Foreqcast"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Input Source"
+msgstr "Ulazni izvor"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_horizon_days
+msgid "Forecast Horizon (days)"
+msgstr "Horizont prognoze (dana)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Time Bucket"
+msgstr "Vremenski period"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_service_level
+msgid "Service Level"
+msgstr "Razina usluge"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_review_period_days
+msgid "Review Period (days)"
+msgstr "Period pregleda (dana)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_default_lead_time
+msgid "Default Lead Time (days)"
+msgstr "Zadano vrijeme isporuke (dana)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_data_points
+msgid "Minimum Data Points"
+msgstr "Minimalni broj podatkovnih točaka"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
+msgid "Minimum Demand Threshold"
+msgstr "Minimalni prag potražnje"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_auto_push
+msgid "Auto-push to Orderpoints"
+msgstr "Automatsko ažuriranje pravila dopune"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
+msgid "Parquet Input Directory"
+msgstr "Parquet ulazni direktorij"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
+msgid "Parquet Output Directory"
+msgstr "Parquet izlazni direktorij"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_config_db_path
+msgid "Config Database Path"
+msgstr "Putanja konfiguracijske baze podataka"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "Inventory Mode"
+msgstr "Način rada zaliha"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_respect_reservations
+msgid "Respect Reservations"
+msgstr "Poštuj rezervacije"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_incoming
+msgid "Include Incoming Supply"
+msgstr "Uključi dolaznu opskrbu"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_outgoing
+msgid "Include Outgoing Demand"
+msgstr "Uključi odlaznu potražnju"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_days
+msgid "Overstock Threshold (days)"
+msgstr "Prag prekomjerne zalihe (dana)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_days
+msgid "Understock Threshold (days)"
+msgstr "Prag nedovoljne zalihe (dana)"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_skip
+msgid "Skip Overstocked Products"
+msgstr "Preskoči proizvode s prekomjernom zalihom"
+
+#. module: foreqcast
+#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_bump
+msgid "Understock Service Level Bump"
+msgstr "Povećanje razine usluge za nedovoljnu zalihu"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_enabled
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Uključi prognoziranje potražnje i generiranje pravila dopune"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_input_source
+msgid "Where to read parqcast export files from"
+msgstr "Odakle čitati Parqcast izvozne datoteke"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_horizon_days
+msgid "Number of days to project demand forward"
+msgstr "Broj dana za projekciju potražnje unaprijed"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_time_bucket
+msgid "Granularity of demand aggregation"
+msgstr "Granularnost agregacije potražnje"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_service_level
+msgid "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. Higher values require more safety stock. Start at 0.85 and increase per category as needed."
+msgstr "Ciljna stopa ispunjenosti (0,0–1,0). Postavite na 0,90 za standardnu uslugu ili 0,95 za kritične artikle. Više vrijednosti zahtijevaju više sigurnosne zalihe. Počnite s 0,85 i povećavajte po kategoriji prema potrebi."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_review_period_days
+msgid "Days between replenishment reviews — affects max_qty calculation"
+msgstr "Dani između pregleda dopune — utječe na izračun max_qty"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_default_lead_time
+msgid "Fallback lead time when no supplier info exists for a product"
+msgstr "Zamjensko vrijeme isporuke kada za proizvod ne postoje podaci o dobavljaču"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_data_points
+msgid "Minimum number of observations required to fit a regression"
+msgstr "Minimalan broj opažanja potrebnih za prilagodbu regresije"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
+msgid "Skip products with average daily demand below this value"
+msgstr "Preskoči proizvode s prosječnom dnevnom potražnjom ispod ove vrijednosti"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_auto_push
+msgid "Automatically update orderpoints after forecast run (vs. parquet-only)"
+msgstr "Automatski ažuriraj pravila dopune nakon pokretanja prognoze (naspram samo parquet)"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
+msgid "Path to parqcast export directory"
+msgstr "Putanja do Parqcast izvoznog direktorija"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
+msgid "Path to write forecast and rules parquet files"
+msgstr "Putanja za pisanje parquet datoteka prognoza i pravila"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_config_db_path
+msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+msgstr "Putanja do Foreqcast SQLite konfiguracijske baze podataka (za nadjačavanja po proizvodu)"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_inventory_mode
+msgid "How to account for current inventory when computing replenishment rules"
+msgstr "Kako uzeti u obzir trenutne zalihe pri izračunu pravila dopune"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_respect_reservations
+msgid "Subtract reserved quantities from on-hand (conservative). Disable to let planner reallocate all stock."
+msgstr "Oduzmi rezervirane količine od raspoloživih (konzervativno). Onemogući kako bi planer mogao preraspodijeliti sve zalihe."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_incoming
+msgid "Count open PO and in-transit quantities as available inventory"
+msgstr "Broji otvorene narudžbenice i količine u prijevozu kao raspoloživu zalihu"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_outgoing
+msgid "Subtract confirmed SO quantities. Off by default to avoid double-counting with forecast."
+msgstr "Oduzmi potvrđene količine prodajnih naloga. Isključeno prema zadanom kako bi se izbjeglo dvostruko računanje s prognozom."
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_days
+msgid "Products with more than this many days of coverage are flagged as overstock"
+msgstr "Proizvodi s više dana pokrivenosti od ovog broja označeni su kao prekomjerna zaliha"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_days
+msgid "Products with fewer than this many days of coverage are flagged as understock"
+msgstr "Proizvodi s manje dana pokrivenosti od ovog broja označeni su kao nedovoljna zaliha"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_skip
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "U načinu prilagodbe, ne stvaraj pravila dopune za proizvode s prekomjernom zalihom"
+
+#. module: foreqcast
+#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_bump
+msgid "In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)"
+msgstr "U načinu prilagodbe, povećaj razinu usluge za ovaj iznos za proizvode s nedovoljnom zalihom (npr. 0,95 → 0,98)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Demand Forecasting"
+msgstr "Prognoziranje potražnje"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Enable Foreqcast"
+msgstr "Omogući Foreqcast"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Uključi prognoziranje potražnje i generiranje pravila dopune"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Forecast Parameters"
+msgstr "Parametri prognoze"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Forecast Horizon"
+msgstr "Horizont prognoze"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "How many days ahead to project demand"
+msgstr "Koliko dana unaprijed projicirati potražnju"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Granularity of demand aggregation for regression"
+msgstr "Granularnost agregacije potražnje za regresiju"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
+msgstr "Ciljna stopa ispunjenosti. Postavite na 0,90 za standardnu uslugu ili 0,95 za kritične artikle. Više vrijednosti zahtijevaju više sigurnosne zalihe."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Review Period"
+msgstr "Period pregleda"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days between replenishment checks (affects max qty)"
+msgstr "Dani između provjera dopune (utječe na max količinu)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Default Lead Time"
+msgstr "Zadano vrijeme isporuke"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Fallback when no supplier info exists for a product"
+msgstr "Zamjena kada za proizvod ne postoje podaci o dobavljaču"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Data Quality"
+msgstr "Kvaliteta podataka"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Require at least this many observations to forecast"
+msgstr "Zahtijevaj barem ovoliko opažanja za prognoziranje"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Skip products with daily demand below this"
+msgstr "Preskoči proizvode s dnevnom potražnjom ispod ovoga"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Integration"
+msgstr "Integracija"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Where to read parqcast export data from"
+msgstr "Odakle čitati Parqcast izvozne podatke"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Odoo Attachments"
+msgstr "Odoo privici"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
+msgstr "Foreqcast čita izravno iz privitaka posljednjeg Parqcast izvoznog pokretanja. Putanje datoteka nisu potrebne."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Reads parquet files from the latest completed Parqcast export. Output files are stored as attachments on the Forecast Run record."
+msgstr "Čita parquet datoteke iz posljednjeg dovršenog Parqcast izvoza. Izlazne datoteke pohranjuju se kao privici na zapisu pokretanja prognoze."
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Parquet Directories"
+msgstr "Parquet direktoriji"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Server file paths for parqcast input and forecast output"
+msgstr "Putanje datoteka na poslužitelju za Parqcast ulaz i izlaz prognoze"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Auto-push to Orderpoints"
+msgstr "Automatsko ažuriranje pravila dopune"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Automatically update Odoo reorder rules after each forecast run"
+msgstr "Automatski ažuriraj Odoo pravila dopune nakon svakog pokretanja prognoze"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Config Database"
+msgstr "Konfiguracijska baza podataka"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "SQLite database for per-product overrides and audit trail"
+msgstr "SQLite baza podataka za nadjačavanja po proizvodu i revizijski trag"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run Pipeline"
+msgstr "Pokreni obradu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Execute the forecast pipeline now with current settings"
+msgstr "Izvrši obradu prognoze sada s trenutnim postavkama"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run Now"
+msgstr "Pokreni sada"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Run the forecast pipeline with current settings?"
+msgstr "Pokrenuti obradu prognoze s trenutnim postavkama?"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Position"
+msgstr "Pozicija zaliha"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Mode"
+msgstr "Način rada zaliha"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "How to account for current inventory state"
+msgstr "Kako uzeti u obzir trenutno stanje zaliha"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Respect Reservations"
+msgstr "Poštuj rezervacije"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Subtract reserved stock from available position (conservative)"
+msgstr "Oduzmi rezerviranu zalihu od raspoložive pozicije (konzervativno)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Include Incoming Supply"
+msgstr "Uključi dolaznu opskrbu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Count open PO and in-transit quantities"
+msgstr "Broji otvorene narudžbenice i količine u prijevozu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Include Outgoing Demand"
+msgstr "Uključi odlaznu potražnju"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
+msgstr "Oduzmi potvrđene količine prodajnih naloga (isključeno prema zadanom kako bi se izbjeglo dvostruko računanje)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Inventory Thresholds"
+msgstr "Pragovi zaliha"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Overstock Threshold"
+msgstr "Prag prekomjerne zalihe"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days of coverage above which a product is flagged as overstocked"
+msgstr "Dani pokrivenosti iznad kojih se proizvod označava kao prekomjerna zaliha"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Understock Threshold"
+msgstr "Prag nedovoljne zalihe"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Days of coverage below which a product is flagged as understocked"
+msgstr "Dani pokrivenosti ispod kojih se proizvod označava kao nedovoljna zaliha"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Skip Overstocked"
+msgstr "Preskoči prekomjerne zalihe"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "U načinu prilagodbe, ne stvaraj pravila dopune za proizvode s prekomjernom zalihom"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "Understock SL Bump"
+msgstr "Povećanje razine usluge za nedovoljnu zalihu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+msgid "In adjust mode, raise service level by this for understocked products"
+msgstr "U načinu prilagodbe, povećaj razinu usluge za ovaj iznos za proizvode s nedovoljnom zalihom"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download All (ZIP)"
+msgstr "Preuzmi sve (ZIP)"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Excel"
+msgstr "Preuzmi Excel"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Rules"
+msgstr "Preuzmi pravila"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Forecast"
+msgstr "Preuzmi prognozu"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Download Inventory"
+msgstr "Preuzmi podatke o zalihama"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Run Info"
+msgstr "Podaci o pokretanju"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Parameters"
+msgstr "Parametri"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Results"
+msgstr "Rezultati"
+
+#. module: foreqcast
+#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+msgid "Error"
+msgstr "Pogreška"
+
+#. module: foreqcast
+#: model:ir.actions.act_window,name:foreqcast.foreqcast_run_action
+msgid "Forecast Runs"
+msgstr "Pokretanja prognoze"
+
+#. module: foreqcast
+#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_root
+msgid "Foreqcast"
+msgstr "Foreqcast"
+
+#. module: foreqcast
+#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_runs
+msgid "Forecast Runs"
+msgstr "Pokretanja prognoze"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Foreqcast Complete"
+msgstr "Foreqcast završen"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Foreqcast Error"
+msgstr "Foreqcast pogreška"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#: code:addons/foreqcast/models/foreqcast_run.py:0
+#, python-format
+msgid "Foreqcast"
+msgstr "Foreqcast"
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Please configure Parquet Input Directory first."
+msgstr "Molimo prvo konfigurirajte Parquet ulazni direktorij."
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_settings.py:0
+#, python-format
+msgid "Please configure Parquet Output Directory first."
+msgstr "Molimo prvo konfigurirajte Parquet izlazni direktorij."
+
+#. module: foreqcast
+#: code:addons/foreqcast/models/foreqcast_run.py:0
+#, python-format
+msgid "No %s found for this run."
+msgstr "Za ovo pokretanje nije pronađen %s."

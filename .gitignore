@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+.venv/
+.ruff_cache/
+.pytest_cache/
+foreqcast_config.db
+test_output/

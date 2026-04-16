@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree view -->
+    <record id="foreqcast_run_view_list" model="ir.ui.view">
+        <field name="name">foreqcast.run.list</field>
+        <field name="model">foreqcast.run</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="run_date"/>
+                <field name="status" decoration-success="status == 'complete'" decoration-danger="status == 'error'" decoration-info="status == 'running'" widget="badge"/>
+                <field name="parquet_source_dir" string="Input"/>
+                <field name="products_analyzed"/>
+                <field name="products_forecasted"/>
+                <field name="rules_created"/>
+                <field name="rules_updated"/>
+                <field name="rules_skipped"/>
+                <field name="attachment_count" string="Files"/>
+                <field name="duration_seconds" widget="float_time"/>
+                <field name="forecast_horizon_days"/>
+                <field name="safety_factor"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="foreqcast_run_view_form" model="ir.ui.view">
+        <field name="name">foreqcast.run.form</field>
+        <field name="model">foreqcast.run</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_download_all_zip" type="object"
+                            string="Download All (ZIP)" class="btn-primary" icon="fa-download"
+                            invisible="status != 'complete' or attachment_count == 0"/>
+                    <button name="action_download_excel" type="object"
+                            string="Download Excel" class="btn-secondary" icon="fa-file-excel-o"
+                            invisible="status != 'complete' or attachment_count == 0"/>
+                    <button name="action_download_rules" type="object"
+                            string="Download Rules" class="btn-secondary" icon="fa-table"
+                            invisible="status != 'complete' or attachment_count == 0"/>
+                    <button name="action_download_forecast" type="object"
+                            string="Download Forecast" class="btn-secondary" icon="fa-line-chart"
+                            invisible="status != 'complete' or attachment_count == 0"/>
+                    <button name="action_download_inventory" type="object"
+                            string="Download Inventory" class="btn-secondary" icon="fa-cubes"
+                            invisible="status != 'complete' or attachment_count == 0"/>
+                    <field name="status" widget="statusbar" statusbar_visible="running,complete"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Run Info">
+                            <field name="run_date"/>
+                            <field name="parquet_source_dir" string="Input Source"/>
+                            <field name="duration_seconds"/>
+                            <field name="attachment_count"/>
+                        </group>
+                        <group string="Parameters">
+                            <field name="forecast_horizon_days"/>
+                            <field name="safety_factor"/>
+                            <field name="time_bucket"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Results">
+                            <field name="products_analyzed"/>
+                            <field name="products_forecasted"/>
+                            <field name="rules_created"/>
+                            <field name="rules_updated"/>
+                            <field name="rules_skipped"/>
+                        </group>
+                    </group>
+                    <group string="Error" invisible="status != 'error'">
+                        <field name="error_message" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="foreqcast_run_action" model="ir.actions.act_window">
+        <field name="name">Forecast Runs</field>
+        <field name="res_model">foreqcast.run</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="foreqcast_menu_root" name="Foreqcast" web_icon="foreqcast,static/description/icon.png" sequence="90"/>
+    <menuitem id="foreqcast_menu_runs" name="Forecast Runs" parent="foreqcast_menu_root" action="foreqcast_run_action" sequence="10"/>
+</odoo>
