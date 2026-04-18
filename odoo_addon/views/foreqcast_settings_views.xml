@@ -100,6 +100,36 @@
                                 </div>
                             </div>
                         </setting>
+                        <setting string="S3 Configuration"
+                                 help="Read Parqcast exports directly from an S3-compatible bucket"
+                                 invisible="foreqcast_input_source != 's3'">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_s3_bucket"/>
+                                    <field name="foreqcast_s3_bucket" class="col-lg-6" placeholder="parqcast-v18-demo"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_s3_prefix"/>
+                                    <field name="foreqcast_s3_prefix" class="col-lg-6" placeholder="parqcast"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_s3_endpoint_url"/>
+                                    <field name="foreqcast_s3_endpoint_url" class="col-lg-6" placeholder="https://s3.datastruct.tech"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_s3_access_key_id"/>
+                                    <field name="foreqcast_s3_access_key_id" class="col-lg-6"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_s3_secret_access_key"/>
+                                    <field name="foreqcast_s3_secret_access_key" password="True" class="col-lg-6"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_s3_region"/>
+                                    <field name="foreqcast_s3_region" class="col-lg-3" placeholder="eu-central-1"/>
+                                </div>
+                            </div>
+                        </setting>
                         <setting string="Auto-push to Orderpoints" help="Automatically update Odoo reorder rules after each forecast run">
                             <field name="foreqcast_auto_push"/>
                         </setting>

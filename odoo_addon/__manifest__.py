@@ -23,6 +23,7 @@
         "views/foreqcast_settings_views.xml",
         "views/foreqcast_run_views.xml",
     ],
+    "external_dependencies": {"python": ["pyarrow", "numpy", "openpyxl", "boto3"]},
     "installable": True,
     "application": True,
     "license": "LGPL-3",
