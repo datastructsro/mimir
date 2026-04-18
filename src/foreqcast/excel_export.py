@@ -31,8 +31,23 @@ import pyarrow.parquet as pq
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.worksheet import Worksheet
 
 logger = logging.getLogger(__name__)
+
+
+def _active_ws(wb: Workbook) -> Worksheet:
+    """Return a guaranteed-non-None active worksheet.
+
+    openpyxl's Workbook.active is typed Optional because a workbook can
+    have zero sheets. In our call sites we just constructed the workbook,
+    so it has the default sheet — but pyright can't see that invariant.
+    This helper asserts it, creating a new sheet as a last resort.
+    """
+    ws = wb.active
+    if ws is None:
+        ws = wb.create_sheet()
+    return ws
 
 # Colors for inventory flags
 FLAG_FILLS = {
@@ -105,7 +120,7 @@ def _write_odoo_import_sheet(wb: Workbook, rules: list[dict]):
     - `warehouse_id/.id` for database ID of warehouse
     - `location_id/.id` for database ID of stock location
     """
-    ws = wb.active
+    ws = _active_ws(wb)
     ws.title = "Odoo Import"
 
     headers = [
