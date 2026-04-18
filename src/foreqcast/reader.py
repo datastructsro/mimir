@@ -13,6 +13,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+import pyarrow as pa
 import pyarrow.parquet as pq
 
 
@@ -20,11 +21,11 @@ import pyarrow.parquet as pq
 class ParqcastData:
     """Container for all parquet tables needed by the forecaster."""
 
-    sale_order_lines: object  # pa.Table
-    products: object  # pa.Table
-    supplier_info: object | None  # pa.Table or None if file missing
-    warehouses: object  # pa.Table
-    orderpoints: object | None  # pa.Table or None if file missing
+    sale_order_lines: pa.Table
+    products: pa.Table
+    supplier_info: pa.Table | None  # None if file missing
+    warehouses: pa.Table
+    orderpoints: pa.Table | None  # None if file missing
 
 
 def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
