@@ -54,5 +54,7 @@ testpaths = ["tests"]
 
 [dependency-groups]
 dev = [
+    "pyarrow-stubs>=20",
     "pyright>=1.1.408",
+    "types-openpyxl>=3.1",
 ]
