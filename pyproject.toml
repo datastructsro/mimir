@@ -1,7 +1,7 @@
 [project]
 name = "foreqcast"
 version = "0.3.0"
-description = "Linear regression demand forecaster — reads parqcast parquet exports, projects demand, writes replenishment rules back to Odoo 19"
+description = "Linear regression demand forecaster — reads parqcast parquet exports, projects demand, writes replenishment rules back to Odoo 18/19"
 authors = [
     { name = "DataStruct s.r.o.", email = "info@datastruct.tech" }
 ]

@@ -1,6 +1,8 @@
 # Foreqcast
 
-Linear regression demand forecaster for the parqcast ecosystem. Reads [parqcast](https://github.com/datastructsro/parqcast) parquet exports, projects demand, computes min/max replenishment rules, and writes them back to Odoo 19 `stock.warehouse.orderpoint` records.
+Linear regression demand forecaster for the parqcast ecosystem. Reads [parqcast](https://github.com/datastructsro/parqcast) parquet exports, projects demand, computes min/max replenishment rules, and writes them back to Odoo `stock.warehouse.orderpoint` records.
+
+Currently supported: Odoo 18, 19.
 
 **Author:** [DataStruct s.r.o.](https://datastruct.tech) — info@datastruct.tech
 
