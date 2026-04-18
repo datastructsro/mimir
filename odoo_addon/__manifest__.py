@@ -1,6 +1,6 @@
 {
     "name": "Foreqcast — Demand Forecasting",
-    "version": "19.0.0.3.0",
+    "version": "3.0.0",
     "category": "Supply Chain",
     "summary": "Linear regression demand forecasting with automatic replenishment rule updates",
     "description": """
@@ -23,6 +23,7 @@
         "views/foreqcast_settings_views.xml",
         "views/foreqcast_run_views.xml",
     ],
+    "external_dependencies": {"python": ["pyarrow", "numpy", "openpyxl", "boto3"]},
     "installable": True,
     "application": True,
     "license": "LGPL-3",

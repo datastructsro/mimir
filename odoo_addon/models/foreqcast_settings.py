@@ -16,11 +16,45 @@ class ForeqcastSettings(models.TransientModel):
         config_parameter="foreqcast.enabled",
     )
     foreqcast_input_source = fields.Selection(
-        [("attachment", "Odoo Attachments (from Parqcast)"), ("filesystem", "Server Filesystem")],
+        [
+            ("attachment", "Odoo Attachments (from Parqcast)"),
+            ("filesystem", "Server Filesystem"),
+            ("s3", "S3 (from Parqcast)"),
+        ],
         string="Input Source",
         config_parameter="foreqcast.input_source",
         default="attachment",
         help="Where to read parqcast export files from",
+    )
+    foreqcast_s3_bucket = fields.Char(
+        string="S3 Bucket",
+        config_parameter="foreqcast.s3_bucket",
+        help="Bucket where Parqcast wrote its export (e.g. parqcast-v18-demo)",
+    )
+    foreqcast_s3_prefix = fields.Char(
+        string="S3 Prefix",
+        config_parameter="foreqcast.s3_prefix",
+        default="parqcast",
+        help="Prefix under the bucket; Foreqcast looks at <prefix>/outbound/<run_uuid>/",
+    )
+    foreqcast_s3_endpoint_url = fields.Char(
+        string="S3 Endpoint URL",
+        config_parameter="foreqcast.s3_endpoint_url",
+        help="For S3-compatible stores (MinIO, LocalStack). Leave empty for AWS.",
+    )
+    foreqcast_s3_access_key_id = fields.Char(
+        string="S3 Access Key ID",
+        config_parameter="foreqcast.s3_access_key_id",
+        help="Leave empty to use the boto3 default credential chain",
+    )
+    foreqcast_s3_secret_access_key = fields.Char(
+        string="S3 Secret Access Key",
+        config_parameter="foreqcast.s3_secret_access_key",
+    )
+    foreqcast_s3_region = fields.Char(
+        string="S3 Region",
+        config_parameter="foreqcast.s3_region",
+        help="e.g. eu-central-1. Ignored for most S3-compatible stores.",
     )
     foreqcast_horizon_days = fields.Integer(
         string="Forecast Horizon (days)",
@@ -139,12 +173,10 @@ class ForeqcastSettings(models.TransientModel):
         help="In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)",
     )
 
-    def _get_parqcast_input_dir(self):
-        """Materialize parqcast attachment files into a temp directory.
+    def _latest_parqcast_run(self):
+        """Return (run_id, run_uuid) of the most recent completed parqcast export.
 
-        Finds the latest completed parqcast export run, downloads its
-        ir.attachment parquet files, and writes them to a temporary directory.
-        Returns the Path to the temp dir.
+        Raises ValueError if no completed run exists.
         """
         self.env.cr.execute(
             "SELECT id, run_uuid FROM parqcast_export_run "
@@ -153,8 +185,16 @@ class ForeqcastSettings(models.TransientModel):
         row = self.env.cr.fetchone()
         if not row:
             raise ValueError("No completed Parqcast export run found. Run Parqcast export first.")
+        return row[0], row[1]
 
-        run_id, run_uuid = row
+    def _get_parqcast_input_dir(self):
+        """Materialize parqcast attachment files into a temp directory.
+
+        Finds the latest completed parqcast export run, downloads its
+        ir.attachment parquet files, and writes them to a temporary directory.
+        Returns the Path to the temp dir.
+        """
+        run_id, run_uuid = self._latest_parqcast_run()
         attachments = self.env["ir.attachment"].sudo().search([
             ("res_model", "=", "parqcast.run"),
             ("res_id", "=", run_id),
@@ -172,6 +212,65 @@ class ForeqcastSettings(models.TransientModel):
         _logger.info(
             "Materialized %d parqcast attachments from run %s into %s",
             len(attachments), run_uuid[:8], tmp_dir,
+        )
+        return tmp_dir
+
+    def _get_parqcast_input_dir_s3(self):
+        """Download the latest parqcast export from S3 into a temp directory.
+
+        Expects the parqcast layout <prefix>/outbound/<run_uuid>/*.parquet under
+        the configured bucket. Returns the Path to the temp dir.
+        """
+        try:
+            import boto3
+        except ImportError as e:
+            raise ValueError(
+                "S3 input source requires boto3. Install it in the Odoo environment."
+            ) from e
+
+        ICP = self.env["ir.config_parameter"].sudo()
+        bucket = ICP.get_param("foreqcast.s3_bucket", "").strip()
+        if not bucket:
+            raise ValueError("Please configure S3 Bucket in Foreqcast settings.")
+        prefix = ICP.get_param("foreqcast.s3_prefix", "parqcast").strip().rstrip("/") or "parqcast"
+        endpoint_url = ICP.get_param("foreqcast.s3_endpoint_url", "").strip() or None
+        access_key = ICP.get_param("foreqcast.s3_access_key_id", "").strip() or None
+        secret_key = ICP.get_param("foreqcast.s3_secret_access_key", "").strip() or None
+        region = ICP.get_param("foreqcast.s3_region", "").strip() or None
+
+        run_id, run_uuid = self._latest_parqcast_run()
+
+        s3 = boto3.client(
+            "s3",
+            endpoint_url=endpoint_url,
+            aws_access_key_id=access_key,
+            aws_secret_access_key=secret_key,
+            region_name=region,
+        )
+
+        s3_prefix = f"{prefix}/outbound/{run_uuid}/"
+        tmp_dir = Path(tempfile.mkdtemp(prefix="foreqcast_s3_"))
+        downloaded = 0
+        paginator = s3.get_paginator("list_objects_v2")
+        for page in paginator.paginate(Bucket=bucket, Prefix=s3_prefix):
+            for obj in page.get("Contents", []):
+                key = obj["Key"]
+                rel = key[len(s3_prefix):]
+                if not rel or rel.endswith("/"):
+                    continue
+                dest = tmp_dir / rel
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                s3.download_file(bucket, key, str(dest))
+                downloaded += 1
+
+        if not downloaded:
+            raise ValueError(
+                f"No files found at s3://{bucket}/{s3_prefix} for parqcast run {run_uuid[:8]}"
+            )
+
+        _logger.info(
+            "Downloaded %d S3 objects from s3://%s/%s (run %s) into %s",
+            downloaded, bucket, s3_prefix, run_uuid[:8], tmp_dir,
         )
         return tmp_dir
 
@@ -200,10 +299,14 @@ class ForeqcastSettings(models.TransientModel):
 
         input_dir = None
         tmp_dir = None
+        output_dir = None
 
         try:
             if input_source == "attachment":
                 tmp_dir = self._get_parqcast_input_dir()
+                input_dir = str(tmp_dir)
+            elif input_source == "s3":
+                tmp_dir = self._get_parqcast_input_dir_s3()
                 input_dir = str(tmp_dir)
             else:
                 input_dir = ICP.get_param("foreqcast.parquet_input_dir", "")
@@ -219,8 +322,8 @@ class ForeqcastSettings(models.TransientModel):
                         },
                     }
 
-            # For attachment mode, use a temp output dir too
-            if input_source == "attachment":
+            # For attachment/s3 modes, use a temp output dir too
+            if input_source in ("attachment", "s3"):
                 output_dir = str(Path(tempfile.mkdtemp(prefix="foreqcast_out_")))
             else:
                 output_dir = ICP.get_param("foreqcast.parquet_output_dir", "")
@@ -262,7 +365,12 @@ class ForeqcastSettings(models.TransientModel):
             except Exception:
                 _logger.warning("Excel export failed (non-fatal)", exc_info=True)
 
-            source_label = "parqcast attachments" if input_source == "attachment" else input_dir
+            if input_source == "attachment":
+                source_label = "parqcast attachments"
+            elif input_source == "s3":
+                source_label = f"parqcast s3://{ICP.get_param('foreqcast.s3_bucket', '')}"
+            else:
+                source_label = input_dir
             run_record = self.env["foreqcast.run"].sudo().create({
                 "parquet_source_dir": source_label,
                 "products_analyzed": stats.get("products_analyzed", 0),
@@ -294,7 +402,12 @@ class ForeqcastSettings(models.TransientModel):
             }
         except Exception as e:
             _logger.exception("Foreqcast pipeline failed")
-            source_label = "parqcast attachments" if input_source == "attachment" else (input_dir or "")
+            if input_source == "attachment":
+                source_label = "parqcast attachments"
+            elif input_source == "s3":
+                source_label = f"parqcast s3://{ICP.get_param('foreqcast.s3_bucket', '')}"
+            else:
+                source_label = input_dir or ""
             self.env["foreqcast.run"].sudo().create({
                 "parquet_source_dir": source_label,
                 "status": "error",
@@ -315,5 +428,5 @@ class ForeqcastSettings(models.TransientModel):
             import shutil
             if tmp_dir and Path(tmp_dir).exists():
                 shutil.rmtree(tmp_dir, ignore_errors=True)
-            if input_source == "attachment" and output_dir:
+            if input_source in ("attachment", "s3") and output_dir:
                 shutil.rmtree(output_dir, ignore_errors=True)

@@ -67,9 +67,10 @@ def main():
     print(f"  Rules to create:    {stats['rules_created']}")
     print(f"  Rules to update:    {stats['rules_updated']}")
     print(f"  Rules skipped:      {stats['rules_skipped']}")
-    if stats.get("inventory_mode") and stats["inventory_mode"] != "ignore":
-        print(f"  Inventory mode:     {stats['inventory_mode']}")
-        print(f"  Positions loaded:   {stats['inventory_positions_loaded']}")
+    inv_mode = stats.get("inventory_mode")
+    if inv_mode and inv_mode != "ignore":
+        print(f"  Inventory mode:     {inv_mode}")
+        print(f"  Positions loaded:   {stats.get('inventory_positions_loaded', 0)}")
         print(f"  Overstocked:        {stats.get('overstock_count', 0)}")
         print(f"  Understocked:       {stats.get('understock_count', 0)}")
     print(f"  Duration:           {stats['duration_seconds']}s")

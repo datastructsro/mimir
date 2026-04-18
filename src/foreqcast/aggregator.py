@@ -11,7 +11,8 @@ from dataclasses import dataclass
 from datetime import date
 
 import pyarrow as pa
-import pyarrow.compute as pc
+
+from . import _cols, _pc
 
 
 @dataclass
@@ -49,12 +50,12 @@ def aggregate_demand(
     # Pre-filter: remove excluded states
     if exclude_states:
         state_col = t.column("so_state")
-        mask = pc.invert(pc.is_in(state_col, value_set=pa.array(list(exclude_states))))
+        mask = _pc.invert(_pc.is_in(state_col, value_set=pa.array(list(exclude_states))))
         t = t.filter(mask)
 
     # Drop rows with null keys
     for col_name in ("_odoo_product_id", "_odoo_warehouse_id", "product_uom_qty", "date_order"):
-        t = t.filter(pc.is_valid(t.column(col_name)))
+        t = t.filter(_pc.is_valid(t.column(col_name)))
 
     if t.num_rows == 0:
         return {}
@@ -62,16 +63,16 @@ def aggregate_demand(
     # Extract date from timestamp (handles both tz-aware and tz-naive)
     date_col = t.column("date_order")
     if hasattr(date_col.type, "tz") and date_col.type.tz is not None:
-        date_col = pc.cast(date_col, pa.timestamp("us"))
-    date_col = pc.cast(date_col, pa.date32())
+        date_col = _pc.cast(date_col, pa.timestamp("us"))
+    date_col = _pc.cast(date_col, pa.date32())
 
     # Weekly bucketing: snap to Monday
     if bucket == "weekly":
-        dow = pc.day_of_week(date_col)  # 0=Monday
+        dow = _pc.day_of_week(date_col)  # 0=Monday
         # Subtract day_of_week days to snap to Monday
-        date_as_ts = pc.cast(date_col, pa.timestamp("s"))
-        offset = pc.multiply(pc.cast(dow, pa.int64()), pa.scalar(-86400, pa.int64()))
-        date_col = pc.cast(pc.add(date_as_ts, pc.cast(offset, pa.duration("s"))), pa.date32())
+        date_as_ts = _pc.cast(date_col, pa.timestamp("s"))
+        offset = _pc.multiply(_pc.cast(dow, pa.int64()), pa.scalar(-86400, pa.int64()))
+        date_col = _pc.cast(_pc.add(date_as_ts, _pc.cast(offset, pa.duration("s"))), pa.date32())
 
     t = t.set_column(t.schema.get_field_index("date_order"), "date_order", date_col)
 
@@ -80,18 +81,18 @@ def aggregate_demand(
         [("product_uom_qty", "sum"), ("product_uom_qty", "count")]
     )
 
-    # Convert only the aggregated result (much smaller than raw rows) to Python
-    pids = result.column("_odoo_product_id").to_pylist()
-    wids = result.column("_odoo_warehouse_id").to_pylist()
-    dates = result.column("date_order").to_pylist()
-    sums = result.column("product_uom_qty_sum").to_pylist()
-    counts = result.column("product_uom_qty_count").to_pylist()
-
-    # Reorganize into time series per (product, warehouse)
+    # Reorganize into time series per (product, warehouse); null-filter via _cols
+    # so the DemandPoint construction works on concrete values, not Any | None.
     series: dict[tuple[int, int], list[DemandPoint]] = defaultdict(list)
-    for i in range(len(pids)):
-        key = (pids[i], wids[i])
-        series[key].append(DemandPoint(bucket_date=dates[i], total_qty=float(sums[i]), order_count=int(counts[i])))
+    for pid, wid, d, s, c in _cols.nonnull_rows(
+        result,
+        "_odoo_product_id",
+        "_odoo_warehouse_id",
+        "date_order",
+        "product_uom_qty_sum",
+        "product_uom_qty_count",
+    ):
+        series[(pid, wid)].append(DemandPoint(bucket_date=d, total_qty=float(s), order_count=int(c)))
 
     # Sort each series by date
     for key in series:
