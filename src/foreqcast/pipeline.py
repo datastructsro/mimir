@@ -13,6 +13,7 @@ from typing import NotRequired, TypedDict
 
 import pyarrow as pa
 
+from . import _cols
 from .aggregator import aggregate_demand
 from .calculator import calculate_rule, resolve_lead_time, resolve_review_period, resolve_service_level
 from .config import ForeqcastConfig, finish_run, start_run
@@ -231,24 +232,16 @@ def run_pipeline(
 
 
 def _build_product_names(products_table: pa.Table) -> dict[int, str]:
-    pids = products_table.column("_odoo_product_id").to_pylist()
-    names = products_table.column("name").to_pylist()
-    return dict(zip(pids, names))
+    return dict(_cols.nonnull_pairs(products_table, "_odoo_product_id", "name"))
 
 
 def _build_product_categories(products_table: pa.Table) -> dict[int, int]:
-    pids = products_table.column("_odoo_product_id").to_pylist()
-    cats = products_table.column("_odoo_categ_id").to_pylist()
-    return {p: c for p, c in zip(pids, cats) if c is not None}
+    return dict(_cols.nonnull_pairs(products_table, "_odoo_product_id", "_odoo_categ_id"))
 
 
 def _build_warehouse_locations(warehouses_table: pa.Table) -> dict[int, int]:
-    wids = warehouses_table.column("_odoo_warehouse_id").to_pylist()
-    lids = warehouses_table.column("_odoo_lot_stock_id").to_pylist()
-    return dict(zip(wids, lids))
+    return dict(_cols.nonnull_pairs(warehouses_table, "_odoo_warehouse_id", "_odoo_lot_stock_id"))
 
 
 def _build_warehouse_codes(warehouses_table: pa.Table) -> dict[int, str]:
-    wids = warehouses_table.column("_odoo_warehouse_id").to_pylist()
-    codes = warehouses_table.column("code").to_pylist()
-    return dict(zip(wids, codes))
+    return dict(_cols.nonnull_pairs(warehouses_table, "_odoo_warehouse_id", "code"))

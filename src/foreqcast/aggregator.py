@@ -12,7 +12,7 @@ from datetime import date
 
 import pyarrow as pa
 
-from . import _pc
+from . import _cols, _pc
 
 
 @dataclass
@@ -81,18 +81,18 @@ def aggregate_demand(
         [("product_uom_qty", "sum"), ("product_uom_qty", "count")]
     )
 
-    # Convert only the aggregated result (much smaller than raw rows) to Python
-    pids = result.column("_odoo_product_id").to_pylist()
-    wids = result.column("_odoo_warehouse_id").to_pylist()
-    dates = result.column("date_order").to_pylist()
-    sums = result.column("product_uom_qty_sum").to_pylist()
-    counts = result.column("product_uom_qty_count").to_pylist()
-
-    # Reorganize into time series per (product, warehouse)
+    # Reorganize into time series per (product, warehouse); null-filter via _cols
+    # so the DemandPoint construction works on concrete values, not Any | None.
     series: dict[tuple[int, int], list[DemandPoint]] = defaultdict(list)
-    for i in range(len(pids)):
-        key = (pids[i], wids[i])
-        series[key].append(DemandPoint(bucket_date=dates[i], total_qty=float(sums[i]), order_count=int(counts[i])))
+    for pid, wid, d, s, c in _cols.nonnull_rows(
+        result,
+        "_odoo_product_id",
+        "_odoo_warehouse_id",
+        "date_order",
+        "product_uom_qty_sum",
+        "product_uom_qty_count",
+    ):
+        series[(pid, wid)].append(DemandPoint(bucket_date=d, total_qty=float(s), order_count=int(c)))
 
     # Sort each series by date
     for key in series:
