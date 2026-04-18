@@ -1,6 +1,6 @@
 {
     "name": "Foreqcast — Demand Forecasting",
-    "version": "19.0.0.3.0",
+    "version": "3.0.0",
     "category": "Supply Chain",
     "summary": "Linear regression demand forecasting with automatic replenishment rule updates",
     "description": """
