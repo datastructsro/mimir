@@ -6,28 +6,47 @@ Orchestrates: read parquet → aggregate → forecast → calculate → write �
 from __future__ import annotations
 
 import logging
+import sqlite3
 import time
 from pathlib import Path
+from typing import NotRequired, TypedDict
+
+import pyarrow as pa
 
 from .aggregator import aggregate_demand
 from .calculator import calculate_rule, resolve_lead_time, resolve_review_period, resolve_service_level
 from .config import ForeqcastConfig, finish_run, start_run
 from .forecaster import compute_quantile_reorder_points, fit_demand
 from .inventory import InventoryConfig, load_inventory_positions
-from .pusher import OdooPusher
+from .pusher import OdooPusher, PushStats
 from .reader import read_parqcast_export
 from .writer import write_forecasts, write_inventory_analysis, write_rules
 
 logger = logging.getLogger(__name__)
 
 
+class PipelineStats(TypedDict):
+    products_analyzed: int
+    products_forecasted: int
+    rules_created: int
+    rules_updated: int
+    rules_skipped: int
+    duration_seconds: float
+    status: str
+    inventory_mode: NotRequired[str]
+    inventory_positions_loaded: NotRequired[int]
+    overstock_count: NotRequired[int]
+    understock_count: NotRequired[int]
+    push_stats: NotRequired[PushStats]
+
+
 def run_pipeline(
     parquet_input_dir: str | Path,
     parquet_output_dir: str | Path,
     config: ForeqcastConfig,
-    db_conn=None,
+    db_conn: sqlite3.Connection | None = None,
     push_to_odoo: bool = False,
-) -> dict:
+) -> PipelineStats:
     """Execute the full forecasting pipeline.
 
     Args:
@@ -73,7 +92,7 @@ def run_pipeline(
                 understock_service_level_bump=config.understock_service_level_bump,
             )
             logger.info("Loading inventory positions (mode=%s)", config.inventory_mode)
-            inventory_positions = load_inventory_positions(parquet_input_dir, warehouse_locations, inv_config)
+            inventory_positions = load_inventory_positions(Path(parquet_input_dir), warehouse_locations, inv_config)
             logger.info("Loaded %d inventory positions", len(inventory_positions))
 
         # 2. Aggregate demand
@@ -145,6 +164,7 @@ def run_pipeline(
         write_rules(rules, parquet_output_dir)
 
         if config.inventory_mode != "ignore" and inventory_positions:
+            assert inv_config is not None
             write_inventory_analysis(
                 positions=inventory_positions,
                 rules=rules,
@@ -168,7 +188,7 @@ def run_pipeline(
         actionable = [r for r in rules if r.action != "skip"]
         skipped = [r for r in rules if r.action == "skip"]
 
-        stats = {
+        stats: PipelineStats = {
             "products_analyzed": len(demand_series),
             "products_forecasted": len(forecasts),
             "rules_created": sum(1 for r in rules if r.action == "create"),
@@ -210,25 +230,25 @@ def run_pipeline(
         raise
 
 
-def _build_product_names(products_table) -> dict[int, str]:
+def _build_product_names(products_table: pa.Table) -> dict[int, str]:
     pids = products_table.column("_odoo_product_id").to_pylist()
     names = products_table.column("name").to_pylist()
     return dict(zip(pids, names))
 
 
-def _build_product_categories(products_table) -> dict[int, int]:
+def _build_product_categories(products_table: pa.Table) -> dict[int, int]:
     pids = products_table.column("_odoo_product_id").to_pylist()
     cats = products_table.column("_odoo_categ_id").to_pylist()
     return {p: c for p, c in zip(pids, cats) if c is not None}
 
 
-def _build_warehouse_locations(warehouses_table) -> dict[int, int]:
+def _build_warehouse_locations(warehouses_table: pa.Table) -> dict[int, int]:
     wids = warehouses_table.column("_odoo_warehouse_id").to_pylist()
     lids = warehouses_table.column("_odoo_lot_stock_id").to_pylist()
     return dict(zip(wids, lids))
 
 
-def _build_warehouse_codes(warehouses_table) -> dict[int, str]:
+def _build_warehouse_codes(warehouses_table: pa.Table) -> dict[int, str]:
     wids = warehouses_table.column("_odoo_warehouse_id").to_pylist()
     codes = warehouses_table.column("code").to_pylist()
     return dict(zip(wids, codes))

@@ -13,6 +13,7 @@ import time
 import xmlrpc.client
 from functools import wraps
 from pathlib import Path
+from typing import TypedDict
 
 import pyarrow.parquet as pq
 
@@ -20,6 +21,13 @@ logger = logging.getLogger(__name__)
 
 SEARCH_BATCH_SIZE = 500
 CREATE_BATCH_SIZE = 100
+
+
+class PushStats(TypedDict):
+    created: int
+    updated: int
+    skipped: int
+    errors: int
 
 
 def _retry(max_retries=3, base_delay=1.0, max_delay=30.0):
@@ -72,7 +80,7 @@ class OdooPusher:
             model, method, *args, **kwargs,
         )
 
-    def push_rules(self, rules_parquet: str | Path) -> dict:
+    def push_rules(self, rules_parquet: str | Path) -> PushStats:
         """Read rules parquet and push to Odoo.
 
         Batches search_read at start and creates in groups of ~100.
@@ -81,6 +89,7 @@ class OdooPusher:
         """
         if not self.uid:
             self.authenticate()
+        assert self.models is not None
 
         table = pq.read_table(str(rules_parquet))
         actions = table.column("action").to_pylist()
@@ -91,7 +100,7 @@ class OdooPusher:
         max_qtys = table.column("product_max_qty").to_pylist()
         triggers = table.column("trigger").to_pylist()
 
-        stats = {"created": 0, "updated": 0, "skipped": 0, "errors": 0}
+        stats: PushStats = {"created": 0, "updated": 0, "skipped": 0, "errors": 0}
 
         # Batch-load all existing orderpoints at start
         all_pids = list({pid for pid, act in zip(product_ids, actions) if act != "skip"})

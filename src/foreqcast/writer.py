@@ -10,6 +10,7 @@ import pyarrow.parquet as pq
 
 from .calculator import ReplenishmentRule
 from .forecaster import ForecastResult
+from .inventory import InventoryConfig, InventoryPosition
 from .schemas import FORECAST_SCHEMA, INVENTORY_ANALYSIS_SCHEMA, REPLENISHMENT_RULES_SCHEMA
 
 
@@ -94,11 +95,11 @@ def write_rules(
 
 
 def write_inventory_analysis(
-    positions: dict[tuple[int, int], object],
+    positions: dict[tuple[int, int], InventoryPosition],
     rules: list[ReplenishmentRule],
     product_names: dict[int, str],
     warehouse_codes: dict[int, str],
-    config: object,
+    config: InventoryConfig,
     output_dir: str | Path,
 ) -> Path:
     """Write inventory analysis to inventory_analysis.parquet."""

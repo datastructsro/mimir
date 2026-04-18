@@ -9,8 +9,24 @@ from __future__ import annotations
 import sqlite3
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import TypedDict
 
 DEFAULT_DB_PATH = Path("foreqcast_config.db")
+
+
+class CategoryOverride(TypedDict):
+    safety_factor: float | None
+    min_data_points: int | None
+    lead_time_override_days: int | None
+    review_period_override_days: int | None
+
+
+class ProductOverride(TypedDict):
+    safety_factor: float | None
+    min_qty_floor: float | None
+    max_qty_ceiling: float | None
+    lead_time_override_days: int | None
+    excluded: bool
 
 SCHEMA_SQL = """
 CREATE TABLE IF NOT EXISTS settings (
@@ -126,8 +142,8 @@ class ForeqcastConfig:
     understock_service_level_bump: float = 0.03
 
     # Loaded from override tables
-    category_overrides: dict = field(default_factory=dict)
-    product_overrides: dict = field(default_factory=dict)
+    category_overrides: dict[int, CategoryOverride] = field(default_factory=dict)
+    product_overrides: dict[int, ProductOverride] = field(default_factory=dict)
 
 
 def init_db(db_path: Path = DEFAULT_DB_PATH) -> sqlite3.Connection:
@@ -217,7 +233,10 @@ def start_run(conn: sqlite3.Connection, parquet_dir: str) -> int:
         (datetime.now(timezone.utc).isoformat(), parquet_dir),
     )
     conn.commit()
-    return cursor.lastrowid
+    run_id = cursor.lastrowid
+    if run_id is None:
+        raise RuntimeError("INSERT did not yield a row id for forecast_runs")
+    return run_id
 
 
 def finish_run(conn: sqlite3.Connection, run_id: int, **stats):

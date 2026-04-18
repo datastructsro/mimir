@@ -65,15 +65,15 @@ def resolve_lead_time(
     """
     # 1. Product override
     if product_id in config.product_overrides:
-        override = config.product_overrides[product_id]
-        if override.get("lead_time_override_days") is not None:
-            return override["lead_time_override_days"]
+        product_lt = config.product_overrides[product_id].get("lead_time_override_days")
+        if product_lt is not None:
+            return product_lt
 
     # 2. Category override
     if category_id and category_id in config.category_overrides:
-        cat_override = config.category_overrides[category_id]
-        if cat_override.get("lead_time_override_days") is not None:
-            return cat_override["lead_time_override_days"]
+        cat_lt = config.category_overrides[category_id].get("lead_time_override_days")
+        if cat_lt is not None:
+            return cat_lt
 
     # 3. Supplier info
     if supplier_info_table is not None and supplier_info_table.num_rows > 0:
