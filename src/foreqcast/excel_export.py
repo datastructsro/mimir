@@ -26,14 +26,20 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import TypeVar, cast
 
+import pyarrow as pa
 import pyarrow.parquet as pq
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
 
+from .schemas import ForecastRow, RuleRow
+
 logger = logging.getLogger(__name__)
+
+_Row = TypeVar("_Row")
 
 
 def _active_ws(wb: Workbook) -> Worksheet:
@@ -88,14 +94,14 @@ def export_to_excel(
 
     # Read rules
     rules_table = pq.read_table(str(rules_parquet))
-    rules = _table_to_dicts(rules_table)
+    rules: list[RuleRow] = _table_to_rows(rules_table, RuleRow)
 
     # Read forecasts for review enrichment
-    forecasts = {}
+    forecasts: dict[tuple[int, int], ForecastRow] = {}
     if forecast_parquet and Path(forecast_parquet).exists():
         fc_table = pq.read_table(str(forecast_parquet))
-        for row in _table_to_dicts(fc_table):
-            key = (row.get("_odoo_product_id"), row.get("_odoo_warehouse_id"))
+        for row in _table_to_rows(fc_table, ForecastRow):
+            key = (row["_odoo_product_id"], row["_odoo_warehouse_id"])
             forecasts[key] = row
 
     wb = Workbook()
@@ -111,7 +117,7 @@ def export_to_excel(
     return output_path
 
 
-def _write_odoo_import_sheet(wb: Workbook, rules: list[dict]):
+def _write_odoo_import_sheet(wb: Workbook, rules: list[RuleRow]):
     """Write the Odoo-importable sheet.
 
     Column headers use Odoo's import conventions:
@@ -176,7 +182,9 @@ def _write_odoo_import_sheet(wb: Workbook, rules: list[dict]):
         ws.cell(row=r, column=1).font = Font(italic=True, color="666666")
 
 
-def _write_review_sheet(wb: Workbook, rules: list[dict], forecasts: dict):
+def _write_review_sheet(
+    wb: Workbook, rules: list[RuleRow], forecasts: dict[tuple[int, int], ForecastRow]
+):
     """Write the human-readable review sheet with all detail."""
     ws = wb.create_sheet("Review")
 
@@ -268,17 +276,17 @@ def _write_review_sheet(wb: Workbook, rules: list[dict], forecasts: dict):
     ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}{len(rules) + 1}"
 
 
-def _table_to_dicts(table) -> list[dict]:
-    """Convert PyArrow table to list of dicts."""
-    columns = table.column_names
-    rows = []
-    for i in range(table.num_rows):
-        row = {}
-        for col_name in columns:
-            val = table.column(col_name)[i].as_py()
-            row[col_name] = val
-        rows.append(row)
-    return rows
+def _table_to_rows(table: pa.Table, row_type: type[_Row]) -> list[_Row]:
+    """Convert a PyArrow table to a list of dicts conforming to `row_type`.
+
+    row_type is a TypedDict declared in schemas.py that mirrors the pa.schema
+    of the table being read. pyarrow's to_pylist() returns list[dict[str, Any]]
+    which cannot be statically narrowed — the cast asserts the runtime shape
+    matches the TypedDict. The contract is enforced by the parquet schema that
+    produced the file (see schemas.py); a schema-TypedDict mismatch is a
+    class of bug that wouldn't survive the first import anyway.
+    """
+    return cast(list[_Row], table.to_pylist())
 
 
 def _auto_size_columns(ws):

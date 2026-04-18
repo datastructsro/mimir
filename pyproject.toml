@@ -56,5 +56,6 @@ testpaths = ["tests"]
 dev = [
     "pyarrow-stubs>=20",
     "pyright>=1.1.408",
+    "pytest>=9.0.3",
     "types-openpyxl>=3.1",
 ]

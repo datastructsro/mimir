@@ -69,6 +69,7 @@ dev = [
 dev = [
     { name = "pyarrow-stubs" },
     { name = "pyright" },
+    { name = "pytest" },
     { name = "types-openpyxl" },
 ]
 
@@ -87,6 +88,7 @@ provides-extras = ["dev"]
 dev = [
     { name = "pyarrow-stubs", specifier = ">=20" },
     { name = "pyright", specifier = ">=1.1.408" },
+    { name = "pytest", specifier = ">=9.0.3" },
     { name = "types-openpyxl", specifier = ">=3.1" },
 ]
 

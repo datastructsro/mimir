@@ -4,7 +4,14 @@ Three output files:
   - forecast.parquet: per-product demand forecast with regression stats
   - replenishment_rules.parquet: computed min/max for Odoo orderpoints
   - inventory_analysis.parquet: inventory position and health classification (when inventory_mode != 'ignore')
+
+Each pa.schema below has a matching TypedDict for the Python row shape
+produced by pa.Table.to_pylist() / to_pydict(). Keep them in lockstep
+when adding/removing columns — the schema test in tests/ enforces this.
 """
+
+from datetime import datetime
+from typing import Literal, TypedDict
 
 import pyarrow as pa
 
@@ -85,3 +92,79 @@ INVENTORY_ANALYSIS_SCHEMA = pa.schema(
         ("computed_max_qty", pa.float64()),
     ]
 )
+
+
+# ---- Python row types matching each pa.schema above ----
+
+BucketType = Literal["daily", "weekly"]
+Confidence = Literal["high", "medium", "low", "insufficient_data"]
+Action = Literal["create", "update", "skip"]
+InventoryFlag = Literal[
+    "ok", "overstock", "understock", "at_risk", "no_stock", "no_demand", "no_data"
+]
+
+
+class ForecastRow(TypedDict):
+    _odoo_product_id: int
+    product_name: str
+    _odoo_warehouse_id: int
+    warehouse_code: str
+    bucket_type: BucketType
+    data_points: int
+    first_observation: datetime
+    last_observation: datetime
+    avg_daily_demand: float
+    trend_slope: float
+    intercept: float
+    r_squared: float
+    forecasted_daily_demand: float
+    forecast_horizon_days: int
+    confidence: Confidence
+
+
+class RuleRow(TypedDict):
+    _odoo_product_id: int
+    product_name: str
+    _odoo_warehouse_id: int
+    warehouse_code: str
+    _odoo_location_id: int
+    product_min_qty: float
+    product_max_qty: float
+    lead_time_days: int
+    service_level: float
+    review_period_days: int
+    forecasted_daily_demand: float
+    trigger: str
+    action: Action
+    skip_reason: str | None
+    on_hand_qty: float | None
+    reserved_qty: float | None
+    incoming_supply_qty: float | None
+    outgoing_demand_qty: float | None
+    net_available_qty: float | None
+    coverage_days: float | None
+    inventory_flag: InventoryFlag | None
+
+
+class InventoryAnalysisRow(TypedDict):
+    _odoo_product_id: int
+    product_name: str
+    _odoo_warehouse_id: int
+    warehouse_code: str
+    on_hand_qty: float
+    reserved_qty: float
+    available_qty: float
+    incoming_po_qty: float
+    incoming_move_qty: float
+    incoming_mo_qty: float
+    total_incoming: float
+    outgoing_so_qty: float
+    outgoing_move_qty: float
+    outgoing_mo_consumption: float
+    total_outgoing: float
+    net_position: float
+    forecasted_daily_demand: float
+    coverage_days: float | None
+    inventory_flag: InventoryFlag
+    computed_min_qty: float
+    computed_max_qty: float
