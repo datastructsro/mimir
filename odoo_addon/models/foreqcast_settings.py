@@ -200,6 +200,7 @@ class ForeqcastSettings(models.TransientModel):
 
         input_dir = None
         tmp_dir = None
+        output_dir = None
 
         try:
             if input_source == "attachment":
