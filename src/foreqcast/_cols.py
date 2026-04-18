@@ -43,3 +43,8 @@ def nonnull_rows(tbl: pa.Table, *columns: str) -> Iterator[tuple]:
     for row in zip(*arrays):
         if all(v is not None for v in row):
             yield row
+
+
+def nonnull_values(tbl: pa.Table, column: str) -> list:
+    """Return the column's non-null values as a Python list."""
+    return [v for v in tbl.column(column).to_pylist() if v is not None]
