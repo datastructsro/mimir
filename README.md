@@ -47,6 +47,15 @@ are populated (see `odoo_addon/i18n/`):
 
 Translation PRs welcome.
 
+## About
+
+Built and maintained by **[DataStruct s.r.o.](https://datastruct.tech)** — an **[Odoo Official Partner](https://www.odoo.com/partners)** based in the Czech Republic, specialising in demand forecasting and ERP implementation for manufacturing, retail, and logistics in the Czech–German–Polish triangle.
+
+- **See it in production:** [demand-forecast case study](https://datastruct.tech/post/demand-forecasts-shift-planning) · [machine-builder materials: 67% → 94%](https://datastruct.tech/post/czech-machine-builder-material-delays)
+- **Book a 30-min technical diagnostic:** [cal.com/oleg-popov-sjwko9/30min](https://cal.com/oleg-popov-sjwko9/30min)
+- **Questions / partnership:** info@datastruct.tech
+- **Companion:** [parqcast](https://github.com/datastructsro/parqcast) (the exporter this reads from) · [parqcast-lambda](https://github.com/datastructsro/parqcast-lambda) · [parqcast-server](https://github.com/datastructsro/parqcast-server)
+
 ## License
 
 LGPL-3.0-or-later
