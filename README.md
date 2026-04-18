@@ -30,6 +30,23 @@ uv run foreqcast /path/to/parqcast/exports /path/to/output --verbose
 
 `scripts/generate_test_data.py` produces a deterministic set of sample parquet inputs under `test_data/` (gitignored).
 
+## Locales
+
+The addon ships with UI translations in 19 languages. All `msgstr` entries
+are populated (see `odoo_addon/i18n/`):
+
+| | | |
+|---|---|---|
+| العربية (ar) | Čeština (cs) | Dansk (da) |
+| Deutsch (de) | Ελληνικά (el) | Español (es) |
+| Eesti (et) | Suomi (fi) | Hrvatski (hr) |
+| Magyar (hu) | Kurdî (ku) | Norsk Bokmål (nb) |
+| Nederlands (nl) | Polski (pl) | Português (pt) |
+| Română (ro) | Slovenčina (sk) | Slovenščina (sl) |
+| Svenska (sv) | | |
+
+Translation PRs welcome.
+
 ## License
 
 LGPL-3.0-or-later
