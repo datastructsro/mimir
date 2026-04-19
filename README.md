@@ -30,6 +30,32 @@ uv run foreqcast /path/to/parqcast/exports /path/to/output --verbose
 
 `scripts/generate_test_data.py` produces a deterministic set of sample parquet inputs under `test_data/` (gitignored).
 
+## Locales
+
+The addon ships with UI translations in 19 languages. All `msgstr` entries
+are populated (see `odoo_addon/i18n/`):
+
+| | | |
+|---|---|---|
+| العربية (ar) | Čeština (cs) | Dansk (da) |
+| Deutsch (de) | Ελληνικά (el) | Español (es) |
+| Eesti (et) | Suomi (fi) | Hrvatski (hr) |
+| Magyar (hu) | Kurdî (ku) | Norsk Bokmål (nb) |
+| Nederlands (nl) | Polski (pl) | Português (pt) |
+| Română (ro) | Slovenčina (sk) | Slovenščina (sl) |
+| Svenska (sv) | | |
+
+Translation PRs welcome.
+
+## About
+
+Built and maintained by **[DataStruct s.r.o.](https://datastruct.tech)** — an **[Odoo Official Partner](https://www.odoo.com/partners)** based in the Czech Republic, specialising in demand forecasting and ERP implementation for manufacturing, retail, and logistics in the Czech–German–Polish triangle.
+
+- **See it in production:** [demand-forecast case study](https://datastruct.tech/post/demand-forecasts-shift-planning) · [machine-builder materials: 67% → 94%](https://datastruct.tech/post/czech-machine-builder-material-delays)
+- **Book a 30-min technical diagnostic:** [cal.com/oleg-popov-sjwko9/30min](https://cal.com/oleg-popov-sjwko9/30min)
+- **Questions / partnership:** info@datastruct.tech
+- **Companion:** [parqcast](https://github.com/datastructsro/parqcast) (the exporter this reads from) · [parqcast-lambda](https://github.com/datastructsro/parqcast-lambda) · [parqcast-server](https://github.com/datastructsro/parqcast-server)
+
 ## License
 
 LGPL-3.0-or-later
