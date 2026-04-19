@@ -27,18 +27,18 @@ class ForeqcastSettings(models.TransientModel):
         help="Where to read parqcast export files from",
     )
     foreqcast_s3_bucket = fields.Char(
-        string="S3 Bucket",
+        string="Foreqcast S3 Bucket",
         config_parameter="foreqcast.s3_bucket",
         help="Bucket where Parqcast wrote its export (e.g. parqcast-v18-demo)",
     )
     foreqcast_s3_prefix = fields.Char(
-        string="S3 Prefix",
+        string="Foreqcast S3 Prefix",
         config_parameter="foreqcast.s3_prefix",
         default="parqcast",
         help="Prefix under the bucket; Foreqcast looks at <prefix>/outbound/<run_uuid>/",
     )
     foreqcast_s3_endpoint_url = fields.Char(
-        string="S3 Endpoint URL",
+        string="Foreqcast S3 Endpoint URL",
         config_parameter="foreqcast.s3_endpoint_url",
         help="For S3-compatible stores (MinIO, LocalStack). Leave empty for AWS.",
     )
