@@ -35,6 +35,15 @@ FORECAST_SCHEMA = pa.schema(
     ]
 )
 
+EXTERNAL_FORECAST_SCHEMA = pa.schema(
+    [
+        ("_odoo_product_id", pa.int64()),
+        ("_odoo_warehouse_id", pa.int64()),
+        ("forecasted_daily_demand", pa.float64()),
+        ("confidence", pa.string()),  # optional, default 'external'
+    ]
+)
+
 REPLENISHMENT_RULES_SCHEMA = pa.schema(
     [
         ("_odoo_product_id", pa.int64()),

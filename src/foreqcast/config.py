@@ -110,6 +110,10 @@ DEFAULTS = {
     "understock_threshold_days": ("3", "Products with coverage below this are flagged as understock"),
     "overstock_skip": ("true", "In adjust mode, skip creating orderpoints for overstocked products"),
     "understock_service_level_bump": ("0.03", "In adjust mode, raise service_level by this for understocked products"),
+    # Forecast Source
+    "forecast_source": ("internal", "Source of forecasts: 'internal' (linear regression) or 'external'"),
+    "external_forecast_uri": ("", "Path or URI to external forecast parquet file (if forecast_source=external)"),
+    "external_forecast_api_key": ("", "API key for HTTP-based external forecast server (sent as X-API-Key header)"),
 }
 
 
@@ -140,6 +144,11 @@ class ForeqcastConfig:
     understock_threshold_days: float = 3.0
     overstock_skip: bool = True
     understock_service_level_bump: float = 0.03
+
+    # Forecast Source
+    forecast_source: str = "internal"
+    external_forecast_uri: str = ""
+    external_forecast_api_key: str = ""
 
     # Loaded from override tables
     category_overrides: dict[int, CategoryOverride] = field(default_factory=dict)
@@ -188,6 +197,9 @@ def load_config(conn: sqlite3.Connection) -> ForeqcastConfig:
         understock_threshold_days=float(kv.get("understock_threshold_days", "3")),
         overstock_skip=kv.get("overstock_skip", "true").lower() == "true",
         understock_service_level_bump=float(kv.get("understock_service_level_bump", "0.03")),
+        forecast_source=kv.get("forecast_source", "internal"),
+        external_forecast_uri=kv.get("external_forecast_uri", ""),
+        external_forecast_api_key=kv.get("external_forecast_api_key", ""),
     )
 
     # Load category overrides

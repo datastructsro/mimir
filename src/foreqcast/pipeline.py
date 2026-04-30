@@ -19,6 +19,7 @@ from .calculator import calculate_rule, resolve_lead_time, resolve_review_period
 from .config import ForeqcastConfig, finish_run, start_run
 from .forecaster import compute_quantile_reorder_points, fit_demand
 from .inventory import InventoryConfig, load_inventory_positions
+from .providers import get_forecast_provider
 from .pusher import OdooPusher, PushStats
 from .reader import read_parqcast_export
 from .writer import write_forecasts, write_inventory_analysis, write_rules
@@ -105,20 +106,10 @@ def run_pipeline(
         logger.info("Found %d product×warehouse combinations with demand", len(demand_series))
 
         # 3. Forecast each series
-        logger.info("Running linear regression on %d time series", len(demand_series))
-        forecasts = []
-        for (pid, wid), points in demand_series.items():
-            result = fit_demand(
-                product_id=pid,
-                warehouse_id=wid,
-                points=points,
-                forecast_horizon_days=config.forecast_horizon_days,
-                min_data_points=config.min_data_points,
-                bucket=config.time_bucket,
-            )
-            if result:
-                forecasts.append(result)
-
+        logger.info("Generating forecasts using %s source", config.forecast_source)
+        provider = get_forecast_provider(config)
+        forecasts = provider.get_forecasts(demand_series, config)
+        logger.info("Generated %d forecasts", len(forecasts))
         # 4. Calculate replenishment rules (with quantile reorder points)
         logger.info("Calculating replenishment rules for %d forecasts", len(forecasts))
         rules = []
