@@ -133,14 +133,7 @@
                         <setting string="Auto-push to Orderpoints" help="Automatically update Odoo reorder rules after each forecast run">
                             <field name="foreqcast_auto_push"/>
                         </setting>
-                        <setting string="Config Database" help="SQLite database for per-product overrides and audit trail">
-                            <div class="content-group">
-                                <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_config_db_path"/>
-                                    <field name="foreqcast_config_db_path" class="col-lg-6" placeholder="/data/foreqcast/foreqcast_config.db"/>
-                                </div>
-                            </div>
-                        </setting>
+
                         <setting string="Run Pipeline" help="Execute the forecast pipeline now with current settings">
                             <button name="action_run_foreqcast" type="object"
                                     string="Run Now" class="btn-primary"

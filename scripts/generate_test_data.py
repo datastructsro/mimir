@@ -8,9 +8,9 @@ Creates a realistic set of parqcast-style parquet exports with:
 - Supplier info, orderpoints (empty)
 """
 
+import random
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-import random
 
 import pyarrow as pa
 import pyarrow.parquet as pq

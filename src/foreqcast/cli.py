@@ -8,7 +8,7 @@ import sys
 import warnings
 from pathlib import Path
 
-from .config import DEFAULT_DB_PATH, init_db, load_config
+from .config import ForeqcastConfig
 from .pipeline import run_pipeline
 
 
@@ -19,7 +19,7 @@ def main():
     )
     parser.add_argument("input_dir", help="Directory containing parqcast parquet exports")
     parser.add_argument("output_dir", help="Directory to write forecast parquet files")
-    parser.add_argument("--config-db", default=str(DEFAULT_DB_PATH), help="Path to SQLite config database")
+
     parser.add_argument("--push", action="store_true", help="Push replenishment rules to Odoo after writing parquet")
     parser.add_argument("--excel", action="store_true", help="Also export an Odoo-importable .xlsx file for manual review and import")
     parser.add_argument("--verbose", "-v", action="store_true", help="Enable debug logging")
@@ -40,8 +40,7 @@ def main():
         print(f"Error: input directory does not exist: {input_dir}", file=sys.stderr)
         sys.exit(1)
 
-    conn = init_db(Path(args.config_db))
-    config = load_config(conn)
+    config = ForeqcastConfig()
 
     if args.forecast_source:
         config.forecast_source = args.forecast_source
@@ -62,7 +61,6 @@ def main():
         parquet_input_dir=input_dir,
         parquet_output_dir=args.output_dir,
         config=config,
-        db_conn=conn,
         push_to_odoo=args.push,
     )
 
@@ -80,7 +78,7 @@ def main():
         print("  Sheet 'Odoo Import' — upload directly to Odoo via Import button")
         print("  Sheet 'Review' — human-readable with forecasts and inventory flags")
 
-    print(f"\nForecast complete:")
+    print("\nForecast complete:")
     print(f"  Products analyzed:  {stats['products_analyzed']}")
     print(f"  Products forecasted: {stats['products_forecasted']}")
     print(f"  Rules to create:    {stats['rules_created']}")

@@ -53,7 +53,8 @@ REPLENISHMENT_RULES_SCHEMA = pa.schema(
         ("_odoo_location_id", pa.int64()),  # warehouse lot_stock_id
         ("product_min_qty", pa.float64()),
         ("product_max_qty", pa.float64()),
-        ("lead_time_days", pa.int64()),
+        ("planned_lead_time_days", pa.int64()),
+        ("empirical_lead_time_days", pa.int64()),
         ("service_level", pa.float64()),
         ("review_period_days", pa.int64()),
         ("forecasted_daily_demand", pa.float64()),
@@ -139,7 +140,8 @@ class RuleRow(TypedDict):
     _odoo_location_id: int
     product_min_qty: float
     product_max_qty: float
-    lead_time_days: int
+    planned_lead_time_days: int
+    empirical_lead_time_days: int
     service_level: float
     review_period_days: int
     forecasted_daily_demand: float
@@ -216,6 +218,8 @@ DECISIONS_SCHEMA = pa.schema(
         ("min_quantity", pa.float64()),
         ("max_quantity", pa.float64()),
         ("delay", pa.int64()),
+        ("planned_lead_time_days", pa.int64()),
+        ("empirical_lead_time_days", pa.int64()),
     ]
 )
 
@@ -247,4 +251,6 @@ class DecisionRow(TypedDict):
     min_quantity: float
     max_quantity: float
     delay: int
+    planned_lead_time_days: int
+    empirical_lead_time_days: int
 

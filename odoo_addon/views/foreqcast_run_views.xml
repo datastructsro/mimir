@@ -44,9 +44,17 @@
                     <button name="action_download_inventory" type="object"
                             string="Download Inventory" class="btn-secondary" icon="fa-cubes"
                             invisible="status != 'complete' or attachment_count == 0"/>
+                    <button name="action_open_excel_wizard" type="object"
+                            string="Upload Excel Review" class="btn-secondary" icon="fa-upload"
+                            invisible="status != 'complete'"/>
                     <field name="status" widget="statusbar" statusbar_visible="running,complete"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_decisions" type="object" class="oe_stat_button" icon="fa-list" invisible="status != 'complete'">
+                            <field name="decision_count" widget="statinfo" string="Decisions"/>
+                        </button>
+                    </div>
                     <group>
                         <group string="Run Info">
                             <field name="run_date"/>

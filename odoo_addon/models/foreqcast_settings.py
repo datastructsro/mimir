@@ -116,11 +116,7 @@ class ForeqcastSettings(models.TransientModel):
         config_parameter="foreqcast.parquet_output_dir",
         help="Path to write forecast and rules parquet files",
     )
-    foreqcast_config_db_path = fields.Char(
-        string="Config Database Path",
-        config_parameter="foreqcast.config_db_path",
-        help="Path to foreqcast SQLite config database (for per-product overrides)",
-    )
+    # Removed config_db_path as we use ORM models now
 
     # Inventory position settings
     foreqcast_inventory_mode = fields.Selection(
@@ -294,7 +290,6 @@ class ForeqcastSettings(models.TransientModel):
         """Trigger a foreqcast pipeline run from Settings."""
         ICP = self.env["ir.config_parameter"].sudo()
         input_source = ICP.get_param("foreqcast.input_source", "attachment")
-        config_db = ICP.get_param("foreqcast.config_db_path", "")
         auto_push = ICP.get_param("foreqcast.auto_push", "False") == "True"
 
         input_dir = None
@@ -339,17 +334,57 @@ class ForeqcastSettings(models.TransientModel):
                         },
                     }
 
-            from foreqcast.config import init_db, load_config
+            from foreqcast.config import ForeqcastConfig
             from foreqcast.pipeline import run_pipeline
 
-            conn = init_db(Path(config_db)) if config_db else init_db()
-            config = load_config(conn)
+            # Build config from Odoo settings natively
+            config = ForeqcastConfig(
+                forecast_horizon_days=int(ICP.get_param("foreqcast.horizon_days", "30")),
+                time_bucket=ICP.get_param("foreqcast.time_bucket", "daily"),
+                min_data_points=int(ICP.get_param("foreqcast.min_data_points", "4")),
+                service_level=float(ICP.get_param("foreqcast.service_level", "0.85")),
+                review_period_days=int(ICP.get_param("foreqcast.review_period_days", "7")),
+                default_lead_time_days=int(ICP.get_param("foreqcast.default_lead_time", "7")),
+                min_demand_threshold=float(ICP.get_param("foreqcast.min_demand_threshold", "0.1")),
+                inventory_mode=ICP.get_param("foreqcast.inventory_mode", "ignore"),
+                respect_reservations=ICP.get_param("foreqcast.respect_reservations", "True") == "True",
+                include_incoming_supply=ICP.get_param("foreqcast.include_incoming_supply", "True") == "True",
+                include_outgoing_demand=ICP.get_param("foreqcast.include_outgoing_demand", "False") == "True",
+                overstock_threshold_days=float(ICP.get_param("foreqcast.overstock_threshold_days", "90.0")),
+                understock_threshold_days=float(ICP.get_param("foreqcast.understock_threshold_days", "3.0")),
+                overstock_skip=ICP.get_param("foreqcast.overstock_skip", "True") == "True",
+                understock_service_level_bump=float(ICP.get_param("foreqcast.understock_service_level_bump", "0.03")),
+            )
+
+            # Load overrides from ORM
+            cat_overrides = self.env["foreqcast.category.override"].search([])
+            for co in cat_overrides:
+                if co.excluded:
+                    continue
+                config.category_overrides[co.category_id.id] = {
+                    "safety_factor": co.safety_factor or None,
+                    "min_data_points": co.min_data_points or None,
+                    "lead_time_override_days": co.lead_time_override_days or None,
+                    "review_period_override_days": co.review_period_override_days or None,
+                    "service_level": co.service_level or None,
+                }
+
+            prod_overrides = self.env["foreqcast.product.override"].search([])
+            for po in prod_overrides:
+                config.product_overrides[po.product_id.id] = {
+                    "safety_factor": po.safety_factor or None,
+                    "min_qty_floor": po.min_qty_floor or None,
+                    "max_qty_ceiling": po.max_qty_ceiling or None,
+                    "lead_time_override_days": po.lead_time_override_days or None,
+                    "excluded": po.excluded,
+                    "service_level": po.service_level or None,
+                }
+
             stats = run_pipeline(
                 parquet_input_dir=input_dir,
                 parquet_output_dir=output_dir,
                 config=config,
-                db_conn=conn,
-                push_to_odoo=auto_push,
+                push_to_odoo=False,  # Replaced by collaborative staging model
             )
 
             # Generate Excel export
@@ -381,6 +416,31 @@ class ForeqcastSettings(models.TransientModel):
                 "duration_seconds": stats.get("duration_seconds", 0),
                 "status": "complete",
             })
+
+            # Parse decisions.parquet to create staging records
+            decisions_path = Path(output_dir) / "decisions.parquet"
+            if decisions_path.exists():
+                import pyarrow.parquet as pq
+                table = pq.read_table(decisions_path)
+                decision_dicts = table.to_pylist()
+                DecisionRequest = self.env["foreqcast.decision.request"].sudo()
+                for d in decision_dicts:
+                    if d.get("decision_type") == "ORDERPOINT" and d.get("action") != "skip":
+                        DecisionRequest.create({
+                            "run_id": run_record.id,
+                            "decision_id": d["decision_id"],
+                            "product_id": d["_odoo_product_id"],
+                            "location_id": d["_odoo_location_id"],
+                            "proposed_min_qty": d["min_quantity"],
+                            "proposed_max_qty": d["max_quantity"],
+                            "planned_lead_time": d.get("planned_lead_time_days", d.get("delay", 0)),
+                            "empirical_lead_time": d.get("empirical_lead_time_days", 0),
+                            "status": "draft",
+                        })
+
+            # Auto-approve if configured
+            if auto_push:
+                run_record.env["foreqcast.decision.request"].search([("run_id", "=", run_record.id), ("status", "=", "draft")]).action_approve()
 
             # Store output files as attachments
             self._store_output_attachments(run_record, output_dir)

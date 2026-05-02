@@ -17,7 +17,6 @@ from foreqcast.providers import (
 )
 from foreqcast.schemas import EXTERNAL_FORECAST_SCHEMA
 
-
 # ── Factory tests ───────────────────────────────────────────────────────
 
 

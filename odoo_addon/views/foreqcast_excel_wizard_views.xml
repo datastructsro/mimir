@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="foreqcast_excel_upload_view_form" model="ir.ui.view">
+        <field name="name">foreqcast.excel.upload.form</field>
+        <field name="model">foreqcast.excel.upload</field>
+        <field name="arch" type="xml">
+            <form string="Upload Modified Excel">
+                <sheet>
+                    <group>
+                        <field name="run_id" invisible="1"/>
+                        <field name="filename" invisible="1"/>
+                        <field name="excel_file" filename="filename" string="Excel File"/>
+                    </group>
+                    <p class="text-muted">
+                        Upload the modified "Review" sheet to update the proposed min/max quantities for this forecast run.
+                    </p>
+                </sheet>
+                <footer>
+                    <button name="action_upload" string="Upload &amp; Update" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="foreqcast_excel_upload_action" model="ir.actions.act_window">
+        <field name="name">Upload Excel Review</field>
+        <field name="res_model">foreqcast.excel.upload</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

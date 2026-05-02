@@ -73,7 +73,8 @@ def write_rules(
         cols["_odoo_location_id"].append(r.location_id)
         cols["product_min_qty"].append(r.min_qty)
         cols["product_max_qty"].append(r.max_qty)
-        cols["lead_time_days"].append(r.lead_time_days)
+        cols["planned_lead_time_days"].append(r.planned_lead_time_days)
+        cols["empirical_lead_time_days"].append(r.empirical_lead_time_days)
         cols["service_level"].append(r.service_level)
         cols["review_period_days"].append(r.review_period_days)
         cols["forecasted_daily_demand"].append(r.forecasted_daily_demand)
@@ -210,7 +211,9 @@ def write_decisions(
         cols["remark"].append(remark)
         cols["min_quantity"].append(r.min_qty)
         cols["max_quantity"].append(r.max_qty)
-        cols["delay"].append(r.lead_time_days)
+        cols["delay"].append(r.planned_lead_time_days)  # Legacy delay matches planned
+        cols["planned_lead_time_days"].append(r.planned_lead_time_days)
+        cols["empirical_lead_time_days"].append(r.empirical_lead_time_days)
 
     table = pa.table(cols, schema=DECISIONS_SCHEMA)
     path = output_dir / "decisions.parquet"

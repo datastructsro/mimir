@@ -16,7 +16,8 @@ def _make_rule(
     action: str = "create",
     min_qty: float = 5.0,
     max_qty: float = 15.0,
-    lead_time_days: int = 7,
+    planned_lead_time_days: int = 7,
+    empirical_lead_time_days: int = 5,
     skip_reason: str | None = None,
 ) -> ReplenishmentRule:
     return ReplenishmentRule(
@@ -27,7 +28,8 @@ def _make_rule(
         location_id=warehouse_id * 10,
         min_qty=min_qty,
         max_qty=max_qty,
-        lead_time_days=lead_time_days,
+        planned_lead_time_days=planned_lead_time_days,
+        empirical_lead_time_days=empirical_lead_time_days,
         service_level=0.85,
         review_period_days=7,
         forecasted_daily_demand=2.5,
@@ -95,7 +97,7 @@ def test_write_decisions_field_mapping():
         action="create",
         min_qty=10.5,
         max_qty=25.0,
-        lead_time_days=14,
+        planned_lead_time_days=14,
     )
     run_uuid = "abcdefab-1234-5678-9abc-def012345678"
     ts = datetime(2026, 5, 2, 12, 30, 0, tzinfo=timezone.utc)
@@ -112,6 +114,8 @@ def test_write_decisions_field_mapping():
         assert row["min_quantity"][0] == 10.5
         assert row["max_quantity"][0] == 25.0
         assert row["delay"][0] == 14
+        assert row["planned_lead_time_days"][0] == 14
+        assert row["empirical_lead_time_days"][0] == 5
         assert row["remark"][0] == "action=create"
 
 

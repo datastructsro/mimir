@@ -29,12 +29,40 @@ class ForeqcastRun(models.Model):
     time_bucket = fields.Char(string="Time Bucket")
     attachment_count = fields.Integer(string="Output Files", compute="_compute_attachment_count")
 
+    decision_count = fields.Integer(string="Decisions", compute="_compute_decision_count")
+
     def _compute_attachment_count(self):
         for run in self:
             run.attachment_count = self.env["ir.attachment"].sudo().search_count([
                 ("res_model", "=", "foreqcast.run"),
                 ("res_id", "=", run.id),
             ])
+
+    def _compute_decision_count(self):
+        for run in self:
+            run.decision_count = self.env["foreqcast.decision.request"].search_count([("run_id", "=", run.id)])
+
+    def action_view_decisions(self):
+        self.ensure_one()
+        return {
+            "name": "Decision Requests",
+            "type": "ir.actions.act_window",
+            "res_model": "foreqcast.decision.request",
+            "view_mode": "list,form",
+            "domain": [("run_id", "=", self.id)],
+            "context": {"default_run_id": self.id},
+        }
+
+    def action_open_excel_wizard(self):
+        self.ensure_one()
+        return {
+            "name": "Upload Excel Review",
+            "type": "ir.actions.act_window",
+            "res_model": "foreqcast.excel.upload",
+            "view_mode": "form",
+            "target": "new",
+            "context": {"default_run_id": self.id},
+        }
 
     def _get_output_attachment(self, filename):
         """Find a specific output attachment by filename."""
