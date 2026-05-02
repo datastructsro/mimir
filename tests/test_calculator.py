@@ -157,7 +157,7 @@ def test_short_history_default_fallback():
         default_max_qty=4.0,
     )
     forecast = _make_forecast()
-    
+
     rule = calculate_rule(
         forecast=forecast,
         product_name="Short History Data",
@@ -172,7 +172,7 @@ def test_short_history_default_fallback():
     assert rule.action == "create"
     assert rule.min_qty == 2.0
     assert rule.max_qty == 4.0
-    
+
 
 
 def test_product_override_floor_ceiling():

@@ -3,7 +3,7 @@
 from datetime import date
 
 from foreqcast.aggregator import DemandPoint
-from foreqcast.forecaster import fit_demand
+from tests.mock_forecast_server import fit_demand
 
 
 def _make_points(demands: list[float], start: date = date(2024, 1, 1), step_days: int = 7) -> list[DemandPoint]:

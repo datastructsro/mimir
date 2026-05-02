@@ -16,9 +16,8 @@ import pyarrow as pa
 
 from . import _cols
 from .aggregator import aggregate_demand
-from .calculator import calculate_rule, resolve_lead_time, resolve_review_period, resolve_service_level
+from .calculator import calculate_rule
 from .config import ForeqcastConfig
-from .forecaster import compute_quantile_reorder_points
 from .inventory import InventoryConfig, load_inventory_positions
 from .providers import get_forecast_provider
 from .pusher import OdooPusher, PushStats
@@ -128,17 +127,9 @@ def run_pipeline(
             loc_id = warehouse_locations.get(f.warehouse_id, 0)
             wh_code = warehouse_codes.get(f.warehouse_id, "")
 
-            # Resolve per-product parameters for quantile computation
-            lt = resolve_lead_time(f.product_id, cat_id, data.supplier_info, config)
-            rp = resolve_review_period(f.product_id, cat_id, config)
-            sl = resolve_service_level(f.product_id, cat_id, config)
-            points = demand_series.get((f.product_id, f.warehouse_id), [])
-
-            qr = compute_quantile_reorder_points(
-                points, lt, rp, sl,
-                min_data_points=config.min_data_points,
-                bucket=config.time_bucket,
-            )
+            qr = None
+            if f.quantile_min_qty is not None and f.quantile_max_qty is not None:
+                qr = (f.quantile_min_qty, f.quantile_max_qty)
 
             inv_pos = inventory_positions.get((f.product_id, f.warehouse_id))
 

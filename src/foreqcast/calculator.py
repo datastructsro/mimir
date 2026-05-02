@@ -189,7 +189,7 @@ def calculate_rule(
     history_span_days = (forecast.last_observation - forecast.first_observation).days
 
     insufficient_history = (
-        forecast.confidence == "insufficient_data" or 
+        forecast.confidence == "insufficient_data" or
         history_span_days < config.min_history_days
     )
 
