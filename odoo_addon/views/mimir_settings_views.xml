@@ -7,13 +7,35 @@
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app string="Mimir" data-string="Mimir" name="mimir">
-                    <block title="Demand Forecasting">
+                    <block title="Access" invisible="mimir_external_api_key">
+                        <div class="alert alert-info d-flex align-items-center gap-3 mx-3 mt-2 mb-3" role="alert">
+                            <i class="fa fa-key fa-2x text-primary"/>
+                            <div>
+                                <strong>Mimir requires an access token to operate.</strong>
+                                <br/>
+                                Paste your API key below, or
+                                <a href="https://datastruct.tech/mimir/request" target="_blank" class="alert-link">
+                                    request one here →
+                                </a>
+                            </div>
+                        </div>
+                        <setting string="API Key" help="Paste the UUID token you received by email">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="mimir_external_api_key"/>
+                                    <field name="mimir_external_api_key" class="col-lg-6" placeholder="123e4567-e89b-12d3-a456-426614174000"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Demand Forecasting" invisible="not mimir_external_api_key">
                         <setting string="Enable Mimir" help="Turn on demand forecasting and replenishment rule generation">
                             <field name="mimir_enabled"/>
                         </setting>
                     </block>
 
-                    <block title="Forecast Parameters" invisible="not mimir_enabled">
+                    <block title="Forecast Parameters" invisible="not mimir_enabled or not mimir_external_api_key">
                         <setting string="Forecast Horizon" help="How many days ahead to project demand">
                             <div class="content-group">
                                 <div class="row mt-2">
@@ -56,7 +78,7 @@
                         </setting>
                     </block>
 
-                    <block title="Data Quality" invisible="not mimir_enabled">
+                    <block title="Data Quality" invisible="not mimir_enabled or not mimir_external_api_key">
                         <setting string="Minimum Data Points" help="Require at least this many observations to forecast">
                             <div class="content-group">
                                 <div class="row mt-2">
@@ -83,7 +105,7 @@
                         </setting>
                     </block>
 
-                    <block title="Default Fallbacks" invisible="not mimir_enabled">
+                    <block title="Default Fallbacks" invisible="not mimir_enabled or not mimir_external_api_key">
                         <setting string="Default Min Qty" help="Global fallback Min Qty for products with insufficient history">
                             <div class="content-group">
                                 <div class="row mt-2">
@@ -102,7 +124,7 @@
                         </setting>
                     </block>
 
-                    <block title="Integration" invisible="not mimir_enabled">
+                    <block title="Integration" invisible="not mimir_enabled or not mimir_external_api_key">
                         <setting string="Input Source" help="Where to read parqcast export data from">
                             <field name="mimir_input_source" widget="radio"/>
                         </setting>
@@ -182,7 +204,7 @@
                         </setting>
                     </block>
 
-                    <block title="Inventory Position" invisible="not mimir_enabled">
+                    <block title="Inventory Position" invisible="not mimir_enabled or not mimir_external_api_key">
                         <setting string="Inventory Mode" help="How to account for current inventory state">
                             <div class="content-group">
                                 <div class="row mt-2">
@@ -202,7 +224,7 @@
                         </setting>
                     </block>
 
-                    <block title="Inventory Thresholds" invisible="mimir_inventory_mode == 'ignore' or not mimir_enabled">
+                    <block title="Inventory Thresholds" invisible="mimir_inventory_mode == 'ignore' or not mimir_enabled or not mimir_external_api_key">
                         <setting string="Overstock Threshold" help="Days of coverage above which a product is flagged as overstocked">
                             <div class="content-group">
                                 <div class="row mt-2">
