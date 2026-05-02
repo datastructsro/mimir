@@ -184,7 +184,7 @@
                             <div class="content-group">
                                 <div class="row mt-2">
                                     <label class="col-lg-3" for="mimir_external_forecast_uri"/>
-                                    <field name="mimir_external_forecast_uri" class="col-lg-6" placeholder="https://api.mimir.com/v1/forecasts"/>
+                                    <field name="mimir_external_forecast_uri" class="col-lg-6" placeholder="https://mimir.datastruct.tech/forecasts/latest"/>
                                 </div>
                                 <div class="row mt-2">
                                     <label class="col-lg-3" for="mimir_external_api_key"/>

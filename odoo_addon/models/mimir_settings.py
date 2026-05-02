@@ -139,6 +139,7 @@ class MimirSettings(models.TransientModel):
     mimir_external_forecast_uri = fields.Char(
         string="External Forecast URI",
         config_parameter="mimir.external_forecast_uri",
+        default="https://mimir.datastruct.tech/forecasts/latest",
         help="Base URI for the external HTTP forecast server",
     )
     mimir_external_api_key = fields.Char(
