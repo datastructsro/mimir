@@ -1,0 +1,54 @@
+digraph ForeqcastWorkflow {
+    rankdir=LR;
+    node [shape=box, style="rounded,filled", fontname="Helvetica", fillcolor="#f9f9f9", color="#cccccc", height=0.6];
+    edge [fontname="Helvetica", fontsize=10, color="#666666"];
+
+    // Data Sources
+    subgraph cluster_data {
+        label="Parqcast (AWS S3 / Local)";
+        style=dashed;
+        color="#888888";
+        fontcolor="#666666";
+        parquet [label="Odoo Parquet Exports\n(Moves, Orders, Inventory)", shape=note, fillcolor="#e1f5fe"];
+    }
+
+    // Foreqcast Engine
+    subgraph cluster_engine {
+        label="Foreqcast ML Engine";
+        style=filled;
+        fillcolor="#f0fdf4";
+        color="#bbf7d0";
+        ml [label="Linear Regression &\nQuantile Forecasting", fillcolor="#dcfce7"];
+        calc [label="Order Point Calculator\n(Min/Max Rules)", fillcolor="#dcfce7"];
+    }
+
+    // Staging Data
+    decisions [label="decisions.parquet", shape=note, fillcolor="#fef3c7"];
+
+    // Odoo Environment
+    subgraph cluster_odoo {
+        label="Odoo ERP Workspace";
+        style=filled;
+        fillcolor="#faf5ff";
+        color="#e9d5ff";
+
+        staging [label="Foreqcast Staging\n(decision.request)", fillcolor="#f3e8ff", shape=folder];
+        
+        chatter [label="Planner Collaboration\n(mail.thread)", shape=ellipse, fillcolor="#fce7f3"];
+        excel [label="Excel Round-Trip\n(Offline Adjustment)", shape=note, fillcolor="#e0f2fe"];
+        
+        orderpoint [label="Active Replenishment\n(stock.warehouse.orderpoint)", fillcolor="#d8b4fe", shape=cylinder];
+    }
+
+    // Connections
+    parquet -> ml [label=" Raw Time Series"];
+    ml -> calc [label=" Forecasted Demand"];
+    calc -> decisions [label=" Proposed Rules"];
+    
+    decisions -> staging [label=" Ingestion (Draft)"];
+    
+    staging -> chatter [dir=both, label=" Review & Discuss"];
+    staging -> excel [dir=both, label=" Download & Upload"];
+    
+    staging -> orderpoint [label=" Approve & Apply", color="#16a34a", penwidth=2];
+}
