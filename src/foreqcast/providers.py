@@ -18,7 +18,7 @@ import pyarrow.parquet as pq
 
 from .aggregator import DemandPoint
 from .config import ForeqcastConfig
-from .forecaster import ForecastResult, fit_demand
+from .forecaster import ForecastResult
 
 logger = logging.getLogger(__name__)
 
@@ -57,10 +57,17 @@ def _table_to_forecast_results(
     wids = table.column("_odoo_warehouse_id").to_pylist()
     demands = table.column("forecasted_daily_demand").to_pylist()
 
-    # Optional confidence column
     confidences = None
     if "confidence" in table.column_names:
         confidences = table.column("confidence").to_pylist()
+
+    quantile_mins = None
+    if "quantile_min_qty" in table.column_names:
+        quantile_mins = table.column("quantile_min_qty").to_pylist()
+
+    quantile_maxs = None
+    if "quantile_max_qty" in table.column_names:
+        quantile_maxs = table.column("quantile_max_qty").to_pylist()
 
     forecasts: list[ForecastResult] = []
     today = date.today()
@@ -89,6 +96,9 @@ def _table_to_forecast_results(
             span_days = max((last_obs - first_obs).days, 1)
             avg_daily = total_qty / span_days
 
+        q_min = float(quantile_mins[i]) if quantile_mins and quantile_mins[i] is not None else None
+        q_max = float(quantile_maxs[i]) if quantile_maxs and quantile_maxs[i] is not None else None
+
         forecasts.append(
             ForecastResult(
                 product_id=pid,
@@ -102,6 +112,8 @@ def _table_to_forecast_results(
                 r_squared=0.0,
                 forecasted_daily_demand=round(float(daily), 4),
                 confidence=conf,
+                quantile_min_qty=q_min,
+                quantile_max_qty=q_max,
             )
         )
 
@@ -111,28 +123,7 @@ def _table_to_forecast_results(
 # ── Providers ───────────────────────────────────────────────────────────
 
 
-class InternalForecastProvider:
-    """Uses the internal linear regression forecaster."""
 
-    def get_forecasts(
-        self,
-        demand_series: dict[tuple[int, int], list[DemandPoint]],
-        config: ForeqcastConfig,
-    ) -> list[ForecastResult]:
-        """Run linear regression on each time series."""
-        forecasts: list[ForecastResult] = []
-        for (pid, wid), points in demand_series.items():
-            result = fit_demand(
-                product_id=pid,
-                warehouse_id=wid,
-                points=points,
-                forecast_horizon_days=config.forecast_horizon_days,
-                min_data_points=config.min_data_points,
-                bucket=config.time_bucket,
-            )
-            if result:
-                forecasts.append(result)
-        return forecasts
 
 
 class ExternalParquetForecastProvider:
@@ -195,12 +186,12 @@ def get_forecast_provider(config: ForeqcastConfig) -> ForecastProvider:
     """Factory to get the appropriate forecast provider based on config.
 
     Routing logic:
-      - forecast_source == 'internal'  → InternalForecastProvider
+      - forecast_source != 'external' → ValueError
       - forecast_source == 'external' + http(s):// URI  → ExternalHttpForecastProvider
       - forecast_source == 'external' + anything else   → ExternalParquetForecastProvider
     """
     if config.forecast_source != "external":
-        return InternalForecastProvider()
+        raise ValueError("forecast_source must be 'external'. Internal forecasting has been removed.")
 
     uri = config.external_forecast_uri
     parsed = urlparse(uri)

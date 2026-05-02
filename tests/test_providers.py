@@ -12,17 +12,18 @@ from foreqcast.config import ForeqcastConfig
 from foreqcast.providers import (
     ExternalHttpForecastProvider,
     ExternalParquetForecastProvider,
-    InternalForecastProvider,
     get_forecast_provider,
 )
 from foreqcast.schemas import EXTERNAL_FORECAST_SCHEMA
+from tests.mock_forecast_server import MockForecastProvider
 
 # ── Factory tests ───────────────────────────────────────────────────────
 
 
-def test_factory_internal():
-    config = ForeqcastConfig()
-    assert isinstance(get_forecast_provider(config), InternalForecastProvider)
+def test_factory_internal_removed():
+    config = ForeqcastConfig(forecast_source="internal")
+    with pytest.raises(ValueError, match="forecast_source must be 'external'"):
+        get_forecast_provider(config)
 
 
 def test_factory_external_local_path():
@@ -45,12 +46,12 @@ def test_factory_external_https():
     assert isinstance(get_forecast_provider(config), ExternalHttpForecastProvider)
 
 
-# ── InternalForecastProvider ────────────────────────────────────────────
+# ── MockForecastProvider (Test Server) ───────────────────────────────────
 
 
-def test_internal_provider():
-    config = ForeqcastConfig()
-    provider = InternalForecastProvider()
+def test_mock_provider():
+    config = ForeqcastConfig(forecast_source="external")
+    provider = MockForecastProvider()
 
     demand_series = {
         (1, 10): [
@@ -105,6 +106,8 @@ def test_external_parquet_valid(tmp_path: Path):
             "_odoo_warehouse_id": [10, 10],
             "forecasted_daily_demand": [42.5, 100.0],
             "confidence": ["high", "low"],
+            "quantile_min_qty": [10.0, None],
+            "quantile_max_qty": [20.0, None],
         },
         schema=EXTERNAL_FORECAST_SCHEMA,
     )
@@ -128,6 +131,8 @@ def test_external_parquet_valid(tmp_path: Path):
     assert f1.confidence == "high"
     assert f1.data_points == 2
     assert f1.slope == 0.0
+    assert f1.quantile_min_qty == 10.0
+    assert f1.quantile_max_qty == 20.0
 
     f2 = next(f for f in forecasts if f.product_id == 2)
     assert f2.forecasted_daily_demand == 100.0

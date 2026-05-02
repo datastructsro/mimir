@@ -48,6 +48,8 @@ def write_forecasts(
         cols["forecasted_daily_demand"].append(r.forecasted_daily_demand)
         cols["forecast_horizon_days"].append(horizon_days)
         cols["confidence"].append(r.confidence)
+        cols["quantile_min_qty"].append(r.quantile_min_qty)
+        cols["quantile_max_qty"].append(r.quantile_max_qty)
 
     table = pa.table(cols, schema=FORECAST_SCHEMA)
     path = output_dir / "forecast.parquet"

@@ -1,14 +1,13 @@
 [project]
 name = "foreqcast"
 version = "0.3.0"
-description = "Linear regression demand forecaster — reads parqcast parquet exports, projects demand, writes replenishment rules back to Odoo 18/19"
+description = "Demand forecasting client — reads parqcast parquet exports, fetches forecasts, writes replenishment rules back to Odoo 18/19"
 authors = [
     { name = "DataStruct s.r.o.", email = "info@datastruct.tech" }
 ]
 requires-python = "==3.12.3"
 dependencies = [
     "pyarrow>=18.0",
-    "numpy>=2.0",
     "openpyxl>=3.1",
     "boto3>=1.34",
 ]
@@ -58,4 +57,5 @@ dev = [
     "pyright>=1.1.408",
     "pytest>=9.0.3",
     "types-openpyxl>=3.1",
+    "numpy>=2.0",
 ]

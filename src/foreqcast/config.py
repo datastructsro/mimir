@@ -61,7 +61,7 @@ class ForeqcastConfig:
     understock_service_level_bump: float = 0.03
 
     # Forecast Source
-    forecast_source: str = "internal"
+    forecast_source: str = "external"
     external_forecast_uri: str = ""
     external_forecast_api_key: str = ""
 

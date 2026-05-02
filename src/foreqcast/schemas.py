@@ -32,6 +32,8 @@ FORECAST_SCHEMA = pa.schema(
         ("forecasted_daily_demand", pa.float64()),  # projected at horizon midpoint
         ("forecast_horizon_days", pa.int64()),
         ("confidence", pa.string()),  # 'high', 'medium', 'low', 'insufficient_data'
+        ("quantile_min_qty", pa.float64()),
+        ("quantile_max_qty", pa.float64()),
     ]
 )
 
@@ -41,6 +43,8 @@ EXTERNAL_FORECAST_SCHEMA = pa.schema(
         ("_odoo_warehouse_id", pa.int64()),
         ("forecasted_daily_demand", pa.float64()),
         ("confidence", pa.string()),  # optional, default 'external'
+        ("quantile_min_qty", pa.float64()),
+        ("quantile_max_qty", pa.float64()),
     ]
 )
 
@@ -130,6 +134,8 @@ class ForecastRow(TypedDict):
     forecasted_daily_demand: float
     forecast_horizon_days: int
     confidence: Confidence
+    quantile_min_qty: float | None
+    quantile_max_qty: float | None
 
 
 class RuleRow(TypedDict):

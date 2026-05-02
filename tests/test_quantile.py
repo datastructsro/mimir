@@ -3,7 +3,7 @@
 from datetime import date
 
 from foreqcast.aggregator import DemandPoint
-from foreqcast.forecaster import (
+from tests.mock_forecast_server import (
     _interpolate_to_daily,
     _rolling_quantile,
     compute_quantile_reorder_points,
