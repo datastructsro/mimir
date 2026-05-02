@@ -8,9 +8,7 @@ from __future__ import annotations
 
 import io
 import logging
-import tempfile
 from datetime import date
-from pathlib import Path
 from typing import Protocol
 from urllib.parse import urlparse
 

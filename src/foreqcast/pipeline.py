@@ -6,7 +6,6 @@ Orchestrates: read parquet → aggregate → forecast → calculate → write �
 from __future__ import annotations
 
 import logging
-import sqlite3
 import time
 import uuid as _uuid
 from datetime import datetime, timezone
@@ -18,8 +17,8 @@ import pyarrow as pa
 from . import _cols
 from .aggregator import aggregate_demand
 from .calculator import calculate_rule, resolve_lead_time, resolve_review_period, resolve_service_level
-from .config import ForeqcastConfig, finish_run, start_run
-from .forecaster import compute_quantile_reorder_points, fit_demand
+from .config import ForeqcastConfig
+from .forecaster import compute_quantile_reorder_points
 from .inventory import InventoryConfig, load_inventory_positions
 from .providers import get_forecast_provider
 from .pusher import OdooPusher, PushStats
@@ -50,7 +49,6 @@ def run_pipeline(
     parquet_input_dir: str | Path,
     parquet_output_dir: str | Path,
     config: ForeqcastConfig,
-    db_conn: sqlite3.Connection | None = None,
     push_to_odoo: bool = False,
 ) -> PipelineStats:
     """Execute the full forecasting pipeline.
@@ -67,9 +65,7 @@ def run_pipeline(
     """
     start = time.monotonic()
     run_uuid = str(_uuid.uuid4())
-    run_id = None
-    if db_conn:
-        run_id = start_run(db_conn, str(parquet_input_dir), run_uuid=run_uuid)
+
 
     try:
         # 1. Read parqcast exports
@@ -230,14 +226,7 @@ def run_pipeline(
         if push_stats:
             stats["push_stats"] = push_stats
 
-        if db_conn and run_id:
-            # Only pass columns that exist in forecast_runs table
-            run_cols = {
-                "products_analyzed", "products_forecasted", "rules_created",
-                "rules_updated", "rules_skipped", "duration_seconds", "status",
-                "source_run_uuid",
-            }
-            finish_run(db_conn, run_id, **{k: v for k, v in stats.items() if k in run_cols})
+
 
         logger.info(
             "Pipeline complete in %.1fs: %d analyzed, %d forecasted, %d actionable, %d skipped",
@@ -246,9 +235,7 @@ def run_pipeline(
         )
         return stats
 
-    except Exception as e:
-        if db_conn and run_id:
-            finish_run(db_conn, run_id, status="error", error_message=str(e))
+    except Exception:
         raise
 
 

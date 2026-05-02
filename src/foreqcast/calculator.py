@@ -32,7 +32,8 @@ class ReplenishmentRule:
     location_id: int  # lot_stock_id of the warehouse
     min_qty: float
     max_qty: float
-    lead_time_days: int
+    planned_lead_time_days: int
+    empirical_lead_time_days: int
     service_level: float
     review_period_days: int
     forecasted_daily_demand: float
@@ -126,13 +127,14 @@ def resolve_review_period(
 def _make_skip_rule(
     pid: int, wid: int, product_name: str, warehouse_code: str,
     location_id: int, forecasted_daily_demand: float, skip_reason: str,
-    lead_time_days: int = 0, service_level: float = 0, review_period_days: int = 0,
+    planned_lead_time_days: int = 0, empirical_lead_time_days: int = 0, service_level: float = 0, review_period_days: int = 0,
 ) -> ReplenishmentRule:
     return ReplenishmentRule(
         product_id=pid, product_name=product_name,
         warehouse_id=wid, warehouse_code=warehouse_code,
         location_id=location_id,
-        min_qty=0, max_qty=0, lead_time_days=lead_time_days,
+        min_qty=0, max_qty=0, planned_lead_time_days=planned_lead_time_days,
+        empirical_lead_time_days=empirical_lead_time_days,
         service_level=service_level, review_period_days=review_period_days,
         forecasted_daily_demand=forecasted_daily_demand,
         trigger="auto", action="skip", skip_reason=skip_reason,
@@ -174,7 +176,9 @@ def calculate_rule(
         return _make_skip_rule(pid, wid, product_name, warehouse_code, location_id, daily, "below_demand_threshold")
 
     # Resolve parameters
-    lead_time = resolve_lead_time(pid, category_id, supplier_info, config)
+    planned_lead_time = resolve_lead_time(pid, category_id, supplier_info, config)
+    empirical_lead_time = 0  # Placeholder: to be populated when parqcast exports PO receipts
+    effective_lead_time = empirical_lead_time if empirical_lead_time > 0 else planned_lead_time
     service_level = resolve_service_level(pid, category_id, config)
     review = resolve_review_period(pid, category_id, config)
 
@@ -202,7 +206,7 @@ def calculate_rule(
             if inv_flag == "overstock" and inventory_config.overstock_skip:
                 rule = _make_skip_rule(
                     pid, wid, product_name, warehouse_code, location_id, daily,
-                    "overstock_skip", lead_time, service_level, review,
+                    "overstock_skip", planned_lead_time, empirical_lead_time, service_level, review,
                 )
                 rule.on_hand_qty = inventory_position.on_hand_qty
                 rule.reserved_qty = inventory_position.reserved_qty
@@ -221,8 +225,8 @@ def calculate_rule(
         min_qty, max_qty = quantile_result
     else:
         # Fallback: point estimate (for products where quantile couldn't be computed)
-        min_qty = daily * lead_time * (1.0 / (1.0 - service_level)) ** 0.5
-        max_qty = daily * (lead_time + review) * (1.0 / (1.0 - service_level)) ** 0.5
+        min_qty = daily * effective_lead_time * (1.0 / (1.0 - service_level)) ** 0.5
+        max_qty = daily * (effective_lead_time + review) * (1.0 / (1.0 - service_level)) ** 0.5
 
     # Apply product floor/ceiling overrides
     if pid in config.product_overrides:
@@ -254,7 +258,8 @@ def calculate_rule(
         location_id=location_id,
         min_qty=min_qty,
         max_qty=max_qty,
-        lead_time_days=lead_time,
+        planned_lead_time_days=planned_lead_time,
+        empirical_lead_time_days=empirical_lead_time,
         service_level=service_level,
         review_period_days=review,
         forecasted_daily_demand=daily,

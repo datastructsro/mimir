@@ -126,9 +126,9 @@ def test_pipeline_basic():
         slopes = forecast.column("trend_slope").to_pylist()
         assert all(s > 0 for s in slopes)
 
-        # Read rules and verify 21 columns (including inventory)
+        # Read rules and verify 22 columns (including inventory)
         rules = pq.read_table(str(output_path / "replenishment_rules.parquet"))
-        assert rules.num_columns == 21
+        assert rules.num_columns == 22
         assert rules.num_rows == 10
 
         # Inventory columns should be null when mode=ignore
