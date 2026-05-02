@@ -36,7 +36,6 @@ class ManifestMetadata:
 class ParqcastData:
     """Container for all parquet tables needed by the forecaster."""
 
-    sale_order_lines: pa.Table
     products: pa.Table
     supplier_info: pa.Table | None  # None if file missing
     warehouses: pa.Table
@@ -48,7 +47,6 @@ def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
     """Read parqcast export directory and return all needed tables.
 
     Required files:
-      - sale_order_line.parquet
       - product.parquet
       - stock_warehouse.parquet
 
@@ -58,54 +56,24 @@ def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
     """
     d = Path(export_dir)
 
-    # Required files — raise if missing
-    sol_path = d / "sale_order_line.parquet"
-    product_path = d / "product.parquet"
-    warehouse_path = d / "stock_warehouse.parquet"
+    # Load required core tables
+    tables = {}
+    req_files = {
+        "products": (d / "product.parquet", ["_odoo_product_id", "name", "default_code", "_odoo_categ_id"]),
+        "warehouses": (d / "stock_warehouse.parquet", ["_odoo_warehouse_id", "code", "_odoo_lot_stock_id"]),
+    }
 
-    for path in [sol_path, product_path, warehouse_path]:
+    for key, (path, cols) in req_files.items():
         if not path.exists():
             raise FileNotFoundError(f"Required parquet file not found: {path}")
-
-    sale_order_lines = pq.read_table(
-        sol_path,
-        columns=[
-            "_odoo_product_id",
-            "product_name",
-            "product_uom_qty",
-            "date_order",
-            "_odoo_warehouse_id",
-            "warehouse_code",
-            "so_state",
-        ],
-    )
-
-    products = pq.read_table(
-        product_path,
-        columns=[
-            "_odoo_product_id",
-            "name",
-            "default_code",
-            "_odoo_categ_id",
-        ],
-    )
-
-    warehouses = pq.read_table(
-        warehouse_path,
-        columns=[
-            "_odoo_warehouse_id",
-            "code",
-            "_odoo_lot_stock_id",
-        ],
-    )
+        tables[key] = pq.read_table(path, columns=cols)
 
     # Optional files
-    supplier_info = None
     supinfo_path = d / "product_supplierinfo.parquet"
     if supinfo_path.exists():
         schema = pq.read_schema(supinfo_path)
         tmpl_col = "_odoo_product_tmpl_id" if "_odoo_product_tmpl_id" in schema.names else "_odoo_template_id"
-        supplier_info = pq.read_table(
+        table = pq.read_table(
             supinfo_path,
             columns=[
                 "_odoo_product_id",
@@ -114,14 +82,14 @@ def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
             ],
         )
         if tmpl_col != "_odoo_product_tmpl_id":
-            supplier_info = supplier_info.rename_columns(
-                [c if c != tmpl_col else "_odoo_product_tmpl_id" for c in supplier_info.column_names]
+            table = table.rename_columns(
+                [c if c != tmpl_col else "_odoo_product_tmpl_id" for c in table.column_names]
             )
+        tables["supplier_info"] = table
 
-    orderpoints = None
     op_path = d / "orderpoint.parquet"
     if op_path.exists():
-        orderpoints = pq.read_table(
+        tables["orderpoints"] = pq.read_table(
             op_path,
             columns=[
                 "_odoo_orderpoint_id",
@@ -137,11 +105,10 @@ def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
     manifest = _read_manifest(d)
 
     return ParqcastData(
-        sale_order_lines=sale_order_lines,
-        products=products,
-        supplier_info=supplier_info,
-        warehouses=warehouses,
-        orderpoints=orderpoints,
+        products=tables["products"],
+        warehouses=tables["warehouses"],
+        supplier_info=tables.get("supplier_info"),
+        orderpoints=tables.get("orderpoints"),
         manifest=manifest,
     )
 

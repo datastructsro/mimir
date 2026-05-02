@@ -41,6 +41,10 @@ EXTERNAL_FORECAST_SCHEMA = pa.schema(
     [
         ("_odoo_product_id", pa.int64()),
         ("_odoo_warehouse_id", pa.int64()),
+        ("first_observation", pa.timestamp("us", tz="UTC")),
+        ("last_observation", pa.timestamp("us", tz="UTC")),
+        ("avg_daily_demand", pa.float64()),
+        ("data_points", pa.int64()),
         ("forecasted_daily_demand", pa.float64()),
         ("confidence", pa.string()),  # optional, default 'external'
         ("quantile_min_qty", pa.float64()),

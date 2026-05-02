@@ -157,6 +157,19 @@
                                 </div>
                             </div>
                         </setting>
+
+                        <setting string="External Forecast Server" help="Configure external HTTP server for demand processing">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_external_forecast_uri"/>
+                                    <field name="foreqcast_external_forecast_uri" class="col-lg-6" placeholder="https://api.foreqcast.com/v1/forecasts"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_external_api_key"/>
+                                    <field name="foreqcast_external_api_key" password="True" class="col-lg-6" placeholder="123e4567-e89b-12d3-a456-426614174000"/>
+                                </div>
+                            </div>
+                        </setting>
                         <setting string="Auto-push to Orderpoints" help="Automatically update Odoo reorder rules after each forecast run">
                             <field name="foreqcast_auto_push"/>
                         </setting>

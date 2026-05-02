@@ -15,7 +15,6 @@ from typing import NotRequired, TypedDict
 import pyarrow as pa
 
 from . import _cols
-from .aggregator import aggregate_demand
 from .calculator import calculate_rule
 from .config import ForeqcastConfig
 from .inventory import InventoryConfig, load_inventory_positions
@@ -106,18 +105,12 @@ def run_pipeline(
             inventory_positions = load_inventory_positions(Path(parquet_input_dir), warehouse_locations, inv_config)
             logger.info("Loaded %d inventory positions", len(inventory_positions))
 
-        # 2. Aggregate demand
-        logger.info("Aggregating demand time series (bucket=%s)", config.time_bucket)
-        demand_series = aggregate_demand(
-            data.sale_order_lines,
-            bucket=config.time_bucket,
-        )
-        logger.info("Found %d product×warehouse combinations with demand", len(demand_series))
+        # 2. Demand aggregation is now handled by the server.
 
         # 3. Forecast each series
         logger.info("Generating forecasts using %s source", config.forecast_source)
         provider = get_forecast_provider(config)
-        forecasts = provider.get_forecasts(demand_series, config)
+        forecasts = provider.get_forecasts(config)
         logger.info("Generated %d forecasts", len(forecasts))
         # 4. Calculate replenishment rules (with quantile reorder points)
         logger.info("Calculating replenishment rules for %d forecasts", len(forecasts))
@@ -193,7 +186,7 @@ def run_pipeline(
         skipped = [r for r in rules if r.action == "skip"]
 
         stats: PipelineStats = {
-            "products_analyzed": len(demand_series),
+            "products_analyzed": len(forecasts),
             "products_forecasted": len(forecasts),
             "rules_created": sum(1 for r in rules if r.action == "create"),
             "rules_updated": sum(1 for r in rules if r.action == "update"),

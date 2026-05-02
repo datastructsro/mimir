@@ -2,12 +2,12 @@
 
 from datetime import date
 from pathlib import Path
+from unittest.mock import MagicMock, patch
 
 import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 
-from foreqcast.aggregator import DemandPoint
 from foreqcast.config import ForeqcastConfig
 from foreqcast.providers import (
     ExternalHttpForecastProvider,
@@ -15,7 +15,7 @@ from foreqcast.providers import (
     get_forecast_provider,
 )
 from foreqcast.schemas import EXTERNAL_FORECAST_SCHEMA
-from tests.mock_forecast_server import MockForecastProvider
+from tests.mock_forecast_server import DemandPoint, MockForecastProvider
 
 # ── Factory tests ───────────────────────────────────────────────────────
 
@@ -51,8 +51,6 @@ def test_factory_external_https():
 
 def test_mock_provider():
     config = ForeqcastConfig(forecast_source="external")
-    provider = MockForecastProvider()
-
     demand_series = {
         (1, 10): [
             DemandPoint(bucket_date=date(2023, 1, 1), total_qty=10, order_count=1),
@@ -61,8 +59,9 @@ def test_mock_provider():
             DemandPoint(bucket_date=date(2023, 1, 4), total_qty=25, order_count=2),
         ]
     }
+    provider = MockForecastProvider(demand_series=demand_series)
 
-    forecasts = provider.get_forecasts(demand_series, config)
+    forecasts = provider.get_forecasts(config)
     assert len(forecasts) == 1
     assert forecasts[0].product_id == 1
     assert forecasts[0].warehouse_id == 10
@@ -76,7 +75,7 @@ def test_external_parquet_missing_uri():
     config = ForeqcastConfig(forecast_source="external")
     provider = ExternalParquetForecastProvider()
     with pytest.raises(ValueError, match="external_forecast_uri"):
-        provider.get_forecasts({}, config)
+        provider.get_forecasts(config)
 
 
 def test_external_parquet_missing_columns(tmp_path: Path):
@@ -90,7 +89,7 @@ def test_external_parquet_missing_columns(tmp_path: Path):
     pq.write_table(bad_table, tmp_path / "bad.parquet")
 
     with pytest.raises(ValueError, match="missing required columns"):
-        provider.get_forecasts({}, config)
+        provider.get_forecasts(config)
 
 
 def test_external_parquet_valid(tmp_path: Path):
@@ -100,10 +99,16 @@ def test_external_parquet_valid(tmp_path: Path):
         external_forecast_uri=str(uri),
     )
 
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc)
     good_table = pa.table(
         {
             "_odoo_product_id": [1, 2],
             "_odoo_warehouse_id": [10, 10],
+            "first_observation": [now, now],
+            "last_observation": [now, now],
+            "avg_daily_demand": [15.0, 0.0],
+            "data_points": [2, 0],
             "forecasted_daily_demand": [42.5, 100.0],
             "confidence": ["high", "low"],
             "quantile_min_qty": [10.0, None],
@@ -113,15 +118,8 @@ def test_external_parquet_valid(tmp_path: Path):
     )
     pq.write_table(good_table, uri)
 
-    demand_series = {
-        (1, 10): [
-            DemandPoint(bucket_date=date(2023, 1, 1), total_qty=10, order_count=1),
-            DemandPoint(bucket_date=date(2023, 1, 2), total_qty=20, order_count=1),
-        ]
-    }
-
     provider = ExternalParquetForecastProvider()
-    forecasts = provider.get_forecasts(demand_series, config)
+    forecasts = provider.get_forecasts(config)
 
     assert len(forecasts) == 2
 
@@ -148,17 +146,23 @@ def test_external_parquet_without_confidence(tmp_path: Path):
         external_forecast_uri=str(uri),
     )
 
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc)
     table = pa.table(
         {
             "_odoo_product_id": pa.array([1], type=pa.int64()),
             "_odoo_warehouse_id": pa.array([10], type=pa.int64()),
+            "first_observation": pa.array([now], type=pa.timestamp("us", tz="UTC")),
+            "last_observation": pa.array([now], type=pa.timestamp("us", tz="UTC")),
+            "avg_daily_demand": pa.array([55.0], type=pa.float64()),
+            "data_points": pa.array([10], type=pa.int64()),
             "forecasted_daily_demand": pa.array([55.0], type=pa.float64()),
         }
     )
     pq.write_table(table, uri)
 
     provider = ExternalParquetForecastProvider()
-    forecasts = provider.get_forecasts({}, config)
+    forecasts = provider.get_forecasts(config)
 
     assert len(forecasts) == 1
     assert forecasts[0].confidence == "external"
@@ -171,4 +175,59 @@ def test_external_http_missing_uri():
     config = ForeqcastConfig(forecast_source="external")
     provider = ExternalHttpForecastProvider()
     with pytest.raises(ValueError, match="external_forecast_uri"):
-        provider.get_forecasts({}, config)
+        provider.get_forecasts(config)
+
+
+@patch("urllib.request.urlopen")
+def test_external_http_query_params(mock_urlopen):
+    import io
+    from datetime import datetime, timezone
+
+    config = ForeqcastConfig(
+        forecast_source="external",
+        external_forecast_uri="http://example.com/api/forecasts",
+        external_forecast_api_key="123e4567-e89b-12d3-a456-426614174000",
+        time_bucket="weekly",
+        forecast_horizon_days=60,
+        odoo_db="test_tenant",
+        min_history_days=30,
+    )
+    provider = ExternalHttpForecastProvider()
+
+    now = datetime.now(timezone.utc)
+    table = pa.table(
+        {
+            "_odoo_product_id": [1],
+            "_odoo_warehouse_id": [10],
+            "first_observation": [now],
+            "last_observation": [now],
+            "avg_daily_demand": [15.0],
+            "data_points": [2],
+            "forecasted_daily_demand": [42.5],
+            "confidence": ["high"],
+            "quantile_min_qty": [10.0],
+            "quantile_max_qty": [20.0],
+        },
+        schema=EXTERNAL_FORECAST_SCHEMA,
+    )
+
+    buf = io.BytesIO()
+    pq.write_table(table, buf)
+    buf.seek(0)
+
+    mock_resp = MagicMock()
+    mock_resp.read.return_value = buf.read()
+    mock_resp.__enter__.return_value = mock_resp
+    mock_urlopen.return_value = mock_resp
+
+    provider.get_forecasts(config)
+
+    mock_urlopen.assert_called_once()
+    req = mock_urlopen.call_args[0][0]
+
+    url = req.full_url
+    assert "time_bucket=weekly" in url
+    assert "forecast_horizon_days=60" in url
+    assert "tenant_id=test_tenant" in url
+    assert "min_history_days=30" in url
+    assert req.headers.get("X-api-key") == "123e4567-e89b-12d3-a456-426614174000"
