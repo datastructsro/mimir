@@ -1,2 +1,2 @@
 # ruff: noqa: F401
-from . import foreqcast_decision, foreqcast_excel_wizard, foreqcast_overrides, foreqcast_run, foreqcast_settings
+from . import mimir_decision, mimir_excel_wizard, mimir_overrides, mimir_run, mimir_settings

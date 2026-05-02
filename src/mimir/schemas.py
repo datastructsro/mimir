@@ -1,4 +1,4 @@
-"""Output Parquet schemas for foreqcast.
+"""Output Parquet schemas for mimir.
 
 Three output files:
   - forecast.parquet: per-product demand forecast with regression stats
@@ -192,7 +192,7 @@ class InventoryAnalysisRow(TypedDict):
 
 
 # ---- Decisions schema (mirrors parqcast-core inbound.py) ----
-# This schema is the protocol contract between foreqcast and
+# This schema is the protocol contract between mimir and
 # parqcast-ingesters.  Keep it in lockstep with:
 #   parqcast/packages/parqcast-core/src/parqcast/schemas/inbound.py
 

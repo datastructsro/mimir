@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * foreqcast
+# * mimir
 #
 # Translators:
 msgid ""
@@ -17,362 +17,362 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
-msgid "/data/foreqcast/output"
-msgstr "/data/foreqcast/output"
+msgid "/data/mimir/output"
+msgstr "/data/mimir/output"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "/data/parqcast/exports/latest"
 msgstr "/data/parqcast/exports/latest"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "123e4567-e89b-12d3-a456-426614174000"
 msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve"
 msgstr "Godkänna"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve & Apply"
 msgstr "Godkänn & Ansök"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "Auto-push till beställningspunkter"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Automatically update Odoo reorder rules after each forecast run"
 msgstr "Uppdatera automatiskt Odoo-omordningsreglerna efter varje prognoskörning"
 "Uppdatera automatiskt Odoos beställningsregler efter varje prognoskörning"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Cancel"
 msgstr "Avboka"
 
-#: odoo_addon/views/foreqcast_override_views.xml
+#: odoo_addon/views/mimir_override_views.xml
 #, fuzzy
 msgid "Category Overrides"
 msgstr "Kategoriöverskridanden"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Configure external HTTP server for demand processing"
 msgstr "Konfigurera extern HTTP-server för efterfrågebehandling"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Count open PO and in-transit quantities"
 msgstr "Räkna öppna inköpsorder och transitkvantiteter"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Current Values"
 msgstr "Aktuella värden"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Days between replenishment checks (affects max qty)"
 msgstr "Dagar mellan påfyllningskontroller (påverkar max antal)"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Days of coverage above which a product is flagged as overstocked"
 msgstr "Antal dagars täckning över vilken en produkt flaggas som överlager"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Days of coverage below which a product is flagged as understocked"
 msgstr "Antal dagars täckning under vilken en produkt flaggas som underlager"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Request"
 msgstr "Beslutsbegäran"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Requests"
 msgstr "Beslutsförfrågningar"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
 msgid "Decisions"
 msgstr "Beslut"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Default Lead Time"
 msgstr "Standard ledtid"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Max Qty"
 msgstr "Standard ledtid"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Min Qty"
 msgstr "Standard Min Antal"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "Ladda ner alla (ZIP)"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download Excel"
 msgstr "Ladda ner Excel"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download Forecast"
 msgstr "Ladda ner prognos"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download Inventory"
 msgstr "Ladda ner lager"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download Rules"
 msgstr "Ladda ner regler"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
-msgid "Enable Foreqcast"
-msgstr "Aktivera Foreqcast"
+#: odoo_addon/views/mimir_settings_views.xml
+msgid "Enable Mimir"
+msgstr "Aktivera Mimir"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Error"
 msgstr "Fel"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Excel File"
 msgstr "Excel-fil"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Execute the forecast pipeline now with current settings"
 msgstr "Kör prognospipeline nu med aktuella inställningar"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "External Forecast Server"
-msgstr "Aktivera Foreqcast"
+msgstr "Aktivera Mimir"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Fallback when no supplier info exists for a product"
 msgstr "Reservvärde när ingen leverantörsinformation finns för en produkt"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
 msgid "Files"
 msgstr "Filer"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Forecast Horizon"
 msgstr "Prognoshorisont"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Forecast Runs"
 msgstr "Prognoskörningar"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
-msgid "Foreqcast"
-msgstr "Foreqcast"
+#: odoo_addon/views/mimir_settings_views.xml
+msgid "Mimir"
+msgstr "Mimir"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid ""
-"Foreqcast reads directly from the latest Parqcast export run's attachments. "
+"Mimir reads directly from the latest Parqcast export run's attachments. "
 "No file paths needed."
 msgstr ""
-"Foreqcast läser direkt från den senaste Parqcast-exportkörningens bilagor. "
+"Mimir läser direkt från den senaste Parqcast-exportkörningens bilagor. "
 "Inga sökvägar behövs."
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Global fallback Max Qty for products with insufficient history"
 msgstr "Globalt fallback Max Antal för produkter med otillräcklig historia"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Global fallback Min Qty for products with insufficient history"
 msgstr "Global fallback Min kvantitet för produkter med otillräcklig historia"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Granularity of demand aggregation for regression"
 msgstr "Granularitet för aggregering av efterfrågan till regression"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "How many days ahead to project demand"
 msgstr "Hur många dagar framåt efterfrågan ska projiceras"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "How to account for current inventory state"
 msgstr "Hur nuvarande lagerstatus ska beaktas"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "In adjust mode, don't create orderpoints for overstocked products"
 msgstr "I justeringsläget, skapa inte orderpunkter för överfyllda produkter"
 "I justeringsläge, skapa inte beställningspunkter för produkter med överlager"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "In adjust mode, raise service level by this for understocked products"
 msgstr "I justeringsläget, höj servicenivån med detta för underlagerade produkter"
 "I justeringsläge, höj servicenivån med detta för produkter med underlager"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Include Incoming Supply"
 msgstr "Inkludera inkommande leverans"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Include Outgoing Demand"
 msgstr "Inkludera utgående efterfrågan"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
 msgid "Input"
 msgstr "Input"
 
-#: odoo_addon/views/foreqcast_run_views.xml
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_run_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Input Source"
 msgstr "Inmatningskälla"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Inventory Mode"
 msgstr "Lagerläge"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Mark Review"
 msgstr "Mark Review"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Minimum Data Points"
 msgstr "Minsta antal datapunkter"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Minimum Demand Threshold"
 msgstr "Lägsta efterfrågetröskel"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Minimum History Days"
 msgstr "Minsta historikdagar"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Needs Review"
 msgstr "Behöver granskning"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Odoo Attachments"
 msgstr "Odoo-bilagor"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Overstock Threshold"
 msgstr "Överlagertröskel"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Parameters"
 msgstr "Parametrar"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Parquet Directories"
 msgstr "Parquet-kataloger"
 
-#: odoo_addon/views/foreqcast_override_views.xml
+#: odoo_addon/views/mimir_override_views.xml
 #, fuzzy
 msgid "Product Overrides"
 msgstr "Prognostiserade produkter"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Proposed Changes"
 msgstr "Föreslagna ändringar"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Read Parqcast exports directly from an S3-compatible bucket"
 msgstr "Läs Parqcast-exporter direkt från en S3-kompatibel hink"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Reject"
 msgstr "Avvisa"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Require at least this many days of history to forecast"
 msgstr "Kräv minst detta antal observationer för prognos"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Require at least this many observations to forecast"
 msgstr "Kräv minst detta antal observationer för prognos"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Respect Reservations"
 msgstr "Respektera reservationer"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Results"
 msgstr "Resultat"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Review Period"
 msgstr "Granskningsperiod"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Run Info"
 msgstr "Körningsinfo"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Run Now"
 msgstr "Kör nu"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Run Pipeline"
 msgstr "Kör pipeline"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Run the forecast pipeline with current settings?"
 msgstr "Kör prognospipeline med aktuella inställningar?"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "S3 Configuration"
 msgstr "S3-konfiguration"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Server file paths for parqcast input and forecast output"
 msgstr "Serversökvägar för Parqcast-inmatning och prognosutdata"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Service Level"
 msgstr "Servicenivå"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Skip Overstocked"
 msgstr "Hoppa över överlager"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Skip products with daily demand below this"
 msgstr "Hoppa över produkter med daglig efterfrågan under detta"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid ""
 "Subtract confirmed SO quantities (off by default to avoid double-counting)"
 msgstr ""
 "Dra av bekräftade försäljningsorderkvantiteter (avstängd som standard för "
 "att undvika dubbelräkning)"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Subtract reserved stock from available position (conservative)"
 msgstr "Dra av reserverat lager från tillgänglig position (konservativt)"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid ""
 "Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
 "items. Higher values need more safety stock."
@@ -380,106 +380,106 @@ msgstr ""
 "Mål-fyllnadsgrad. Ställ in 0,90 för standardservice eller 0,95 för kritiska "
 "artiklar. Högre värden kräver mer säkerhetslager."
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Time Bucket"
 msgstr "Tidsintervall"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Turn on demand forecasting and replenishment rule generation"
 msgstr "Aktivera efterfrågeprognostisering och generering av påfyllningsregler"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Understock SL Bump"
 msgstr "SL-höjning vid underlager"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Understock Threshold"
 msgstr "Underlagertröskel"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload & Update"
 msgstr "Ladda upp och uppdatera"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
 msgid "Upload Excel Review"
 msgstr "Ladda ner Excel"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload Modified Excel"
 msgstr "Ladda upp modifierad Excel"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Where to read parqcast export data from"
 msgstr "Varifrån Parqcast-exportdata läses"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "eu-central-1"
 msgstr "eu-central-1"
 
-#: odoo_addon/views/foreqcast_override_views.xml
+#: odoo_addon/views/mimir_override_views.xml
 #, fuzzy
-msgid "foreqcast.category.override.list"
-msgstr "foreqcast.category.override.list"
+msgid "mimir.category.override.list"
+msgstr "mimir.category.override.list"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
-msgid "foreqcast.decision.request.form"
-msgstr "foreqcast.decision.request.form"
+msgid "mimir.decision.request.form"
+msgstr "mimir.decision.request.form"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
-msgid "foreqcast.decision.request.list"
-msgstr "foreqcast.decision.request.list"
+msgid "mimir.decision.request.list"
+msgstr "mimir.decision.request.list"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
 #, fuzzy
-msgid "foreqcast.excel.upload.form"
-msgstr "foreqcast.excel.upload.form"
+msgid "mimir.excel.upload.form"
+msgstr "mimir.excel.upload.form"
 
-#: odoo_addon/views/foreqcast_override_views.xml
+#: odoo_addon/views/mimir_override_views.xml
 #, fuzzy
-msgid "foreqcast.product.override.list"
-msgstr "foreqcast.product.override.list"
+msgid "mimir.product.override.list"
+msgstr "mimir.product.override.list"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
-msgid "foreqcast.run.form"
-msgstr "Foreqcast-fel"
+msgid "mimir.run.form"
+msgstr "Mimir-fel"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
-msgid "foreqcast.run.list"
-msgstr "Foreqcast körningshistorik"
+msgid "mimir.run.list"
+msgstr "Mimir körningshistorik"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
-msgid "https://api.foreqcast.com/v1/forecasts"
-msgstr "https://api.foreqcast.com/v1/forecasts"
+msgid "https://api.mimir.com/v1/forecasts"
+msgstr "https://api.mimir.com/v1/forecasts"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "https://s3.datastruct.tech"
 msgstr "https://s3.datastruct.tech"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast"
-msgstr "Foreqcast"
+msgstr "Mimir"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast-v18-demo"
 msgstr "parqcast-v18-demo"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
-msgid "res.config.settings.view.form.foreqcast"
-msgstr "res.config.settings.view.form.foreqcast"
+msgid "res.config.settings.view.form.mimir"
+msgstr "res.config.settings.view.form.mimir"
 
 #~ msgid "Run Date"
 #~ msgstr "Körningsdatum"
@@ -615,9 +615,9 @@ msgstr "res.config.settings.view.form.foreqcast"
 #~ msgid "Path to write forecast and rules parquet files"
 #~ msgstr "Sökväg för att skriva prognos- och regelfiler i parquet-format"
 
-#~ msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+#~ msgid "Path to mimir SQLite config database (for per-product overrides)"
 #~ msgstr ""
-#~ "Sökväg till Foreqcast SQLite-konfigurationsdatabas (för produktspecifika "
+#~ "Sökväg till Mimir SQLite-konfigurationsdatabas (för produktspecifika "
 #~ "åsidosättningar)"
 
 #~ msgid ""
@@ -694,8 +694,8 @@ msgstr "res.config.settings.view.form.foreqcast"
 #~ msgstr "Lagertrösklar"
 
 #, python-format
-#~ msgid "Foreqcast Complete"
-#~ msgstr "Foreqcast slutförd"
+#~ msgid "Mimir Complete"
+#~ msgstr "Mimir slutförd"
 
 #, python-format
 #~ msgid "Please configure Parquet Input Directory first."

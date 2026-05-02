@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Tree view -->
-    <record id="foreqcast_run_view_list" model="ir.ui.view">
-        <field name="name">foreqcast.run.list</field>
-        <field name="model">foreqcast.run</field>
+    <record id="mimir_run_view_list" model="ir.ui.view">
+        <field name="name">mimir.run.list</field>
+        <field name="model">mimir.run</field>
         <field name="arch" type="xml">
             <list>
                 <field name="run_date"/>
@@ -23,9 +23,9 @@
     </record>
 
     <!-- Form view -->
-    <record id="foreqcast_run_view_form" model="ir.ui.view">
-        <field name="name">foreqcast.run.form</field>
-        <field name="model">foreqcast.run</field>
+    <record id="mimir_run_view_form" model="ir.ui.view">
+        <field name="name">mimir.run.form</field>
+        <field name="model">mimir.run</field>
         <field name="arch" type="xml">
             <form>
                 <header>
@@ -86,13 +86,13 @@
     </record>
 
     <!-- Action -->
-    <record id="foreqcast_run_action" model="ir.actions.act_window">
+    <record id="mimir_run_action" model="ir.actions.act_window">
         <field name="name">Forecast Runs</field>
-        <field name="res_model">foreqcast.run</field>
+        <field name="res_model">mimir.run</field>
         <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menu -->
-    <menuitem id="foreqcast_menu_root" name="Foreqcast" web_icon="foreqcast,static/description/icon.png" sequence="90"/>
-    <menuitem id="foreqcast_menu_runs" name="Forecast Runs" parent="foreqcast_menu_root" action="foreqcast_run_action" sequence="10"/>
+    <menuitem id="mimir_menu_root" name="Mimir" web_icon="mimir,static/description/icon.png" sequence="90"/>
+    <menuitem id="mimir_menu_runs" name="Forecast Runs" parent="mimir_menu_root" action="mimir_run_action" sequence="10"/>
 </odoo>

@@ -18,7 +18,7 @@ Odoo 19 import format reference:
   - `trigger`: 'auto' or 'manual'
   - Odoo accepts .xlsx natively via base_import module (openpyxl)
 
-The external ID pattern `foreqcast.op_{product_id}_{warehouse_id}` ensures
+The external ID pattern `mimir.op_{product_id}_{warehouse_id}` ensures
 that re-importing the same file updates existing rules instead of duplicating.
 """
 
@@ -166,8 +166,8 @@ def _write_odoo_import_sheet(wb: Workbook, rules: list[RuleRow]):
         wid = rule.get("_odoo_warehouse_id")
         lid = rule.get("_odoo_location_id")
 
-        # External ID for idempotent import: foreqcast.op_{product}_{warehouse}
-        external_id = f"foreqcast.op_{pid}_{wid}"
+        # External ID for idempotent import: mimir.op_{product}_{warehouse}
+        external_id = f"mimir.op_{pid}_{wid}"
 
         ws.cell(row=row_num, column=1, value=external_id)
         ws.cell(row=row_num, column=2, value=pid)

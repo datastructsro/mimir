@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * foreqcast
+# * mimir
 #
 msgid ""
 msgstr ""
@@ -17,359 +17,359 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
-msgid "/data/foreqcast/output"
-msgstr "/data/foreqcast/output"
+#: odoo_addon/views/mimir_settings_views.xml
+msgid "/data/mimir/output"
+msgstr "/data/mimir/output"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "/data/parqcast/exports/latest"
 msgstr "/data/parqcast/exports/latest"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "123e4567-e89b-12d3-a456-426614174000"
 msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve"
 msgstr "Odobri"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve & Apply"
 msgstr "Odobri i primijeni"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "Automatsko ažuriranje pravila dopune"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Automatically update Odoo reorder rules after each forecast run"
 msgstr "Automatski ažuriraj Odoo pravila za ponovno naručivanje nakon svakog pokretanja prognoze"
 "Automatski ažuriraj Odoo pravila dopune nakon svakog pokretanja prognoze"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: odoo_addon/views/foreqcast_override_views.xml
+#: odoo_addon/views/mimir_override_views.xml
 #, fuzzy
 msgid "Category Overrides"
 msgstr "Zamjene kategorija"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Configure external HTTP server for demand processing"
 msgstr "Konfigurirajte vanjski HTTP poslužitelj za obradu potražnje"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Count open PO and in-transit quantities"
 msgstr "Broji otvorene narudžbenice i količine u prijevozu"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Current Values"
 msgstr "Trenutne vrijednosti"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Days between replenishment checks (affects max qty)"
 msgstr "Dani između provjera dopune (utječe na max količinu)"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Days of coverage above which a product is flagged as overstocked"
 msgstr ""
 "Dani pokrivenosti iznad kojih se proizvod označava kao prekomjerna zaliha"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Days of coverage below which a product is flagged as understocked"
 msgstr ""
 "Dani pokrivenosti ispod kojih se proizvod označava kao nedovoljna zaliha"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Request"
 msgstr "Zahtjev za odlukom"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Requests"
 msgstr "Zahtjevi za odlukom"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
 msgid "Decisions"
 msgstr "Odluke"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Default Lead Time"
 msgstr "Zadano vrijeme isporuke"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Max Qty"
 msgstr "Zadano vrijeme isporuke"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Min Qty"
 msgstr "Zadana min kol."
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "Preuzmi sve (ZIP)"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download Excel"
 msgstr "Preuzmi Excel"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download Forecast"
 msgstr "Preuzmi prognozu"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download Inventory"
 msgstr "Preuzmi podatke o zalihama"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Download Rules"
 msgstr "Preuzmi pravila"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
-msgid "Enable Foreqcast"
-msgstr "Omogući Foreqcast"
+#: odoo_addon/views/mimir_settings_views.xml
+msgid "Enable Mimir"
+msgstr "Omogući Mimir"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Error"
 msgstr "Pogreška"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Excel File"
 msgstr "Excel datoteka"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Execute the forecast pipeline now with current settings"
 msgstr "Izvrši obradu prognoze sada s trenutnim postavkama"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "External Forecast Server"
-msgstr "Omogući Foreqcast"
+msgstr "Omogući Mimir"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Fallback when no supplier info exists for a product"
 msgstr "Zamjena kada za proizvod ne postoje podaci o dobavljaču"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
 msgid "Files"
 msgstr "Datoteke"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Forecast Horizon"
 msgstr "Horizont prognoze"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Forecast Runs"
 msgstr "Pokretanja prognoze"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
-msgid "Foreqcast"
-msgstr "Foreqcast"
+#: odoo_addon/views/mimir_settings_views.xml
+msgid "Mimir"
+msgstr "Mimir"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid ""
-"Foreqcast reads directly from the latest Parqcast export run's attachments. "
+"Mimir reads directly from the latest Parqcast export run's attachments. "
 "No file paths needed."
 msgstr ""
-"Foreqcast čita izravno iz privitaka posljednjeg Parqcast izvoznog "
+"Mimir čita izravno iz privitaka posljednjeg Parqcast izvoznog "
 "pokretanja. Putanje datoteka nisu potrebne."
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Global fallback Max Qty for products with insufficient history"
 msgstr ""
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Global fallback Min Qty for products with insufficient history"
 msgstr ""
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Granularity of demand aggregation for regression"
 msgstr "Granularnost agregacije potražnje za regresiju"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "How many days ahead to project demand"
 msgstr "Koliko dana unaprijed projicirati potražnju"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "How to account for current inventory state"
 msgstr "Kako uzeti u obzir trenutno stanje zaliha"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "In adjust mode, don't create orderpoints for overstocked products"
 msgstr ""
 "U načinu prilagodbe, ne stvaraj pravila dopune za proizvode s prekomjernom "
 "zalihom"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "In adjust mode, raise service level by this for understocked products"
 msgstr ""
 "U načinu prilagodbe, povećaj razinu usluge za ovaj iznos za proizvode s "
 "nedovoljnom zalihom"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Include Incoming Supply"
 msgstr "Uključi dolaznu opskrbu"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Include Outgoing Demand"
 msgstr "Uključi odlaznu potražnju"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
 msgid "Input"
 msgstr "Unos"
 
-#: odoo_addon/views/foreqcast_run_views.xml
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_run_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Input Source"
 msgstr "Ulazni izvor"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Inventory Mode"
 msgstr "Način rada zaliha"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Mark Review"
 msgstr "Označi za pregled"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Minimum Data Points"
 msgstr "Minimalni broj podatkovnih točaka"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Minimum Demand Threshold"
 msgstr "Minimalni prag potražnje"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Minimum History Days"
 msgstr "Minimalni dani povijesti"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Needs Review"
 msgstr "Potreban pregled"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Odoo Attachments"
 msgstr "Odoo privici"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Overstock Threshold"
 msgstr "Prag prekomjerne zalihe"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Parameters"
 msgstr "Parametri"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Parquet Directories"
 msgstr "Parquet direktoriji"
 
-#: odoo_addon/views/foreqcast_override_views.xml
+#: odoo_addon/views/mimir_override_views.xml
 #, fuzzy
 msgid "Product Overrides"
 msgstr "Prognozirani proizvodi"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Proposed Changes"
 msgstr "Predložene promjene"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Read Parqcast exports directly from an S3-compatible bucket"
 msgstr "Čitajte izvoze Parqcasta izravno iz kante kompatibilne sa S3"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
+#: odoo_addon/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Reject"
 msgstr "Odbij"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Require at least this many days of history to forecast"
 msgstr "Zahtijevaj barem ovoliko opažanja za prognoziranje"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Require at least this many observations to forecast"
 msgstr "Zahtijevaj barem ovoliko opažanja za prognoziranje"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Respect Reservations"
 msgstr "Poštuj rezervacije"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Results"
 msgstr "Rezultati"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Review Period"
 msgstr "Period pregleda"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 msgid "Run Info"
 msgstr "Podaci o pokretanju"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Run Now"
 msgstr "Pokreni sada"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Run Pipeline"
 msgstr "Pokreni obradu"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Run the forecast pipeline with current settings?"
 msgstr "Pokrenuti obradu prognoze s trenutnim postavkama?"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "S3 Configuration"
 msgstr "S3 konfiguracija"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Server file paths for parqcast input and forecast output"
 msgstr "Putanje datoteka na poslužitelju za Parqcast ulaz i izlaz prognoze"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Service Level"
 msgstr "Razina usluge"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Skip Overstocked"
 msgstr "Preskoči prekomjerne zalihe"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Skip products with daily demand below this"
 msgstr "Preskoči proizvode s dnevnom potražnjom ispod ovoga"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid ""
 "Subtract confirmed SO quantities (off by default to avoid double-counting)"
 msgstr ""
 "Oduzmi potvrđene količine prodajnih naloga (isključeno prema zadanom kako bi "
 "se izbjeglo dvostruko računanje)"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Subtract reserved stock from available position (conservative)"
 msgstr "Oduzmi rezerviranu zalihu od raspoložive pozicije (konzervativno)"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid ""
 "Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
 "items. Higher values need more safety stock."
@@ -377,96 +377,96 @@ msgstr ""
 "Ciljna stopa ispunjenosti. Postavite na 0,90 za standardnu uslugu ili 0,95 "
 "za kritične artikle. Više vrijednosti zahtijevaju više sigurnosne zalihe."
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Time Bucket"
 msgstr "Vremenski period"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Turn on demand forecasting and replenishment rule generation"
 msgstr "Uključi prognoziranje potražnje i generiranje pravila dopune"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Understock SL Bump"
 msgstr "Povećanje razine usluge za nedovoljnu zalihu"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Understock Threshold"
 msgstr "Prag nedovoljne zalihe"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload & Update"
 msgstr "Prenesi i ažuriraj"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
 msgid "Upload Excel Review"
 msgstr "Preuzmi Excel"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload Modified Excel"
 msgstr "Prenesi izmijenjeni Excel"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "Where to read parqcast export data from"
 msgstr "Odakle čitati Parqcast izvozne podatke"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "eu-central-1"
 msgstr "eu-central-1"
 
-#: odoo_addon/views/foreqcast_override_views.xml
-msgid "foreqcast.category.override.list"
-msgstr "foreqcast.category.override.list"
+#: odoo_addon/views/mimir_override_views.xml
+msgid "mimir.category.override.list"
+msgstr "mimir.category.override.list"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
-msgid "foreqcast.decision.request.form"
-msgstr "foreqcast.decision.request.form"
+#: odoo_addon/views/mimir_decision_views.xml
+msgid "mimir.decision.request.form"
+msgstr "mimir.decision.request.form"
 
-#: odoo_addon/views/foreqcast_decision_views.xml
-msgid "foreqcast.decision.request.list"
-msgstr "foreqcast.decision.request.list"
+#: odoo_addon/views/mimir_decision_views.xml
+msgid "mimir.decision.request.list"
+msgstr "mimir.decision.request.list"
 
-#: odoo_addon/views/foreqcast_excel_wizard_views.xml
-msgid "foreqcast.excel.upload.form"
-msgstr "foreqcast.excel.upload.form"
+#: odoo_addon/views/mimir_excel_wizard_views.xml
+msgid "mimir.excel.upload.form"
+msgstr "mimir.excel.upload.form"
 
-#: odoo_addon/views/foreqcast_override_views.xml
-msgid "foreqcast.product.override.list"
-msgstr "foreqcast.product.override.list"
+#: odoo_addon/views/mimir_override_views.xml
+msgid "mimir.product.override.list"
+msgstr "mimir.product.override.list"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
-msgid "foreqcast.run.form"
-msgstr "Foreqcast pogreška"
+msgid "mimir.run.form"
+msgstr "Mimir pogreška"
 
-#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/mimir_run_views.xml
 #, fuzzy
-msgid "foreqcast.run.list"
-msgstr "Povijest pokretanja Foreqcast"
+msgid "mimir.run.list"
+msgstr "Povijest pokretanja Mimir"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
-msgid "https://api.foreqcast.com/v1/forecasts"
-msgstr "https://api.foreqcast.com/v1/forecasts"
+#: odoo_addon/views/mimir_settings_views.xml
+msgid "https://api.mimir.com/v1/forecasts"
+msgstr "https://api.mimir.com/v1/forecasts"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "https://s3.datastruct.tech"
 msgstr "https://s3.datastruct.tech"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast"
-msgstr "Foreqcast"
+msgstr "Mimir"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
+#: odoo_addon/views/mimir_settings_views.xml
 msgid "parqcast-v18-demo"
 msgstr "parqcast-v18-demo"
 
-#: odoo_addon/views/foreqcast_settings_views.xml
-msgid "res.config.settings.view.form.foreqcast"
-msgstr "res.config.settings.view.form.foreqcast"
+#: odoo_addon/views/mimir_settings_views.xml
+msgid "res.config.settings.view.form.mimir"
+msgstr "res.config.settings.view.form.mimir"
 
 #~ msgid "Run Date"
 #~ msgstr "Datum pokretanja"
@@ -603,9 +603,9 @@ msgstr "res.config.settings.view.form.foreqcast"
 #~ msgid "Path to write forecast and rules parquet files"
 #~ msgstr "Putanja za pisanje parquet datoteka prognoza i pravila"
 
-#~ msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+#~ msgid "Path to mimir SQLite config database (for per-product overrides)"
 #~ msgstr ""
-#~ "Putanja do Foreqcast SQLite konfiguracijske baze podataka (za "
+#~ "Putanja do Mimir SQLite konfiguracijske baze podataka (za "
 #~ "nadjačavanja po proizvodu)"
 
 #~ msgid ""
@@ -683,8 +683,8 @@ msgstr "res.config.settings.view.form.foreqcast"
 #~ msgstr "Pragovi zaliha"
 
 #, python-format
-#~ msgid "Foreqcast Complete"
-#~ msgstr "Foreqcast završen"
+#~ msgid "Mimir Complete"
+#~ msgstr "Mimir završen"
 
 #, python-format
 #~ msgid "Please configure Parquet Input Directory first."

@@ -1,9 +1,9 @@
 from odoo import fields, models
 
 
-class ForeqcastCategoryOverride(models.Model):
-    _name = "foreqcast.category.override"
-    _description = "Foreqcast Category Override"
+class MimirCategoryOverride(models.Model):
+    _name = "mimir.category.override"
+    _description = "Mimir Category Override"
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     category_id = fields.Many2one("product.category", string="Product Category", required=True, ondelete="cascade", tracking=True)
@@ -24,9 +24,9 @@ class ForeqcastCategoryOverride(models.Model):
         return [(rec.id, f"Override: {rec.category_id.name}") for rec in self]
 
 
-class ForeqcastProductOverride(models.Model):
-    _name = "foreqcast.product.override"
-    _description = "Foreqcast Product Override"
+class MimirProductOverride(models.Model):
+    _name = "mimir.product.override"
+    _description = "Mimir Product Override"
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     product_id = fields.Many2one("product.product", string="Product", required=True, ondelete="cascade", tracking=True)

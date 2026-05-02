@@ -1,7 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_foreqcast_run_manager,foreqcast.run.manager,model_foreqcast_run,stock.group_stock_manager,1,1,1,1
-access_foreqcast_run_user,foreqcast.run.user,model_foreqcast_run,stock.group_stock_user,1,0,0,0
-access_foreqcast_decision_manager,foreqcast.decision.request.manager,model_foreqcast_decision_request,stock.group_stock_manager,1,1,1,1
-access_foreqcast_decision_user,foreqcast.decision.request.user,model_foreqcast_decision_request,stock.group_stock_user,1,1,1,0
-access_foreqcast_category_override_manager,foreqcast.category.override.manager,model_foreqcast_category_override,stock.group_stock_manager,1,1,1,1
-access_foreqcast_product_override_manager,foreqcast.product.override.manager,model_foreqcast_product_override,stock.group_stock_manager,1,1,1,1
+access_mimir_run_manager,mimir.run.manager,model_mimir_run,stock.group_stock_manager,1,1,1,1
+access_mimir_run_user,mimir.run.user,model_mimir_run,stock.group_stock_user,1,0,0,0
+access_mimir_decision_manager,mimir.decision.request.manager,model_mimir_decision_request,stock.group_stock_manager,1,1,1,1
+access_mimir_decision_user,mimir.decision.request.user,model_mimir_decision_request,stock.group_stock_user,1,1,1,0
+access_mimir_category_override_manager,mimir.category.override.manager,model_mimir_category_override,stock.group_stock_manager,1,1,1,1
+access_mimir_product_override_manager,mimir.product.override.manager,model_mimir_product_override,stock.group_stock_manager,1,1,1,1

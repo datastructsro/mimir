@@ -8,41 +8,41 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 
-from foreqcast.config import ForeqcastConfig
-from foreqcast.providers import (
+from mimir.config import MimirConfig
+from mimir.providers import (
     ExternalHttpForecastProvider,
     ExternalParquetForecastProvider,
     get_forecast_provider,
 )
-from foreqcast.schemas import EXTERNAL_FORECAST_SCHEMA
+from mimir.schemas import EXTERNAL_FORECAST_SCHEMA
 from tests.mock_forecast_server import DemandPoint, MockForecastProvider
 
 # ── Factory tests ───────────────────────────────────────────────────────
 
 
 def test_factory_internal_removed():
-    config = ForeqcastConfig(forecast_source="internal")
+    config = MimirConfig(forecast_source="internal")
     with pytest.raises(ValueError, match="forecast_source must be 'external'"):
         get_forecast_provider(config)
 
 
 def test_factory_external_local_path():
-    config = ForeqcastConfig(forecast_source="external", external_forecast_uri="/tmp/forecast.parquet")
+    config = MimirConfig(forecast_source="external", external_forecast_uri="/tmp/forecast.parquet")
     assert isinstance(get_forecast_provider(config), ExternalParquetForecastProvider)
 
 
 def test_factory_external_s3():
-    config = ForeqcastConfig(forecast_source="external", external_forecast_uri="s3://bucket/forecast.parquet")
+    config = MimirConfig(forecast_source="external", external_forecast_uri="s3://bucket/forecast.parquet")
     assert isinstance(get_forecast_provider(config), ExternalParquetForecastProvider)
 
 
 def test_factory_external_http():
-    config = ForeqcastConfig(forecast_source="external", external_forecast_uri="http://localhost:8400/forecasts/latest")
+    config = MimirConfig(forecast_source="external", external_forecast_uri="http://localhost:8400/forecasts/latest")
     assert isinstance(get_forecast_provider(config), ExternalHttpForecastProvider)
 
 
 def test_factory_external_https():
-    config = ForeqcastConfig(forecast_source="external", external_forecast_uri="https://api.example.com/forecasts")
+    config = MimirConfig(forecast_source="external", external_forecast_uri="https://api.example.com/forecasts")
     assert isinstance(get_forecast_provider(config), ExternalHttpForecastProvider)
 
 
@@ -50,7 +50,7 @@ def test_factory_external_https():
 
 
 def test_mock_provider():
-    config = ForeqcastConfig(forecast_source="external")
+    config = MimirConfig(forecast_source="external")
     demand_series = {
         (1, 10): [
             DemandPoint(bucket_date=date(2023, 1, 1), total_qty=10, order_count=1),
@@ -72,14 +72,14 @@ def test_mock_provider():
 
 
 def test_external_parquet_missing_uri():
-    config = ForeqcastConfig(forecast_source="external")
+    config = MimirConfig(forecast_source="external")
     provider = ExternalParquetForecastProvider()
     with pytest.raises(ValueError, match="external_forecast_uri"):
         provider.get_forecasts(config)
 
 
 def test_external_parquet_missing_columns(tmp_path: Path):
-    config = ForeqcastConfig(
+    config = MimirConfig(
         forecast_source="external",
         external_forecast_uri=str(tmp_path / "bad.parquet"),
     )
@@ -94,7 +94,7 @@ def test_external_parquet_missing_columns(tmp_path: Path):
 
 def test_external_parquet_valid(tmp_path: Path):
     uri = tmp_path / "external.parquet"
-    config = ForeqcastConfig(
+    config = MimirConfig(
         forecast_source="external",
         external_forecast_uri=str(uri),
     )
@@ -141,7 +141,7 @@ def test_external_parquet_valid(tmp_path: Path):
 def test_external_parquet_without_confidence(tmp_path: Path):
     """When confidence column is missing, it should default to 'external'."""
     uri = tmp_path / "no_conf.parquet"
-    config = ForeqcastConfig(
+    config = MimirConfig(
         forecast_source="external",
         external_forecast_uri=str(uri),
     )
@@ -172,7 +172,7 @@ def test_external_parquet_without_confidence(tmp_path: Path):
 
 
 def test_external_http_missing_uri():
-    config = ForeqcastConfig(forecast_source="external")
+    config = MimirConfig(forecast_source="external")
     provider = ExternalHttpForecastProvider()
     with pytest.raises(ValueError, match="external_forecast_uri"):
         provider.get_forecasts(config)
@@ -183,7 +183,7 @@ def test_external_http_query_params(mock_urlopen):
     import io
     from datetime import datetime, timezone
 
-    config = ForeqcastConfig(
+    config = MimirConfig(
         forecast_source="external",
         external_forecast_uri="http://example.com/api/forecasts",
         external_forecast_api_key="123e4567-e89b-12d3-a456-426614174000",

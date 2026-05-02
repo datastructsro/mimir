@@ -10,201 +10,201 @@ from odoo.exceptions import ValidationError
 _logger = logging.getLogger(__name__)
 
 
-class ForeqcastSettings(models.TransientModel):
+class MimirSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
-    foreqcast_enabled = fields.Boolean(
-        string="Enable Foreqcast",
-        config_parameter="foreqcast.enabled",
+    mimir_enabled = fields.Boolean(
+        string="Enable Mimir",
+        config_parameter="mimir.enabled",
     )
-    foreqcast_input_source = fields.Selection(
+    mimir_input_source = fields.Selection(
         [
             ("attachment", "Odoo Attachments (from Parqcast)"),
             ("filesystem", "Server Filesystem"),
             ("s3", "S3 (from Parqcast)"),
         ],
         string="Input Source",
-        config_parameter="foreqcast.input_source",
+        config_parameter="mimir.input_source",
         default="attachment",
         help="Where to read parqcast export files from",
     )
-    foreqcast_s3_bucket = fields.Char(
-        string="Foreqcast S3 Bucket",
-        config_parameter="foreqcast.s3_bucket",
+    mimir_s3_bucket = fields.Char(
+        string="Mimir S3 Bucket",
+        config_parameter="mimir.s3_bucket",
         help="Bucket where Parqcast wrote its export (e.g. parqcast-v18-demo)",
     )
-    foreqcast_s3_prefix = fields.Char(
-        string="Foreqcast S3 Prefix",
-        config_parameter="foreqcast.s3_prefix",
+    mimir_s3_prefix = fields.Char(
+        string="Mimir S3 Prefix",
+        config_parameter="mimir.s3_prefix",
         default="parqcast",
-        help="Prefix under the bucket; Foreqcast looks at <prefix>/outbound/<run_uuid>/",
+        help="Prefix under the bucket; Mimir looks at <prefix>/outbound/<run_uuid>/",
     )
-    foreqcast_s3_endpoint_url = fields.Char(
-        string="Foreqcast S3 Endpoint URL",
-        config_parameter="foreqcast.s3_endpoint_url",
+    mimir_s3_endpoint_url = fields.Char(
+        string="Mimir S3 Endpoint URL",
+        config_parameter="mimir.s3_endpoint_url",
         help="For S3-compatible stores (MinIO, LocalStack). Leave empty for AWS.",
     )
-    foreqcast_s3_access_key_id = fields.Char(
+    mimir_s3_access_key_id = fields.Char(
         string="S3 Access Key ID",
-        config_parameter="foreqcast.s3_access_key_id",
+        config_parameter="mimir.s3_access_key_id",
         help="Leave empty to use the boto3 default credential chain",
     )
-    foreqcast_s3_secret_access_key = fields.Char(
+    mimir_s3_secret_access_key = fields.Char(
         string="S3 Secret Access Key",
-        config_parameter="foreqcast.s3_secret_access_key",
+        config_parameter="mimir.s3_secret_access_key",
     )
-    foreqcast_s3_region = fields.Char(
+    mimir_s3_region = fields.Char(
         string="S3 Region",
-        config_parameter="foreqcast.s3_region",
+        config_parameter="mimir.s3_region",
         help="e.g. eu-central-1. Ignored for most S3-compatible stores.",
     )
-    foreqcast_horizon_days = fields.Integer(
+    mimir_horizon_days = fields.Integer(
         string="Forecast Horizon (days)",
-        config_parameter="foreqcast.horizon_days",
+        config_parameter="mimir.horizon_days",
         default=30,
         help="Number of days to project demand forward",
     )
-    foreqcast_time_bucket = fields.Selection(
+    mimir_time_bucket = fields.Selection(
         [("daily", "Daily"), ("weekly", "Weekly")],
         string="Time Bucket",
-        config_parameter="foreqcast.time_bucket",
+        config_parameter="mimir.time_bucket",
         default="daily",
         help="Granularity of demand requested from the forecast server (Daily vs. Weekly)",
     )
-    foreqcast_service_level = fields.Float(
+    mimir_service_level = fields.Float(
         string="Service Level",
-        config_parameter="foreqcast.service_level",
+        config_parameter="mimir.service_level",
         default=0.85,
         help="Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. "
              "Higher values require more safety stock. Start at 0.85 and increase per category as needed.",
     )
-    foreqcast_review_period_days = fields.Integer(
+    mimir_review_period_days = fields.Integer(
         string="Review Period (days)",
-        config_parameter="foreqcast.review_period_days",
+        config_parameter="mimir.review_period_days",
         default=7,
         help="Days between replenishment reviews — affects max_qty calculation",
     )
-    foreqcast_default_lead_time = fields.Integer(
+    mimir_default_lead_time = fields.Integer(
         string="Default Lead Time (days)",
-        config_parameter="foreqcast.default_lead_time",
+        config_parameter="mimir.default_lead_time",
         default=7,
         help="Fallback lead time when no supplier info exists for a product",
     )
-    foreqcast_min_data_points = fields.Integer(
+    mimir_min_data_points = fields.Integer(
         string="Minimum Data Points",
-        config_parameter="foreqcast.min_data_points",
+        config_parameter="mimir.min_data_points",
         default=4,
         help="Minimum number of observations required to fit a regression",
     )
-    foreqcast_min_history_days = fields.Integer(
+    mimir_min_history_days = fields.Integer(
         string="Minimum History Days",
-        config_parameter="foreqcast.min_history_days",
+        config_parameter="mimir.min_history_days",
         default=36,
         help="Minimum number of days of history required to fit a regression",
     )
-    foreqcast_default_min_qty = fields.Float(
+    mimir_default_min_qty = fields.Float(
         string="Default Min Qty (Fallback)",
-        config_parameter="foreqcast.default_min_qty",
+        config_parameter="mimir.default_min_qty",
         default=0.0,
         help="Default minimum quantity if insufficient history",
     )
-    foreqcast_default_max_qty = fields.Float(
+    mimir_default_max_qty = fields.Float(
         string="Default Max Qty (Fallback)",
-        config_parameter="foreqcast.default_max_qty",
+        config_parameter="mimir.default_max_qty",
         default=0.0,
         help="Default maximum quantity if insufficient history",
     )
-    foreqcast_min_demand_threshold = fields.Float(
+    mimir_min_demand_threshold = fields.Float(
         string="Minimum Demand Threshold",
-        config_parameter="foreqcast.min_demand_threshold",
+        config_parameter="mimir.min_demand_threshold",
         default=0.1,
         help="Skip products with average daily demand below this value",
     )
-    foreqcast_auto_push = fields.Boolean(
+    mimir_auto_push = fields.Boolean(
         string="Auto-push to Orderpoints",
-        config_parameter="foreqcast.auto_push",
+        config_parameter="mimir.auto_push",
         default=False,
         help="Automatically update orderpoints after forecast run (vs. parquet-only)",
     )
-    foreqcast_parquet_input_dir = fields.Char(
+    mimir_parquet_input_dir = fields.Char(
         string="Parquet Input Directory",
-        config_parameter="foreqcast.parquet_input_dir",
+        config_parameter="mimir.parquet_input_dir",
         help="Path to parqcast export directory",
     )
-    foreqcast_parquet_output_dir = fields.Char(
+    mimir_parquet_output_dir = fields.Char(
         string="Parquet Output Directory",
-        config_parameter="foreqcast.parquet_output_dir",
+        config_parameter="mimir.parquet_output_dir",
         help="Path to write forecast and rules parquet files",
     )
-    foreqcast_external_forecast_uri = fields.Char(
+    mimir_external_forecast_uri = fields.Char(
         string="External Forecast URI",
-        config_parameter="foreqcast.external_forecast_uri",
+        config_parameter="mimir.external_forecast_uri",
         help="Base URI for the external HTTP forecast server",
     )
-    foreqcast_external_api_key = fields.Char(
+    mimir_external_api_key = fields.Char(
         string="External API Key (UUID)",
-        config_parameter="foreqcast.external_api_key",
+        config_parameter="mimir.external_api_key",
         help="API Key for the external forecast server (Must be a UUID)",
     )
 
-    @api.constrains('foreqcast_external_api_key')
+    @api.constrains('mimir_external_api_key')
     def _check_external_api_key(self):
         for record in self:
-            if record.foreqcast_external_api_key:
+            if record.mimir_external_api_key:
                 try:
-                    uuid.UUID(record.foreqcast_external_api_key)
+                    uuid.UUID(record.mimir_external_api_key)
                 except ValueError:
                     raise ValidationError("External API Key must be a valid UUID format (e.g. 123e4567-e89b-12d3-a456-426614174000).")
 
     # Removed config_db_path as we use ORM models now
 
     # Inventory position settings
-    foreqcast_inventory_mode = fields.Selection(
+    mimir_inventory_mode = fields.Selection(
         [("ignore", "Ignore (forecast only)"), ("analyze", "Analyze (add inventory columns)"), ("adjust", "Adjust (modify replenishment)")],
         string="Inventory Mode",
-        config_parameter="foreqcast.inventory_mode",
+        config_parameter="mimir.inventory_mode",
         default="ignore",
         help="How to account for current inventory when computing replenishment rules",
     )
-    foreqcast_respect_reservations = fields.Boolean(
+    mimir_respect_reservations = fields.Boolean(
         string="Respect Reservations",
-        config_parameter="foreqcast.respect_reservations",
+        config_parameter="mimir.respect_reservations",
         default=True,
         help="Subtract reserved quantities from on-hand (conservative). Disable to let planner reallocate all stock.",
     )
-    foreqcast_include_incoming = fields.Boolean(
+    mimir_include_incoming = fields.Boolean(
         string="Include Incoming Supply",
-        config_parameter="foreqcast.include_incoming_supply",
+        config_parameter="mimir.include_incoming_supply",
         default=True,
         help="Count open PO and in-transit quantities as available inventory",
     )
-    foreqcast_include_outgoing = fields.Boolean(
+    mimir_include_outgoing = fields.Boolean(
         string="Include Outgoing Demand",
-        config_parameter="foreqcast.include_outgoing_demand",
+        config_parameter="mimir.include_outgoing_demand",
         default=False,
         help="Subtract confirmed SO quantities. Off by default to avoid double-counting with forecast.",
     )
-    foreqcast_overstock_days = fields.Float(
+    mimir_overstock_days = fields.Float(
         string="Overstock Threshold (days)",
-        config_parameter="foreqcast.overstock_threshold_days",
+        config_parameter="mimir.overstock_threshold_days",
         default=90,
         help="Products with more than this many days of coverage are flagged as overstock",
     )
-    foreqcast_understock_days = fields.Float(
+    mimir_understock_days = fields.Float(
         string="Understock Threshold (days)",
-        config_parameter="foreqcast.understock_threshold_days",
+        config_parameter="mimir.understock_threshold_days",
         default=3,
         help="Products with fewer than this many days of coverage are flagged as understock",
     )
-    foreqcast_overstock_skip = fields.Boolean(
+    mimir_overstock_skip = fields.Boolean(
         string="Skip Overstocked Products",
-        config_parameter="foreqcast.overstock_skip",
+        config_parameter="mimir.overstock_skip",
         default=True,
         help="In adjust mode, don't create orderpoints for overstocked products",
     )
-    foreqcast_understock_bump = fields.Float(
+    mimir_understock_bump = fields.Float(
         string="Understock Service Level Bump",
-        config_parameter="foreqcast.understock_service_level_bump",
+        config_parameter="mimir.understock_service_level_bump",
         default=0.03,
         help="In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)",
     )
@@ -241,7 +241,7 @@ class ForeqcastSettings(models.TransientModel):
                 "Check that Parqcast transport is set to 'Odoo Attachments'."
             )
 
-        tmp_dir = Path(tempfile.mkdtemp(prefix="foreqcast_"))
+        tmp_dir = Path(tempfile.mkdtemp(prefix="mimir_"))
         for att in attachments:
             (tmp_dir / att.name).write_bytes(base64.b64decode(att.datas))
 
@@ -265,14 +265,14 @@ class ForeqcastSettings(models.TransientModel):
             ) from e
 
         ICP = self.env["ir.config_parameter"].sudo()
-        bucket = ICP.get_param("foreqcast.s3_bucket", "").strip()
+        bucket = ICP.get_param("mimir.s3_bucket", "").strip()
         if not bucket:
-            raise ValueError("Please configure S3 Bucket in Foreqcast settings.")
-        prefix = ICP.get_param("foreqcast.s3_prefix", "parqcast").strip().rstrip("/") or "parqcast"
-        endpoint_url = ICP.get_param("foreqcast.s3_endpoint_url", "").strip() or None
-        access_key = ICP.get_param("foreqcast.s3_access_key_id", "").strip() or None
-        secret_key = ICP.get_param("foreqcast.s3_secret_access_key", "").strip() or None
-        region = ICP.get_param("foreqcast.s3_region", "").strip() or None
+            raise ValueError("Please configure S3 Bucket in Mimir settings.")
+        prefix = ICP.get_param("mimir.s3_prefix", "parqcast").strip().rstrip("/") or "parqcast"
+        endpoint_url = ICP.get_param("mimir.s3_endpoint_url", "").strip() or None
+        access_key = ICP.get_param("mimir.s3_access_key_id", "").strip() or None
+        secret_key = ICP.get_param("mimir.s3_secret_access_key", "").strip() or None
+        region = ICP.get_param("mimir.s3_region", "").strip() or None
 
         run_id, run_uuid = self._latest_parqcast_run()
 
@@ -285,7 +285,7 @@ class ForeqcastSettings(models.TransientModel):
         )
 
         s3_prefix = f"{prefix}/outbound/{run_uuid}/"
-        tmp_dir = Path(tempfile.mkdtemp(prefix="foreqcast_s3_"))
+        tmp_dir = Path(tempfile.mkdtemp(prefix="mimir_s3_"))
         downloaded = 0
         paginator = s3.get_paginator("list_objects_v2")
         for page in paginator.paginate(Bucket=bucket, Prefix=s3_prefix):
@@ -319,18 +319,18 @@ class ForeqcastSettings(models.TransientModel):
                 self.env["ir.attachment"].sudo().create({
                     "name": fpath.name,
                     "datas": base64.b64encode(fpath.read_bytes()).decode(),
-                    "res_model": "foreqcast.run",
+                    "res_model": "mimir.run",
                     "res_id": run_record.id,
                     "mimetype": "application/octet-stream",
                 })
                 stored += 1
         _logger.info("Stored %d output files as attachments on run %d", stored, run_record.id)
 
-    def action_run_foreqcast(self):
-        """Trigger a foreqcast pipeline run from Settings."""
+    def action_run_mimir(self):
+        """Trigger a mimir pipeline run from Settings."""
         ICP = self.env["ir.config_parameter"].sudo()
-        input_source = ICP.get_param("foreqcast.input_source", "attachment")
-        auto_push = ICP.get_param("foreqcast.auto_push", "False") == "True"
+        input_source = ICP.get_param("mimir.input_source", "attachment")
+        auto_push = ICP.get_param("mimir.auto_push", "False") == "True"
 
         input_dir = None
         tmp_dir = None
@@ -344,13 +344,13 @@ class ForeqcastSettings(models.TransientModel):
                 tmp_dir = self._get_parqcast_input_dir_s3()
                 input_dir = str(tmp_dir)
             else:
-                input_dir = ICP.get_param("foreqcast.parquet_input_dir", "")
+                input_dir = ICP.get_param("mimir.parquet_input_dir", "")
                 if not input_dir:
                     return {
                         "type": "ir.actions.client",
                         "tag": "display_notification",
                         "params": {
-                            "title": "Foreqcast",
+                            "title": "Mimir",
                             "message": "Please configure Parquet Input Directory first.",
                             "type": "warning",
                             "sticky": False,
@@ -359,51 +359,51 @@ class ForeqcastSettings(models.TransientModel):
 
             # For attachment/s3 modes, use a temp output dir too
             if input_source in ("attachment", "s3"):
-                output_dir = str(Path(tempfile.mkdtemp(prefix="foreqcast_out_")))
+                output_dir = str(Path(tempfile.mkdtemp(prefix="mimir_out_")))
             else:
-                output_dir = ICP.get_param("foreqcast.parquet_output_dir", "")
+                output_dir = ICP.get_param("mimir.parquet_output_dir", "")
                 if not output_dir:
                     return {
                         "type": "ir.actions.client",
                         "tag": "display_notification",
                         "params": {
-                            "title": "Foreqcast",
+                            "title": "Mimir",
                             "message": "Please configure Parquet Output Directory first.",
                             "type": "warning",
                             "sticky": False,
                         },
                     }
 
-            from foreqcast.config import ForeqcastConfig
-            from foreqcast.pipeline import run_pipeline
+            from mimir.config import MimirConfig
+            from mimir.pipeline import run_pipeline
 
             # Build config from Odoo settings natively
-            config = ForeqcastConfig(
-                forecast_horizon_days=int(ICP.get_param("foreqcast.horizon_days", "30")),
-                time_bucket=ICP.get_param("foreqcast.time_bucket", "daily"),
-                min_data_points=int(ICP.get_param("foreqcast.min_data_points", "4")),
-                min_history_days=int(ICP.get_param("foreqcast.min_history_days", "36")),
-                service_level=float(ICP.get_param("foreqcast.service_level", "0.85")),
-                review_period_days=int(ICP.get_param("foreqcast.review_period_days", "7")),
-                default_lead_time_days=int(ICP.get_param("foreqcast.default_lead_time", "7")),
-                min_demand_threshold=float(ICP.get_param("foreqcast.min_demand_threshold", "0.1")),
-                default_min_qty=float(ICP.get_param("foreqcast.default_min_qty", "0.0")),
-                default_max_qty=float(ICP.get_param("foreqcast.default_max_qty", "0.0")),
-                inventory_mode=ICP.get_param("foreqcast.inventory_mode", "ignore"),
-                respect_reservations=ICP.get_param("foreqcast.respect_reservations", "True") == "True",
-                include_incoming_supply=ICP.get_param("foreqcast.include_incoming_supply", "True") == "True",
-                include_outgoing_demand=ICP.get_param("foreqcast.include_outgoing_demand", "False") == "True",
-                overstock_threshold_days=float(ICP.get_param("foreqcast.overstock_threshold_days", "90.0")),
-                understock_threshold_days=float(ICP.get_param("foreqcast.understock_threshold_days", "3.0")),
-                overstock_skip=ICP.get_param("foreqcast.overstock_skip", "True") == "True",
-                understock_service_level_bump=float(ICP.get_param("foreqcast.understock_service_level_bump", "0.03")),
+            config = MimirConfig(
+                forecast_horizon_days=int(ICP.get_param("mimir.horizon_days", "30")),
+                time_bucket=ICP.get_param("mimir.time_bucket", "daily"),
+                min_data_points=int(ICP.get_param("mimir.min_data_points", "4")),
+                min_history_days=int(ICP.get_param("mimir.min_history_days", "36")),
+                service_level=float(ICP.get_param("mimir.service_level", "0.85")),
+                review_period_days=int(ICP.get_param("mimir.review_period_days", "7")),
+                default_lead_time_days=int(ICP.get_param("mimir.default_lead_time", "7")),
+                min_demand_threshold=float(ICP.get_param("mimir.min_demand_threshold", "0.1")),
+                default_min_qty=float(ICP.get_param("mimir.default_min_qty", "0.0")),
+                default_max_qty=float(ICP.get_param("mimir.default_max_qty", "0.0")),
+                inventory_mode=ICP.get_param("mimir.inventory_mode", "ignore"),
+                respect_reservations=ICP.get_param("mimir.respect_reservations", "True") == "True",
+                include_incoming_supply=ICP.get_param("mimir.include_incoming_supply", "True") == "True",
+                include_outgoing_demand=ICP.get_param("mimir.include_outgoing_demand", "False") == "True",
+                overstock_threshold_days=float(ICP.get_param("mimir.overstock_threshold_days", "90.0")),
+                understock_threshold_days=float(ICP.get_param("mimir.understock_threshold_days", "3.0")),
+                overstock_skip=ICP.get_param("mimir.overstock_skip", "True") == "True",
+                understock_service_level_bump=float(ICP.get_param("mimir.understock_service_level_bump", "0.03")),
                 odoo_db=self.env.cr.dbname,
-                external_forecast_uri=ICP.get_param("foreqcast.external_forecast_uri", "").strip(),
-                external_forecast_api_key=ICP.get_param("foreqcast.external_api_key", "").strip(),
+                external_forecast_uri=ICP.get_param("mimir.external_forecast_uri", "").strip(),
+                external_forecast_api_key=ICP.get_param("mimir.external_api_key", "").strip(),
             )
 
             # Load overrides from ORM
-            cat_overrides = self.env["foreqcast.category.override"].search([])
+            cat_overrides = self.env["mimir.category.override"].search([])
             for co in cat_overrides:
                 if co.excluded:
                     continue
@@ -417,7 +417,7 @@ class ForeqcastSettings(models.TransientModel):
                     "default_max_qty": co.default_max_qty or None,
                 }
 
-            prod_overrides = self.env["foreqcast.product.override"].search([])
+            prod_overrides = self.env["mimir.product.override"].search([])
             for po in prod_overrides:
                 config.product_overrides[po.product_id.id] = {
                     "safety_factor": po.safety_factor or None,
@@ -437,7 +437,7 @@ class ForeqcastSettings(models.TransientModel):
 
             # Generate Excel export
             try:
-                from foreqcast.excel_export import export_to_excel
+                from mimir.excel_export import export_to_excel
                 rules_path = Path(output_dir) / "replenishment_rules.parquet"
                 forecast_path = Path(output_dir) / "forecast.parquet"
                 if rules_path.exists():
@@ -451,10 +451,10 @@ class ForeqcastSettings(models.TransientModel):
             if input_source == "attachment":
                 source_label = "parqcast attachments"
             elif input_source == "s3":
-                source_label = f"parqcast s3://{ICP.get_param('foreqcast.s3_bucket', '')}"
+                source_label = f"parqcast s3://{ICP.get_param('mimir.s3_bucket', '')}"
             else:
                 source_label = input_dir
-            run_record = self.env["foreqcast.run"].sudo().create({
+            run_record = self.env["mimir.run"].sudo().create({
                 "parquet_source_dir": source_label,
                 "products_analyzed": stats.get("products_analyzed", 0),
                 "products_forecasted": stats.get("products_forecasted", 0),
@@ -471,7 +471,7 @@ class ForeqcastSettings(models.TransientModel):
                 import pyarrow.parquet as pq
                 table = pq.read_table(decisions_path)
                 decision_dicts = table.to_pylist()
-                DecisionRequest = self.env["foreqcast.decision.request"].sudo()
+                DecisionRequest = self.env["mimir.decision.request"].sudo()
                 for d in decision_dicts:
                     if d.get("decision_type") == "ORDERPOINT" and d.get("action") != "skip":
                         DecisionRequest.create({
@@ -488,7 +488,7 @@ class ForeqcastSettings(models.TransientModel):
 
             # Auto-approve if configured
             if auto_push:
-                run_record.env["foreqcast.decision.request"].search([("run_id", "=", run_record.id), ("status", "=", "draft")]).action_approve()
+                run_record.env["mimir.decision.request"].search([("run_id", "=", run_record.id), ("status", "=", "draft")]).action_approve()
 
             # Store output files as attachments
             self._store_output_attachments(run_record, output_dir)
@@ -497,7 +497,7 @@ class ForeqcastSettings(models.TransientModel):
                 "type": "ir.actions.client",
                 "tag": "display_notification",
                 "params": {
-                    "title": "Foreqcast Complete",
+                    "title": "Mimir Complete",
                     "message": (
                         f"Analyzed {stats['products_analyzed']} products, "
                         f"created {stats['rules_created']} rules, "
@@ -509,14 +509,14 @@ class ForeqcastSettings(models.TransientModel):
                 },
             }
         except Exception as e:
-            _logger.exception("Foreqcast pipeline failed")
+            _logger.exception("Mimir pipeline failed")
             if input_source == "attachment":
                 source_label = "parqcast attachments"
             elif input_source == "s3":
-                source_label = f"parqcast s3://{ICP.get_param('foreqcast.s3_bucket', '')}"
+                source_label = f"parqcast s3://{ICP.get_param('mimir.s3_bucket', '')}"
             else:
                 source_label = input_dir or ""
-            self.env["foreqcast.run"].sudo().create({
+            self.env["mimir.run"].sudo().create({
                 "parquet_source_dir": source_label,
                 "status": "error",
                 "error_message": str(e),
@@ -525,7 +525,7 @@ class ForeqcastSettings(models.TransientModel):
                 "type": "ir.actions.client",
                 "tag": "display_notification",
                 "params": {
-                    "title": "Foreqcast Error",
+                    "title": "Mimir Error",
                     "message": str(e),
                     "type": "danger",
                     "sticky": True,

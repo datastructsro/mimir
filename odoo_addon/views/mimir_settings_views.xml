@@ -1,159 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="res_config_settings_view_form_foreqcast" model="ir.ui.view">
-        <field name="name">res.config.settings.view.form.foreqcast</field>
+    <record id="res_config_settings_view_form_mimir" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.mimir</field>
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
-                <app string="Foreqcast" data-string="Foreqcast" name="foreqcast">
+                <app string="Mimir" data-string="Mimir" name="mimir">
                     <block title="Demand Forecasting">
-                        <setting string="Enable Foreqcast" help="Turn on demand forecasting and replenishment rule generation">
-                            <field name="foreqcast_enabled"/>
+                        <setting string="Enable Mimir" help="Turn on demand forecasting and replenishment rule generation">
+                            <field name="mimir_enabled"/>
                         </setting>
                     </block>
 
-                    <block title="Forecast Parameters" invisible="not foreqcast_enabled">
+                    <block title="Forecast Parameters" invisible="not mimir_enabled">
                         <setting string="Forecast Horizon" help="How many days ahead to project demand">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_horizon_days"/>
-                                    <field name="foreqcast_horizon_days" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_horizon_days"/>
+                                    <field name="mimir_horizon_days" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="Time Bucket" help="Granularity of demand aggregation for regression">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_time_bucket"/>
-                                    <field name="foreqcast_time_bucket" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_time_bucket"/>
+                                    <field name="mimir_time_bucket" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="Service Level" help="Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock.">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_service_level"/>
-                                    <field name="foreqcast_service_level" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_service_level"/>
+                                    <field name="mimir_service_level" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="Review Period" help="Days between replenishment checks (affects max qty)">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_review_period_days"/>
-                                    <field name="foreqcast_review_period_days" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_review_period_days"/>
+                                    <field name="mimir_review_period_days" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="Default Lead Time" help="Fallback when no supplier info exists for a product">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_default_lead_time"/>
-                                    <field name="foreqcast_default_lead_time" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_default_lead_time"/>
+                                    <field name="mimir_default_lead_time" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                     </block>
 
-                    <block title="Data Quality" invisible="not foreqcast_enabled">
+                    <block title="Data Quality" invisible="not mimir_enabled">
                         <setting string="Minimum Data Points" help="Require at least this many observations to forecast">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_min_data_points"/>
-                                    <field name="foreqcast_min_data_points" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_min_data_points"/>
+                                    <field name="mimir_min_data_points" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="Minimum History Days" help="Require at least this many days of history to forecast">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_min_history_days"/>
-                                    <field name="foreqcast_min_history_days" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_min_history_days"/>
+                                    <field name="mimir_min_history_days" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="Minimum Demand Threshold" help="Skip products with daily demand below this">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_min_demand_threshold"/>
-                                    <field name="foreqcast_min_demand_threshold" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_min_demand_threshold"/>
+                                    <field name="mimir_min_demand_threshold" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                     </block>
 
-                    <block title="Default Fallbacks" invisible="not foreqcast_enabled">
+                    <block title="Default Fallbacks" invisible="not mimir_enabled">
                         <setting string="Default Min Qty" help="Global fallback Min Qty for products with insufficient history">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_default_min_qty"/>
-                                    <field name="foreqcast_default_min_qty" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_default_min_qty"/>
+                                    <field name="mimir_default_min_qty" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="Default Max Qty" help="Global fallback Max Qty for products with insufficient history">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_default_max_qty"/>
-                                    <field name="foreqcast_default_max_qty" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_default_max_qty"/>
+                                    <field name="mimir_default_max_qty" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                     </block>
 
-                    <block title="Integration" invisible="not foreqcast_enabled">
+                    <block title="Integration" invisible="not mimir_enabled">
                         <setting string="Input Source" help="Where to read parqcast export data from">
-                            <field name="foreqcast_input_source" widget="radio"/>
+                            <field name="mimir_input_source" widget="radio"/>
                         </setting>
                         <setting string="Odoo Attachments"
-                                 help="Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
-                                 invisible="foreqcast_input_source != 'attachment'">
+                                 help="Mimir reads directly from the latest Parqcast export run's attachments. No file paths needed."
+                                 invisible="mimir_input_source != 'attachment'">
                             <div class="text-muted">
                                 Reads parquet files from the latest completed Parqcast export.
                                 Output files are stored as attachments on the Forecast Run record.
                             </div>
                         </setting>
                         <setting string="Parquet Directories" help="Server file paths for parqcast input and forecast output"
-                                 invisible="foreqcast_input_source != 'filesystem'">
+                                 invisible="mimir_input_source != 'filesystem'">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_parquet_input_dir"/>
-                                    <field name="foreqcast_parquet_input_dir" class="col-lg-6" placeholder="/data/parqcast/exports/latest"/>
+                                    <label class="col-lg-3" for="mimir_parquet_input_dir"/>
+                                    <field name="mimir_parquet_input_dir" class="col-lg-6" placeholder="/data/parqcast/exports/latest"/>
                                 </div>
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_parquet_output_dir"/>
-                                    <field name="foreqcast_parquet_output_dir" class="col-lg-6" placeholder="/data/foreqcast/output"/>
+                                    <label class="col-lg-3" for="mimir_parquet_output_dir"/>
+                                    <field name="mimir_parquet_output_dir" class="col-lg-6" placeholder="/data/mimir/output"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="S3 Configuration"
                                  help="Read Parqcast exports directly from an S3-compatible bucket"
-                                 invisible="foreqcast_input_source != 's3'">
+                                 invisible="mimir_input_source != 's3'">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_s3_bucket"/>
-                                    <field name="foreqcast_s3_bucket" class="col-lg-6" placeholder="parqcast-v18-demo"/>
+                                    <label class="col-lg-3" for="mimir_s3_bucket"/>
+                                    <field name="mimir_s3_bucket" class="col-lg-6" placeholder="parqcast-v18-demo"/>
                                 </div>
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_s3_prefix"/>
-                                    <field name="foreqcast_s3_prefix" class="col-lg-6" placeholder="parqcast"/>
+                                    <label class="col-lg-3" for="mimir_s3_prefix"/>
+                                    <field name="mimir_s3_prefix" class="col-lg-6" placeholder="parqcast"/>
                                 </div>
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_s3_endpoint_url"/>
-                                    <field name="foreqcast_s3_endpoint_url" class="col-lg-6" placeholder="https://s3.datastruct.tech"/>
+                                    <label class="col-lg-3" for="mimir_s3_endpoint_url"/>
+                                    <field name="mimir_s3_endpoint_url" class="col-lg-6" placeholder="https://s3.datastruct.tech"/>
                                 </div>
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_s3_access_key_id"/>
-                                    <field name="foreqcast_s3_access_key_id" class="col-lg-6"/>
+                                    <label class="col-lg-3" for="mimir_s3_access_key_id"/>
+                                    <field name="mimir_s3_access_key_id" class="col-lg-6"/>
                                 </div>
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_s3_secret_access_key"/>
-                                    <field name="foreqcast_s3_secret_access_key" password="True" class="col-lg-6"/>
+                                    <label class="col-lg-3" for="mimir_s3_secret_access_key"/>
+                                    <field name="mimir_s3_secret_access_key" password="True" class="col-lg-6"/>
                                 </div>
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_s3_region"/>
-                                    <field name="foreqcast_s3_region" class="col-lg-3" placeholder="eu-central-1"/>
+                                    <label class="col-lg-3" for="mimir_s3_region"/>
+                                    <field name="mimir_s3_region" class="col-lg-3" placeholder="eu-central-1"/>
                                 </div>
                             </div>
                         </setting>
@@ -161,72 +161,72 @@
                         <setting string="External Forecast Server" help="Configure external HTTP server for demand processing">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_external_forecast_uri"/>
-                                    <field name="foreqcast_external_forecast_uri" class="col-lg-6" placeholder="https://api.foreqcast.com/v1/forecasts"/>
+                                    <label class="col-lg-3" for="mimir_external_forecast_uri"/>
+                                    <field name="mimir_external_forecast_uri" class="col-lg-6" placeholder="https://api.mimir.com/v1/forecasts"/>
                                 </div>
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_external_api_key"/>
-                                    <field name="foreqcast_external_api_key" password="True" class="col-lg-6" placeholder="123e4567-e89b-12d3-a456-426614174000"/>
+                                    <label class="col-lg-3" for="mimir_external_api_key"/>
+                                    <field name="mimir_external_api_key" password="True" class="col-lg-6" placeholder="123e4567-e89b-12d3-a456-426614174000"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="Auto-push to Orderpoints" help="Automatically update Odoo reorder rules after each forecast run">
-                            <field name="foreqcast_auto_push"/>
+                            <field name="mimir_auto_push"/>
                         </setting>
 
                         <setting string="Run Pipeline" help="Execute the forecast pipeline now with current settings">
-                            <button name="action_run_foreqcast" type="object"
+                            <button name="action_run_mimir" type="object"
                                     string="Run Now" class="btn-primary"
                                     icon="fa-play"
                                     confirm="Run the forecast pipeline with current settings?"/>
                         </setting>
                     </block>
 
-                    <block title="Inventory Position" invisible="not foreqcast_enabled">
+                    <block title="Inventory Position" invisible="not mimir_enabled">
                         <setting string="Inventory Mode" help="How to account for current inventory state">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_inventory_mode"/>
-                                    <field name="foreqcast_inventory_mode" class="col-lg-4"/>
+                                    <label class="col-lg-3" for="mimir_inventory_mode"/>
+                                    <field name="mimir_inventory_mode" class="col-lg-4"/>
                                 </div>
                             </div>
                         </setting>
-                        <setting string="Respect Reservations" help="Subtract reserved stock from available position (conservative)" invisible="foreqcast_inventory_mode == 'ignore'">
-                            <field name="foreqcast_respect_reservations"/>
+                        <setting string="Respect Reservations" help="Subtract reserved stock from available position (conservative)" invisible="mimir_inventory_mode == 'ignore'">
+                            <field name="mimir_respect_reservations"/>
                         </setting>
-                        <setting string="Include Incoming Supply" help="Count open PO and in-transit quantities" invisible="foreqcast_inventory_mode == 'ignore'">
-                            <field name="foreqcast_include_incoming"/>
+                        <setting string="Include Incoming Supply" help="Count open PO and in-transit quantities" invisible="mimir_inventory_mode == 'ignore'">
+                            <field name="mimir_include_incoming"/>
                         </setting>
-                        <setting string="Include Outgoing Demand" help="Subtract confirmed SO quantities (off by default to avoid double-counting)" invisible="foreqcast_inventory_mode == 'ignore'">
-                            <field name="foreqcast_include_outgoing"/>
+                        <setting string="Include Outgoing Demand" help="Subtract confirmed SO quantities (off by default to avoid double-counting)" invisible="mimir_inventory_mode == 'ignore'">
+                            <field name="mimir_include_outgoing"/>
                         </setting>
                     </block>
 
-                    <block title="Inventory Thresholds" invisible="foreqcast_inventory_mode == 'ignore' or not foreqcast_enabled">
+                    <block title="Inventory Thresholds" invisible="mimir_inventory_mode == 'ignore' or not mimir_enabled">
                         <setting string="Overstock Threshold" help="Days of coverage above which a product is flagged as overstocked">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_overstock_days"/>
-                                    <field name="foreqcast_overstock_days" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_overstock_days"/>
+                                    <field name="mimir_overstock_days" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
                         <setting string="Understock Threshold" help="Days of coverage below which a product is flagged as understocked">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_understock_days"/>
-                                    <field name="foreqcast_understock_days" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_understock_days"/>
+                                    <field name="mimir_understock_days" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>
-                        <setting string="Skip Overstocked" help="In adjust mode, don't create orderpoints for overstocked products" invisible="foreqcast_inventory_mode != 'adjust'">
-                            <field name="foreqcast_overstock_skip"/>
+                        <setting string="Skip Overstocked" help="In adjust mode, don't create orderpoints for overstocked products" invisible="mimir_inventory_mode != 'adjust'">
+                            <field name="mimir_overstock_skip"/>
                         </setting>
-                        <setting string="Understock SL Bump" help="In adjust mode, raise service level by this for understocked products" invisible="foreqcast_inventory_mode != 'adjust'">
+                        <setting string="Understock SL Bump" help="In adjust mode, raise service level by this for understocked products" invisible="mimir_inventory_mode != 'adjust'">
                             <div class="content-group">
                                 <div class="row mt-2">
-                                    <label class="col-lg-3" for="foreqcast_understock_bump"/>
-                                    <field name="foreqcast_understock_bump" class="col-lg-3"/>
+                                    <label class="col-lg-3" for="mimir_understock_bump"/>
+                                    <field name="mimir_understock_bump" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>

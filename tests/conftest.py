@@ -1,4 +1,4 @@
-"""Shared pytest fixtures for foreqcast tests."""
+"""Shared pytest fixtures for mimir tests."""
 
 import tempfile
 from pathlib import Path

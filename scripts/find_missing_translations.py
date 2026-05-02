@@ -1,16 +1,16 @@
 import glob
 import json
-import re
+
 
 def find_missing_translations():
     po_files = glob.glob('odoo_addon/i18n/*.po')
     missing = set()
-    
+
     # A simple state machine to parse PO files
     for filepath in po_files:
         with open(filepath, 'r', encoding='utf-8') as f:
             lines = f.readlines()
-            
+
         current_msgid = None
         for i, line in enumerate(lines):
             line = line.strip()

@@ -8,8 +8,8 @@ from unittest.mock import patch
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from foreqcast.config import ForeqcastConfig
-from foreqcast.pipeline import run_pipeline
+from mimir.config import MimirConfig
+from mimir.pipeline import run_pipeline
 from tests.mock_forecast_server import DemandPoint, MockForecastProvider
 
 
@@ -124,9 +124,9 @@ def test_pipeline_basic():
         output_path = Path(output_dir)
         _create_test_parquets(input_path)
 
-        config = ForeqcastConfig(inventory_mode="ignore", forecast_source="external")
+        config = MimirConfig(inventory_mode="ignore", forecast_source="external")
         mock_provider = MockForecastProvider(input_dir=str(input_path))
-        with patch("foreqcast.pipeline.get_forecast_provider", return_value=mock_provider):
+        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
             stats = run_pipeline(input_path, output_path, config)
 
         # Check stats
@@ -168,9 +168,9 @@ def test_pipeline_inventory_analyze():
         _create_test_parquets(input_path)
         _create_stock_quants(input_path)
 
-        config = ForeqcastConfig(inventory_mode="analyze", forecast_source="external")
+        config = MimirConfig(inventory_mode="analyze", forecast_source="external")
         mock_provider = MockForecastProvider(_generate_test_demand_series())
-        with patch("foreqcast.pipeline.get_forecast_provider", return_value=mock_provider):
+        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
             stats = run_pipeline(input_path, output_path, config)
 
         assert stats["status"] == "complete"
@@ -199,9 +199,9 @@ def test_pipeline_inventory_adjust_overstock_skip():
         _create_test_parquets(input_path)
         _create_stock_quants(input_path)  # Product 1 has 100000 on-hand
 
-        config = ForeqcastConfig(inventory_mode="adjust", overstock_skip=True, forecast_source="external")
+        config = MimirConfig(inventory_mode="adjust", overstock_skip=True, forecast_source="external")
         mock_provider = MockForecastProvider(_generate_test_demand_series())
-        with patch("foreqcast.pipeline.get_forecast_provider", return_value=mock_provider):
+        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
             stats = run_pipeline(input_path, output_path, config)
 
         rules = pq.read_table(str(output_path / "replenishment_rules.parquet"))
@@ -225,9 +225,9 @@ def test_pipeline_empty_input():
         output_path = Path(output_dir)
         _create_test_parquets(input_path, n_products=0, n_warehouses=2, n_days=0)
 
-        config = ForeqcastConfig(forecast_source="external")
+        config = MimirConfig(forecast_source="external")
         mock_provider = MockForecastProvider({})
-        with patch("foreqcast.pipeline.get_forecast_provider", return_value=mock_provider):
+        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
             stats = run_pipeline(input_path, output_path, config)
 
         assert stats["products_analyzed"] == 0
@@ -241,9 +241,9 @@ def test_pipeline_decisions_output():
         output_path = Path(output_dir)
         _create_test_parquets(input_path)
 
-        config = ForeqcastConfig(inventory_mode="ignore", forecast_source="external")
+        config = MimirConfig(inventory_mode="ignore", forecast_source="external")
         mock_provider = MockForecastProvider(_generate_test_demand_series())
-        with patch("foreqcast.pipeline.get_forecast_provider", return_value=mock_provider):
+        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
             stats = run_pipeline(input_path, output_path, config)
 
         # decisions.parquet must exist
@@ -293,9 +293,9 @@ def test_pipeline_manifest_parsing():
         }
         (input_path / "manifest.json").write_text(json.dumps(manifest))
 
-        config = ForeqcastConfig(inventory_mode="ignore", forecast_source="external")
+        config = MimirConfig(inventory_mode="ignore", forecast_source="external")
         mock_provider = MockForecastProvider(_generate_test_demand_series())
-        with patch("foreqcast.pipeline.get_forecast_provider", return_value=mock_provider):
+        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
             stats = run_pipeline(input_path, output_path, config)
 
         assert stats.get("source_run_uuid") == source_uuid

@@ -16,7 +16,7 @@ import pyarrow as pa
 
 from . import _cols
 from .calculator import calculate_rule
-from .config import ForeqcastConfig
+from .config import MimirConfig
 from .inventory import InventoryConfig, load_inventory_positions
 from .providers import get_forecast_provider
 from .pusher import OdooPusher, PushStats
@@ -46,7 +46,7 @@ class PipelineStats(TypedDict):
 def run_pipeline(
     parquet_input_dir: str | Path,
     parquet_output_dir: str | Path,
-    config: ForeqcastConfig,
+    config: MimirConfig,
     push_to_odoo: bool = False,
 ) -> PipelineStats:
     """Execute the full forecasting pipeline.
@@ -75,7 +75,7 @@ def run_pipeline(
         if data.manifest:
             source_run_uuid = data.manifest.run_uuid
             logger.info(
-                "Temporal chain: source_run=%s (finished=%s) → foreqcast_run=%s",
+                "Temporal chain: source_run=%s (finished=%s) → mimir_run=%s",
                 source_run_uuid, data.manifest.finished_at, run_uuid,
             )
 

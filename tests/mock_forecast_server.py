@@ -9,8 +9,8 @@ from datetime import date
 import numpy as np
 import pyarrow as pa
 
-from foreqcast.config import ForeqcastConfig
-from foreqcast.forecaster import ForecastResult
+from mimir.config import MimirConfig
+from mimir.forecaster import ForecastResult
 
 
 @dataclass
@@ -269,7 +269,7 @@ def _rolling_quantile(daily: np.ndarray, window_days: int, percentile: float) ->
 
 
 class MockForecastProvider:
-    """Simulates the external foreqcast-server returning ForecastResults enriched with quantile computations."""
+    """Simulates the external mimir-server returning ForecastResults enriched with quantile computations."""
 
     def __init__(self, demand_series: dict[tuple[int, int], list[DemandPoint]] | None = None, input_dir: str | None = None):
         self.demand_series = demand_series or {}
@@ -277,7 +277,7 @@ class MockForecastProvider:
 
     def get_forecasts(
         self,
-        config: ForeqcastConfig,
+        config: MimirConfig,
     ) -> list[ForecastResult]:
         import uuid
         api_key = config.external_forecast_api_key

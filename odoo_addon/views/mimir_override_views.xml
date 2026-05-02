@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Category Overrides -->
-    <record id="foreqcast_category_override_view_list" model="ir.ui.view">
-        <field name="name">foreqcast.category.override.list</field>
-        <field name="model">foreqcast.category.override</field>
+    <record id="mimir_category_override_view_list" model="ir.ui.view">
+        <field name="name">mimir.category.override.list</field>
+        <field name="model">mimir.category.override</field>
         <field name="arch" type="xml">
             <list editable="bottom">
                 <field name="category_id"/>
@@ -18,16 +18,16 @@
         </field>
     </record>
 
-    <record id="foreqcast_category_override_action" model="ir.actions.act_window">
+    <record id="mimir_category_override_action" model="ir.actions.act_window">
         <field name="name">Category Overrides</field>
-        <field name="res_model">foreqcast.category.override</field>
+        <field name="res_model">mimir.category.override</field>
         <field name="view_mode">list,form</field>
     </record>
 
     <!-- Product Overrides -->
-    <record id="foreqcast_product_override_view_list" model="ir.ui.view">
-        <field name="name">foreqcast.product.override.list</field>
-        <field name="model">foreqcast.product.override</field>
+    <record id="mimir_product_override_view_list" model="ir.ui.view">
+        <field name="name">mimir.product.override.list</field>
+        <field name="model">mimir.product.override</field>
         <field name="arch" type="xml">
             <list editable="bottom">
                 <field name="product_id"/>
@@ -41,14 +41,14 @@
         </field>
     </record>
 
-    <record id="foreqcast_product_override_action" model="ir.actions.act_window">
+    <record id="mimir_product_override_action" model="ir.actions.act_window">
         <field name="name">Product Overrides</field>
-        <field name="res_model">foreqcast.product.override</field>
+        <field name="res_model">mimir.product.override</field>
         <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menus -->
-    <menuitem id="foreqcast_menu_overrides" name="Overrides" parent="foreqcast_menu_root" sequence="30"/>
-    <menuitem id="foreqcast_menu_category_override" name="Category Overrides" parent="foreqcast_menu_overrides" action="foreqcast_category_override_action" sequence="10"/>
-    <menuitem id="foreqcast_menu_product_override" name="Product Overrides" parent="foreqcast_menu_overrides" action="foreqcast_product_override_action" sequence="20"/>
+    <menuitem id="mimir_menu_overrides" name="Overrides" parent="mimir_menu_root" sequence="30"/>
+    <menuitem id="mimir_menu_category_override" name="Category Overrides" parent="mimir_menu_overrides" action="mimir_category_override_action" sequence="10"/>
+    <menuitem id="mimir_menu_product_override" name="Product Overrides" parent="mimir_menu_overrides" action="mimir_product_override_action" sequence="20"/>
 </odoo>

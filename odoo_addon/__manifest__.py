@@ -1,10 +1,10 @@
 {
-    "name": "Foreqcast — Demand Forecasting",
+    "name": "Mimir — Demand Forecasting",
     "version": "3.0.0",
     "category": "Supply Chain",
     "summary": "Linear regression demand forecasting with automatic replenishment rule updates",
     "description": """
-        Foreqcast reads parqcast parquet exports, runs linear regression on historical
+        Mimir reads parqcast parquet exports, runs linear regression on historical
         demand, and computes min/max replenishment rules for stock.warehouse.orderpoint.
 
         Features:
@@ -20,11 +20,11 @@
     "data": [
         "security/ir.model.access.csv",
         "data/ir_config_parameter.xml",
-        "views/foreqcast_settings_views.xml",
-        "views/foreqcast_run_views.xml",
-        "views/foreqcast_override_views.xml",
-        "views/foreqcast_decision_views.xml",
-        "views/foreqcast_excel_wizard_views.xml",
+        "views/mimir_settings_views.xml",
+        "views/mimir_run_views.xml",
+        "views/mimir_override_views.xml",
+        "views/mimir_decision_views.xml",
+        "views/mimir_excel_wizard_views.xml",
     ],
     "external_dependencies": {"python": ["pyarrow", "numpy", "openpyxl", "boto3"]},
     "installable": True,

@@ -1,16 +1,16 @@
 # AI Agents Context Guide 🤖
 
-Welcome, AI Agent! This document outlines the technical context and coding standards for the **Foreqcast** project to help you assist effectively.
+Welcome, AI Agent! This document outlines the technical context and coding standards for the **Mimir** project to help you assist effectively.
 
 ## 📌 Project Overview
-Foreqcast is a linear-regression demand-forecasting tool for the **Parqcast** ecosystem. It bridges the gap between historical Parquet exports and Odoo `stock.warehouse.orderpoint` replenishment records.
+Mimir is a linear-regression demand-forecasting tool for the **Parqcast** ecosystem. It bridges the gap between historical Parquet exports and Odoo `stock.warehouse.orderpoint` replenishment records.
 
 - **Stack:** Python 3.12.3, Odoo 18/19 compatibility, `uv` & `hatchling` for dependency/build management.
 - **Key Domain:** Logistics, inventory replenishment, demand forecasting.
 - **Maintainer:** DataStruct s.r.o.
 
 ## 🏗️ Architecture & Pipeline Specs
-The core application lives in `src/foreqcast/`. The main orchestrator is `pipeline.py`, which executes the following distinct phases:
+The core application lives in `src/mimir/`. The main orchestrator is `pipeline.py`, which executes the following distinct phases:
 1. **Reader:** Loads parqcast Parquet exports using `pyarrow` (`reader.py`).
 2. **Inventory Loader:** Fetches current inventory positions, evaluating modes (e.g., handling reservations and incoming/outgoing stock logic via `inventory.py`).
 3. **Aggregator:** Buckets demand time series (`aggregator.py`).
@@ -19,7 +19,7 @@ The core application lives in `src/foreqcast/`. The main orchestrator is `pipeli
 6. **Writer:** Outputs `forecasts.parquet`, `replenishment_rules.parquet`, and optionally `inventory_analysis.parquet` (`writer.py`).
 7. **Pusher:** Pushes finalized rules directly to Odoo via XML-RPC (`pusher.py`).
 
-An SQLite database (`foreqcast_config.db`) is maintained locally for an audit trail of pipeline runs.
+An SQLite database (`mimir_config.db`) is maintained locally for an audit trail of pipeline runs.
 
 ## 🛠 Coding Standards
 1. **Linting & Formatting:** The project strictly follows `ruff` rules. Ensure your code passes `uv run ruff check .`.

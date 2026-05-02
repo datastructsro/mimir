@@ -171,8 +171,8 @@ def write_decisions(
     Args:
         rules: Computed replenishment rules from the calculator.
         output_dir: Directory to write decisions.parquet.
-        run_uuid: Unique identifier for this foreqcast pipeline run.
-        decision_timestamp: UTC time when foreqcast finished computing.
+        run_uuid: Unique identifier for this mimir pipeline run.
+        decision_timestamp: UTC time when mimir finished computing.
         source_run_uuid: The run_uuid from the parqcast manifest.json
             (establishes the causal chain back to the Odoo export).
     """
@@ -185,7 +185,7 @@ def write_decisions(
         if r.action == "skip":
             continue
 
-        decision_id = f"foreqcast-{run_uuid[:8]}-{r.product_id}-{r.warehouse_id}"
+        decision_id = f"mimir-{run_uuid[:8]}-{r.product_id}-{r.warehouse_id}"
         remark = r.skip_reason or f"action={r.action}"
 
         cols["decision_id"].append(decision_id)

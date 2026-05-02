@@ -1,13 +1,13 @@
 from odoo import api, fields, models
 
 
-class ForeqcastDecisionRequest(models.Model):
-    _name = "foreqcast.decision.request"
-    _description = "Foreqcast Decision Request"
+class MimirDecisionRequest(models.Model):
+    _name = "mimir.decision.request"
+    _description = "Mimir Decision Request"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "run_id desc, product_id"
 
-    run_id = fields.Many2one("foreqcast.run", string="Forecast Run", required=True, ondelete="cascade", tracking=True)
+    run_id = fields.Many2one("mimir.run", string="Forecast Run", required=True, ondelete="cascade", tracking=True)
     decision_id = fields.Char(string="Decision ID", required=True, index=True, tracking=True)
     product_id = fields.Many2one("product.product", string="Product", required=True, tracking=True)
     location_id = fields.Many2one("stock.location", string="Location", required=True, tracking=True)
@@ -67,7 +67,7 @@ class ForeqcastDecisionRequest(models.Model):
                 vals.update({
                     "product_id": rec.product_id.id,
                     "location_id": rec.location_id.id,
-                    "name": f"Foreqcast {rec.product_id.display_name}",
+                    "name": f"Mimir {rec.product_id.display_name}",
                 })
                 self.env["stock.warehouse.orderpoint"].create(vals)
                 rec.message_post(body=f"Created new orderpoint with Min: {rec.proposed_min_qty}, Max: {rec.proposed_max_qty}")

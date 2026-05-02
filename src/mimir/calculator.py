@@ -14,7 +14,7 @@ from typing import TYPE_CHECKING
 
 import pyarrow as pa
 
-from .config import ForeqcastConfig
+from .config import MimirConfig
 from .forecaster import ForecastResult
 
 if TYPE_CHECKING:
@@ -54,7 +54,7 @@ def resolve_lead_time(
     product_id: int,
     category_id: int | None,
     supplier_info_table: pa.Table | None,
-    config: ForeqcastConfig,
+    config: MimirConfig,
 ) -> int:
     """Resolve lead time for a product.
 
@@ -92,7 +92,7 @@ def resolve_lead_time(
 def resolve_service_level(
     product_id: int,
     category_id: int | None,
-    config: ForeqcastConfig,
+    config: MimirConfig,
 ) -> float:
     """Resolve service level (quantile τ) for a product.
 
@@ -114,7 +114,7 @@ def resolve_service_level(
 def resolve_review_period(
     product_id: int,
     category_id: int | None,
-    config: ForeqcastConfig,
+    config: MimirConfig,
 ) -> int:
     """Resolve review period for a product."""
     if category_id and category_id in config.category_overrides:
@@ -126,7 +126,7 @@ def resolve_review_period(
 
 def _resolve_default_min_max(
     category_id: int | None,
-    config: ForeqcastConfig,
+    config: MimirConfig,
 ) -> tuple[float, float] | None:
     """Resolve default min/max qty for products without enough history."""
     if category_id and category_id in config.category_overrides:
@@ -167,7 +167,7 @@ def calculate_rule(
     category_id: int | None,
     supplier_info: pa.Table | None,
     existing_orderpoints: pa.Table | None,
-    config: ForeqcastConfig,
+    config: MimirConfig,
     quantile_result: tuple[float, float] | None = None,
     inventory_position: InventoryPosition | None = None,
     inventory_config: InventoryConfig | None = None,

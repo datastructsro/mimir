@@ -5,9 +5,9 @@ from datetime import datetime, timezone
 
 import pyarrow.parquet as pq
 
-from foreqcast.calculator import ReplenishmentRule
-from foreqcast.schemas import DECISIONS_SCHEMA
-from foreqcast.writer import write_decisions
+from mimir.calculator import ReplenishmentRule
+from mimir.schemas import DECISIONS_SCHEMA
+from mimir.writer import write_decisions
 
 
 def _make_rule(
@@ -106,7 +106,7 @@ def test_write_decisions_field_mapping():
         table = pq.read_table(str(write_decisions([rule], d, run_uuid, ts)))
         row = table.to_pydict()
 
-        assert row["decision_id"][0] == f"foreqcast-{run_uuid[:8]}-42-20"
+        assert row["decision_id"][0] == f"mimir-{run_uuid[:8]}-42-20"
         assert row["item_name"][0] == "Product 42"
         assert row["_odoo_product_id"][0] == 42
         assert row["_odoo_location_id"][0] == 200  # 20 * 10

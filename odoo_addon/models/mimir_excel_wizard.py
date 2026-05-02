@@ -10,11 +10,11 @@ except ImportError:
     openpyxl = None
 
 
-class ForeqcastExcelUpload(models.TransientModel):
-    _name = "foreqcast.excel.upload"
-    _description = "Foreqcast Excel Upload Wizard"
+class MimirExcelUpload(models.TransientModel):
+    _name = "mimir.excel.upload"
+    _description = "Mimir Excel Upload Wizard"
 
-    run_id = fields.Many2one("foreqcast.run", required=True)
+    run_id = fields.Many2one("mimir.run", required=True)
     excel_file = fields.Binary("Excel File", required=True)
     filename = fields.Char("Filename")
 
@@ -43,7 +43,7 @@ class ForeqcastExcelUpload(models.TransientModel):
             raise UserError("The 'Review' sheet must contain 'product_min_qty' and 'product_max_qty' columns.")
 
         updates = 0
-        DecisionRequest = self.env["foreqcast.decision.request"]
+        DecisionRequest = self.env["mimir.decision.request"]
 
         for row in ws.iter_rows(min_row=2, values_only=True):
             decision_id = row[decision_id_idx]

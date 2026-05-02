@@ -1,5 +1,5 @@
 [project]
-name = "foreqcast"
+name = "mimir"
 version = "0.3.0"
 description = "Demand forecasting client — reads parqcast parquet exports, fetches forecasts, writes replenishment rules back to Odoo 18/19"
 authors = [
@@ -14,7 +14,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://datastruct.tech"
-Repository = "https://github.com/datastructsro/foreqcast"
+Repository = "https://github.com/datastructsro/mimir"
 
 [project.optional-dependencies]
 dev = [
@@ -23,14 +23,14 @@ dev = [
 ]
 
 [project.scripts]
-foreqcast = "foreqcast.cli:main"
+mimir = "mimir.cli:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/foreqcast"]
+packages = ["src/mimir"]
 
 [tool.ruff]
 target-version = "py312"
@@ -40,7 +40,7 @@ line-length = 120
 select = ["E", "F", "I", "W"]
 
 [tool.pyright]
-include = ["src/foreqcast"]
+include = ["src/mimir"]
 pythonVersion = "3.12"
 typeCheckingMode = "basic"
 reportMissingImports = "warning"

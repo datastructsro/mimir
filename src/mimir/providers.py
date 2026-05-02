@@ -1,4 +1,4 @@
-"""Forecast providers for Foreqcast.
+"""Forecast providers for Mimir.
 
 Abstracts the generation of ForecastResult objects, allowing for internal
 linear regression or external data sources (Parquet files, S3, or HTTP server).
@@ -15,7 +15,7 @@ import pyarrow as pa
 import pyarrow.dataset as ds
 import pyarrow.parquet as pq
 
-from .config import ForeqcastConfig
+from .config import MimirConfig
 from .forecaster import ForecastResult
 
 logger = logging.getLogger(__name__)
@@ -26,7 +26,7 @@ class ForecastProvider(Protocol):
 
     def get_forecasts(
         self,
-        config: ForeqcastConfig,
+        config: MimirConfig,
     ) -> list[ForecastResult]:
         """Generate forecasts using the provided configuration."""
         ...
@@ -127,7 +127,7 @@ class ExternalParquetForecastProvider:
 
     def get_forecasts(
         self,
-        config: ForeqcastConfig,
+        config: MimirConfig,
     ) -> list[ForecastResult]:
         """Load external forecasts and map them to ForecastResult objects."""
         uri = config.external_forecast_uri
@@ -142,7 +142,7 @@ class ExternalParquetForecastProvider:
 
 
 class ExternalHttpForecastProvider:
-    """Fetches pre-computed forecasts from an HTTP server (e.g. foreqcast-server).
+    """Fetches pre-computed forecasts from an HTTP server (e.g. mimir-server).
 
     Expects the server to return a Parquet file as an octet-stream response.
     Authenticates via X-API-Key header using config.external_forecast_api_key.
@@ -150,7 +150,7 @@ class ExternalHttpForecastProvider:
 
     def get_forecasts(
         self,
-        config: ForeqcastConfig,
+        config: MimirConfig,
     ) -> list[ForecastResult]:
         """Fetch forecast Parquet from an HTTP endpoint."""
         from urllib.parse import urlencode
@@ -202,7 +202,7 @@ class ExternalHttpForecastProvider:
 # ── Factory ─────────────────────────────────────────────────────────────
 
 
-def get_forecast_provider(config: ForeqcastConfig) -> ForecastProvider:
+def get_forecast_provider(config: MimirConfig) -> ForecastProvider:
     """Factory to get the appropriate forecast provider based on config.
 
     Routing logic:

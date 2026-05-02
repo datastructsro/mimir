@@ -2,9 +2,9 @@
 
 from datetime import date
 
-from foreqcast.calculator import calculate_rule
-from foreqcast.config import ForeqcastConfig
-from foreqcast.forecaster import ForecastResult
+from mimir.calculator import calculate_rule
+from mimir.config import MimirConfig
+from mimir.forecaster import ForecastResult
 
 
 def _make_forecast(
@@ -30,7 +30,7 @@ def _make_forecast(
 
 def test_basic_calculation_with_quantile():
     """min/max come directly from quantile_result when provided."""
-    config = ForeqcastConfig(
+    config = MimirConfig(
         default_lead_time_days=7,
         service_level=0.95,
         review_period_days=7,
@@ -59,7 +59,7 @@ def test_basic_calculation_with_quantile():
 
 def test_fallback_without_quantile():
     """When quantile_result is None, falls back to a point-estimate formula."""
-    config = ForeqcastConfig(
+    config = MimirConfig(
         default_lead_time_days=7,
         service_level=0.95,
         review_period_days=7,
@@ -85,7 +85,7 @@ def test_fallback_without_quantile():
 
 def test_below_threshold_skipped():
     """Products below demand threshold are skipped."""
-    config = ForeqcastConfig(min_demand_threshold=1.0)
+    config = MimirConfig(min_demand_threshold=1.0)
     forecast = _make_forecast(daily=0.05)
 
     rule = calculate_rule(
@@ -105,7 +105,7 @@ def test_below_threshold_skipped():
 
 def test_insufficient_data_skipped():
     """Products with insufficient data are skipped if no default min/max."""
-    config = ForeqcastConfig()
+    config = MimirConfig()
     forecast = _make_forecast(confidence="insufficient_data")
 
     rule = calculate_rule(
@@ -125,7 +125,7 @@ def test_insufficient_data_skipped():
 
 def test_insufficient_data_default_fallback():
     """Products with insufficient data use default fallback if configured."""
-    config = ForeqcastConfig(
+    config = MimirConfig(
         default_min_qty=5.0,
         default_max_qty=10.0,
     )
@@ -150,7 +150,7 @@ def test_insufficient_data_default_fallback():
 
 def test_short_history_default_fallback():
     """Products with < min_history_days use default fallback."""
-    config = ForeqcastConfig(
+    config = MimirConfig(
         min_history_days=200,
         default_min_qty=2.0,
         default_max_qty=4.0,
@@ -176,7 +176,7 @@ def test_short_history_default_fallback():
 
 def test_product_override_floor_ceiling():
     """Product overrides enforce min floor and max ceiling."""
-    config = ForeqcastConfig(
+    config = MimirConfig(
         default_lead_time_days=7,
         service_level=0.95,
         review_period_days=7,
@@ -205,7 +205,7 @@ def test_product_override_floor_ceiling():
 
 def test_excluded_product_skipped():
     """Excluded products are skipped."""
-    config = ForeqcastConfig(
+    config = MimirConfig(
         product_overrides={
             1: {"excluded": True, "service_level": None, "min_qty_floor": None,
                 "max_qty_ceiling": None, "lead_time_override_days": None},
@@ -230,7 +230,7 @@ def test_excluded_product_skipped():
 
 def test_max_always_gte_min():
     """max_qty is always >= min_qty."""
-    config = ForeqcastConfig(
+    config = MimirConfig(
         default_lead_time_days=14,
         service_level=0.99,
         review_period_days=1,

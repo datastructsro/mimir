@@ -20,17 +20,17 @@ rm .pyfiles.tmp
 echo "Extracting XML strings..."
 python scripts/extract_xml_strings.py > "$I18N_DIR/xml.pot"
 
-echo "Merging into foreqcast.pot..."
+echo "Merging into mimir.pot..."
 if [ -f "$I18N_DIR/python.pot" ] && [ -f "$I18N_DIR/xml.pot" ]; then
     # --use-first prevents duplicate errors during msgcat
-    msgcat --use-first "$I18N_DIR/python.pot" "$I18N_DIR/xml.pot" -o "$I18N_DIR/foreqcast.pot"
+    msgcat --use-first "$I18N_DIR/python.pot" "$I18N_DIR/xml.pot" -o "$I18N_DIR/mimir.pot"
 elif [ -f "$I18N_DIR/python.pot" ]; then
-    cp "$I18N_DIR/python.pot" "$I18N_DIR/foreqcast.pot"
+    cp "$I18N_DIR/python.pot" "$I18N_DIR/mimir.pot"
 elif [ -f "$I18N_DIR/xml.pot" ]; then
-    cp "$I18N_DIR/xml.pot" "$I18N_DIR/foreqcast.pot"
+    cp "$I18N_DIR/xml.pot" "$I18N_DIR/mimir.pot"
 fi
 
 # Clean up
 rm -f "$I18N_DIR/python.pot" "$I18N_DIR/xml.pot"
 
-echo "Done generating $I18N_DIR/foreqcast.pot"
+echo "Done generating $I18N_DIR/mimir.pot"

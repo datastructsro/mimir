@@ -1,4 +1,4 @@
-"""Configuration definitions for foreqcast.
+"""Configuration definitions for mimir.
 
 Stores global settings, per-category overrides, and per-product overrides.
 SQLite dependency has been removed in favor of Odoo ORM integration or CLI dict loading.
@@ -30,7 +30,7 @@ class ProductOverride(TypedDict):
 
 
 @dataclass
-class ForeqcastConfig:
+class MimirConfig:
     """Resolved configuration values for a single run."""
 
     forecast_horizon_days: int = 30

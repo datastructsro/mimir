@@ -1,7 +1,7 @@
-import xml.etree.ElementTree as ET
 import glob
-import os
 import sys
+import xml.etree.ElementTree as ET
+
 
 def escape_pot_string(s):
     if not s:
@@ -24,7 +24,7 @@ def extract_strings():
         try:
             tree = ET.parse(xml_file)
             root = tree.getroot()
-            
+
             for elem in root.iter():
                 # Check attributes
                 for attr in translatable_attrs:
@@ -32,14 +32,14 @@ def extract_strings():
                         val = escape_pot_string(elem.attrib[attr])
                         if val:
                             strings_found.setdefault(val, set()).add(xml_file)
-                
+
                 # Check <field name="name">Text</field>
                 if elem.tag == 'field' and elem.attrib.get('name') == 'name':
                     if elem.text:
                         val = escape_pot_string(elem.text)
                         if val:
                             strings_found.setdefault(val, set()).add(xml_file)
-                            
+
         except Exception as e:
             print(f"Error parsing {xml_file}: {e}", file=sys.stderr)
 

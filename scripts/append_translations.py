@@ -1,5 +1,4 @@
 import json
-import os
 
 remaining = {
   "cs": {
@@ -302,5 +301,5 @@ data.update(remaining)
 
 with open('scripts/translations.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
-    
+
 print("Updated translations.json with remaining languages.")

@@ -3,7 +3,7 @@
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from foreqcast.inventory import (
+from mimir.inventory import (
     InventoryConfig,
     InventoryPosition,
     classify_inventory,

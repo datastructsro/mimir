@@ -5,9 +5,9 @@ import zipfile
 from odoo import fields, models
 
 
-class ForeqcastRun(models.Model):
-    _name = "foreqcast.run"
-    _description = "Foreqcast Run History"
+class MimirRun(models.Model):
+    _name = "mimir.run"
+    _description = "Mimir Run History"
     _order = "run_date desc"
 
     run_date = fields.Datetime(string="Run Date", required=True, default=fields.Datetime.now)
@@ -34,20 +34,20 @@ class ForeqcastRun(models.Model):
     def _compute_attachment_count(self):
         for run in self:
             run.attachment_count = self.env["ir.attachment"].sudo().search_count([
-                ("res_model", "=", "foreqcast.run"),
+                ("res_model", "=", "mimir.run"),
                 ("res_id", "=", run.id),
             ])
 
     def _compute_decision_count(self):
         for run in self:
-            run.decision_count = self.env["foreqcast.decision.request"].search_count([("run_id", "=", run.id)])
+            run.decision_count = self.env["mimir.decision.request"].search_count([("run_id", "=", run.id)])
 
     def action_view_decisions(self):
         self.ensure_one()
         return {
             "name": "Decision Requests",
             "type": "ir.actions.act_window",
-            "res_model": "foreqcast.decision.request",
+            "res_model": "mimir.decision.request",
             "view_mode": "list,form",
             "domain": [("run_id", "=", self.id)],
             "context": {"default_run_id": self.id},
@@ -58,7 +58,7 @@ class ForeqcastRun(models.Model):
         return {
             "name": "Upload Excel Review",
             "type": "ir.actions.act_window",
-            "res_model": "foreqcast.excel.upload",
+            "res_model": "mimir.excel.upload",
             "view_mode": "form",
             "target": "new",
             "context": {"default_run_id": self.id},
@@ -67,7 +67,7 @@ class ForeqcastRun(models.Model):
     def _get_output_attachment(self, filename):
         """Find a specific output attachment by filename."""
         return self.env["ir.attachment"].sudo().search([
-            ("res_model", "=", "foreqcast.run"),
+            ("res_model", "=", "mimir.run"),
             ("res_id", "=", self.id),
             ("name", "=", filename),
         ], limit=1)
@@ -89,7 +89,7 @@ class ForeqcastRun(models.Model):
     def action_download_excel(self):
         self.ensure_one()
         att = self.env["ir.attachment"].sudo().search([
-            ("res_model", "=", "foreqcast.run"),
+            ("res_model", "=", "mimir.run"),
             ("res_id", "=", self.id),
             ("name", "=like", "%.xlsx"),
         ], limit=1)
@@ -108,7 +108,7 @@ class ForeqcastRun(models.Model):
         """Download all output files as a single ZIP."""
         self.ensure_one()
         attachments = self.env["ir.attachment"].sudo().search([
-            ("res_model", "=", "foreqcast.run"),
+            ("res_model", "=", "mimir.run"),
             ("res_id", "=", self.id),
         ])
         if not attachments:
@@ -121,7 +121,7 @@ class ForeqcastRun(models.Model):
         buf.seek(0)
 
         zip_att = self.env["ir.attachment"].sudo().create({
-            "name": f"foreqcast_run_{self.id}.zip",
+            "name": f"mimir_run_{self.id}.zip",
             "datas": base64.b64encode(buf.read()).decode(),
             "mimetype": "application/zip",
         })
@@ -139,7 +139,7 @@ class ForeqcastRun(models.Model):
             "type": "ir.actions.client",
             "tag": "display_notification",
             "params": {
-                "title": "Foreqcast",
+                "title": "Mimir",
                 "message": f"No {filename} found for this run.",
                 "type": "warning",
                 "sticky": False,

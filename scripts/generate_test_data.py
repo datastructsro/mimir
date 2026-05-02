@@ -1,4 +1,4 @@
-"""Generate test parquet data for foreqcast pipeline testing.
+"""Generate test parquet data for mimir pipeline testing.
 
 Creates a realistic set of parqcast-style parquet exports with:
 - 50 products across 2 warehouses
@@ -170,7 +170,7 @@ def generate_supplier_info():
 
 
 def generate_orderpoints():
-    """Empty orderpoints — foreqcast will create all new."""
+    """Empty orderpoints — mimir will create all new."""
     table = pa.table({
         "_odoo_orderpoint_id": pa.array([], type=pa.int64()),
         "_odoo_product_id": pa.array([], type=pa.int64()),

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="foreqcast_excel_upload_view_form" model="ir.ui.view">
-        <field name="name">foreqcast.excel.upload.form</field>
-        <field name="model">foreqcast.excel.upload</field>
+    <record id="mimir_excel_upload_view_form" model="ir.ui.view">
+        <field name="name">mimir.excel.upload.form</field>
+        <field name="model">mimir.excel.upload</field>
         <field name="arch" type="xml">
             <form string="Upload Modified Excel">
                 <sheet>
@@ -23,9 +23,9 @@
         </field>
     </record>
 
-    <record id="foreqcast_excel_upload_action" model="ir.actions.act_window">
+    <record id="mimir_excel_upload_action" model="ir.actions.act_window">
         <field name="name">Upload Excel Review</field>
-        <field name="res_model">foreqcast.excel.upload</field>
+        <field name="res_model">mimir.excel.upload</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>

@@ -1,4 +1,4 @@
-"""Command-line interface for foreqcast."""
+"""Command-line interface for mimir."""
 
 from __future__ import annotations
 
@@ -8,13 +8,13 @@ import sys
 import warnings
 from pathlib import Path
 
-from .config import ForeqcastConfig
+from .config import MimirConfig
 from .pipeline import run_pipeline
 
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="foreqcast",
+        prog="mimir",
         description="Linear regression demand forecaster for parqcast exports",
     )
     parser.add_argument("input_dir", help="Directory containing parqcast parquet exports")
@@ -40,7 +40,7 @@ def main():
         print(f"Error: input directory does not exist: {input_dir}", file=sys.stderr)
         sys.exit(1)
 
-    config = ForeqcastConfig()
+    config = MimirConfig()
 
     if args.forecast_source:
         config.forecast_source = args.forecast_source

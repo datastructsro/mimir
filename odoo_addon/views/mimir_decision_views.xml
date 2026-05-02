@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="foreqcast_decision_request_view_list" model="ir.ui.view">
-        <field name="name">foreqcast.decision.request.list</field>
-        <field name="model">foreqcast.decision.request</field>
+    <record id="mimir_decision_request_view_list" model="ir.ui.view">
+        <field name="name">mimir.decision.request.list</field>
+        <field name="model">mimir.decision.request</field>
         <field name="arch" type="xml">
             <list string="Decision Requests" decoration-info="status == 'draft'" decoration-warning="status == 'review'" decoration-success="status == 'approved'" decoration-muted="status == 'rejected'">
                 <field name="run_id"/>
@@ -22,9 +22,9 @@
         </field>
     </record>
 
-    <record id="foreqcast_decision_request_view_form" model="ir.ui.view">
-        <field name="name">foreqcast.decision.request.form</field>
-        <field name="model">foreqcast.decision.request</field>
+    <record id="mimir_decision_request_view_form" model="ir.ui.view">
+        <field name="name">mimir.decision.request.form</field>
+        <field name="model">mimir.decision.request</field>
         <field name="arch" type="xml">
             <form string="Decision Request">
                 <header>
@@ -64,12 +64,12 @@
         </field>
     </record>
 
-    <record id="foreqcast_decision_request_action" model="ir.actions.act_window">
+    <record id="mimir_decision_request_action" model="ir.actions.act_window">
         <field name="name">Decision Requests</field>
-        <field name="res_model">foreqcast.decision.request</field>
+        <field name="res_model">mimir.decision.request</field>
         <field name="view_mode">list,form</field>
         <field name="context">{'search_default_status': 'draft'}</field>
     </record>
 
-    <menuitem id="foreqcast_menu_decisions" name="Decisions" parent="foreqcast_menu_root" action="foreqcast_decision_request_action" sequence="20"/>
+    <menuitem id="mimir_menu_decisions" name="Decisions" parent="mimir_menu_root" action="mimir_decision_request_action" sequence="20"/>
 </odoo>
