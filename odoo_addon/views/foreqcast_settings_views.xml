@@ -65,11 +65,38 @@
                                 </div>
                             </div>
                         </setting>
+                        <setting string="Minimum History Days" help="Require at least this many days of history to forecast">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_min_history_days"/>
+                                    <field name="foreqcast_min_history_days" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
                         <setting string="Minimum Demand Threshold" help="Skip products with daily demand below this">
                             <div class="content-group">
                                 <div class="row mt-2">
                                     <label class="col-lg-3" for="foreqcast_min_demand_threshold"/>
                                     <field name="foreqcast_min_demand_threshold" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Default Fallbacks" invisible="not foreqcast_enabled">
+                        <setting string="Default Min Qty" help="Global fallback Min Qty for products with insufficient history">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_default_min_qty"/>
+                                    <field name="foreqcast_default_min_qty" class="col-lg-3"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Default Max Qty" help="Global fallback Max Qty for products with insufficient history">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label class="col-lg-3" for="foreqcast_default_max_qty"/>
+                                    <field name="foreqcast_default_max_qty" class="col-lg-3"/>
                                 </div>
                             </div>
                         </setting>

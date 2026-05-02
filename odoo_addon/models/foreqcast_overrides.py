@@ -13,6 +13,8 @@ class ForeqcastCategoryOverride(models.Model):
     review_period_override_days = fields.Integer(string="Review Period (Days)", tracking=True)
     excluded = fields.Boolean(string="Exclude from Forecast", default=False, tracking=True)
     service_level = fields.Float(string="Service Level", tracking=True, help="E.g., 0.95 for 95% service level")
+    default_min_qty = fields.Float(string="Default Min Qty", tracking=True, help="Fallback min qty for products with insufficient history")
+    default_max_qty = fields.Float(string="Default Max Qty", tracking=True, help="Fallback max qty for products with insufficient history")
 
     _sql_constraints = [
         ("category_unique", "unique(category_id)", "An override already exists for this category."),

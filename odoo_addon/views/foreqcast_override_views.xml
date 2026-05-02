@@ -11,6 +11,8 @@
                 <field name="safety_factor"/>
                 <field name="lead_time_override_days"/>
                 <field name="review_period_override_days"/>
+                <field name="default_min_qty" optional="hide"/>
+                <field name="default_max_qty" optional="hide"/>
                 <field name="excluded"/>
             </list>
         </field>
