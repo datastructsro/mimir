@@ -32,6 +32,13 @@ When the pipeline completes a run, the resulting proposals do not immediately af
 - **Chatter Integration**: On the right-hand side of any decision, you can leave comments, tag colleagues (e.g., `"@David, can we verify the Min/Max on P1045? Stock is tight."`), and log an audit trail of *why* a number was changed.
 - **Overrides**: If the AI forecast is consistently overestimating demand for a specific product category, you can set a **Safety Factor Override** right from the interface. Subsequent pipeline runs will respect this constraint.
 
+### Handling New Products (Insufficient History)
+Foreqcast requires a certain amount of historical data to generate reliable forecasts (configurable via the **Minimum History Days** setting, which defaults to 36 days). 
+If a product is too new, Foreqcast will not simply skip it. Instead, you can define **Default Min/Max Policies**:
+- **Global Fallbacks**: Set default quantities (e.g., Min 0, Max 0) in the Foreqcast Settings.
+- **Category Overrides**: Set category-specific fallbacks (e.g., all new "Laptops" default to Min 2, Max 5).
+Products using these fallback rules will appear in your Staging Dashboard alongside normal forecasts, allowing you to manually review and approve baseline stock levels for new items!
+
 ---
 
 ## 3. The Excel "Round-Trip" Workflow
