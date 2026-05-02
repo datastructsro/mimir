@@ -58,6 +58,8 @@ CREATE TABLE IF NOT EXISTS product_overrides (
 CREATE TABLE IF NOT EXISTS forecast_runs (
     id                   INTEGER PRIMARY KEY AUTOINCREMENT,
     run_date             TEXT NOT NULL,
+    run_uuid             TEXT,
+    source_run_uuid      TEXT,
     parquet_source_dir   TEXT,
     products_analyzed    INTEGER DEFAULT 0,
     products_forecasted  INTEGER DEFAULT 0,
@@ -236,13 +238,13 @@ def get_excluded_category_ids(conn: sqlite3.Connection) -> set[int]:
     return {r[0] for r in rows}
 
 
-def start_run(conn: sqlite3.Connection, parquet_dir: str) -> int:
+def start_run(conn: sqlite3.Connection, parquet_dir: str, run_uuid: str | None = None) -> int:
     """Record a new forecast run, return run_id."""
     from datetime import datetime, timezone
 
     cursor = conn.execute(
-        "INSERT INTO forecast_runs (run_date, parquet_source_dir) VALUES (?, ?)",
-        (datetime.now(timezone.utc).isoformat(), parquet_dir),
+        "INSERT INTO forecast_runs (run_date, run_uuid, parquet_source_dir) VALUES (?, ?, ?)",
+        (datetime.now(timezone.utc).isoformat(), run_uuid, parquet_dir),
     )
     conn.commit()
     run_id = cursor.lastrowid
@@ -257,3 +259,4 @@ def finish_run(conn: sqlite3.Connection, run_id: int, **stats):
     vals = list(stats.values()) + [run_id]
     conn.execute(f"UPDATE forecast_runs SET {sets} WHERE id = ?", vals)
     conn.commit()
+

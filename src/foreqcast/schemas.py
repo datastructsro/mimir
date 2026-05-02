@@ -177,3 +177,74 @@ class InventoryAnalysisRow(TypedDict):
     inventory_flag: InventoryFlag
     computed_min_qty: float
     computed_max_qty: float
+
+
+# ---- Decisions schema (mirrors parqcast-core inbound.py) ----
+# This schema is the protocol contract between foreqcast and
+# parqcast-ingesters.  Keep it in lockstep with:
+#   parqcast/packages/parqcast-core/src/parqcast/schemas/inbound.py
+
+DecisionType = Literal[
+    "ORDERPOINT", "LEAD_TIME", "PO", "MO", "RESCHEDULE", "DISTRIBUTION"
+]
+
+DECISIONS_SCHEMA = pa.schema(
+    [
+        ("decision_id", pa.string()),
+        ("run_uuid", pa.string()),
+        ("decision_timestamp", pa.timestamp("us", tz="UTC")),
+        ("decision_type", pa.string()),
+        ("status", pa.string()),
+        ("item_name", pa.string()),
+        ("_odoo_product_id", pa.int64()),
+        ("_odoo_uom_id", pa.int64()),
+        ("location_name", pa.string()),
+        ("_odoo_location_id", pa.int64()),
+        ("quantity", pa.float64()),
+        ("start_date", pa.timestamp("us", tz="UTC")),
+        ("end_date", pa.timestamp("us", tz="UTC")),
+        ("supplier_name", pa.string()),
+        ("_odoo_supplier_id", pa.int64()),
+        ("_odoo_bom_id", pa.int64()),
+        ("origin_location", pa.string()),
+        ("destination_location", pa.string()),
+        ("parent_reference", pa.string()),
+        ("workcenter_name", pa.string()),
+        ("_odoo_workcenter_id", pa.int64()),
+        ("batch", pa.string()),
+        ("remark", pa.string()),
+        ("min_quantity", pa.float64()),
+        ("max_quantity", pa.float64()),
+        ("delay", pa.int64()),
+    ]
+)
+
+
+class DecisionRow(TypedDict):
+    decision_id: str
+    run_uuid: str
+    decision_timestamp: datetime
+    decision_type: DecisionType
+    status: str
+    item_name: str
+    _odoo_product_id: int
+    _odoo_uom_id: int
+    location_name: str
+    _odoo_location_id: int
+    quantity: float
+    start_date: datetime | None
+    end_date: datetime | None
+    supplier_name: str | None
+    _odoo_supplier_id: int
+    _odoo_bom_id: int
+    origin_location: str | None
+    destination_location: str | None
+    parent_reference: str | None
+    workcenter_name: str | None
+    _odoo_workcenter_id: int
+    batch: str | None
+    remark: str | None
+    min_quantity: float
+    max_quantity: float
+    delay: int
+

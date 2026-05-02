@@ -11,7 +11,7 @@ import pyarrow.parquet as pq
 from .calculator import ReplenishmentRule
 from .forecaster import ForecastResult
 from .inventory import InventoryConfig, InventoryPosition
-from .schemas import FORECAST_SCHEMA, INVENTORY_ANALYSIS_SCHEMA, REPLENISHMENT_RULES_SCHEMA
+from .schemas import DECISIONS_SCHEMA, FORECAST_SCHEMA, INVENTORY_ANALYSIS_SCHEMA, REPLENISHMENT_RULES_SCHEMA
 
 
 def write_forecasts(
@@ -149,3 +149,71 @@ def write_inventory_analysis(
     path = output_dir / "inventory_analysis.parquet"
     pq.write_table(table, path, compression="snappy")
     return path
+
+
+def write_decisions(
+    rules: list[ReplenishmentRule],
+    output_dir: str | Path,
+    run_uuid: str,
+    decision_timestamp: datetime,
+    source_run_uuid: str | None = None,
+) -> Path:
+    """Write actionable replenishment rules as decisions.parquet.
+
+    Produces a Parquet file conforming to the parqcast DECISIONS_SCHEMA
+    protocol so that parqcast-ingesters can consume it directly.
+
+    Only non-skip rules (action in {"create", "update"}) are included.
+
+    Args:
+        rules: Computed replenishment rules from the calculator.
+        output_dir: Directory to write decisions.parquet.
+        run_uuid: Unique identifier for this foreqcast pipeline run.
+        decision_timestamp: UTC time when foreqcast finished computing.
+        source_run_uuid: The run_uuid from the parqcast manifest.json
+            (establishes the causal chain back to the Odoo export).
+    """
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    cols: dict[str, list[object]] = {f.name: [] for f in DECISIONS_SCHEMA}
+
+    for r in rules:
+        if r.action == "skip":
+            continue
+
+        decision_id = f"foreqcast-{run_uuid[:8]}-{r.product_id}-{r.warehouse_id}"
+        remark = r.skip_reason or f"action={r.action}"
+
+        cols["decision_id"].append(decision_id)
+        cols["run_uuid"].append(run_uuid)
+        cols["decision_timestamp"].append(decision_timestamp)
+        cols["decision_type"].append("ORDERPOINT")
+        cols["status"].append("pending")
+        cols["item_name"].append(r.product_name)
+        cols["_odoo_product_id"].append(r.product_id)
+        cols["_odoo_uom_id"].append(0)
+        cols["location_name"].append(r.warehouse_code)
+        cols["_odoo_location_id"].append(r.location_id)
+        cols["quantity"].append(0.0)
+        cols["start_date"].append(None)
+        cols["end_date"].append(None)
+        cols["supplier_name"].append(None)
+        cols["_odoo_supplier_id"].append(0)
+        cols["_odoo_bom_id"].append(0)
+        cols["origin_location"].append(None)
+        cols["destination_location"].append(None)
+        cols["parent_reference"].append(source_run_uuid)
+        cols["workcenter_name"].append(None)
+        cols["_odoo_workcenter_id"].append(0)
+        cols["batch"].append(None)
+        cols["remark"].append(remark)
+        cols["min_quantity"].append(r.min_qty)
+        cols["max_quantity"].append(r.max_qty)
+        cols["delay"].append(r.lead_time_days)
+
+    table = pa.table(cols, schema=DECISIONS_SCHEMA)
+    path = output_dir / "decisions.parquet"
+    pq.write_table(table, path, compression="snappy")
+    return path
+

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+import warnings
 from pathlib import Path
 
 from .config import DEFAULT_DB_PATH, init_db, load_config
@@ -48,6 +49,14 @@ def main():
         config.external_forecast_uri = args.external_uri
     if args.external_api_key:
         config.external_forecast_api_key = args.external_api_key
+
+    if args.push:
+        warnings.warn(
+            "--push is deprecated. Use decisions.parquet with parqcast-ingesters instead. "
+            "See: https://github.com/datastructsro/parqcast",
+            DeprecationWarning,
+            stacklevel=1,
+        )
 
     stats = run_pipeline(
         parquet_input_dir=input_dir,
