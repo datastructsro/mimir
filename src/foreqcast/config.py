@@ -58,6 +58,8 @@ CREATE TABLE IF NOT EXISTS product_overrides (
 CREATE TABLE IF NOT EXISTS forecast_runs (
     id                   INTEGER PRIMARY KEY AUTOINCREMENT,
     run_date             TEXT NOT NULL,
+    run_uuid             TEXT,
+    source_run_uuid      TEXT,
     parquet_source_dir   TEXT,
     products_analyzed    INTEGER DEFAULT 0,
     products_forecasted  INTEGER DEFAULT 0,
@@ -110,6 +112,10 @@ DEFAULTS = {
     "understock_threshold_days": ("3", "Products with coverage below this are flagged as understock"),
     "overstock_skip": ("true", "In adjust mode, skip creating orderpoints for overstocked products"),
     "understock_service_level_bump": ("0.03", "In adjust mode, raise service_level by this for understocked products"),
+    # Forecast Source
+    "forecast_source": ("internal", "Source of forecasts: 'internal' (linear regression) or 'external'"),
+    "external_forecast_uri": ("", "Path or URI to external forecast parquet file (if forecast_source=external)"),
+    "external_forecast_api_key": ("", "API key for HTTP-based external forecast server (sent as X-API-Key header)"),
 }
 
 
@@ -140,6 +146,11 @@ class ForeqcastConfig:
     understock_threshold_days: float = 3.0
     overstock_skip: bool = True
     understock_service_level_bump: float = 0.03
+
+    # Forecast Source
+    forecast_source: str = "internal"
+    external_forecast_uri: str = ""
+    external_forecast_api_key: str = ""
 
     # Loaded from override tables
     category_overrides: dict[int, CategoryOverride] = field(default_factory=dict)
@@ -188,6 +199,9 @@ def load_config(conn: sqlite3.Connection) -> ForeqcastConfig:
         understock_threshold_days=float(kv.get("understock_threshold_days", "3")),
         overstock_skip=kv.get("overstock_skip", "true").lower() == "true",
         understock_service_level_bump=float(kv.get("understock_service_level_bump", "0.03")),
+        forecast_source=kv.get("forecast_source", "internal"),
+        external_forecast_uri=kv.get("external_forecast_uri", ""),
+        external_forecast_api_key=kv.get("external_forecast_api_key", ""),
     )
 
     # Load category overrides
@@ -224,13 +238,13 @@ def get_excluded_category_ids(conn: sqlite3.Connection) -> set[int]:
     return {r[0] for r in rows}
 
 
-def start_run(conn: sqlite3.Connection, parquet_dir: str) -> int:
+def start_run(conn: sqlite3.Connection, parquet_dir: str, run_uuid: str | None = None) -> int:
     """Record a new forecast run, return run_id."""
     from datetime import datetime, timezone
 
     cursor = conn.execute(
-        "INSERT INTO forecast_runs (run_date, parquet_source_dir) VALUES (?, ?)",
-        (datetime.now(timezone.utc).isoformat(), parquet_dir),
+        "INSERT INTO forecast_runs (run_date, run_uuid, parquet_source_dir) VALUES (?, ?, ?)",
+        (datetime.now(timezone.utc).isoformat(), run_uuid, parquet_dir),
     )
     conn.commit()
     run_id = cursor.lastrowid
@@ -245,3 +259,4 @@ def finish_run(conn: sqlite3.Connection, run_id: int, **stats):
     vals = list(stats.values()) + [run_id]
     conn.execute(f"UPDATE forecast_runs SET {sets} WHERE id = ?", vals)
     conn.commit()
+

@@ -6,15 +6,30 @@ Reads the specific parquet files produced by parqcast collectors:
   - product_supplierinfo.parquet: vendor lead times
   - stock_warehouse.parquet: warehouse definitions (lot_stock_id for orderpoints)
   - orderpoint.parquet: existing orderpoints (to decide create vs update)
+  - manifest.json: temporal metadata (run_uuid, started_at, finished_at)
 """
 
 from __future__ import annotations
 
+import json
+import logging
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 
 import pyarrow as pa
 import pyarrow.parquet as pq
+
+logger = logging.getLogger(__name__)
+
+
+@dataclass
+class ManifestMetadata:
+    """Temporal metadata parsed from a parqcast manifest.json."""
+
+    run_uuid: str
+    started_at: datetime | None
+    finished_at: datetime | None
 
 
 @dataclass
@@ -26,6 +41,7 @@ class ParqcastData:
     supplier_info: pa.Table | None  # None if file missing
     warehouses: pa.Table
     orderpoints: pa.Table | None  # None if file missing
+    manifest: ManifestMetadata | None = None  # None if manifest.json missing
 
 
 def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
@@ -117,10 +133,62 @@ def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
             ],
         )
 
+    # Manifest metadata (temporal tracking)
+    manifest = _read_manifest(d)
+
     return ParqcastData(
         sale_order_lines=sale_order_lines,
         products=products,
         supplier_info=supplier_info,
         warehouses=warehouses,
         orderpoints=orderpoints,
+        manifest=manifest,
     )
+
+
+def _read_manifest(directory: Path) -> ManifestMetadata | None:
+    """Parse manifest.json for temporal metadata.
+
+    Returns None gracefully if the file is missing (backward compat
+    with older parqcast exports that don't include a manifest).
+    """
+    manifest_path = directory / "manifest.json"
+    if not manifest_path.exists():
+        logger.debug("No manifest.json found in %s (pre-temporal export)", directory)
+        return None
+
+    try:
+        data = json.loads(manifest_path.read_text())
+    except (json.JSONDecodeError, OSError) as e:
+        logger.warning("Failed to parse manifest.json: %s", e)
+        return None
+
+    run_uuid = data.get("run_uuid") or data.get("run_uuid", "")
+    if not run_uuid:
+        # Older manifests may lack run_uuid — try extracting from filename or skip
+        logger.debug("manifest.json missing run_uuid field")
+        return None
+
+    started_at = _parse_iso(data.get("started_at"))
+    finished_at = _parse_iso(data.get("finished_at"))
+
+    logger.info(
+        "Loaded manifest: run_uuid=%s, started=%s, finished=%s",
+        run_uuid, started_at, finished_at,
+    )
+    return ManifestMetadata(
+        run_uuid=run_uuid,
+        started_at=started_at,
+        finished_at=finished_at,
+    )
+
+
+def _parse_iso(value: object) -> datetime | None:
+    """Parse an ISO-8601 datetime string, returning None on failure."""
+    if not isinstance(value, str) or not value:
+        return None
+    try:
+        return datetime.fromisoformat(value)
+    except ValueError:
+        return None
+

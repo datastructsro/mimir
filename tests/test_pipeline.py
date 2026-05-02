@@ -206,3 +206,71 @@ def test_pipeline_empty_input():
 
         assert stats["products_analyzed"] == 0
         assert stats["products_forecasted"] == 0
+
+
+def test_pipeline_decisions_output():
+    """Pipeline produces decisions.parquet with temporal columns."""
+    with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
+        input_path = Path(input_dir)
+        output_path = Path(output_dir)
+        _create_test_parquets(input_path)
+
+        config = ForeqcastConfig(inventory_mode="ignore")
+        stats = run_pipeline(input_path, output_path, config)
+
+        # decisions.parquet must exist
+        decisions_path = output_path / "decisions.parquet"
+        assert decisions_path.exists()
+
+        decisions = pq.read_table(str(decisions_path))
+
+        # All rows should have the same run_uuid
+        uuids = decisions.column("run_uuid").to_pylist()
+        assert len(set(uuids)) == 1  # all the same
+        assert uuids[0] == stats["run_uuid"]
+
+        # decision_timestamp should be populated
+        timestamps = decisions.column("decision_timestamp").to_pylist()
+        assert all(t is not None for t in timestamps)
+
+        # decision_type should be ORDERPOINT
+        types = decisions.column("decision_type").to_pylist()
+        assert all(t == "ORDERPOINT" for t in types)
+
+        # Legacy outputs should still exist
+        assert (output_path / "forecast.parquet").exists()
+        assert (output_path / "replenishment_rules.parquet").exists()
+
+
+def test_pipeline_manifest_parsing():
+    """Pipeline reads manifest.json and populates parent_reference."""
+    import json
+
+    with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
+        input_path = Path(input_dir)
+        output_path = Path(output_dir)
+        _create_test_parquets(input_path)
+
+        # Write a mock manifest.json
+        source_uuid = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+        manifest = {
+            "version": "0.1.0",
+            "run_uuid": source_uuid,
+            "started_at": "2026-05-02T08:00:00+00:00",
+            "finished_at": "2026-05-02T08:00:15+00:00",
+            "company": "Test Co",
+            "company_id": 1,
+            "odoo_version": "18.0",
+            "files": [],
+        }
+        (input_path / "manifest.json").write_text(json.dumps(manifest))
+
+        config = ForeqcastConfig(inventory_mode="ignore")
+        stats = run_pipeline(input_path, output_path, config)
+
+        assert stats.get("source_run_uuid") == source_uuid
+
+        decisions = pq.read_table(str(output_path / "decisions.parquet"))
+        parent_refs = decisions.column("parent_reference").to_pylist()
+        assert all(r == source_uuid for r in parent_refs)
+

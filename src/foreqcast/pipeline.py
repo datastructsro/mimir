@@ -8,6 +8,8 @@ from __future__ import annotations
 import logging
 import sqlite3
 import time
+import uuid as _uuid
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import NotRequired, TypedDict
 
@@ -19,9 +21,10 @@ from .calculator import calculate_rule, resolve_lead_time, resolve_review_period
 from .config import ForeqcastConfig, finish_run, start_run
 from .forecaster import compute_quantile_reorder_points, fit_demand
 from .inventory import InventoryConfig, load_inventory_positions
+from .providers import get_forecast_provider
 from .pusher import OdooPusher, PushStats
 from .reader import read_parqcast_export
-from .writer import write_forecasts, write_inventory_analysis, write_rules
+from .writer import write_decisions, write_forecasts, write_inventory_analysis, write_rules
 
 logger = logging.getLogger(__name__)
 
@@ -34,6 +37,8 @@ class PipelineStats(TypedDict):
     rules_skipped: int
     duration_seconds: float
     status: str
+    run_uuid: NotRequired[str]
+    source_run_uuid: NotRequired[str]
     inventory_mode: NotRequired[str]
     inventory_positions_loaded: NotRequired[int]
     overstock_count: NotRequired[int]
@@ -61,14 +66,24 @@ def run_pipeline(
         Summary dict with statistics
     """
     start = time.monotonic()
+    run_uuid = str(_uuid.uuid4())
     run_id = None
     if db_conn:
-        run_id = start_run(db_conn, str(parquet_input_dir))
+        run_id = start_run(db_conn, str(parquet_input_dir), run_uuid=run_uuid)
 
     try:
         # 1. Read parqcast exports
         logger.info("Reading parqcast exports from %s", parquet_input_dir)
         data = read_parqcast_export(parquet_input_dir)
+
+        # Extract source temporal metadata from manifest
+        source_run_uuid: str | None = None
+        if data.manifest:
+            source_run_uuid = data.manifest.run_uuid
+            logger.info(
+                "Temporal chain: source_run=%s (finished=%s) → foreqcast_run=%s",
+                source_run_uuid, data.manifest.finished_at, run_uuid,
+            )
 
         # Build lookup maps
         product_names = _build_product_names(data.products)
@@ -105,20 +120,10 @@ def run_pipeline(
         logger.info("Found %d product×warehouse combinations with demand", len(demand_series))
 
         # 3. Forecast each series
-        logger.info("Running linear regression on %d time series", len(demand_series))
-        forecasts = []
-        for (pid, wid), points in demand_series.items():
-            result = fit_demand(
-                product_id=pid,
-                warehouse_id=wid,
-                points=points,
-                forecast_horizon_days=config.forecast_horizon_days,
-                min_data_points=config.min_data_points,
-                bucket=config.time_bucket,
-            )
-            if result:
-                forecasts.append(result)
-
+        logger.info("Generating forecasts using %s source", config.forecast_source)
+        provider = get_forecast_provider(config)
+        forecasts = provider.get_forecasts(demand_series, config)
+        logger.info("Generated %d forecasts", len(forecasts))
         # 4. Calculate replenishment rules (with quantile reorder points)
         logger.info("Calculating replenishment rules for %d forecasts", len(forecasts))
         rules = []
@@ -157,12 +162,23 @@ def run_pipeline(
             rules.append(rule)
 
         # 5. Write parquet outputs
+        decision_timestamp = datetime.now(timezone.utc)
         logger.info("Writing output parquet files to %s", parquet_output_dir)
         write_forecasts(
             forecasts, parquet_output_dir, config.time_bucket, config.forecast_horizon_days,
             product_names=product_names, warehouse_codes=warehouse_codes,
         )
         write_rules(rules, parquet_output_dir)
+
+        # Write decisions.parquet (temporal pipeline output)
+        write_decisions(
+            rules=rules,
+            output_dir=parquet_output_dir,
+            run_uuid=run_uuid,
+            decision_timestamp=decision_timestamp,
+            source_run_uuid=source_run_uuid,
+        )
+        logger.info("Wrote decisions.parquet (run_uuid=%s)", run_uuid)
 
         if config.inventory_mode != "ignore" and inventory_positions:
             assert inv_config is not None
@@ -197,7 +213,11 @@ def run_pipeline(
             "rules_skipped": len(skipped),
             "duration_seconds": round(duration, 2),
             "status": "complete",
+            "run_uuid": run_uuid,
         }
+
+        if source_run_uuid:
+            stats["source_run_uuid"] = source_run_uuid
 
         if config.inventory_mode != "ignore":
             stats["inventory_mode"] = config.inventory_mode
@@ -215,6 +235,7 @@ def run_pipeline(
             run_cols = {
                 "products_analyzed", "products_forecasted", "rules_created",
                 "rules_updated", "rules_skipped", "duration_seconds", "status",
+                "source_run_uuid",
             }
             finish_run(db_conn, run_id, **{k: v for k, v in stats.items() if k in run_cols})
 
