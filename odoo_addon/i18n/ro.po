@@ -15,676 +15,719 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
-#. module: foreqcast
-#: model:ir.model,name:foreqcast.model_foreqcast_run
-msgid "Foreqcast Run History"
-msgstr "Istoricul rulărilor Foreqcast"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "/data/foreqcast/output"
+msgstr "/data/foreqcast/output"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__run_date
-msgid "Run Date"
-msgstr "Data rulării"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "/data/parqcast/exports/latest"
+msgstr "/data/parqcast/exports/latest"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__parquet_source_dir
-msgid "Input Source"
-msgstr "Sursă de date"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "123e4567-e89b-12d3-a456-426614174000"
+msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_analyzed
-msgid "Products Analyzed"
-msgstr "Produse analizate"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Approve"
+msgstr "Aproba"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_forecasted
-msgid "Products Forecasted"
-msgstr "Produse previzionate"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Approve & Apply"
+msgstr "Aprobați și aplicați"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_created
-msgid "Rules Created"
-msgstr "Reguli create"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_updated
-msgid "Rules Updated"
-msgstr "Reguli actualizate"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_skipped
-msgid "Rules Skipped"
-msgstr "Reguli omise"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__duration_seconds
-msgid "Duration (s)"
-msgstr "Durată (s)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__status
-msgid "Status"
-msgstr "Stare"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__error_message
-msgid "Error Message"
-msgstr "Mesaj de eroare"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__forecast_horizon_days
-msgid "Horizon (days)"
-msgstr "Orizont (zile)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__safety_factor
-msgid "Safety Factor Used"
-msgstr "Factor de siguranță utilizat"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__time_bucket
-msgid "Time Bucket"
-msgstr "Interval de timp"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__attachment_count
-msgid "Output Files"
-msgstr "Fișiere de ieșire"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Running"
-msgstr "În curs"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Complete"
-msgstr "Finalizat"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Error"
-msgstr "Eroare"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Odoo Attachments (from Parqcast)"
-msgstr "Atașamente Odoo (din Parqcast)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Server Filesystem"
-msgstr "Sistemul de fișiere al serverului"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Daily"
-msgstr "Zilnic"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Weekly"
-msgstr "Săptămânal"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Ignore (forecast only)"
-msgstr "Ignoră (doar previziune)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Analyze (add inventory columns)"
-msgstr "Analizează (adaugă coloane de stoc)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Adjust (modify replenishment)"
-msgstr "Ajustează (modifică reaprovizionarea)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_enabled
-msgid "Enable Foreqcast"
-msgstr "Activează Foreqcast"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Input Source"
-msgstr "Sursă de date"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_horizon_days
-msgid "Forecast Horizon (days)"
-msgstr "Orizont de previziune (zile)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Time Bucket"
-msgstr "Interval de timp"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_service_level
-msgid "Service Level"
-msgstr "Nivel de serviciu"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_review_period_days
-msgid "Review Period (days)"
-msgstr "Perioadă de revizuire (zile)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_default_lead_time
-msgid "Default Lead Time (days)"
-msgstr "Termen implicit de livrare (zile)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_data_points
-msgid "Minimum Data Points"
-msgstr "Număr minim de puncte de date"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
-msgid "Minimum Demand Threshold"
-msgstr "Prag minim de cerere"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_auto_push
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "Actualizare automată a regulilor de reaprovizionare"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
-msgid "Parquet Input Directory"
-msgstr "Director de intrare Parquet"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
-msgid "Parquet Output Directory"
-msgstr "Director de ieșire Parquet"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_config_db_path
-msgid "Config Database Path"
-msgstr "Calea bazei de date de configurare"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Inventory Mode"
-msgstr "Mod stoc"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_respect_reservations
-msgid "Respect Reservations"
-msgstr "Respectă rezervările"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_incoming
-msgid "Include Incoming Supply"
-msgstr "Include aprovizionarea în curs"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_outgoing
-msgid "Include Outgoing Demand"
-msgstr "Include cererea în curs de ieșire"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_days
-msgid "Overstock Threshold (days)"
-msgstr "Prag de suprastoc (zile)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_days
-msgid "Understock Threshold (days)"
-msgstr "Prag de substoc (zile)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_skip
-msgid "Skip Overstocked Products"
-msgstr "Omite produsele suprastocate"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_bump
-msgid "Understock Service Level Bump"
-msgstr "Creșterea nivelului de serviciu la substoc"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_enabled
-msgid "Turn on demand forecasting and replenishment rule generation"
-msgstr "Activează previziunea cererii și generarea regulilor de reaprovizionare"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Where to read parqcast export files from"
-msgstr "De unde să se citească fișierele de export Parqcast"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_horizon_days
-msgid "Number of days to project demand forward"
-msgstr "Numărul de zile pentru proiecția cererii în viitor"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Granularity of demand aggregation"
-msgstr "Granularitatea agregării cererii"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_service_level
-msgid "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. Higher values require more safety stock. Start at 0.85 and increase per category as needed."
-msgstr "Rata țintă de îndeplinire (0,0-1,0). Setați 0,90 pentru serviciu standard sau 0,95 pentru articole critice. Valorile mai mari necesită mai mult stoc de siguranță. Începeți cu 0,85 și creșteți pe categorii după necesitate."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_review_period_days
-msgid "Days between replenishment reviews — affects max_qty calculation"
-msgstr "Zile între revizuirile de reaprovizionare — afectează calculul max_qty"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_default_lead_time
-msgid "Fallback lead time when no supplier info exists for a product"
-msgstr "Termen de livrare de rezervă când nu există informații despre furnizor pentru un produs"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_data_points
-msgid "Minimum number of observations required to fit a regression"
-msgstr "Numărul minim de observații necesare pentru ajustarea unei regresii"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
-msgid "Skip products with average daily demand below this value"
-msgstr "Omite produsele cu cererea medie zilnică sub această valoare"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_auto_push
-msgid "Automatically update orderpoints after forecast run (vs. parquet-only)"
-msgstr "Actualizează automat regulile de reaprovizionare după rularea previziunii (vs. doar Parquet)"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
-msgid "Path to parqcast export directory"
-msgstr "Calea către directorul de export Parqcast"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
-msgid "Path to write forecast and rules parquet files"
-msgstr "Calea pentru scrierea fișierelor Parquet de previziune și reguli"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_config_db_path
-msgid "Path to foreqcast SQLite config database (for per-product overrides)"
-msgstr "Calea către baza de date de configurare Foreqcast SQLite (pentru suprascrieri per produs)"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "How to account for current inventory when computing replenishment rules"
-msgstr "Cum se ia în considerare stocul curent la calcularea regulilor de reaprovizionare"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_respect_reservations
-msgid "Subtract reserved quantities from on-hand (conservative). Disable to let planner reallocate all stock."
-msgstr "Scade cantitățile rezervate din stocul disponibil (conservator). Dezactivați pentru a permite planificatorului să realoce tot stocul."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_incoming
-msgid "Count open PO and in-transit quantities as available inventory"
-msgstr "Numără comenzile de achiziție deschise și cantitățile în tranzit ca stoc disponibil"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_outgoing
-msgid "Subtract confirmed SO quantities. Off by default to avoid double-counting with forecast."
-msgstr "Scade cantitățile confirmate din comenzile de vânzare. Dezactivat implicit pentru a evita dubla contorizare cu previziunea."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_days
-msgid "Products with more than this many days of coverage are flagged as overstock"
-msgstr "Produsele cu acoperire mai mare decât acest număr de zile sunt marcate ca suprastoc"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_days
-msgid "Products with fewer than this many days of coverage are flagged as understock"
-msgstr "Produsele cu acoperire mai mică decât acest număr de zile sunt marcate ca substoc"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_skip
-msgid "In adjust mode, don't create orderpoints for overstocked products"
-msgstr "În modul de ajustare, nu crea reguli de reaprovizionare pentru produsele suprastocate"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_bump
-msgid "In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)"
-msgstr "În modul de ajustare, crește nivelul de serviciu cu această valoare pentru produsele substocate (de ex. 0,95 → 0,98)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Demand Forecasting"
-msgstr "Previziunea cererii"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Enable Foreqcast"
-msgstr "Activează Foreqcast"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Turn on demand forecasting and replenishment rule generation"
-msgstr "Activează previziunea cererii și generarea regulilor de reaprovizionare"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Forecast Parameters"
-msgstr "Parametri de previziune"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Forecast Horizon"
-msgstr "Orizont de previziune"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "How many days ahead to project demand"
-msgstr "Câte zile în avans să se proiecteze cererea"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Granularity of demand aggregation for regression"
-msgstr "Granularitatea agregării cererii pentru regresie"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
-msgstr "Rata țintă de îndeplinire. Setați 0,90 pentru serviciu standard sau 0,95 pentru articole critice. Valorile mai mari necesită mai mult stoc de siguranță."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Review Period"
-msgstr "Perioadă de revizuire"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Days between replenishment checks (affects max qty)"
-msgstr "Zile între verificările de reaprovizionare (afectează cant. max.)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Default Lead Time"
-msgstr "Termen implicit de livrare"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Fallback when no supplier info exists for a product"
-msgstr "Valoare de rezervă când nu există informații despre furnizor pentru un produs"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Data Quality"
-msgstr "Calitatea datelor"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Require at least this many observations to forecast"
-msgstr "Necesită cel puțin atâtea observații pentru previziune"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Skip products with daily demand below this"
-msgstr "Omite produsele cu cererea zilnică sub această valoare"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Integration"
-msgstr "Integrare"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Where to read parqcast export data from"
-msgstr "De unde să se citească datele de export Parqcast"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Odoo Attachments"
-msgstr "Atașamente Odoo"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
-msgstr "Foreqcast citește direct din atașamentele ultimei rulări de export Parqcast. Nu sunt necesare căi de fișiere."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Reads parquet files from the latest completed Parqcast export. Output files are stored as attachments on the Forecast Run record."
-msgstr "Citește fișierele Parquet din ultimul export Parqcast finalizat. Fișierele de ieșire sunt stocate ca atașamente în înregistrarea rulării previziunii."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Parquet Directories"
-msgstr "Directoare Parquet"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Server file paths for parqcast input and forecast output"
-msgstr "Căile fișierelor pe server pentru intrarea Parqcast și ieșirea previziunii"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Auto-push to Orderpoints"
-msgstr "Actualizare automată a regulilor de reaprovizionare"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
 msgid "Automatically update Odoo reorder rules after each forecast run"
-msgstr "Actualizează automat regulile de reaprovizionare Odoo după fiecare rulare a previziunii"
+msgstr "Actualizați automat regulile de reordonare Odoo după fiecare rulare de prognoză"
+"Actualizează automat regulile de reaprovizionare Odoo după fiecare rulare a "
+"previziunii"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Config Database"
-msgstr "Baza de date de configurare"
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Cancel"
+msgstr "Anula"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "SQLite database for per-product overrides and audit trail"
-msgstr "Baza de date SQLite pentru suprascrieri per produs și jurnal de audit"
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "Category Overrides"
+msgstr "Anulări de categorii"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run Pipeline"
-msgstr "Rulează procesul"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Configure external HTTP server for demand processing"
+msgstr "Configurați serverul HTTP extern pentru procesarea cererii"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Execute the forecast pipeline now with current settings"
-msgstr "Rulează procesul de previziune acum cu setările curente"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run Now"
-msgstr "Rulează acum"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run the forecast pipeline with current settings?"
-msgstr "Rulați procesul de previziune cu setările curente?"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Position"
-msgstr "Poziție de stoc"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Mode"
-msgstr "Mod stoc"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "How to account for current inventory state"
-msgstr "Cum se ia în considerare starea curentă a stocului"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Respect Reservations"
-msgstr "Respectă rezervările"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Subtract reserved stock from available position (conservative)"
-msgstr "Scade stocul rezervat din poziția disponibilă (conservator)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Include Incoming Supply"
-msgstr "Include aprovizionarea în curs"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Count open PO and in-transit quantities"
 msgstr "Numără comenzile de achiziție deschise și cantitățile în tranzit"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Include Outgoing Demand"
-msgstr "Include cererea în curs de ieșire"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Current Values"
+msgstr "Valori curente"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
-msgstr "Scade cantitățile confirmate din comenzile de vânzare (dezactivat implicit pentru a evita dubla contorizare)"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Days between replenishment checks (affects max qty)"
+msgstr "Zile între verificările de reaprovizionare (afectează cant. max.)"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Thresholds"
-msgstr "Praguri de stoc"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Overstock Threshold"
-msgstr "Prag de suprastoc"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
 msgid "Days of coverage above which a product is flagged as overstocked"
-msgstr "Numărul de zile de acoperire peste care un produs este marcat ca suprastocat"
+msgstr "Zile de acoperire peste care un produs este marcat ca suprastoc"
+"Numărul de zile de acoperire peste care un produs este marcat ca suprastocat"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Understock Threshold"
-msgstr "Prag de substoc"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
 msgid "Days of coverage below which a product is flagged as understocked"
-msgstr "Numărul de zile de acoperire sub care un produs este marcat ca substocat"
+msgstr "Zile de acoperire sub care un produs este marcat ca fiind insuficient stocat"
+"Numărul de zile de acoperire sub care un produs este marcat ca substocat"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Skip Overstocked"
-msgstr "Omite suprastocate"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Decision Request"
+msgstr "Cerere de decizie"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "In adjust mode, don't create orderpoints for overstocked products"
-msgstr "În modul de ajustare, nu crea reguli de reaprovizionare pentru produsele suprastocate"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Decision Requests"
+msgstr "Cereri de decizie"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Understock SL Bump"
-msgstr "Creșterea nivelului de serviciu la substoc"
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Decisions"
+msgstr "Deciziile"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "In adjust mode, raise service level by this for understocked products"
-msgstr "În modul de ajustare, crește nivelul de serviciu cu această valoare pentru produsele substocate"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Default Lead Time"
+msgstr "Termen implicit de livrare"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Default Max Qty"
+msgstr "Termen implicit de livrare"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Default Min Qty"
+msgstr "Cant. min implicită"
+
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "Descarcă tot (ZIP)"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Excel"
 msgstr "Descarcă Excel"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Download Rules"
-msgstr "Descarcă regulile"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Forecast"
 msgstr "Descarcă previziunea"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Inventory"
 msgstr "Descarcă stocul"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Run Info"
-msgstr "Informații despre rulare"
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Download Rules"
+msgstr "Descarcă regulile"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Parameters"
-msgstr "Parametri"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Enable Foreqcast"
+msgstr "Activează Foreqcast"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Results"
-msgstr "Rezultate"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Error"
 msgstr "Eroare"
 
-#. module: foreqcast
-#: model:ir.actions.act_window,name:foreqcast.foreqcast_run_action
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Excel File"
+msgstr "Fișier Excel"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Execute the forecast pipeline now with current settings"
+msgstr "Rulează procesul de previziune acum cu setările curente"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "External Forecast Server"
+msgstr "Activează Foreqcast"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Fallback when no supplier info exists for a product"
+msgstr "Rezervă atunci când nu există informații despre furnizor pentru un produs"
+"Valoare de rezervă când nu există informații despre furnizor pentru un produs"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Files"
+msgstr "Fișiere"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Forecast Horizon"
+msgstr "Orizont de previziune"
+
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Forecast Runs"
 msgstr "Rulări de previziune"
 
-#. module: foreqcast
-#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_root
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Foreqcast"
 msgstr "Foreqcast"
 
-#. module: foreqcast
-#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_runs
-msgid "Forecast Runs"
-msgstr "Rulări de previziune"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Foreqcast reads directly from the latest Parqcast export run's attachments. "
+"No file paths needed."
+msgstr ""
+"Foreqcast citește direct din atașamentele ultimei rulări de export Parqcast. "
+"Nu sunt necesare căi de fișiere."
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Foreqcast Complete"
-msgstr "Foreqcast finalizat"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Global fallback Max Qty for products with insufficient history"
+msgstr "Cantitate maximă de rezervă globală pentru produse cu istoric insuficient"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Foreqcast Error"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Global fallback Min Qty for products with insufficient history"
+msgstr "Cantitate minimă alternativă globală pentru produse cu istoric insuficient"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Granularity of demand aggregation for regression"
+msgstr "Granularitatea agregării cererii pentru regresie"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "How many days ahead to project demand"
+msgstr "Câte zile în avans să se proiecteze cererea"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "How to account for current inventory state"
+msgstr "Cum se ia în considerare starea curentă a stocului"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "În modul de ajustare, nu creați puncte de comandă pentru produsele supraaprovizionate"
+"În modul de ajustare, nu crea reguli de reaprovizionare pentru produsele "
+"suprastocate"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "In adjust mode, raise service level by this for understocked products"
+msgstr "În modul de reglare, ridicați nivelul de serviciu cu aceasta pentru produsele insuficient stocate"
+"În modul de ajustare, crește nivelul de serviciu cu această valoare pentru "
+"produsele substocate"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Include Incoming Supply"
+msgstr "Include aprovizionarea în curs"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Include Outgoing Demand"
+msgstr "Include cererea în curs de ieșire"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Input"
+msgstr "Intrare"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Input Source"
+msgstr "Sursă de date"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Inventory Mode"
+msgstr "Mod stoc"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Mark Review"
+msgstr "Mark Review"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Minimum Data Points"
+msgstr "Număr minim de puncte de date"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Minimum Demand Threshold"
+msgstr "Prag minim de cerere"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Minimum History Days"
+msgstr "Zile minime de istorie"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Needs Review"
+msgstr "Necesită revizuire"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Odoo Attachments"
+msgstr "Atașamente Odoo"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Overstock Threshold"
+msgstr "Prag de suprastoc"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Parameters"
+msgstr "Parametri"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Parquet Directories"
+msgstr "Directoare Parquet"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "Product Overrides"
+msgstr "Produse previzionate"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Proposed Changes"
+msgstr "Modificări propuse"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Read Parqcast exports directly from an S3-compatible bucket"
+msgstr "Citiți exporturile Parqcast direct dintr-un bucket compatibil S3"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Reject"
+msgstr "Respinge"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Require at least this many days of history to forecast"
+msgstr "Necesită cel puțin atâtea observații pentru previziune"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Require at least this many observations to forecast"
+msgstr "Necesită cel puțin atâtea observații pentru previziune"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Respect Reservations"
+msgstr "Respectă rezervările"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Results"
+msgstr "Rezultate"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Review Period"
+msgstr "Perioadă de revizuire"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Run Info"
+msgstr "Informații despre rulare"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run Now"
+msgstr "Rulează acum"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run Pipeline"
+msgstr "Rulează procesul"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run the forecast pipeline with current settings?"
+msgstr "Rulați procesul de previziune cu setările curente?"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "S3 Configuration"
+msgstr "Configurare S3"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Server file paths for parqcast input and forecast output"
+msgstr "Căile fișierelor server pentru intrarea parqcast și ieșirea prognozei"
+"Căile fișierelor pe server pentru intrarea Parqcast și ieșirea previziunii"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Service Level"
+msgstr "Nivel de serviciu"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Skip Overstocked"
+msgstr "Omite suprastocate"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Skip products with daily demand below this"
+msgstr "Omite produsele cu cererea zilnică sub această valoare"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Subtract confirmed SO quantities (off by default to avoid double-counting)"
+msgstr ""
+"Scade cantitățile confirmate din comenzile de vânzare (dezactivat implicit "
+"pentru a evita dubla contorizare)"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Subtract reserved stock from available position (conservative)"
+msgstr "Scade stocul rezervat din poziția disponibilă (conservator)"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
+"items. Higher values need more safety stock."
+msgstr ""
+"Rata țintă de îndeplinire. Setați 0,90 pentru serviciu standard sau 0,95 "
+"pentru articole critice. Valorile mai mari necesită mai mult stoc de "
+"siguranță."
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Time Bucket"
+msgstr "Interval de timp"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Activați estimarea cererii și generarea regulilor de reaprovizionare"
+"Activează previziunea cererii și generarea regulilor de reaprovizionare"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Understock SL Bump"
+msgstr "Creșterea nivelului de serviciu la substoc"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Understock Threshold"
+msgstr "Prag de substoc"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Upload & Update"
+msgstr "Încărcați și actualizați"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Upload Excel Review"
+msgstr "Descarcă Excel"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Upload Modified Excel"
+msgstr "Încărcați Excel modificat"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Where to read parqcast export data from"
+msgstr "De unde să se citească datele de export Parqcast"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "eu-central-1"
+msgstr "eu-central-1"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "foreqcast.category.override.list"
+msgstr "foreqcast.category.override.list"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "foreqcast.decision.request.form"
+msgstr "foreqcast.decision.request.form"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "foreqcast.decision.request.list"
+msgstr "foreqcast.decision.request.list"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "foreqcast.excel.upload.form"
+msgstr "foreqcast.excel.upload.form"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "foreqcast.product.override.list"
+msgstr "foreqcast.product.override.list"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "foreqcast.run.form"
 msgstr "Eroare Foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#: code:addons/foreqcast/models/foreqcast_run.py:0
-#, python-format
-msgid "Foreqcast"
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "foreqcast.run.list"
+msgstr "Istoricul rulărilor Foreqcast"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "https://api.foreqcast.com/v1/forecasts"
+msgstr "https://api.foreqcast.com/v1/forecasts"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "https://s3.datastruct.tech"
+msgstr "https://s3.datastruct.tech"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "parqcast"
 msgstr "Foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Please configure Parquet Input Directory first."
-msgstr "Vă rugăm să configurați mai întâi directorul de intrare Parquet."
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "parqcast-v18-demo"
+msgstr "parqcast-v18-demo"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Please configure Parquet Output Directory first."
-msgstr "Vă rugăm să configurați mai întâi directorul de ieșire Parquet."
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "res.config.settings.view.form.foreqcast"
+msgstr "res.config.settings.view.form.foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_run.py:0
+#~ msgid "Run Date"
+#~ msgstr "Data rulării"
+
+#~ msgid "Products Analyzed"
+#~ msgstr "Produse analizate"
+
+#~ msgid "Rules Created"
+#~ msgstr "Reguli create"
+
+#~ msgid "Rules Updated"
+#~ msgstr "Reguli actualizate"
+
+#~ msgid "Rules Skipped"
+#~ msgstr "Reguli omise"
+
+#~ msgid "Duration (s)"
+#~ msgstr "Durată (s)"
+
+#~ msgid "Status"
+#~ msgstr "Stare"
+
+#~ msgid "Error Message"
+#~ msgstr "Mesaj de eroare"
+
+#~ msgid "Horizon (days)"
+#~ msgstr "Orizont (zile)"
+
+#~ msgid "Safety Factor Used"
+#~ msgstr "Factor de siguranță utilizat"
+
+#~ msgid "Output Files"
+#~ msgstr "Fișiere de ieșire"
+
+#~ msgid "Running"
+#~ msgstr "În curs"
+
+#~ msgid "Complete"
+#~ msgstr "Finalizat"
+
+#~ msgid "Odoo Attachments (from Parqcast)"
+#~ msgstr "Atașamente Odoo (din Parqcast)"
+
+#~ msgid "Server Filesystem"
+#~ msgstr "Sistemul de fișiere al serverului"
+
+#~ msgid "Daily"
+#~ msgstr "Zilnic"
+
+#~ msgid "Weekly"
+#~ msgstr "Săptămânal"
+
+#~ msgid "Ignore (forecast only)"
+#~ msgstr "Ignoră (doar previziune)"
+
+#~ msgid "Analyze (add inventory columns)"
+#~ msgstr "Analizează (adaugă coloane de stoc)"
+
+#~ msgid "Adjust (modify replenishment)"
+#~ msgstr "Ajustează (modifică reaprovizionarea)"
+
+#~ msgid "Forecast Horizon (days)"
+#~ msgstr "Orizont de previziune (zile)"
+
+#~ msgid "Review Period (days)"
+#~ msgstr "Perioadă de revizuire (zile)"
+
+#~ msgid "Default Lead Time (days)"
+#~ msgstr "Termen implicit de livrare (zile)"
+
+#~ msgid "Parquet Input Directory"
+#~ msgstr "Director de intrare Parquet"
+
+#~ msgid "Parquet Output Directory"
+#~ msgstr "Director de ieșire Parquet"
+
+#~ msgid "Config Database Path"
+#~ msgstr "Calea bazei de date de configurare"
+
+#~ msgid "Overstock Threshold (days)"
+#~ msgstr "Prag de suprastoc (zile)"
+
+#~ msgid "Understock Threshold (days)"
+#~ msgstr "Prag de substoc (zile)"
+
+#~ msgid "Skip Overstocked Products"
+#~ msgstr "Omite produsele suprastocate"
+
+#~ msgid "Understock Service Level Bump"
+#~ msgstr "Creșterea nivelului de serviciu la substoc"
+
+#~ msgid "Where to read parqcast export files from"
+#~ msgstr "De unde să se citească fișierele de export Parqcast"
+
+#~ msgid "Number of days to project demand forward"
+#~ msgstr "Numărul de zile pentru proiecția cererii în viitor"
+
+#~ msgid "Granularity of demand aggregation"
+#~ msgstr "Granularitatea agregării cererii"
+
+#~ msgid ""
+#~ "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for "
+#~ "critical items. Higher values require more safety stock. Start at 0.85 "
+#~ "and increase per category as needed."
+#~ msgstr ""
+#~ "Rata țintă de îndeplinire (0,0-1,0). Setați 0,90 pentru serviciu standard "
+#~ "sau 0,95 pentru articole critice. Valorile mai mari necesită mai mult "
+#~ "stoc de siguranță. Începeți cu 0,85 și creșteți pe categorii după "
+#~ "necesitate."
+
+#~ msgid "Days between replenishment reviews — affects max_qty calculation"
+#~ msgstr ""
+#~ "Zile între revizuirile de reaprovizionare — afectează calculul max_qty"
+
+#~ msgid "Fallback lead time when no supplier info exists for a product"
+#~ msgstr ""
+#~ "Termen de livrare de rezervă când nu există informații despre furnizor "
+#~ "pentru un produs"
+
+#~ msgid "Minimum number of observations required to fit a regression"
+#~ msgstr "Numărul minim de observații necesare pentru ajustarea unei regresii"
+
+#~ msgid "Skip products with average daily demand below this value"
+#~ msgstr "Omite produsele cu cererea medie zilnică sub această valoare"
+
+#~ msgid ""
+#~ "Automatically update orderpoints after forecast run (vs. parquet-only)"
+#~ msgstr ""
+#~ "Actualizează automat regulile de reaprovizionare după rularea previziunii "
+#~ "(vs. doar Parquet)"
+
+#~ msgid "Path to parqcast export directory"
+#~ msgstr "Calea către directorul de export Parqcast"
+
+#~ msgid "Path to write forecast and rules parquet files"
+#~ msgstr "Calea pentru scrierea fișierelor Parquet de previziune și reguli"
+
+#~ msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+#~ msgstr ""
+#~ "Calea către baza de date de configurare Foreqcast SQLite (pentru "
+#~ "suprascrieri per produs)"
+
+#~ msgid ""
+#~ "How to account for current inventory when computing replenishment rules"
+#~ msgstr ""
+#~ "Cum se ia în considerare stocul curent la calcularea regulilor de "
+#~ "reaprovizionare"
+
+#~ msgid ""
+#~ "Subtract reserved quantities from on-hand (conservative). Disable to let "
+#~ "planner reallocate all stock."
+#~ msgstr ""
+#~ "Scade cantitățile rezervate din stocul disponibil (conservator). "
+#~ "Dezactivați pentru a permite planificatorului să realoce tot stocul."
+
+#~ msgid "Count open PO and in-transit quantities as available inventory"
+#~ msgstr ""
+#~ "Numără comenzile de achiziție deschise și cantitățile în tranzit ca stoc "
+#~ "disponibil"
+
+#~ msgid ""
+#~ "Subtract confirmed SO quantities. Off by default to avoid double-counting "
+#~ "with forecast."
+#~ msgstr ""
+#~ "Scade cantitățile confirmate din comenzile de vânzare. Dezactivat "
+#~ "implicit pentru a evita dubla contorizare cu previziunea."
+
+#~ msgid ""
+#~ "Products with more than this many days of coverage are flagged as "
+#~ "overstock"
+#~ msgstr ""
+#~ "Produsele cu acoperire mai mare decât acest număr de zile sunt marcate ca "
+#~ "suprastoc"
+
+#~ msgid ""
+#~ "Products with fewer than this many days of coverage are flagged as "
+#~ "understock"
+#~ msgstr ""
+#~ "Produsele cu acoperire mai mică decât acest număr de zile sunt marcate ca "
+#~ "substoc"
+
+#~ msgid ""
+#~ "In adjust mode, raise service level by this amount for understocked "
+#~ "products (e.g. 0.95 → 0.98)"
+#~ msgstr ""
+#~ "În modul de ajustare, crește nivelul de serviciu cu această valoare "
+#~ "pentru produsele substocate (de ex. 0,95 → 0,98)"
+
+#~ msgid "Demand Forecasting"
+#~ msgstr "Previziunea cererii"
+
+#~ msgid "Forecast Parameters"
+#~ msgstr "Parametri de previziune"
+
+#~ msgid "Data Quality"
+#~ msgstr "Calitatea datelor"
+
+#~ msgid "Integration"
+#~ msgstr "Integrare"
+
+#~ msgid ""
+#~ "Reads parquet files from the latest completed Parqcast export. Output "
+#~ "files are stored as attachments on the Forecast Run record."
+#~ msgstr ""
+#~ "Citește fișierele Parquet din ultimul export Parqcast finalizat. "
+#~ "Fișierele de ieșire sunt stocate ca atașamente în înregistrarea rulării "
+#~ "previziunii."
+
+#~ msgid "Config Database"
+#~ msgstr "Baza de date de configurare"
+
+#~ msgid "SQLite database for per-product overrides and audit trail"
+#~ msgstr ""
+#~ "Baza de date SQLite pentru suprascrieri per produs și jurnal de audit"
+
+#~ msgid "Inventory Position"
+#~ msgstr "Poziție de stoc"
+
+#~ msgid "Inventory Thresholds"
+#~ msgstr "Praguri de stoc"
+
 #, python-format
-msgid "No %s found for this run."
-msgstr "Nu s-a găsit niciun %s pentru această rulare."
+#~ msgid "Foreqcast Complete"
+#~ msgstr "Foreqcast finalizat"
+
+#, python-format
+#~ msgid "Please configure Parquet Input Directory first."
+#~ msgstr "Vă rugăm să configurați mai întâi directorul de intrare Parquet."
+
+#, python-format
+#~ msgid "Please configure Parquet Output Directory first."
+#~ msgstr "Vă rugăm să configurați mai întâi directorul de ieșire Parquet."
+
+#, python-format
+#~ msgid "No %s found for this run."
+#~ msgstr "Nu s-a găsit niciun %s pentru această rulare."

@@ -16,674 +16,718 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: foreqcast
-#: model:ir.model,name:foreqcast.model_foreqcast_run
-msgid "Foreqcast Run History"
-msgstr "Foreqcast futtatási előzmények"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "/data/foreqcast/output"
+msgstr "/data/foreqcast/output"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__run_date
-msgid "Run Date"
-msgstr "Futtatás dátuma"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "/data/parqcast/exports/latest"
+msgstr "/data/parqcast/exports/latest"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__parquet_source_dir
-msgid "Input Source"
-msgstr "Bemeneti forrás"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "123e4567-e89b-12d3-a456-426614174000"
+msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_analyzed
-msgid "Products Analyzed"
-msgstr "Elemzett termékek"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Approve"
+msgstr "Jóváhagyni"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_forecasted
-msgid "Products Forecasted"
-msgstr "Előrejelzett termékek"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Approve & Apply"
+msgstr "Jóváhagyás és jelentkezés"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_created
-msgid "Rules Created"
-msgstr "Létrehozott szabályok"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_updated
-msgid "Rules Updated"
-msgstr "Frissített szabályok"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_skipped
-msgid "Rules Skipped"
-msgstr "Kihagyott szabályok"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__duration_seconds
-msgid "Duration (s)"
-msgstr "Időtartam (mp)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__status
-msgid "Status"
-msgstr "Állapot"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__error_message
-msgid "Error Message"
-msgstr "Hibaüzenet"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__forecast_horizon_days
-msgid "Horizon (days)"
-msgstr "Horizont (nap)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__safety_factor
-msgid "Safety Factor Used"
-msgstr "Alkalmazott biztonsági tényező"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__time_bucket
-msgid "Time Bucket"
-msgstr "Időszak"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__attachment_count
-msgid "Output Files"
-msgstr "Kimeneti fájlok"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Running"
-msgstr "Fut"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Complete"
-msgstr "Kész"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Error"
-msgstr "Hiba"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Odoo Attachments (from Parqcast)"
-msgstr "Odoo mellékletek (Parqcast exportból)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Server Filesystem"
-msgstr "Szerver fájlrendszer"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Daily"
-msgstr "Napi"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Weekly"
-msgstr "Heti"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Ignore (forecast only)"
-msgstr "Mellőzés (csak előrejelzés)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Analyze (add inventory columns)"
-msgstr "Elemzés (készletoszlopok hozzáadása)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Adjust (modify replenishment)"
-msgstr "Igazítás (feltöltés módosítása)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_enabled
-msgid "Enable Foreqcast"
-msgstr "Foreqcast engedélyezése"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Input Source"
-msgstr "Bemeneti forrás"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_horizon_days
-msgid "Forecast Horizon (days)"
-msgstr "Előrejelzési horizont (nap)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Time Bucket"
-msgstr "Időszak"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_service_level
-msgid "Service Level"
-msgstr "Kiszolgálási szint"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_review_period_days
-msgid "Review Period (days)"
-msgstr "Felülvizsgálati időszak (nap)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_default_lead_time
-msgid "Default Lead Time (days)"
-msgstr "Alapértelmezett átfutási idő (nap)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_data_points
-msgid "Minimum Data Points"
-msgstr "Minimális adatpontok"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
-msgid "Minimum Demand Threshold"
-msgstr "Minimális kereslet küszöbérték"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_auto_push
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "Automatikus frissítés a rendelési pontokba"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
-msgid "Parquet Input Directory"
-msgstr "Parquet bemeneti könyvtár"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Automatically update Odoo reorder rules after each forecast run"
+msgstr "Az Odoo átrendezési szabályainak automatikus frissítése minden előrejelzés futtatása után"
+"Odoo rendelési pontok automatikus frissítése minden előrejelzési futtatás "
+"után"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
-msgid "Parquet Output Directory"
-msgstr "Parquet kimeneti könyvtár"
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Cancel"
+msgstr "Mégse"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_config_db_path
-msgid "Config Database Path"
-msgstr "Konfigurációs adatbázis elérési útja"
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "Category Overrides"
+msgstr "Kategória felülírások"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Inventory Mode"
-msgstr "Készlet mód"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Configure external HTTP server for demand processing"
+msgstr "Konfigurálja a külső HTTP-kiszolgálót az igényfeldolgozáshoz"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_respect_reservations
-msgid "Respect Reservations"
-msgstr "Foglalások figyelembevétele"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Count open PO and in-transit quantities"
+msgstr "Számolja meg a nyitott megrendeléseket és a szállítás alatti mennyiségeket"
+"Nyitott beszerzési rendelések és szállítás alatti mennyiségek számítása"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_incoming
-msgid "Include Incoming Supply"
-msgstr "Bejövő készlet beszámítása"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Current Values"
+msgstr "Jelenlegi értékek"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_outgoing
-msgid "Include Outgoing Demand"
-msgstr "Kimenő kereslet beszámítása"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_days
-msgid "Overstock Threshold (days)"
-msgstr "Túlkészletezési küszöb (nap)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_days
-msgid "Understock Threshold (days)"
-msgstr "Alulkészletezési küszöb (nap)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_skip
-msgid "Skip Overstocked Products"
-msgstr "Túlkészletezett termékek kihagyása"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_bump
-msgid "Understock Service Level Bump"
-msgstr "Alulkészletezési kiszolgálási szint emelés"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_enabled
-msgid "Turn on demand forecasting and replenishment rule generation"
-msgstr "Kereslet-előrejelzés és feltöltési szabálygenerálás bekapcsolása"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Where to read parqcast export files from"
-msgstr "Honnan olvassa a Parqcast export fájlokat"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_horizon_days
-msgid "Number of days to project demand forward"
-msgstr "Hány napra vetítse előre a keresletet"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Granularity of demand aggregation"
-msgstr "A kereslet aggregálásának részletessége"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_service_level
-msgid "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. Higher values require more safety stock. Start at 0.85 and increase per category as needed."
-msgstr "Cél kitöltési arány (0,0–1,0). Állítsa 0,90-re normál szolgáltatáshoz vagy 0,95-re kritikus cikkeknél. Magasabb értékek több biztonsági készletet igényelnek. Kezdje 0,85-tel és növelje kategóriánként szükség szerint."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_review_period_days
-msgid "Days between replenishment reviews — affects max_qty calculation"
-msgstr "Napok a feltöltési felülvizsgálatok között — hatással van a max_qty számítására"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_default_lead_time
-msgid "Fallback lead time when no supplier info exists for a product"
-msgstr "Tartalék átfutási idő, ha a termékhez nincs beszállítói adat"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_data_points
-msgid "Minimum number of observations required to fit a regression"
-msgstr "A regresszió illesztéséhez szükséges minimális megfigyelések száma"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
-msgid "Skip products with average daily demand below this value"
-msgstr "Hagyja ki azokat a termékeket, amelyek átlagos napi kereslete ez alatt az érték alatt van"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_auto_push
-msgid "Automatically update orderpoints after forecast run (vs. parquet-only)"
-msgstr "Rendelési pontok automatikus frissítése az előrejelzés futtatása után (szemben a csak parquet módozattal)"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
-msgid "Path to parqcast export directory"
-msgstr "A Parqcast export könyvtár elérési útja"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
-msgid "Path to write forecast and rules parquet files"
-msgstr "Az előrejelzés és szabályok parquet fájljainak írási útvonala"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_config_db_path
-msgid "Path to foreqcast SQLite config database (for per-product overrides)"
-msgstr "A Foreqcast SQLite konfigurációs adatbázis elérési útja (termékenkénti felülbírálásokhoz)"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "How to account for current inventory when computing replenishment rules"
-msgstr "Hogyan vegye figyelembe az aktuális készletet a feltöltési szabályok számításakor"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_respect_reservations
-msgid "Subtract reserved quantities from on-hand (conservative). Disable to let planner reallocate all stock."
-msgstr "Foglalt mennyiségek levonása a kézi készletből (konzervatív). Tiltsa le, hogy a tervező az összes készletet újra elosztja."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_incoming
-msgid "Count open PO and in-transit quantities as available inventory"
-msgstr "Nyitott beszerzési rendelések és szállítás alatti mennyiségek elérhető készletként számítása"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_outgoing
-msgid "Subtract confirmed SO quantities. Off by default to avoid double-counting with forecast."
-msgstr "Visszaigazolt vevői rendelési mennyiségek levonása. Alapértelmezés szerint ki van kapcsolva az előrejelzéssel való dupla számolás elkerülése érdekében."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_days
-msgid "Products with more than this many days of coverage are flagged as overstock"
-msgstr "Az ennél több napnyi fedezettséggel rendelkező termékek túlkészletezettként jelölődnek"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_days
-msgid "Products with fewer than this many days of coverage are flagged as understock"
-msgstr "Az ennél kevesebb napnyi fedezettséggel rendelkező termékek alulkészletezettként jelölődnek"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_skip
-msgid "In adjust mode, don't create orderpoints for overstocked products"
-msgstr "Igazítás módban ne hozzon létre rendelési pontokat túlkészletezett termékekhez"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_bump
-msgid "In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)"
-msgstr "Igazítás módban emelje a kiszolgálási szintet ennyivel az alulkészletezett termékeknél (pl. 0,95 → 0,98)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Demand Forecasting"
-msgstr "Kereslet-előrejelzés"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Enable Foreqcast"
-msgstr "Foreqcast engedélyezése"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Turn on demand forecasting and replenishment rule generation"
-msgstr "Kereslet-előrejelzés és feltöltési szabálygenerálás bekapcsolása"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Forecast Parameters"
-msgstr "Előrejelzési paraméterek"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Forecast Horizon"
-msgstr "Előrejelzési horizont"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "How many days ahead to project demand"
-msgstr "Hány napra előre vetítse a keresletet"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Granularity of demand aggregation for regression"
-msgstr "A kereslet aggregálásának részletessége a regresszióhoz"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
-msgstr "Cél kitöltési arány. Állítsa 0,90-re normál szolgáltatáshoz vagy 0,95-re kritikus cikkeknél. Magasabb értékek több biztonsági készletet igényelnek."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Review Period"
-msgstr "Felülvizsgálati időszak"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
 msgid "Days between replenishment checks (affects max qty)"
-msgstr "Napok a feltöltési ellenőrzések között (hatással van a max mennyiségre)"
+msgstr "Az utánpótlási ellenőrzések közötti napok (a maximális mennyiséget érinti)"
+"Napok a feltöltési ellenőrzések között (hatással van a max mennyiségre)"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Days of coverage above which a product is flagged as overstocked"
+msgstr "A lefedettség azon napjai, amelyek felett a termék túlkészletként van megjelölve"
+"Fedezettségi napok, amely felett a termék túlkészletezettként jelölődik"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Days of coverage below which a product is flagged as understocked"
+msgstr "A lefedettség azon napjai, amelyek alatt a termék alulkészletezettként van megjelölve"
+"Fedezettségi napok, amely alatt a termék alulkészletezettként jelölődik"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Decision Request"
+msgstr "Határozati kérelem"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Decision Requests"
+msgstr "Határozati kérelmek"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Decisions"
+msgstr "Döntések"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Default Lead Time"
 msgstr "Alapértelmezett átfutási idő"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Fallback when no supplier info exists for a product"
-msgstr "Tartalék, ha a termékhez nincs beszállítói adat"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Default Max Qty"
+msgstr "Alapértelmezett átfutási idő"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Data Quality"
-msgstr "Adatminőség"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Default Min Qty"
+msgstr "Alapértelmezett minimális mennyiség"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Require at least this many observations to forecast"
-msgstr "Legalább ennyi megfigyelés szükséges az előrejelzéshez"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Skip products with daily demand below this"
-msgstr "Hagyja ki a napi kereslet ez alatti termékeket"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Integration"
-msgstr "Integráció"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Where to read parqcast export data from"
-msgstr "Honnan olvassa a Parqcast export adatokat"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Odoo Attachments"
-msgstr "Odoo mellékletek"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
-msgstr "A Foreqcast közvetlenül a legutóbbi Parqcast export futtatás mellékleteiből olvas. Fájl elérési utak nem szükségesek."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Reads parquet files from the latest completed Parqcast export. Output files are stored as attachments on the Forecast Run record."
-msgstr "Parquet fájlokat olvas a legutóbb befejezett Parqcast exportból. A kimeneti fájlok az előrejelzési futtatás rekordján mellékletként tárolódnak."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Parquet Directories"
-msgstr "Parquet könyvtárak"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Server file paths for parqcast input and forecast output"
-msgstr "Szerver fájl elérési utak a Parqcast bemenethez és az előrejelzési kimenethez"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Auto-push to Orderpoints"
-msgstr "Automatikus frissítés a rendelési pontokba"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Automatically update Odoo reorder rules after each forecast run"
-msgstr "Odoo rendelési pontok automatikus frissítése minden előrejelzési futtatás után"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Config Database"
-msgstr "Konfigurációs adatbázis"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "SQLite database for per-product overrides and audit trail"
-msgstr "SQLite adatbázis termékenkénti felülbírálásokhoz és naplózáshoz"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run Pipeline"
-msgstr "Feldolgozási folyamat futtatása"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Execute the forecast pipeline now with current settings"
-msgstr "Az előrejelzési folyamat azonnali végrehajtása az aktuális beállításokkal"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run Now"
-msgstr "Futtatás most"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run the forecast pipeline with current settings?"
-msgstr "Lefuttatja az előrejelzési folyamatot az aktuális beállításokkal?"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Position"
-msgstr "Készlethelyzet"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Mode"
-msgstr "Készlet mód"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "How to account for current inventory state"
-msgstr "Hogyan vegye figyelembe az aktuális készletállapotot"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Respect Reservations"
-msgstr "Foglalások figyelembevétele"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Subtract reserved stock from available position (conservative)"
-msgstr "Foglalt készlet levonása az elérhető pozícióból (konzervatív)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Include Incoming Supply"
-msgstr "Bejövő készlet beszámítása"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Count open PO and in-transit quantities"
-msgstr "Nyitott beszerzési rendelések és szállítás alatti mennyiségek számítása"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Include Outgoing Demand"
-msgstr "Kimenő kereslet beszámítása"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
-msgstr "Visszaigazolt vevői rendelési mennyiségek levonása (alapértelmezés szerint ki van kapcsolva a dupla számolás elkerülése érdekében)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Thresholds"
-msgstr "Készlet küszöbértékek"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Overstock Threshold"
-msgstr "Túlkészletezési küszöb"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Days of coverage above which a product is flagged as overstocked"
-msgstr "Fedezettségi napok, amely felett a termék túlkészletezettként jelölődik"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Understock Threshold"
-msgstr "Alulkészletezési küszöb"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Days of coverage below which a product is flagged as understocked"
-msgstr "Fedezettségi napok, amely alatt a termék alulkészletezettként jelölődik"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Skip Overstocked"
-msgstr "Túlkészletezettek kihagyása"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "In adjust mode, don't create orderpoints for overstocked products"
-msgstr "Igazítás módban ne hozzon létre rendelési pontokat túlkészletezett termékekhez"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Understock SL Bump"
-msgstr "Alulkészletezési kiszolgálási szint emelés"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "In adjust mode, raise service level by this for understocked products"
-msgstr "Igazítás módban emelje a kiszolgálási szintet ennyivel az alulkészletezett termékeknél"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "Összes letöltése (ZIP)"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Excel"
 msgstr "Excel letöltése"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Download Rules"
-msgstr "Szabályok letöltése"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Forecast"
 msgstr "Előrejelzés letöltése"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Inventory"
 msgstr "Készletadatok letöltése"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Run Info"
-msgstr "Futtatási adatok"
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Download Rules"
+msgstr "Szabályok letöltése"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Parameters"
-msgstr "Paraméterek"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Enable Foreqcast"
+msgstr "Foreqcast engedélyezése"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Results"
-msgstr "Eredmények"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Error"
 msgstr "Hiba"
 
-#. module: foreqcast
-#: model:ir.actions.act_window,name:foreqcast.foreqcast_run_action
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Excel File"
+msgstr "Excel fájl"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Execute the forecast pipeline now with current settings"
+msgstr "Az előrejelzési folyamat végrehajtása most az aktuális beállításokkal"
+"Az előrejelzési folyamat azonnali végrehajtása az aktuális beállításokkal"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "External Forecast Server"
+msgstr "Foreqcast engedélyezése"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Fallback when no supplier info exists for a product"
+msgstr "Tartalék, ha a termékhez nincs beszállítói adat"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Files"
+msgstr "Fájlok"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Forecast Horizon"
+msgstr "Előrejelzési horizont"
+
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Forecast Runs"
 msgstr "Előrejelzési futtatások"
 
-#. module: foreqcast
-#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_root
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Foreqcast"
 msgstr "Foreqcast"
 
-#. module: foreqcast
-#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_runs
-msgid "Forecast Runs"
-msgstr "Előrejelzési futtatások"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Foreqcast reads directly from the latest Parqcast export run's attachments. "
+"No file paths needed."
+msgstr ""
+"A Foreqcast közvetlenül a legutóbbi Parqcast export futtatás mellékleteiből "
+"olvas. Fájl elérési utak nem szükségesek."
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Foreqcast Complete"
-msgstr "Foreqcast kész"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Global fallback Max Qty for products with insufficient history"
+msgstr "Globális tartalék Max. mennyiség az elégtelen előéletű termékekhez"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Foreqcast Error"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Global fallback Min Qty for products with insufficient history"
+msgstr "Globális tartalék minimális mennyiség az elégtelen előzményekkel rendelkező termékekhez"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Granularity of demand aggregation for regression"
+msgstr "A kereslet aggregálásának részletessége a regresszióhoz"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "How many days ahead to project demand"
+msgstr "Hány napra előre vetítse a keresletet"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "How to account for current inventory state"
+msgstr "Hogyan vegye figyelembe az aktuális készletállapotot"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "Beállítás módban ne hozzon létre rendelési pontokat a túlzsúfolt termékekhez"
+"Igazítás módban ne hozzon létre rendelési pontokat túlkészletezett "
+"termékekhez"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "In adjust mode, raise service level by this for understocked products"
+msgstr "Beállítás módban emelje meg ezzel a szolgáltatási szintet az alulkészletezett termékeknél"
+"Igazítás módban emelje a kiszolgálási szintet ennyivel az alulkészletezett "
+"termékeknél"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Include Incoming Supply"
+msgstr "Bejövő készlet beszámítása"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Include Outgoing Demand"
+msgstr "Kimenő kereslet beszámítása"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Input"
+msgstr "Bemenet"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Input Source"
+msgstr "Bemeneti forrás"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Inventory Mode"
+msgstr "Készlet mód"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Mark Review"
+msgstr "Mark Review"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Minimum Data Points"
+msgstr "Minimális adatpontok"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Minimum Demand Threshold"
+msgstr "Minimális kereslet küszöbérték"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Minimum History Days"
+msgstr "Minimum Történelem Napok"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Needs Review"
+msgstr "Felülvizsgálatra szorul"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Odoo Attachments"
+msgstr "Odoo mellékletek"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Overstock Threshold"
+msgstr "Túlkészletezési küszöb"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Parameters"
+msgstr "Paraméterek"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Parquet Directories"
+msgstr "Parquet könyvtárak"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "Product Overrides"
+msgstr "Előrejelzett termékek"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Proposed Changes"
+msgstr "Javasolt változtatások"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Read Parqcast exports directly from an S3-compatible bucket"
+msgstr "Olvassa el a Parqcast exportjait közvetlenül egy S3-kompatibilis tárolóból"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Reject"
+msgstr "Elutasít"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Require at least this many days of history to forecast"
+msgstr "Legalább ennyi megfigyelés szükséges az előrejelzéshez"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Require at least this many observations to forecast"
+msgstr "Legalább ennyi megfigyelés szükséges az előrejelzéshez"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Respect Reservations"
+msgstr "Foglalások figyelembevétele"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Results"
+msgstr "Eredmények"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Review Period"
+msgstr "Felülvizsgálati időszak"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Run Info"
+msgstr "Futtatási adatok"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run Now"
+msgstr "Futtatás most"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run Pipeline"
+msgstr "Feldolgozási folyamat futtatása"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run the forecast pipeline with current settings?"
+msgstr "Lefuttatja az előrejelzési folyamatot az aktuális beállításokkal?"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "S3 Configuration"
+msgstr "S3 konfiguráció"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Server file paths for parqcast input and forecast output"
+msgstr "A parqcast bemeneti és előrejelzési kimeneti kiszolgáló fájl elérési útjai"
+"Szerver fájl elérési utak a Parqcast bemenethez és az előrejelzési kimenethez"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Service Level"
+msgstr "Kiszolgálási szint"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Skip Overstocked"
+msgstr "Túlkészletezettek kihagyása"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Skip products with daily demand below this"
+msgstr "Hagyja ki a napi kereslet ez alatti termékeket"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Subtract confirmed SO quantities (off by default to avoid double-counting)"
+msgstr ""
+"Visszaigazolt vevői rendelési mennyiségek levonása (alapértelmezés szerint "
+"ki van kapcsolva a dupla számolás elkerülése érdekében)"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Subtract reserved stock from available position (conservative)"
+msgstr "Foglalt készlet levonása az elérhető pozícióból (konzervatív)"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
+"items. Higher values need more safety stock."
+msgstr ""
+"Cél kitöltési arány. Állítsa 0,90-re normál szolgáltatáshoz vagy 0,95-re "
+"kritikus cikkeknél. Magasabb értékek több biztonsági készletet igényelnek."
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Time Bucket"
+msgstr "Időszak"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Kereslet-előrejelzés és feltöltési szabálygenerálás bekapcsolása"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Understock SL Bump"
+msgstr "Alulkészletezési kiszolgálási szint emelés"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Understock Threshold"
+msgstr "Alulkészletezési küszöb"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Upload & Update"
+msgstr "Feltöltés és frissítés"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Upload Excel Review"
+msgstr "Excel letöltése"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Upload Modified Excel"
+msgstr "Töltse fel a módosított Excelt"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Where to read parqcast export data from"
+msgstr "Honnan olvassa a Parqcast export adatokat"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "eu-central-1"
+msgstr "eu-central-1"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "foreqcast.category.override.list"
+msgstr "foreqcast.category.override.list"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "foreqcast.decision.request.form"
+msgstr "foreqcast.decision.request.form"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "foreqcast.decision.request.list"
+msgstr "foreqcast.decision.request.list"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "foreqcast.excel.upload.form"
+msgstr "foreqcast.excel.upload.form"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "foreqcast.product.override.list"
+msgstr "foreqcast.product.override.list"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "foreqcast.run.form"
 msgstr "Foreqcast hiba"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#: code:addons/foreqcast/models/foreqcast_run.py:0
-#, python-format
-msgid "Foreqcast"
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "foreqcast.run.list"
+msgstr "Foreqcast futtatási előzmények"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "https://api.foreqcast.com/v1/forecasts"
+msgstr "https://api.foreqcast.com/v1/forecasts"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "https://s3.datastruct.tech"
+msgstr "https://s3.datastruct.tech"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "parqcast"
 msgstr "Foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Please configure Parquet Input Directory first."
-msgstr "Kérjük, először konfigurálja a Parquet bemeneti könyvtárat."
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "parqcast-v18-demo"
+msgstr "parqcast-v18-demo"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Please configure Parquet Output Directory first."
-msgstr "Kérjük, először konfigurálja a Parquet kimeneti könyvtárat."
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "res.config.settings.view.form.foreqcast"
+msgstr "res.config.settings.view.form.foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_run.py:0
+#~ msgid "Run Date"
+#~ msgstr "Futtatás dátuma"
+
+#~ msgid "Products Analyzed"
+#~ msgstr "Elemzett termékek"
+
+#~ msgid "Rules Created"
+#~ msgstr "Létrehozott szabályok"
+
+#~ msgid "Rules Updated"
+#~ msgstr "Frissített szabályok"
+
+#~ msgid "Rules Skipped"
+#~ msgstr "Kihagyott szabályok"
+
+#~ msgid "Duration (s)"
+#~ msgstr "Időtartam (mp)"
+
+#~ msgid "Status"
+#~ msgstr "Állapot"
+
+#~ msgid "Error Message"
+#~ msgstr "Hibaüzenet"
+
+#~ msgid "Horizon (days)"
+#~ msgstr "Horizont (nap)"
+
+#~ msgid "Safety Factor Used"
+#~ msgstr "Alkalmazott biztonsági tényező"
+
+#~ msgid "Output Files"
+#~ msgstr "Kimeneti fájlok"
+
+#~ msgid "Running"
+#~ msgstr "Fut"
+
+#~ msgid "Complete"
+#~ msgstr "Kész"
+
+#~ msgid "Odoo Attachments (from Parqcast)"
+#~ msgstr "Odoo mellékletek (Parqcast exportból)"
+
+#~ msgid "Server Filesystem"
+#~ msgstr "Szerver fájlrendszer"
+
+#~ msgid "Daily"
+#~ msgstr "Napi"
+
+#~ msgid "Weekly"
+#~ msgstr "Heti"
+
+#~ msgid "Ignore (forecast only)"
+#~ msgstr "Mellőzés (csak előrejelzés)"
+
+#~ msgid "Analyze (add inventory columns)"
+#~ msgstr "Elemzés (készletoszlopok hozzáadása)"
+
+#~ msgid "Adjust (modify replenishment)"
+#~ msgstr "Igazítás (feltöltés módosítása)"
+
+#~ msgid "Forecast Horizon (days)"
+#~ msgstr "Előrejelzési horizont (nap)"
+
+#~ msgid "Review Period (days)"
+#~ msgstr "Felülvizsgálati időszak (nap)"
+
+#~ msgid "Default Lead Time (days)"
+#~ msgstr "Alapértelmezett átfutási idő (nap)"
+
+#~ msgid "Parquet Input Directory"
+#~ msgstr "Parquet bemeneti könyvtár"
+
+#~ msgid "Parquet Output Directory"
+#~ msgstr "Parquet kimeneti könyvtár"
+
+#~ msgid "Config Database Path"
+#~ msgstr "Konfigurációs adatbázis elérési útja"
+
+#~ msgid "Overstock Threshold (days)"
+#~ msgstr "Túlkészletezési küszöb (nap)"
+
+#~ msgid "Understock Threshold (days)"
+#~ msgstr "Alulkészletezési küszöb (nap)"
+
+#~ msgid "Skip Overstocked Products"
+#~ msgstr "Túlkészletezett termékek kihagyása"
+
+#~ msgid "Understock Service Level Bump"
+#~ msgstr "Alulkészletezési kiszolgálási szint emelés"
+
+#~ msgid "Where to read parqcast export files from"
+#~ msgstr "Honnan olvassa a Parqcast export fájlokat"
+
+#~ msgid "Number of days to project demand forward"
+#~ msgstr "Hány napra vetítse előre a keresletet"
+
+#~ msgid "Granularity of demand aggregation"
+#~ msgstr "A kereslet aggregálásának részletessége"
+
+#~ msgid ""
+#~ "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for "
+#~ "critical items. Higher values require more safety stock. Start at 0.85 "
+#~ "and increase per category as needed."
+#~ msgstr ""
+#~ "Cél kitöltési arány (0,0–1,0). Állítsa 0,90-re normál szolgáltatáshoz "
+#~ "vagy 0,95-re kritikus cikkeknél. Magasabb értékek több biztonsági "
+#~ "készletet igényelnek. Kezdje 0,85-tel és növelje kategóriánként szükség "
+#~ "szerint."
+
+#~ msgid "Days between replenishment reviews — affects max_qty calculation"
+#~ msgstr ""
+#~ "Napok a feltöltési felülvizsgálatok között — hatással van a max_qty "
+#~ "számítására"
+
+#~ msgid "Fallback lead time when no supplier info exists for a product"
+#~ msgstr "Tartalék átfutási idő, ha a termékhez nincs beszállítói adat"
+
+#~ msgid "Minimum number of observations required to fit a regression"
+#~ msgstr "A regresszió illesztéséhez szükséges minimális megfigyelések száma"
+
+#~ msgid "Skip products with average daily demand below this value"
+#~ msgstr ""
+#~ "Hagyja ki azokat a termékeket, amelyek átlagos napi kereslete ez alatt az "
+#~ "érték alatt van"
+
+#~ msgid ""
+#~ "Automatically update orderpoints after forecast run (vs. parquet-only)"
+#~ msgstr ""
+#~ "Rendelési pontok automatikus frissítése az előrejelzés futtatása után "
+#~ "(szemben a csak parquet módozattal)"
+
+#~ msgid "Path to parqcast export directory"
+#~ msgstr "A Parqcast export könyvtár elérési útja"
+
+#~ msgid "Path to write forecast and rules parquet files"
+#~ msgstr "Az előrejelzés és szabályok parquet fájljainak írási útvonala"
+
+#~ msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+#~ msgstr ""
+#~ "A Foreqcast SQLite konfigurációs adatbázis elérési útja (termékenkénti "
+#~ "felülbírálásokhoz)"
+
+#~ msgid ""
+#~ "How to account for current inventory when computing replenishment rules"
+#~ msgstr ""
+#~ "Hogyan vegye figyelembe az aktuális készletet a feltöltési szabályok "
+#~ "számításakor"
+
+#~ msgid ""
+#~ "Subtract reserved quantities from on-hand (conservative). Disable to let "
+#~ "planner reallocate all stock."
+#~ msgstr ""
+#~ "Foglalt mennyiségek levonása a kézi készletből (konzervatív). Tiltsa le, "
+#~ "hogy a tervező az összes készletet újra elosztja."
+
+#~ msgid "Count open PO and in-transit quantities as available inventory"
+#~ msgstr ""
+#~ "Nyitott beszerzési rendelések és szállítás alatti mennyiségek elérhető "
+#~ "készletként számítása"
+
+#~ msgid ""
+#~ "Subtract confirmed SO quantities. Off by default to avoid double-counting "
+#~ "with forecast."
+#~ msgstr ""
+#~ "Visszaigazolt vevői rendelési mennyiségek levonása. Alapértelmezés "
+#~ "szerint ki van kapcsolva az előrejelzéssel való dupla számolás elkerülése "
+#~ "érdekében."
+
+#~ msgid ""
+#~ "Products with more than this many days of coverage are flagged as "
+#~ "overstock"
+#~ msgstr ""
+#~ "Az ennél több napnyi fedezettséggel rendelkező termékek "
+#~ "túlkészletezettként jelölődnek"
+
+#~ msgid ""
+#~ "Products with fewer than this many days of coverage are flagged as "
+#~ "understock"
+#~ msgstr ""
+#~ "Az ennél kevesebb napnyi fedezettséggel rendelkező termékek "
+#~ "alulkészletezettként jelölődnek"
+
+#~ msgid ""
+#~ "In adjust mode, raise service level by this amount for understocked "
+#~ "products (e.g. 0.95 → 0.98)"
+#~ msgstr ""
+#~ "Igazítás módban emelje a kiszolgálási szintet ennyivel az "
+#~ "alulkészletezett termékeknél (pl. 0,95 → 0,98)"
+
+#~ msgid "Demand Forecasting"
+#~ msgstr "Kereslet-előrejelzés"
+
+#~ msgid "Forecast Parameters"
+#~ msgstr "Előrejelzési paraméterek"
+
+#~ msgid "Data Quality"
+#~ msgstr "Adatminőség"
+
+#~ msgid "Integration"
+#~ msgstr "Integráció"
+
+#~ msgid ""
+#~ "Reads parquet files from the latest completed Parqcast export. Output "
+#~ "files are stored as attachments on the Forecast Run record."
+#~ msgstr ""
+#~ "Parquet fájlokat olvas a legutóbb befejezett Parqcast exportból. A "
+#~ "kimeneti fájlok az előrejelzési futtatás rekordján mellékletként "
+#~ "tárolódnak."
+
+#~ msgid "Config Database"
+#~ msgstr "Konfigurációs adatbázis"
+
+#~ msgid "SQLite database for per-product overrides and audit trail"
+#~ msgstr "SQLite adatbázis termékenkénti felülbírálásokhoz és naplózáshoz"
+
+#~ msgid "Inventory Position"
+#~ msgstr "Készlethelyzet"
+
+#~ msgid "Inventory Thresholds"
+#~ msgstr "Készlet küszöbértékek"
+
 #, python-format
-msgid "No %s found for this run."
-msgstr "Ehhez a futtatáshoz nem található %s."
+#~ msgid "Foreqcast Complete"
+#~ msgstr "Foreqcast kész"
+
+#, python-format
+#~ msgid "Please configure Parquet Input Directory first."
+#~ msgstr "Kérjük, először konfigurálja a Parquet bemeneti könyvtárat."
+
+#, python-format
+#~ msgid "Please configure Parquet Output Directory first."
+#~ msgstr "Kérjük, először konfigurálja a Parquet kimeneti könyvtárat."
+
+#, python-format
+#~ msgid "No %s found for this run."
+#~ msgstr "Ehhez a futtatáshoz nem található %s."

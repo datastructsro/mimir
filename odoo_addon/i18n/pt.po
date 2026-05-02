@@ -17,674 +17,692 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: foreqcast
-#: model:ir.model,name:foreqcast.model_foreqcast_run
-msgid "Foreqcast Run History"
-msgstr "Histórico de execuções Foreqcast"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "/data/foreqcast/output"
+msgstr "/data/foreqcast/output"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__run_date
-msgid "Run Date"
-msgstr "Data de execução"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "/data/parqcast/exports/latest"
+msgstr "/data/parqcast/exports/latest"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__parquet_source_dir
-msgid "Input Source"
-msgstr "Fonte de entrada"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "123e4567-e89b-12d3-a456-426614174000"
+msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_analyzed
-msgid "Products Analyzed"
-msgstr "Produtos analisados"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Approve"
+msgstr "Aprovar"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_forecasted
-msgid "Products Forecasted"
-msgstr "Produtos previstos"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Approve & Apply"
+msgstr "Aprovar & Aplicar"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_created
-msgid "Rules Created"
-msgstr "Regras criadas"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_updated
-msgid "Rules Updated"
-msgstr "Regras atualizadas"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_skipped
-msgid "Rules Skipped"
-msgstr "Regras ignoradas"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__duration_seconds
-msgid "Duration (s)"
-msgstr "Duração (s)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__status
-msgid "Status"
-msgstr "Estado"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__error_message
-msgid "Error Message"
-msgstr "Mensagem de erro"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__forecast_horizon_days
-msgid "Horizon (days)"
-msgstr "Horizonte (dias)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__safety_factor
-msgid "Safety Factor Used"
-msgstr "Fator de segurança utilizado"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__time_bucket
-msgid "Time Bucket"
-msgstr "Intervalo de tempo"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__attachment_count
-msgid "Output Files"
-msgstr "Ficheiros de saída"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Running"
-msgstr "Em execução"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Complete"
-msgstr "Concluído"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Error"
-msgstr "Erro"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Odoo Attachments (from Parqcast)"
-msgstr "Anexos Odoo (do Parqcast)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Server Filesystem"
-msgstr "Sistema de ficheiros do servidor"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Daily"
-msgstr "Diário"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Weekly"
-msgstr "Semanal"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Ignore (forecast only)"
-msgstr "Ignorar (apenas previsão)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Analyze (add inventory columns)"
-msgstr "Analisar (adicionar colunas de inventário)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Adjust (modify replenishment)"
-msgstr "Ajustar (modificar reabastecimento)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_enabled
-msgid "Enable Foreqcast"
-msgstr "Ativar Foreqcast"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Input Source"
-msgstr "Fonte de entrada"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_horizon_days
-msgid "Forecast Horizon (days)"
-msgstr "Horizonte de previsão (dias)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Time Bucket"
-msgstr "Intervalo de tempo"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_service_level
-msgid "Service Level"
-msgstr "Nível de serviço"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_review_period_days
-msgid "Review Period (days)"
-msgstr "Período de revisão (dias)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_default_lead_time
-msgid "Default Lead Time (days)"
-msgstr "Prazo de entrega padrão (dias)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_data_points
-msgid "Minimum Data Points"
-msgstr "Pontos de dados mínimos"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
-msgid "Minimum Demand Threshold"
-msgstr "Limiar mínimo de procura"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_auto_push
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "Envio automático para pontos de encomenda"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
-msgid "Parquet Input Directory"
-msgstr "Diretório de entrada Parquet"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
-msgid "Parquet Output Directory"
-msgstr "Diretório de saída Parquet"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_config_db_path
-msgid "Config Database Path"
-msgstr "Caminho da base de dados de configuração"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Inventory Mode"
-msgstr "Modo de inventário"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_respect_reservations
-msgid "Respect Reservations"
-msgstr "Respeitar reservas"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_incoming
-msgid "Include Incoming Supply"
-msgstr "Incluir fornecimento recebido"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_outgoing
-msgid "Include Outgoing Demand"
-msgstr "Incluir procura de saída"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_days
-msgid "Overstock Threshold (days)"
-msgstr "Limiar de excesso de stock (dias)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_days
-msgid "Understock Threshold (days)"
-msgstr "Limiar de rutura de stock (dias)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_skip
-msgid "Skip Overstocked Products"
-msgstr "Ignorar produtos com excesso de stock"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_bump
-msgid "Understock Service Level Bump"
-msgstr "Aumento do nível de serviço em rutura"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_enabled
-msgid "Turn on demand forecasting and replenishment rule generation"
-msgstr "Ativar previsão de procura e geração de regras de reabastecimento"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Where to read parqcast export files from"
-msgstr "De onde ler os ficheiros de exportação Parqcast"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_horizon_days
-msgid "Number of days to project demand forward"
-msgstr "Número de dias para projetar a procura"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Granularity of demand aggregation"
-msgstr "Granularidade da agregação de procura"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_service_level
-msgid "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. Higher values require more safety stock. Start at 0.85 and increase per category as needed."
-msgstr "Taxa de preenchimento alvo (0,0-1,0). Defina 0,90 para serviço padrão ou 0,95 para itens críticos. Valores mais altos requerem mais stock de segurança. Comece com 0,85 e aumente por categoria conforme necessário."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_review_period_days
-msgid "Days between replenishment reviews — affects max_qty calculation"
-msgstr "Dias entre revisões de reabastecimento — afeta o cálculo de max_qty"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_default_lead_time
-msgid "Fallback lead time when no supplier info exists for a product"
-msgstr "Prazo de entrega de reserva quando não existem informações de fornecedor para um produto"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_data_points
-msgid "Minimum number of observations required to fit a regression"
-msgstr "Número mínimo de observações necessárias para ajustar uma regressão"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
-msgid "Skip products with average daily demand below this value"
-msgstr "Ignorar produtos com procura média diária abaixo deste valor"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_auto_push
-msgid "Automatically update orderpoints after forecast run (vs. parquet-only)"
-msgstr "Atualizar automaticamente os pontos de encomenda após execução de previsão (vs. apenas parquet)"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
-msgid "Path to parqcast export directory"
-msgstr "Caminho para o diretório de exportação Parqcast"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
-msgid "Path to write forecast and rules parquet files"
-msgstr "Caminho para escrever ficheiros parquet de previsão e regras"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_config_db_path
-msgid "Path to foreqcast SQLite config database (for per-product overrides)"
-msgstr "Caminho para a base de dados de configuração SQLite do Foreqcast (para substituições por produto)"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "How to account for current inventory when computing replenishment rules"
-msgstr "Como considerar o inventário atual ao calcular regras de reabastecimento"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_respect_reservations
-msgid "Subtract reserved quantities from on-hand (conservative). Disable to let planner reallocate all stock."
-msgstr "Subtrair quantidades reservadas do disponível (conservador). Desative para permitir que o planeador redistribua todo o stock."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_incoming
-msgid "Count open PO and in-transit quantities as available inventory"
-msgstr "Contar encomendas de compra abertas e quantidades em trânsito como inventário disponível"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_outgoing
-msgid "Subtract confirmed SO quantities. Off by default to avoid double-counting with forecast."
-msgstr "Subtrair quantidades confirmadas de encomendas de venda. Desativado por defeito para evitar dupla contagem com a previsão."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_days
-msgid "Products with more than this many days of coverage are flagged as overstock"
-msgstr "Produtos com mais do que este número de dias de cobertura são sinalizados como excesso de stock"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_days
-msgid "Products with fewer than this many days of coverage are flagged as understock"
-msgstr "Produtos com menos do que este número de dias de cobertura são sinalizados como rutura de stock"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_skip
-msgid "In adjust mode, don't create orderpoints for overstocked products"
-msgstr "No modo de ajuste, não criar pontos de encomenda para produtos com excesso de stock"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_bump
-msgid "In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)"
-msgstr "No modo de ajuste, aumentar o nível de serviço por este valor para produtos com rutura de stock (ex. 0,95 → 0,98)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Demand Forecasting"
-msgstr "Previsão de procura"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Enable Foreqcast"
-msgstr "Ativar Foreqcast"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Turn on demand forecasting and replenishment rule generation"
-msgstr "Ativar previsão de procura e geração de regras de reabastecimento"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Forecast Parameters"
-msgstr "Parâmetros de previsão"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Forecast Horizon"
-msgstr "Horizonte de previsão"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "How many days ahead to project demand"
-msgstr "Quantos dias à frente projetar a procura"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Granularity of demand aggregation for regression"
-msgstr "Granularidade da agregação de procura para regressão"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
-msgstr "Taxa de preenchimento alvo. Defina 0,90 para serviço padrão ou 0,95 para itens críticos. Valores mais altos requerem mais stock de segurança."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Review Period"
-msgstr "Período de revisão"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Days between replenishment checks (affects max qty)"
-msgstr "Dias entre verificações de reabastecimento (afeta qtd. máx.)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Default Lead Time"
-msgstr "Prazo de entrega padrão"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Fallback when no supplier info exists for a product"
-msgstr "Valor de reserva quando não existem informações de fornecedor para um produto"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Data Quality"
-msgstr "Qualidade dos dados"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Require at least this many observations to forecast"
-msgstr "Requerer pelo menos este número de observações para previsão"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Skip products with daily demand below this"
-msgstr "Ignorar produtos com procura diária abaixo disto"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Integration"
-msgstr "Integração"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Where to read parqcast export data from"
-msgstr "De onde ler os dados de exportação Parqcast"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Odoo Attachments"
-msgstr "Anexos Odoo"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
-msgstr "O Foreqcast lê diretamente dos anexos da última execução de exportação Parqcast. Não são necessários caminhos de ficheiros."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Reads parquet files from the latest completed Parqcast export. Output files are stored as attachments on the Forecast Run record."
-msgstr "Lê ficheiros parquet da última exportação Parqcast concluída. Os ficheiros de saída são armazenados como anexos no registo de execução de previsão."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Parquet Directories"
-msgstr "Diretórios Parquet"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Server file paths for parqcast input and forecast output"
-msgstr "Caminhos de ficheiros do servidor para entrada Parqcast e saída de previsão"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Auto-push to Orderpoints"
-msgstr "Envio automático para pontos de encomenda"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
 msgid "Automatically update Odoo reorder rules after each forecast run"
-msgstr "Atualizar automaticamente as regras de reaprovisionamento do Odoo após cada execução de previsão"
+msgstr "Atualizar automaticamente as regras de reabastecimento do Odoo após cada execução de previsão"
+"Atualizar automaticamente as regras de reaprovisionamento do Odoo após cada "
+"execução de previsão"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Config Database"
-msgstr "Base de dados de configuração"
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Cancel"
+msgstr "Cancelar"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "SQLite database for per-product overrides and audit trail"
-msgstr "Base de dados SQLite para substituições por produto e trilho de auditoria"
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "Category Overrides"
+msgstr "Substituições de Categoria"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run Pipeline"
-msgstr "Executar pipeline"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Configure external HTTP server for demand processing"
+msgstr "Configurar servidor HTTP externo para processamento de demanda"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Execute the forecast pipeline now with current settings"
-msgstr "Executar o pipeline de previsão agora com as configurações atuais"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run Now"
-msgstr "Executar agora"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run the forecast pipeline with current settings?"
-msgstr "Executar o pipeline de previsão com as configurações atuais?"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Position"
-msgstr "Posição de inventário"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Mode"
-msgstr "Modo de inventário"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "How to account for current inventory state"
-msgstr "Como considerar o estado atual do inventário"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Respect Reservations"
-msgstr "Respeitar reservas"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Subtract reserved stock from available position (conservative)"
-msgstr "Subtrair stock reservado da posição disponível (conservador)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Include Incoming Supply"
-msgstr "Incluir fornecimento recebido"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Count open PO and in-transit quantities"
 msgstr "Contar encomendas de compra abertas e quantidades em trânsito"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Include Outgoing Demand"
-msgstr "Incluir procura de saída"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Current Values"
+msgstr "Valores Atuais"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
-msgstr "Subtrair quantidades confirmadas de encomendas de venda (desativado por defeito para evitar dupla contagem)"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Days between replenishment checks (affects max qty)"
+msgstr "Dias entre verificações de reabastecimento (afeta qtd. máx.)"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Thresholds"
-msgstr "Limiares de inventário"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Overstock Threshold"
-msgstr "Limiar de excesso de stock"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Days of coverage above which a product is flagged as overstocked"
-msgstr "Dias de cobertura acima dos quais um produto é sinalizado como excesso de stock"
+msgstr ""
+"Dias de cobertura acima dos quais um produto é sinalizado como excesso de "
+"stock"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Understock Threshold"
-msgstr "Limiar de rutura de stock"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Days of coverage below which a product is flagged as understocked"
-msgstr "Dias de cobertura abaixo dos quais um produto é sinalizado como rutura de stock"
+msgstr ""
+"Dias de cobertura abaixo dos quais um produto é sinalizado como rutura de "
+"stock"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Skip Overstocked"
-msgstr "Ignorar excesso"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Decision Request"
+msgstr "Solicitação de Decisão"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "In adjust mode, don't create orderpoints for overstocked products"
-msgstr "No modo de ajuste, não criar pontos de encomenda para produtos com excesso de stock"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Decision Requests"
+msgstr "Solicitações de Decisão"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Understock SL Bump"
-msgstr "Aumento NS em rutura"
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Decisions"
+msgstr "Decisões"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "In adjust mode, raise service level by this for understocked products"
-msgstr "No modo de ajuste, aumentar o nível de serviço por este valor para produtos com rutura de stock"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Default Lead Time"
+msgstr "Prazo de entrega padrão"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Default Max Qty"
+msgstr "Prazo de entrega padrão"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Default Min Qty"
+msgstr "Qtd. Mín. Padrão"
+
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "Transferir tudo (ZIP)"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Excel"
 msgstr "Transferir Excel"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Download Rules"
-msgstr "Transferir regras"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Forecast"
 msgstr "Transferir previsão"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Inventory"
 msgstr "Transferir inventário"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Run Info"
-msgstr "Informação da execução"
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Download Rules"
+msgstr "Transferir regras"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Parameters"
-msgstr "Parâmetros"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Enable Foreqcast"
+msgstr "Ativar Foreqcast"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Results"
-msgstr "Resultados"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Error"
 msgstr "Erro"
 
-#. module: foreqcast
-#: model:ir.actions.act_window,name:foreqcast.foreqcast_run_action
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Excel File"
+msgstr "Arquivo Excel"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Execute the forecast pipeline now with current settings"
+msgstr "Executar o pipeline de previsão agora com as configurações atuais"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "External Forecast Server"
+msgstr "Ativar Foreqcast"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Fallback when no supplier info exists for a product"
+msgstr ""
+"Valor de reserva quando não existem informações de fornecedor para um produto"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Files"
+msgstr "Arquivos"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Forecast Horizon"
+msgstr "Horizonte de previsão"
+
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Forecast Runs"
 msgstr "Execuções de previsão"
 
-#. module: foreqcast
-#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_root
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Foreqcast"
 msgstr "Foreqcast"
 
-#. module: foreqcast
-#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_runs
-msgid "Forecast Runs"
-msgstr "Execuções de previsão"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Foreqcast reads directly from the latest Parqcast export run's attachments. "
+"No file paths needed."
+msgstr ""
+"O Foreqcast lê diretamente dos anexos da última execução de exportação "
+"Parqcast. Não são necessários caminhos de ficheiros."
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Foreqcast Complete"
-msgstr "Foreqcast concluído"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Global fallback Max Qty for products with insufficient history"
+msgstr ""
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Foreqcast Error"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Global fallback Min Qty for products with insufficient history"
+msgstr ""
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Granularity of demand aggregation for regression"
+msgstr "Granularidade da agregação de procura para regressão"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "How many days ahead to project demand"
+msgstr "Quantos dias à frente projetar a procura"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "How to account for current inventory state"
+msgstr "Como considerar o estado atual do inventário"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr ""
+"No modo de ajuste, não criar pontos de encomenda para produtos com excesso "
+"de stock"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "In adjust mode, raise service level by this for understocked products"
+msgstr ""
+"No modo de ajuste, aumentar o nível de serviço por este valor para produtos "
+"com rutura de stock"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Include Incoming Supply"
+msgstr "Incluir fornecimento recebido"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Include Outgoing Demand"
+msgstr "Incluir procura de saída"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Input"
+msgstr "Entrada"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Input Source"
+msgstr "Fonte de entrada"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Inventory Mode"
+msgstr "Modo de inventário"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Mark Review"
+msgstr "Marcar para Revisão"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Minimum Data Points"
+msgstr "Pontos de dados mínimos"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Minimum Demand Threshold"
+msgstr "Limiar mínimo de procura"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Minimum History Days"
+msgstr "Dias Mínimos de Histórico"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Needs Review"
+msgstr "Requer Revisão"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Odoo Attachments"
+msgstr "Anexos Odoo"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Overstock Threshold"
+msgstr "Limiar de excesso de stock"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Parameters"
+msgstr "Parâmetros"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Parquet Directories"
+msgstr "Diretórios Parquet"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "Product Overrides"
+msgstr "Produtos previstos"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Proposed Changes"
+msgstr "Alterações Propostas"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Read Parqcast exports directly from an S3-compatible bucket"
+msgstr "Ler exportações do Parqcast diretamente de um bucket compatível com S3"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Reject"
+msgstr "Rejeitar"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Require at least this many days of history to forecast"
+msgstr "Requerer pelo menos este número de observações para previsão"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Require at least this many observations to forecast"
+msgstr "Requerer pelo menos este número de observações para previsão"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Respect Reservations"
+msgstr "Respeitar reservas"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Results"
+msgstr "Resultados"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Review Period"
+msgstr "Período de revisão"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Run Info"
+msgstr "Informação da execução"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run Now"
+msgstr "Executar agora"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run Pipeline"
+msgstr "Executar pipeline"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run the forecast pipeline with current settings?"
+msgstr "Executar o pipeline de previsão com as configurações atuais?"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "S3 Configuration"
+msgstr "Configuração do S3"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Server file paths for parqcast input and forecast output"
+msgstr "Caminhos de arquivo do servidor para entrada do parqcast e saída da previsão"
+"Caminhos de ficheiros do servidor para entrada Parqcast e saída de previsão"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Service Level"
+msgstr "Nível de serviço"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Skip Overstocked"
+msgstr "Ignorar excesso"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Skip products with daily demand below this"
+msgstr "Ignorar produtos com procura diária abaixo disto"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Subtract confirmed SO quantities (off by default to avoid double-counting)"
+msgstr ""
+"Subtrair quantidades confirmadas de encomendas de venda (desativado por "
+"defeito para evitar dupla contagem)"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Subtract reserved stock from available position (conservative)"
+msgstr "Subtrair stock reservado da posição disponível (conservador)"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
+"items. Higher values need more safety stock."
+msgstr ""
+"Taxa de preenchimento alvo. Defina 0,90 para serviço padrão ou 0,95 para "
+"itens críticos. Valores mais altos requerem mais stock de segurança."
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Time Bucket"
+msgstr "Intervalo de tempo"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Ativar previsão de procura e geração de regras de reabastecimento"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Understock SL Bump"
+msgstr "Aumento NS em rutura"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Understock Threshold"
+msgstr "Limiar de rutura de stock"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Upload & Update"
+msgstr "Carregar & Atualizar"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Upload Excel Review"
+msgstr "Transferir Excel"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Upload Modified Excel"
+msgstr "Carregar Excel Modificado"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Where to read parqcast export data from"
+msgstr "De onde ler os dados de exportação Parqcast"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "eu-central-1"
+msgstr "eu-central-1"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+msgid "foreqcast.category.override.list"
+msgstr "foreqcast.category.override.list"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+msgid "foreqcast.decision.request.form"
+msgstr "foreqcast.decision.request.form"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+msgid "foreqcast.decision.request.list"
+msgstr "foreqcast.decision.request.list"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+msgid "foreqcast.excel.upload.form"
+msgstr "foreqcast.excel.upload.form"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+msgid "foreqcast.product.override.list"
+msgstr "foreqcast.product.override.list"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "foreqcast.run.form"
 msgstr "Erro Foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#: code:addons/foreqcast/models/foreqcast_run.py:0
-#, python-format
-msgid "Foreqcast"
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "foreqcast.run.list"
+msgstr "Histórico de execuções Foreqcast"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "https://api.foreqcast.com/v1/forecasts"
+msgstr "https://api.foreqcast.com/v1/forecasts"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "https://s3.datastruct.tech"
+msgstr "https://s3.datastruct.tech"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "parqcast"
 msgstr "Foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Please configure Parquet Input Directory first."
-msgstr "Por favor configure primeiro o diretório de entrada Parquet."
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "parqcast-v18-demo"
+msgstr "parqcast-v18-demo"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Please configure Parquet Output Directory first."
-msgstr "Por favor configure primeiro o diretório de saída Parquet."
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "res.config.settings.view.form.foreqcast"
+msgstr "res.config.settings.view.form.foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_run.py:0
+#~ msgid "Run Date"
+#~ msgstr "Data de execução"
+
+#~ msgid "Products Analyzed"
+#~ msgstr "Produtos analisados"
+
+#~ msgid "Rules Created"
+#~ msgstr "Regras criadas"
+
+#~ msgid "Rules Updated"
+#~ msgstr "Regras atualizadas"
+
+#~ msgid "Rules Skipped"
+#~ msgstr "Regras ignoradas"
+
+#~ msgid "Duration (s)"
+#~ msgstr "Duração (s)"
+
+#~ msgid "Status"
+#~ msgstr "Estado"
+
+#~ msgid "Error Message"
+#~ msgstr "Mensagem de erro"
+
+#~ msgid "Horizon (days)"
+#~ msgstr "Horizonte (dias)"
+
+#~ msgid "Safety Factor Used"
+#~ msgstr "Fator de segurança utilizado"
+
+#~ msgid "Output Files"
+#~ msgstr "Ficheiros de saída"
+
+#~ msgid "Running"
+#~ msgstr "Em execução"
+
+#~ msgid "Complete"
+#~ msgstr "Concluído"
+
+#~ msgid "Odoo Attachments (from Parqcast)"
+#~ msgstr "Anexos Odoo (do Parqcast)"
+
+#~ msgid "Server Filesystem"
+#~ msgstr "Sistema de ficheiros do servidor"
+
+#~ msgid "Daily"
+#~ msgstr "Diário"
+
+#~ msgid "Weekly"
+#~ msgstr "Semanal"
+
+#~ msgid "Ignore (forecast only)"
+#~ msgstr "Ignorar (apenas previsão)"
+
+#~ msgid "Analyze (add inventory columns)"
+#~ msgstr "Analisar (adicionar colunas de inventário)"
+
+#~ msgid "Adjust (modify replenishment)"
+#~ msgstr "Ajustar (modificar reabastecimento)"
+
+#~ msgid "Forecast Horizon (days)"
+#~ msgstr "Horizonte de previsão (dias)"
+
+#~ msgid "Review Period (days)"
+#~ msgstr "Período de revisão (dias)"
+
+#~ msgid "Default Lead Time (days)"
+#~ msgstr "Prazo de entrega padrão (dias)"
+
+#~ msgid "Parquet Input Directory"
+#~ msgstr "Diretório de entrada Parquet"
+
+#~ msgid "Parquet Output Directory"
+#~ msgstr "Diretório de saída Parquet"
+
+#~ msgid "Config Database Path"
+#~ msgstr "Caminho da base de dados de configuração"
+
+#~ msgid "Overstock Threshold (days)"
+#~ msgstr "Limiar de excesso de stock (dias)"
+
+#~ msgid "Understock Threshold (days)"
+#~ msgstr "Limiar de rutura de stock (dias)"
+
+#~ msgid "Skip Overstocked Products"
+#~ msgstr "Ignorar produtos com excesso de stock"
+
+#~ msgid "Understock Service Level Bump"
+#~ msgstr "Aumento do nível de serviço em rutura"
+
+#~ msgid "Where to read parqcast export files from"
+#~ msgstr "De onde ler os ficheiros de exportação Parqcast"
+
+#~ msgid "Number of days to project demand forward"
+#~ msgstr "Número de dias para projetar a procura"
+
+#~ msgid "Granularity of demand aggregation"
+#~ msgstr "Granularidade da agregação de procura"
+
+#~ msgid ""
+#~ "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for "
+#~ "critical items. Higher values require more safety stock. Start at 0.85 "
+#~ "and increase per category as needed."
+#~ msgstr ""
+#~ "Taxa de preenchimento alvo (0,0-1,0). Defina 0,90 para serviço padrão ou "
+#~ "0,95 para itens críticos. Valores mais altos requerem mais stock de "
+#~ "segurança. Comece com 0,85 e aumente por categoria conforme necessário."
+
+#~ msgid "Days between replenishment reviews — affects max_qty calculation"
+#~ msgstr "Dias entre revisões de reabastecimento — afeta o cálculo de max_qty"
+
+#~ msgid "Fallback lead time when no supplier info exists for a product"
+#~ msgstr ""
+#~ "Prazo de entrega de reserva quando não existem informações de fornecedor "
+#~ "para um produto"
+
+#~ msgid "Minimum number of observations required to fit a regression"
+#~ msgstr "Número mínimo de observações necessárias para ajustar uma regressão"
+
+#~ msgid "Skip products with average daily demand below this value"
+#~ msgstr "Ignorar produtos com procura média diária abaixo deste valor"
+
+#~ msgid ""
+#~ "Automatically update orderpoints after forecast run (vs. parquet-only)"
+#~ msgstr ""
+#~ "Atualizar automaticamente os pontos de encomenda após execução de "
+#~ "previsão (vs. apenas parquet)"
+
+#~ msgid "Path to parqcast export directory"
+#~ msgstr "Caminho para o diretório de exportação Parqcast"
+
+#~ msgid "Path to write forecast and rules parquet files"
+#~ msgstr "Caminho para escrever ficheiros parquet de previsão e regras"
+
+#~ msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+#~ msgstr ""
+#~ "Caminho para a base de dados de configuração SQLite do Foreqcast (para "
+#~ "substituições por produto)"
+
+#~ msgid ""
+#~ "How to account for current inventory when computing replenishment rules"
+#~ msgstr ""
+#~ "Como considerar o inventário atual ao calcular regras de reabastecimento"
+
+#~ msgid ""
+#~ "Subtract reserved quantities from on-hand (conservative). Disable to let "
+#~ "planner reallocate all stock."
+#~ msgstr ""
+#~ "Subtrair quantidades reservadas do disponível (conservador). Desative "
+#~ "para permitir que o planeador redistribua todo o stock."
+
+#~ msgid "Count open PO and in-transit quantities as available inventory"
+#~ msgstr ""
+#~ "Contar encomendas de compra abertas e quantidades em trânsito como "
+#~ "inventário disponível"
+
+#~ msgid ""
+#~ "Subtract confirmed SO quantities. Off by default to avoid double-counting "
+#~ "with forecast."
+#~ msgstr ""
+#~ "Subtrair quantidades confirmadas de encomendas de venda. Desativado por "
+#~ "defeito para evitar dupla contagem com a previsão."
+
+#~ msgid ""
+#~ "Products with more than this many days of coverage are flagged as "
+#~ "overstock"
+#~ msgstr ""
+#~ "Produtos com mais do que este número de dias de cobertura são sinalizados "
+#~ "como excesso de stock"
+
+#~ msgid ""
+#~ "Products with fewer than this many days of coverage are flagged as "
+#~ "understock"
+#~ msgstr ""
+#~ "Produtos com menos do que este número de dias de cobertura são "
+#~ "sinalizados como rutura de stock"
+
+#~ msgid ""
+#~ "In adjust mode, raise service level by this amount for understocked "
+#~ "products (e.g. 0.95 → 0.98)"
+#~ msgstr ""
+#~ "No modo de ajuste, aumentar o nível de serviço por este valor para "
+#~ "produtos com rutura de stock (ex. 0,95 → 0,98)"
+
+#~ msgid "Demand Forecasting"
+#~ msgstr "Previsão de procura"
+
+#~ msgid "Forecast Parameters"
+#~ msgstr "Parâmetros de previsão"
+
+#~ msgid "Data Quality"
+#~ msgstr "Qualidade dos dados"
+
+#~ msgid "Integration"
+#~ msgstr "Integração"
+
+#~ msgid ""
+#~ "Reads parquet files from the latest completed Parqcast export. Output "
+#~ "files are stored as attachments on the Forecast Run record."
+#~ msgstr ""
+#~ "Lê ficheiros parquet da última exportação Parqcast concluída. Os "
+#~ "ficheiros de saída são armazenados como anexos no registo de execução de "
+#~ "previsão."
+
+#~ msgid "Config Database"
+#~ msgstr "Base de dados de configuração"
+
+#~ msgid "SQLite database for per-product overrides and audit trail"
+#~ msgstr ""
+#~ "Base de dados SQLite para substituições por produto e trilho de auditoria"
+
+#~ msgid "Inventory Position"
+#~ msgstr "Posição de inventário"
+
+#~ msgid "Inventory Thresholds"
+#~ msgstr "Limiares de inventário"
+
 #, python-format
-msgid "No %s found for this run."
-msgstr "Nenhum %s encontrado para esta execução."
+#~ msgid "Foreqcast Complete"
+#~ msgstr "Foreqcast concluído"
+
+#, python-format
+#~ msgid "Please configure Parquet Input Directory first."
+#~ msgstr "Por favor configure primeiro o diretório de entrada Parquet."
+
+#, python-format
+#~ msgid "Please configure Parquet Output Directory first."
+#~ msgstr "Por favor configure primeiro o diretório de saída Parquet."
+
+#, python-format
+#~ msgid "No %s found for this run."
+#~ msgstr "Nenhum %s encontrado para esta execução."
