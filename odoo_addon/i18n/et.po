@@ -16,674 +16,677 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: foreqcast
-#: model:ir.model,name:foreqcast.model_foreqcast_run
-msgid "Foreqcast Run History"
-msgstr "Foreqcast käivitamiste ajalugu"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "/data/foreqcast/output"
+msgstr "/data/foreqcast/output"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__run_date
-msgid "Run Date"
-msgstr "Käivitamise kuupäev"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "/data/parqcast/exports/latest"
+msgstr "/data/parqcast/exports/latest"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__parquet_source_dir
-msgid "Input Source"
-msgstr "Sisendi allikas"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "123e4567-e89b-12d3-a456-426614174000"
+msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_analyzed
-msgid "Products Analyzed"
-msgstr "Analüüsitud tooted"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Approve"
+msgstr "Kinnita"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__products_forecasted
-msgid "Products Forecasted"
-msgstr "Prognoositud tooted"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Approve & Apply"
+msgstr "Kinnita ja rakenda"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_created
-msgid "Rules Created"
-msgstr "Loodud reeglid"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_updated
-msgid "Rules Updated"
-msgstr "Uuendatud reeglid"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__rules_skipped
-msgid "Rules Skipped"
-msgstr "Vahele jäetud reeglid"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__duration_seconds
-msgid "Duration (s)"
-msgstr "Kestus (s)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__status
-msgid "Status"
-msgstr "Olek"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__error_message
-msgid "Error Message"
-msgstr "Veateade"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__forecast_horizon_days
-msgid "Horizon (days)"
-msgstr "Horisont (päeva)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__safety_factor
-msgid "Safety Factor Used"
-msgstr "Kasutatud ohutustegur"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__time_bucket
-msgid "Time Bucket"
-msgstr "Ajaperiood"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_foreqcast_run__attachment_count
-msgid "Output Files"
-msgstr "Väljundfailid"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Running"
-msgstr "Käimas"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Complete"
-msgstr "Lõpetatud"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_foreqcast_run__status
-msgid "Error"
-msgstr "Viga"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Odoo Attachments (from Parqcast)"
-msgstr "Odoo manused (Parqcast ekspordist)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Server Filesystem"
-msgstr "Serveri failisüsteem"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Daily"
-msgstr "Päevane"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Weekly"
-msgstr "Nädalane"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Ignore (forecast only)"
-msgstr "Ignoreeri (ainult prognoos)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Analyze (add inventory columns)"
-msgstr "Analüüsi (lisa laoveerud)"
-
-#. module: foreqcast
-#: model:ir.model.fields,selection:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Adjust (modify replenishment)"
-msgstr "Kohanda (muuda täiendamist)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_enabled
-msgid "Enable Foreqcast"
-msgstr "Luba Foreqcast"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Input Source"
-msgstr "Sisendi allikas"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_horizon_days
-msgid "Forecast Horizon (days)"
-msgstr "Prognoosi horisont (päeva)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Time Bucket"
-msgstr "Ajaperiood"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_service_level
-msgid "Service Level"
-msgstr "Teenindustase"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_review_period_days
-msgid "Review Period (days)"
-msgstr "Ülevaatuse periood (päeva)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_default_lead_time
-msgid "Default Lead Time (days)"
-msgstr "Vaikimisi tarneaeg (päeva)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_data_points
-msgid "Minimum Data Points"
-msgstr "Minimaalsed andmepunktid"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
-msgid "Minimum Demand Threshold"
-msgstr "Minimaalne nõudluse lävi"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_auto_push
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "Automaatne uuendamine tellimispunktidesse"
 
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
-msgid "Parquet Input Directory"
-msgstr "Parquet sisendkataloog"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
-msgid "Parquet Output Directory"
-msgstr "Parquet väljundkataloog"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_config_db_path
-msgid "Config Database Path"
-msgstr "Seadistuse andmebaasi tee"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "Inventory Mode"
-msgstr "Lao režiim"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_respect_reservations
-msgid "Respect Reservations"
-msgstr "Arvesta reserveeringuid"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_incoming
-msgid "Include Incoming Supply"
-msgstr "Kaasa sissetulev tarne"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_include_outgoing
-msgid "Include Outgoing Demand"
-msgstr "Kaasa väljaminev nõudlus"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_days
-msgid "Overstock Threshold (days)"
-msgstr "Ülelaoseisu lävi (päeva)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_days
-msgid "Understock Threshold (days)"
-msgstr "Alalaoseisu lävi (päeva)"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_overstock_skip
-msgid "Skip Overstocked Products"
-msgstr "Jäta vahele ülelaostatusega tooted"
-
-#. module: foreqcast
-#: model:ir.model.fields,field_description:foreqcast.field_res_config_settings__foreqcast_understock_bump
-msgid "Understock Service Level Bump"
-msgstr "Alalaoseisu teenindustaseme tõstmine"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_enabled
-msgid "Turn on demand forecasting and replenishment rule generation"
-msgstr "Lülita sisse nõudluse prognoosimine ja täiendamisreeglite genereerimine"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_input_source
-msgid "Where to read parqcast export files from"
-msgstr "Kust lugeda Parqcast ekspordifaile"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_horizon_days
-msgid "Number of days to project demand forward"
-msgstr "Mitu päeva nõudlust ette prognoosida"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_time_bucket
-msgid "Granularity of demand aggregation"
-msgstr "Nõudluse koondamise detailsus"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_service_level
-msgid "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. Higher values require more safety stock. Start at 0.85 and increase per category as needed."
-msgstr "Siht-täitmismäär (0,0–1,0). Määrake 0,90 standardse teenuse jaoks või 0,95 kriitiliste artiklite jaoks. Kõrgemad väärtused nõuavad rohkem ohutusvaru. Alustage 0,85-st ja suurendage kategooriate kaupa vastavalt vajadusele."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_review_period_days
-msgid "Days between replenishment reviews — affects max_qty calculation"
-msgstr "Päevad täiendamise ülevaatuste vahel — mõjutab max_qty arvutust"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_default_lead_time
-msgid "Fallback lead time when no supplier info exists for a product"
-msgstr "Varutarneaeg, kui tootele puuduvad tarnija andmed"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_data_points
-msgid "Minimum number of observations required to fit a regression"
-msgstr "Regressiooni sobitamiseks nõutavate vaatluste minimaalne arv"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_min_demand_threshold
-msgid "Skip products with average daily demand below this value"
-msgstr "Jäta vahele tooted, mille keskmine päevane nõudlus on alla selle väärtuse"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_auto_push
-msgid "Automatically update orderpoints after forecast run (vs. parquet-only)"
-msgstr "Uuenda tellimispunkte automaatselt pärast prognoosi käivitamist (vs. ainult parquet)"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_input_dir
-msgid "Path to parqcast export directory"
-msgstr "Tee Parqcast ekspordikataloogi"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_parquet_output_dir
-msgid "Path to write forecast and rules parquet files"
-msgstr "Tee prognoosi- ja reeglite parquet-failide kirjutamiseks"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_config_db_path
-msgid "Path to foreqcast SQLite config database (for per-product overrides)"
-msgstr "Tee Foreqcast SQLite seadistuse andmebaasini (tootekohaseks alistamiseks)"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_inventory_mode
-msgid "How to account for current inventory when computing replenishment rules"
-msgstr "Kuidas arvestada praegust ladu täiendamisreeglite arvutamisel"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_respect_reservations
-msgid "Subtract reserved quantities from on-hand (conservative). Disable to let planner reallocate all stock."
-msgstr "Lahuta reserveeritud kogused laoseisust (konservatiivne). Keela, et planeerija saaks kogu varu ümber jaotada."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_incoming
-msgid "Count open PO and in-transit quantities as available inventory"
-msgstr "Loe avatud ostutellimused ja teel olevad kogused saadaolevaks laoks"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_include_outgoing
-msgid "Subtract confirmed SO quantities. Off by default to avoid double-counting with forecast."
-msgstr "Lahuta kinnitatud müügitellimuste kogused. Vaikimisi välja lülitatud, et vältida topeltarvestust prognoosiga."
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_days
-msgid "Products with more than this many days of coverage are flagged as overstock"
-msgstr "Tooted, millel on rohkem kattepäevi kui see arv, märgitakse ülelaoseisuna"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_days
-msgid "Products with fewer than this many days of coverage are flagged as understock"
-msgstr "Tooted, millel on vähem kattepäevi kui see arv, märgitakse alalaoseisuna"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_overstock_skip
-msgid "In adjust mode, don't create orderpoints for overstocked products"
-msgstr "Kohandamisrežiimis ära loo tellimispunkte ülelaostatusega toodetele"
-
-#. module: foreqcast
-#: model:ir.model.fields,help:foreqcast.field_res_config_settings__foreqcast_understock_bump
-msgid "In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)"
-msgstr "Kohandamisrežiimis tõsta teenindustaseme selle võrra alalaoseisu toodete jaoks (nt 0,95 → 0,98)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Demand Forecasting"
-msgstr "Nõudluse prognoosimine"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Enable Foreqcast"
-msgstr "Luba Foreqcast"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Turn on demand forecasting and replenishment rule generation"
-msgstr "Lülita sisse nõudluse prognoosimine ja täiendamisreeglite genereerimine"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Forecast Parameters"
-msgstr "Prognoosi parameetrid"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Forecast Horizon"
-msgstr "Prognoosi horisont"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "How many days ahead to project demand"
-msgstr "Mitu päeva ette nõudlust prognoosida"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Granularity of demand aggregation for regression"
-msgstr "Nõudluse koondamise detailsus regressiooni jaoks"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
-msgstr "Siht-täitmismäär. Määrake 0,90 standardse teenuse jaoks või 0,95 kriitiliste artiklite jaoks. Kõrgemad väärtused nõuavad rohkem ohutusvaru."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Review Period"
-msgstr "Ülevaatuse periood"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Days between replenishment checks (affects max qty)"
-msgstr "Päevad täiendamise kontrollide vahel (mõjutab max kogust)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Default Lead Time"
-msgstr "Vaikimisi tarneaeg"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Fallback when no supplier info exists for a product"
-msgstr "Varuväärtus, kui tootele puuduvad tarnija andmed"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Data Quality"
-msgstr "Andmekvaliteet"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Require at least this many observations to forecast"
-msgstr "Nõua vähemalt nii palju vaatlusi prognoosimiseks"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Skip products with daily demand below this"
-msgstr "Jäta vahele tooted, mille päevane nõudlus on alla selle"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Integration"
-msgstr "Integratsioon"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Where to read parqcast export data from"
-msgstr "Kust lugeda Parqcast ekspordiandmeid"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Odoo Attachments"
-msgstr "Odoo manused"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Foreqcast reads directly from the latest Parqcast export run's attachments. No file paths needed."
-msgstr "Foreqcast loeb otse viimase Parqcast ekspordikäivituse manustest. Failiteid pole vaja."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Reads parquet files from the latest completed Parqcast export. Output files are stored as attachments on the Forecast Run record."
-msgstr "Loeb parquet-faile viimasest lõpetatud Parqcast ekspordist. Väljundfailid salvestatakse manustena prognoosi käivitamise kirjele."
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Parquet Directories"
-msgstr "Parquet kataloogid"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Server file paths for parqcast input and forecast output"
-msgstr "Serveri failiteed Parqcast sisendi ja prognoosi väljundi jaoks"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Auto-push to Orderpoints"
-msgstr "Automaatne uuendamine tellimispunktidesse"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
 msgid "Automatically update Odoo reorder rules after each forecast run"
-msgstr "Uuenda Odoo tellimispunkte automaatselt pärast iga prognoosi käivitamist"
+msgstr "Uuenda automaatselt Odoo tellimisreegleid pärast iga prognoosi"
+"Uuenda Odoo tellimispunkte automaatselt pärast iga prognoosi käivitamist"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Config Database"
-msgstr "Seadistuse andmebaas"
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Cancel"
+msgstr "Tühista"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "SQLite database for per-product overrides and audit trail"
-msgstr "SQLite andmebaas tootekohaseks alistamiseks ja auditijäljeks"
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "Category Overrides"
+msgstr "Kategooria ülekirjutamised"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run Pipeline"
-msgstr "Käivita töövoog"
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Configure external HTTP server for demand processing"
+msgstr "Seadista väline HTTP-server nõudluse töötlemiseks"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Execute the forecast pipeline now with current settings"
-msgstr "Käivita prognoosi töövoog kohe praeguste seadistustega"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run Now"
-msgstr "Käivita kohe"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Run the forecast pipeline with current settings?"
-msgstr "Kas käivitada prognoosi töövoog praeguste seadistustega?"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Position"
-msgstr "Laopositsioon"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Mode"
-msgstr "Lao režiim"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "How to account for current inventory state"
-msgstr "Kuidas arvestada praegust laoseisundit"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Respect Reservations"
-msgstr "Arvesta reserveeringuid"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Subtract reserved stock from available position (conservative)"
-msgstr "Lahuta reserveeritud varu saadaolevast positsioonist (konservatiivne)"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Include Incoming Supply"
-msgstr "Kaasa sissetulev tarne"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Count open PO and in-transit quantities"
 msgstr "Loe avatud ostutellimused ja teel olevad kogused"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Include Outgoing Demand"
-msgstr "Kaasa väljaminev nõudlus"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Current Values"
+msgstr "Praegused väärtused"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
-msgstr "Lahuta kinnitatud müügitellimuste kogused (vaikimisi välja lülitatud topeltarvestuse vältimiseks)"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Days between replenishment checks (affects max qty)"
+msgstr "Päevad täiendamise kontrollide vahel (mõjutab max kogust)"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Inventory Thresholds"
-msgstr "Lao läviväärtused"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Overstock Threshold"
-msgstr "Ülelaoseisu lävi"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Days of coverage above which a product is flagged as overstocked"
 msgstr "Kattepäevade arv, mille ületamisel toode märgitakse ülelaoseisuna"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Understock Threshold"
-msgstr "Alalaoseisu lävi"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Days of coverage below which a product is flagged as understocked"
-msgstr "Kattepäevade arv, millest väiksema puhul toode märgitakse alalaoseisuna"
+msgstr ""
+"Kattepäevade arv, millest väiksema puhul toode märgitakse alalaoseisuna"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Skip Overstocked"
-msgstr "Jäta ülelaostatusega vahele"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Decision Request"
+msgstr "Otsuse taotlus"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "In adjust mode, don't create orderpoints for overstocked products"
-msgstr "Kohandamisrežiimis ära loo tellimispunkte ülelaostatusega toodetele"
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Decision Requests"
+msgstr "Otsuse taotlused"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "Understock SL Bump"
-msgstr "Alalaoseisu teenindustaseme tõstmine"
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Decisions"
+msgstr "Otsused"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.res_config_settings_view_form_foreqcast
-msgid "In adjust mode, raise service level by this for understocked products"
-msgstr "Kohandamisrežiimis tõsta teenindustaseme selle võrra alalaoseisu toodete jaoks"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Default Lead Time"
+msgstr "Vaikimisi tarneaeg"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Default Max Qty"
+msgstr "Vaikimisi tarneaeg"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Default Min Qty"
+msgstr "Vaikimisi min kogus"
+
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "Laadi alla kõik (ZIP)"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Excel"
 msgstr "Laadi alla Excel"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Download Rules"
-msgstr "Laadi alla reeglid"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Forecast"
 msgstr "Laadi alla prognoos"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Download Inventory"
 msgstr "Laadi alla laoandmed"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Run Info"
-msgstr "Käivitamise teave"
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Download Rules"
+msgstr "Laadi alla reeglid"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Parameters"
-msgstr "Parameetrid"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Enable Foreqcast"
+msgstr "Luba Foreqcast"
 
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
-msgid "Results"
-msgstr "Tulemused"
-
-#. module: foreqcast
-#: model:ir.ui.view,arch_db:foreqcast.foreqcast_run_view_form
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Error"
 msgstr "Viga"
 
-#. module: foreqcast
-#: model:ir.actions.act_window,name:foreqcast.foreqcast_run_action
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Excel File"
+msgstr "Exceli fail"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Execute the forecast pipeline now with current settings"
+msgstr "Käivita prognoosi töövoog kohe praeguste seadistustega"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "External Forecast Server"
+msgstr "Luba Foreqcast"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Fallback when no supplier info exists for a product"
+msgstr "Varuväärtus, kui tootele puuduvad tarnija andmed"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Files"
+msgstr "Failid"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Forecast Horizon"
+msgstr "Prognoosi horisont"
+
+#: odoo_addon/views/foreqcast_run_views.xml
 msgid "Forecast Runs"
 msgstr "Prognoosi käivitamised"
 
-#. module: foreqcast
-#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_root
+#: odoo_addon/views/foreqcast_settings_views.xml
 msgid "Foreqcast"
 msgstr "Foreqcast"
 
-#. module: foreqcast
-#: model:ir.ui.menu,name:foreqcast.foreqcast_menu_runs
-msgid "Forecast Runs"
-msgstr "Prognoosi käivitamised"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Foreqcast reads directly from the latest Parqcast export run's attachments. "
+"No file paths needed."
+msgstr ""
+"Foreqcast loeb otse viimase Parqcast ekspordikäivituse manustest. Failiteid "
+"pole vaja."
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Foreqcast Complete"
-msgstr "Foreqcast lõpetatud"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Global fallback Max Qty for products with insufficient history"
+msgstr ""
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Foreqcast Error"
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Global fallback Min Qty for products with insufficient history"
+msgstr ""
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Granularity of demand aggregation for regression"
+msgstr "Nõudluse koondamise detailsus regressiooni jaoks"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "How many days ahead to project demand"
+msgstr "Mitu päeva ette nõudlust prognoosida"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "How to account for current inventory state"
+msgstr "Kuidas arvestada praegust laoseisundit"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "In adjust mode, don't create orderpoints for overstocked products"
+msgstr "Kohandamisrežiimis ära loo tellimispunkte ülelaostatusega toodetele"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "In adjust mode, raise service level by this for understocked products"
+msgstr ""
+"Kohandamisrežiimis tõsta teenindustaseme selle võrra alalaoseisu toodete "
+"jaoks"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Include Incoming Supply"
+msgstr "Kaasa sissetulev tarne"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Include Outgoing Demand"
+msgstr "Kaasa väljaminev nõudlus"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Input"
+msgstr "Sisend"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Input Source"
+msgstr "Sisendi allikas"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Inventory Mode"
+msgstr "Lao režiim"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Mark Review"
+msgstr "Märgi ülevaatamiseks"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Minimum Data Points"
+msgstr "Minimaalsed andmepunktid"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Minimum Demand Threshold"
+msgstr "Minimaalne nõudluse lävi"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Minimum History Days"
+msgstr "Minimaalsed ajaloo päevad"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Needs Review"
+msgstr "Vajab ülevaatamist"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Odoo Attachments"
+msgstr "Odoo manused"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Overstock Threshold"
+msgstr "Ülelaoseisu lävi"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Parameters"
+msgstr "Parameetrid"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Parquet Directories"
+msgstr "Parquet kataloogid"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+#, fuzzy
+msgid "Product Overrides"
+msgstr "Prognoositud tooted"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Proposed Changes"
+msgstr "Kavandatud muudatused"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Read Parqcast exports directly from an S3-compatible bucket"
+msgstr "Loe Parqcasti eksporte otse S3-ühilduvast ämbrist"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+#, fuzzy
+msgid "Reject"
+msgstr "Lükka tagasi"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Require at least this many days of history to forecast"
+msgstr "Nõua vähemalt nii palju vaatlusi prognoosimiseks"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Require at least this many observations to forecast"
+msgstr "Nõua vähemalt nii palju vaatlusi prognoosimiseks"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Respect Reservations"
+msgstr "Arvesta reserveeringuid"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Results"
+msgstr "Tulemused"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Review Period"
+msgstr "Ülevaatuse periood"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+msgid "Run Info"
+msgstr "Käivitamise teave"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run Now"
+msgstr "Käivita kohe"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run Pipeline"
+msgstr "Käivita töövoog"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Run the forecast pipeline with current settings?"
+msgstr "Kas käivitada prognoosi töövoog praeguste seadistustega?"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "S3 Configuration"
+msgstr "S3 konfiguratsioon"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Server file paths for parqcast input and forecast output"
+msgstr "Serveri failiteed Parqcast sisendi ja prognoosi väljundi jaoks"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Service Level"
+msgstr "Teenindustase"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Skip Overstocked"
+msgstr "Jäta ülelaostatusega vahele"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Skip products with daily demand below this"
+msgstr "Jäta vahele tooted, mille päevane nõudlus on alla selle"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Subtract confirmed SO quantities (off by default to avoid double-counting)"
+msgstr ""
+"Lahuta kinnitatud müügitellimuste kogused (vaikimisi välja lülitatud "
+"topeltarvestuse vältimiseks)"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Subtract reserved stock from available position (conservative)"
+msgstr "Lahuta reserveeritud varu saadaolevast positsioonist (konservatiivne)"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid ""
+"Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
+"items. Higher values need more safety stock."
+msgstr ""
+"Siht-täitmismäär. Määrake 0,90 standardse teenuse jaoks või 0,95 kriitiliste "
+"artiklite jaoks. Kõrgemad väärtused nõuavad rohkem ohutusvaru."
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Time Bucket"
+msgstr "Ajaperiood"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "Turn on demand forecasting and replenishment rule generation"
+msgstr "Lülita sisse nõudluse prognoosimine ja täiendamisreeglite loomine"
+"Lülita sisse nõudluse prognoosimine ja täiendamisreeglite genereerimine"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Understock SL Bump"
+msgstr "Alalaoseisu teenindustaseme tõstmine"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Understock Threshold"
+msgstr "Alalaoseisu lävi"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Upload & Update"
+msgstr "Laadi üles ja värskenda"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "Upload Excel Review"
+msgstr "Laadi alla Excel"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+#, fuzzy
+msgid "Upload Modified Excel"
+msgstr "Laadi üles muudetud Excel"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "Where to read parqcast export data from"
+msgstr "Kust lugeda Parqcast ekspordiandmeid"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "eu-central-1"
+msgstr "eu-central-1"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+msgid "foreqcast.category.override.list"
+msgstr "foreqcast.category.override.list"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+msgid "foreqcast.decision.request.form"
+msgstr "foreqcast.decision.request.form"
+
+#: odoo_addon/views/foreqcast_decision_views.xml
+msgid "foreqcast.decision.request.list"
+msgstr "foreqcast.decision.request.list"
+
+#: odoo_addon/views/foreqcast_excel_wizard_views.xml
+msgid "foreqcast.excel.upload.form"
+msgstr "foreqcast.excel.upload.form"
+
+#: odoo_addon/views/foreqcast_override_views.xml
+msgid "foreqcast.product.override.list"
+msgstr "foreqcast.product.override.list"
+
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "foreqcast.run.form"
 msgstr "Foreqcast viga"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#: code:addons/foreqcast/models/foreqcast_run.py:0
-#, python-format
-msgid "Foreqcast"
+#: odoo_addon/views/foreqcast_run_views.xml
+#, fuzzy
+msgid "foreqcast.run.list"
+msgstr "Foreqcast käivitamiste ajalugu"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "https://api.foreqcast.com/v1/forecasts"
+msgstr "https://api.foreqcast.com/v1/forecasts"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "https://s3.datastruct.tech"
+msgstr "https://s3.datastruct.tech"
+
+#: odoo_addon/views/foreqcast_settings_views.xml
+#, fuzzy
+msgid "parqcast"
 msgstr "Foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Please configure Parquet Input Directory first."
-msgstr "Palun seadistage esmalt Parquet sisendkataloog."
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "parqcast-v18-demo"
+msgstr "parqcast-v18-demo"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_settings.py:0
-#, python-format
-msgid "Please configure Parquet Output Directory first."
-msgstr "Palun seadistage esmalt Parquet väljundkataloog."
+#: odoo_addon/views/foreqcast_settings_views.xml
+msgid "res.config.settings.view.form.foreqcast"
+msgstr "res.config.settings.view.form.foreqcast"
 
-#. module: foreqcast
-#: code:addons/foreqcast/models/foreqcast_run.py:0
+#~ msgid "Run Date"
+#~ msgstr "Käivitamise kuupäev"
+
+#~ msgid "Products Analyzed"
+#~ msgstr "Analüüsitud tooted"
+
+#~ msgid "Rules Created"
+#~ msgstr "Loodud reeglid"
+
+#~ msgid "Rules Updated"
+#~ msgstr "Uuendatud reeglid"
+
+#~ msgid "Rules Skipped"
+#~ msgstr "Vahele jäetud reeglid"
+
+#~ msgid "Duration (s)"
+#~ msgstr "Kestus (s)"
+
+#~ msgid "Status"
+#~ msgstr "Olek"
+
+#~ msgid "Error Message"
+#~ msgstr "Veateade"
+
+#~ msgid "Horizon (days)"
+#~ msgstr "Horisont (päeva)"
+
+#~ msgid "Safety Factor Used"
+#~ msgstr "Kasutatud ohutustegur"
+
+#~ msgid "Output Files"
+#~ msgstr "Väljundfailid"
+
+#~ msgid "Running"
+#~ msgstr "Käimas"
+
+#~ msgid "Complete"
+#~ msgstr "Lõpetatud"
+
+#~ msgid "Odoo Attachments (from Parqcast)"
+#~ msgstr "Odoo manused (Parqcast ekspordist)"
+
+#~ msgid "Server Filesystem"
+#~ msgstr "Serveri failisüsteem"
+
+#~ msgid "Daily"
+#~ msgstr "Päevane"
+
+#~ msgid "Weekly"
+#~ msgstr "Nädalane"
+
+#~ msgid "Ignore (forecast only)"
+#~ msgstr "Ignoreeri (ainult prognoos)"
+
+#~ msgid "Analyze (add inventory columns)"
+#~ msgstr "Analüüsi (lisa laoveerud)"
+
+#~ msgid "Adjust (modify replenishment)"
+#~ msgstr "Kohanda (muuda täiendamist)"
+
+#~ msgid "Forecast Horizon (days)"
+#~ msgstr "Prognoosi horisont (päeva)"
+
+#~ msgid "Review Period (days)"
+#~ msgstr "Ülevaatuse periood (päeva)"
+
+#~ msgid "Default Lead Time (days)"
+#~ msgstr "Vaikimisi tarneaeg (päeva)"
+
+#~ msgid "Parquet Input Directory"
+#~ msgstr "Parquet sisendkataloog"
+
+#~ msgid "Parquet Output Directory"
+#~ msgstr "Parquet väljundkataloog"
+
+#~ msgid "Config Database Path"
+#~ msgstr "Seadistuse andmebaasi tee"
+
+#~ msgid "Overstock Threshold (days)"
+#~ msgstr "Ülelaoseisu lävi (päeva)"
+
+#~ msgid "Understock Threshold (days)"
+#~ msgstr "Alalaoseisu lävi (päeva)"
+
+#~ msgid "Skip Overstocked Products"
+#~ msgstr "Jäta vahele ülelaostatusega tooted"
+
+#~ msgid "Understock Service Level Bump"
+#~ msgstr "Alalaoseisu teenindustaseme tõstmine"
+
+#~ msgid "Where to read parqcast export files from"
+#~ msgstr "Kust lugeda Parqcast ekspordifaile"
+
+#~ msgid "Number of days to project demand forward"
+#~ msgstr "Mitu päeva nõudlust ette prognoosida"
+
+#~ msgid "Granularity of demand aggregation"
+#~ msgstr "Nõudluse koondamise detailsus"
+
+#~ msgid ""
+#~ "Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for "
+#~ "critical items. Higher values require more safety stock. Start at 0.85 "
+#~ "and increase per category as needed."
+#~ msgstr ""
+#~ "Siht-täitmismäär (0,0–1,0). Määrake 0,90 standardse teenuse jaoks või "
+#~ "0,95 kriitiliste artiklite jaoks. Kõrgemad väärtused nõuavad rohkem "
+#~ "ohutusvaru. Alustage 0,85-st ja suurendage kategooriate kaupa vastavalt "
+#~ "vajadusele."
+
+#~ msgid "Days between replenishment reviews — affects max_qty calculation"
+#~ msgstr "Päevad täiendamise ülevaatuste vahel — mõjutab max_qty arvutust"
+
+#~ msgid "Fallback lead time when no supplier info exists for a product"
+#~ msgstr "Varutarneaeg, kui tootele puuduvad tarnija andmed"
+
+#~ msgid "Minimum number of observations required to fit a regression"
+#~ msgstr "Regressiooni sobitamiseks nõutavate vaatluste minimaalne arv"
+
+#~ msgid "Skip products with average daily demand below this value"
+#~ msgstr ""
+#~ "Jäta vahele tooted, mille keskmine päevane nõudlus on alla selle väärtuse"
+
+#~ msgid ""
+#~ "Automatically update orderpoints after forecast run (vs. parquet-only)"
+#~ msgstr ""
+#~ "Uuenda tellimispunkte automaatselt pärast prognoosi käivitamist (vs. "
+#~ "ainult parquet)"
+
+#~ msgid "Path to parqcast export directory"
+#~ msgstr "Tee Parqcast ekspordikataloogi"
+
+#~ msgid "Path to write forecast and rules parquet files"
+#~ msgstr "Tee prognoosi- ja reeglite parquet-failide kirjutamiseks"
+
+#~ msgid "Path to foreqcast SQLite config database (for per-product overrides)"
+#~ msgstr ""
+#~ "Tee Foreqcast SQLite seadistuse andmebaasini (tootekohaseks alistamiseks)"
+
+#~ msgid ""
+#~ "How to account for current inventory when computing replenishment rules"
+#~ msgstr "Kuidas arvestada praegust ladu täiendamisreeglite arvutamisel"
+
+#~ msgid ""
+#~ "Subtract reserved quantities from on-hand (conservative). Disable to let "
+#~ "planner reallocate all stock."
+#~ msgstr ""
+#~ "Lahuta reserveeritud kogused laoseisust (konservatiivne). Keela, et "
+#~ "planeerija saaks kogu varu ümber jaotada."
+
+#~ msgid "Count open PO and in-transit quantities as available inventory"
+#~ msgstr "Loe avatud ostutellimused ja teel olevad kogused saadaolevaks laoks"
+
+#~ msgid ""
+#~ "Subtract confirmed SO quantities. Off by default to avoid double-counting "
+#~ "with forecast."
+#~ msgstr ""
+#~ "Lahuta kinnitatud müügitellimuste kogused. Vaikimisi välja lülitatud, et "
+#~ "vältida topeltarvestust prognoosiga."
+
+#~ msgid ""
+#~ "Products with more than this many days of coverage are flagged as "
+#~ "overstock"
+#~ msgstr ""
+#~ "Tooted, millel on rohkem kattepäevi kui see arv, märgitakse ülelaoseisuna"
+
+#~ msgid ""
+#~ "Products with fewer than this many days of coverage are flagged as "
+#~ "understock"
+#~ msgstr ""
+#~ "Tooted, millel on vähem kattepäevi kui see arv, märgitakse alalaoseisuna"
+
+#~ msgid ""
+#~ "In adjust mode, raise service level by this amount for understocked "
+#~ "products (e.g. 0.95 → 0.98)"
+#~ msgstr ""
+#~ "Kohandamisrežiimis tõsta teenindustaseme selle võrra alalaoseisu toodete "
+#~ "jaoks (nt 0,95 → 0,98)"
+
+#~ msgid "Demand Forecasting"
+#~ msgstr "Nõudluse prognoosimine"
+
+#~ msgid "Forecast Parameters"
+#~ msgstr "Prognoosi parameetrid"
+
+#~ msgid "Data Quality"
+#~ msgstr "Andmekvaliteet"
+
+#~ msgid "Integration"
+#~ msgstr "Integratsioon"
+
+#~ msgid ""
+#~ "Reads parquet files from the latest completed Parqcast export. Output "
+#~ "files are stored as attachments on the Forecast Run record."
+#~ msgstr ""
+#~ "Loeb parquet-faile viimasest lõpetatud Parqcast ekspordist. Väljundfailid "
+#~ "salvestatakse manustena prognoosi käivitamise kirjele."
+
+#~ msgid "Config Database"
+#~ msgstr "Seadistuse andmebaas"
+
+#~ msgid "SQLite database for per-product overrides and audit trail"
+#~ msgstr "SQLite andmebaas tootekohaseks alistamiseks ja auditijäljeks"
+
+#~ msgid "Inventory Position"
+#~ msgstr "Laopositsioon"
+
+#~ msgid "Inventory Thresholds"
+#~ msgstr "Lao läviväärtused"
+
 #, python-format
-msgid "No %s found for this run."
-msgstr "Selle käivitamise jaoks ei leitud ühtegi %s."
+#~ msgid "Foreqcast Complete"
+#~ msgstr "Foreqcast lõpetatud"
+
+#, python-format
+#~ msgid "Please configure Parquet Input Directory first."
+#~ msgstr "Palun seadistage esmalt Parquet sisendkataloog."
+
+#, python-format
+#~ msgid "Please configure Parquet Output Directory first."
+#~ msgstr "Palun seadistage esmalt Parquet väljundkataloog."
+
+#, python-format
+#~ msgid "No %s found for this run."
+#~ msgstr "Selle käivitamise jaoks ei leitud ühtegi %s."
