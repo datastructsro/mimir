@@ -1,9 +1,11 @@
 import base64
 import logging
 import tempfile
+import uuid
 from pathlib import Path
 
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -67,7 +69,7 @@ class ForeqcastSettings(models.TransientModel):
         string="Time Bucket",
         config_parameter="foreqcast.time_bucket",
         default="daily",
-        help="Granularity of demand aggregation",
+        help="Granularity of demand requested from the forecast server (Daily vs. Weekly)",
     )
     foreqcast_service_level = fields.Float(
         string="Service Level",
@@ -134,6 +136,26 @@ class ForeqcastSettings(models.TransientModel):
         config_parameter="foreqcast.parquet_output_dir",
         help="Path to write forecast and rules parquet files",
     )
+    foreqcast_external_forecast_uri = fields.Char(
+        string="External Forecast URI",
+        config_parameter="foreqcast.external_forecast_uri",
+        help="Base URI for the external HTTP forecast server",
+    )
+    foreqcast_external_api_key = fields.Char(
+        string="External API Key (UUID)",
+        config_parameter="foreqcast.external_api_key",
+        help="API Key for the external forecast server (Must be a UUID)",
+    )
+
+    @api.constrains('foreqcast_external_api_key')
+    def _check_external_api_key(self):
+        for record in self:
+            if record.foreqcast_external_api_key:
+                try:
+                    uuid.UUID(record.foreqcast_external_api_key)
+                except ValueError:
+                    raise ValidationError("External API Key must be a valid UUID format (e.g. 123e4567-e89b-12d3-a456-426614174000).")
+
     # Removed config_db_path as we use ORM models now
 
     # Inventory position settings
@@ -375,6 +397,9 @@ class ForeqcastSettings(models.TransientModel):
                 understock_threshold_days=float(ICP.get_param("foreqcast.understock_threshold_days", "3.0")),
                 overstock_skip=ICP.get_param("foreqcast.overstock_skip", "True") == "True",
                 understock_service_level_bump=float(ICP.get_param("foreqcast.understock_service_level_bump", "0.03")),
+                odoo_db=self.env.cr.dbname,
+                external_forecast_uri=ICP.get_param("foreqcast.external_forecast_uri", "").strip(),
+                external_forecast_api_key=ICP.get_param("foreqcast.external_api_key", "").strip(),
             )
 
             # Load overrides from ORM

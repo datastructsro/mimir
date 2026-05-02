@@ -2,13 +2,79 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
+from dataclasses import dataclass
 from datetime import date
 
 import numpy as np
+import pyarrow as pa
 
-from foreqcast.aggregator import DemandPoint
 from foreqcast.config import ForeqcastConfig
 from foreqcast.forecaster import ForecastResult
+
+
+@dataclass
+class DemandPoint:
+    """Single demand observation for a time bucket."""
+    bucket_date: date
+    total_qty: float
+    order_count: int
+
+def aggregate_demand(
+    sale_order_lines: pa.Table,
+    bucket: str = "daily",
+    exclude_states: set[str] | None = None,
+) -> dict[tuple[int, int], list[DemandPoint]]:
+    """Aggregate SOL data into demand time series per (product, warehouse)."""
+    import pyarrow.compute as _pc
+
+    if exclude_states is None:
+        exclude_states = {"cancel"}
+
+    t = sale_order_lines
+
+    if exclude_states:
+        state_col = t.column("so_state")
+        mask = _pc.invert(_pc.is_in(state_col, value_set=pa.array(list(exclude_states))))
+        t = t.filter(mask)
+
+    for col_name in ("_odoo_product_id", "_odoo_warehouse_id", "product_uom_qty", "date_order"):
+        t = t.filter(_pc.is_valid(t.column(col_name)))
+
+    if t.num_rows == 0:
+        return {}
+
+    date_col = t.column("date_order")
+    if hasattr(date_col.type, "tz") and date_col.type.tz is not None:
+        date_col = _pc.cast(date_col, pa.timestamp("us"))
+    date_col = _pc.cast(date_col, pa.date32())
+
+    if bucket == "weekly":
+        dow = _pc.day_of_week(date_col)
+        date_as_ts = _pc.cast(date_col, pa.timestamp("s"))
+        offset = _pc.multiply(_pc.cast(dow, pa.int64()), pa.scalar(-86400, pa.int64()))
+        date_col = _pc.cast(_pc.add(date_as_ts, _pc.cast(offset, pa.duration("s"))), pa.date32())
+
+    t = t.set_column(t.schema.get_field_index("date_order"), "date_order", date_col)
+
+    result = t.group_by(["_odoo_product_id", "_odoo_warehouse_id", "date_order"]).aggregate(
+        [("product_uom_qty", "sum"), ("product_uom_qty", "count")]
+    )
+
+    series: dict[tuple[int, int], list[DemandPoint]] = defaultdict(list)
+    for row in result.to_pylist():
+        pid = row["_odoo_product_id"]
+        wid = row["_odoo_warehouse_id"]
+        d = row["date_order"]
+        s = row["product_uom_qty_sum"]
+        c = row["product_uom_qty_count"]
+        if None not in (pid, wid, d, s, c):
+            series[(pid, wid)].append(DemandPoint(bucket_date=d, total_qty=float(s), order_count=int(c)))
+
+    for key in series:
+        series[key].sort(key=lambda dp: dp.bucket_date)
+
+    return dict(series)
 
 
 def fit_demand(
@@ -205,13 +271,34 @@ def _rolling_quantile(daily: np.ndarray, window_days: int, percentile: float) ->
 class MockForecastProvider:
     """Simulates the external foreqcast-server returning ForecastResults enriched with quantile computations."""
 
+    def __init__(self, demand_series: dict[tuple[int, int], list[DemandPoint]] | None = None, input_dir: str | None = None):
+        self.demand_series = demand_series or {}
+        self.input_dir = input_dir
+
     def get_forecasts(
         self,
-        demand_series: dict[tuple[int, int], list[DemandPoint]],
         config: ForeqcastConfig,
     ) -> list[ForecastResult]:
+        import uuid
+        api_key = config.external_forecast_api_key
+        if api_key:
+            try:
+                uuid.UUID(api_key)
+            except ValueError:
+                raise ValueError("Mock server rejected invalid UUID api key")
+
+        series = self.demand_series
+        if self.input_dir:
+            from pathlib import Path
+
+            import pyarrow.parquet as pq
+            sol_path = Path(self.input_dir) / "sale_order_line.parquet"
+            if sol_path.exists():
+                sol = pq.read_table(sol_path)
+                series = aggregate_demand(sol, bucket=config.time_bucket)
+
         forecasts: list[ForecastResult] = []
-        for (pid, wid), points in demand_series.items():
+        for (pid, wid), points in series.items():
             result = fit_demand(
                 product_id=pid,
                 warehouse_id=wid,

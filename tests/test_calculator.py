@@ -79,9 +79,8 @@ def test_fallback_without_quantile():
         quantile_result=None,
     )
 
-    assert rule.action == "create"
-    assert rule.min_qty > 0
-    assert rule.max_qty >= rule.min_qty
+    assert rule.action == "skip"
+    assert rule.skip_reason == "missing_quantile_data"
 
 
 def test_below_threshold_skipped():

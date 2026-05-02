@@ -209,7 +209,6 @@ def calculate_rule(
     # Resolve parameters
     planned_lead_time = resolve_lead_time(pid, category_id, supplier_info, config)
     empirical_lead_time = 0  # Placeholder: to be populated when parqcast exports PO receipts
-    effective_lead_time = empirical_lead_time if empirical_lead_time > 0 else planned_lead_time
     service_level = resolve_service_level(pid, category_id, config)
     review = resolve_review_period(pid, category_id, config)
 
@@ -255,9 +254,10 @@ def calculate_rule(
     if quantile_result is not None:
         min_qty, max_qty = quantile_result
     else:
-        # Fallback: point estimate (for products where quantile couldn't be computed)
-        min_qty = daily * effective_lead_time * (1.0 / (1.0 - service_level)) ** 0.5
-        max_qty = daily * (effective_lead_time + review) * (1.0 / (1.0 - service_level)) ** 0.5
+        # Without quantile result and no default fallback, we cannot proceed.
+        # This shouldn't happen if the server operates correctly and we checked history length,
+        # but as a final safety measure, we skip.
+        return _make_skip_rule(pid, wid, product_name, warehouse_code, location_id, daily, "missing_quantile_data")
 
     # Apply product floor/ceiling overrides
     if pid in config.product_overrides:
