@@ -94,6 +94,24 @@ class ForeqcastSettings(models.TransientModel):
         default=4,
         help="Minimum number of observations required to fit a regression",
     )
+    foreqcast_min_history_days = fields.Integer(
+        string="Minimum History Days",
+        config_parameter="foreqcast.min_history_days",
+        default=36,
+        help="Minimum number of days of history required to fit a regression",
+    )
+    foreqcast_default_min_qty = fields.Float(
+        string="Default Min Qty (Fallback)",
+        config_parameter="foreqcast.default_min_qty",
+        default=0.0,
+        help="Default minimum quantity if insufficient history",
+    )
+    foreqcast_default_max_qty = fields.Float(
+        string="Default Max Qty (Fallback)",
+        config_parameter="foreqcast.default_max_qty",
+        default=0.0,
+        help="Default maximum quantity if insufficient history",
+    )
     foreqcast_min_demand_threshold = fields.Float(
         string="Minimum Demand Threshold",
         config_parameter="foreqcast.min_demand_threshold",
@@ -342,10 +360,13 @@ class ForeqcastSettings(models.TransientModel):
                 forecast_horizon_days=int(ICP.get_param("foreqcast.horizon_days", "30")),
                 time_bucket=ICP.get_param("foreqcast.time_bucket", "daily"),
                 min_data_points=int(ICP.get_param("foreqcast.min_data_points", "4")),
+                min_history_days=int(ICP.get_param("foreqcast.min_history_days", "36")),
                 service_level=float(ICP.get_param("foreqcast.service_level", "0.85")),
                 review_period_days=int(ICP.get_param("foreqcast.review_period_days", "7")),
                 default_lead_time_days=int(ICP.get_param("foreqcast.default_lead_time", "7")),
                 min_demand_threshold=float(ICP.get_param("foreqcast.min_demand_threshold", "0.1")),
+                default_min_qty=float(ICP.get_param("foreqcast.default_min_qty", "0.0")),
+                default_max_qty=float(ICP.get_param("foreqcast.default_max_qty", "0.0")),
                 inventory_mode=ICP.get_param("foreqcast.inventory_mode", "ignore"),
                 respect_reservations=ICP.get_param("foreqcast.respect_reservations", "True") == "True",
                 include_incoming_supply=ICP.get_param("foreqcast.include_incoming_supply", "True") == "True",
@@ -367,6 +388,8 @@ class ForeqcastSettings(models.TransientModel):
                     "lead_time_override_days": co.lead_time_override_days or None,
                     "review_period_override_days": co.review_period_override_days or None,
                     "service_level": co.service_level or None,
+                    "default_min_qty": co.default_min_qty or None,
+                    "default_max_qty": co.default_max_qty or None,
                 }
 
             prod_overrides = self.env["foreqcast.product.override"].search([])

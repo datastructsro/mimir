@@ -16,6 +16,8 @@ class CategoryOverride(TypedDict):
     lead_time_override_days: int | None
     review_period_override_days: int | None
     service_level: float | None
+    default_min_qty: float | None
+    default_max_qty: float | None
 
 
 class ProductOverride(TypedDict):
@@ -34,10 +36,13 @@ class ForeqcastConfig:
     forecast_horizon_days: int = 30
     time_bucket: str = "daily"
     min_data_points: int = 4
+    min_history_days: int = 36
     service_level: float = 0.85
     review_period_days: int = 7
     default_lead_time_days: int = 7
     min_demand_threshold: float = 0.1
+    default_min_qty: float = 0.0
+    default_max_qty: float = 0.0
     odoo_url: str = ""
     odoo_db: str = ""
     odoo_user: str = ""

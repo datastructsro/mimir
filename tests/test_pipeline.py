@@ -11,12 +11,12 @@ from foreqcast.config import ForeqcastConfig
 from foreqcast.pipeline import run_pipeline
 
 
-def _create_test_parquets(base_dir: Path, n_products=5, n_warehouses=2, n_days=30):
+def _create_test_parquets(base_dir: Path, n_products=5, n_warehouses=2, n_days=60):
     """Create minimal parqcast export directory with known data.
 
     Products have linearly increasing demand: product i has base_qty = (i+1)*10.
     """
-    base_date = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    base_date = datetime.now(tz=timezone.utc).replace(microsecond=0) - timedelta(days=60)
 
     # Sale order lines: n_products x n_warehouses x n_days rows
     pids, wids, qtys, dates, states = [], [], [], [], []

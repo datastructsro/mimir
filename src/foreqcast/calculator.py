@@ -124,6 +124,24 @@ def resolve_review_period(
     return config.review_period_days
 
 
+def _resolve_default_min_max(
+    category_id: int | None,
+    config: ForeqcastConfig,
+) -> tuple[float, float] | None:
+    """Resolve default min/max qty for products without enough history."""
+    if category_id and category_id in config.category_overrides:
+        co = config.category_overrides[category_id]
+        cat_min = co.get("default_min_qty")
+        cat_max = co.get("default_max_qty")
+        if cat_min is not None and cat_max is not None and (cat_min > 0 or cat_max > 0):
+            return cat_min, cat_max
+
+    if config.default_min_qty > 0 or config.default_max_qty > 0:
+        return config.default_min_qty, config.default_max_qty
+
+    return None
+
+
 def _make_skip_rule(
     pid: int, wid: int, product_name: str, warehouse_code: str,
     location_id: int, forecasted_daily_demand: float, skip_reason: str,
@@ -167,13 +185,26 @@ def calculate_rule(
     if pid in config.product_overrides and config.product_overrides[pid].get("excluded"):
         return _make_skip_rule(pid, wid, product_name, warehouse_code, location_id, daily, "product_excluded")
 
-    # Check confidence / data quality
-    if forecast.confidence == "insufficient_data":
-        return _make_skip_rule(pid, wid, product_name, warehouse_code, location_id, daily, "insufficient_data")
+    # Check history span
+    history_span_days = (forecast.last_observation - forecast.first_observation).days
 
-    # Check demand threshold
-    if daily < config.min_demand_threshold:
-        return _make_skip_rule(pid, wid, product_name, warehouse_code, location_id, daily, "below_demand_threshold")
+    insufficient_history = (
+        forecast.confidence == "insufficient_data" or 
+        history_span_days < config.min_history_days
+    )
+
+    below_demand = daily < config.min_demand_threshold
+
+    if insufficient_history or below_demand:
+        default_min_max = _resolve_default_min_max(category_id, config)
+        if default_min_max is not None:
+            min_qty, max_qty = default_min_max
+            # Force the rule to be actionable, skipping quantile calculations
+            quantile_result = (min_qty, max_qty)
+            forecast.confidence = "default_fallback"
+        else:
+            reason = "insufficient_data" if insufficient_history else "below_demand_threshold"
+            return _make_skip_rule(pid, wid, product_name, warehouse_code, location_id, daily, reason)
 
     # Resolve parameters
     planned_lead_time = resolve_lead_time(pid, category_id, supplier_info, config)

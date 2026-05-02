@@ -105,7 +105,7 @@ def test_below_threshold_skipped():
 
 
 def test_insufficient_data_skipped():
-    """Products with insufficient data are skipped."""
+    """Products with insufficient data are skipped if no default min/max."""
     config = ForeqcastConfig()
     forecast = _make_forecast(confidence="insufficient_data")
 
@@ -122,6 +122,57 @@ def test_insufficient_data_skipped():
 
     assert rule.action == "skip"
     assert rule.skip_reason == "insufficient_data"
+
+
+def test_insufficient_data_default_fallback():
+    """Products with insufficient data use default fallback if configured."""
+    config = ForeqcastConfig(
+        default_min_qty=5.0,
+        default_max_qty=10.0,
+    )
+    forecast = _make_forecast(confidence="insufficient_data")
+
+    rule = calculate_rule(
+        forecast=forecast,
+        product_name="Fallback Data",
+        warehouse_code="WH",
+        location_id=5,
+        category_id=None,
+        supplier_info=None,
+        existing_orderpoints=None,
+        config=config,
+    )
+
+    assert rule.action == "create"
+    assert rule.skip_reason is None
+    assert rule.min_qty == 5.0
+    assert rule.max_qty == 10.0
+
+
+def test_short_history_default_fallback():
+    """Products with < min_history_days use default fallback."""
+    config = ForeqcastConfig(
+        min_history_days=200,
+        default_min_qty=2.0,
+        default_max_qty=4.0,
+    )
+    forecast = _make_forecast()
+    
+    rule = calculate_rule(
+        forecast=forecast,
+        product_name="Short History Data",
+        warehouse_code="WH",
+        location_id=5,
+        category_id=None,
+        supplier_info=None,
+        existing_orderpoints=None,
+        config=config,
+    )
+
+    assert rule.action == "create"
+    assert rule.min_qty == 2.0
+    assert rule.max_qty == 4.0
+    
 
 
 def test_product_override_floor_ceiling():
