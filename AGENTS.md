@@ -22,7 +22,7 @@ The core application lives in `src/mimir/`. The main orchestrator is `pipeline.p
 An SQLite database (`mimir_config.db`) is maintained locally for an audit trail of pipeline runs.
 
 ## 🛠 Coding Standards
-1. **Linting & Formatting:** The project strictly follows `ruff` rules. Ensure your code passes `uv run ruff check .`.
+1. **Linting & Formatting:** The project strictly follows `ruff` rules. Ensure your code passes `uv run ruff check .`. **Agents must ALWAYS run `uv run ruff check --fix .` and `uv run ruff format .` prior to making any commits to ensure the CI pipeline does not fail.**
 2. **Type Hinting:** Pyright is configured with `typeCheckingMode = "basic"`. Strict Python type hints are mandatory.
 3. **Tests:** All logic must be covered by `pytest`. Place new tests in the `tests/` directory and ensure they pass with `uv run pytest tests/ -x -q`.
 4. **Odoo Standards:** Follow the OCA (Odoo Community Association) guidelines for modifications within the `odoo_addon/` directory.
