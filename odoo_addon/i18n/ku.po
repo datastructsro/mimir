@@ -17,171 +17,171 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "/data/mimir/output"
 msgstr "/data/mimir/output"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "/data/parqcast/exports/latest"
 msgstr "/data/parqcast/exports/latest"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "123e4567-e89b-12d3-a456-426614174000"
 msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve"
 msgstr "Destûrdan"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve & Apply"
 msgstr "Pejirandin & Serlêdan"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "ناردنی خۆکار بۆ خاڵەکانی داواکاری"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Automatically update Odoo reorder rules after each forecast run"
 msgstr "Piştî her rêvekirina pêşbîniyê, qaîdeyên ji nû vesazkirina Odoo-yê bixweber nûve bikin"
 "نوێکردنەوەی خۆکاری یاساکانی داوای دووبارە لە Odoo دوای هەر جێبەجێکردنێکی "
 "پێشبینی"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Cancel"
 msgstr "Bişûndekirin"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "Category Overrides"
 msgstr "Kategorî Overrides"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Configure external HTTP server for demand processing"
 msgstr "Pêşkêşkara HTTP ya derveyî ji bo pêvajoykirina daxwazê ​​mîheng bike"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Count open PO and in-transit quantities"
 msgstr "ژماردنی فەرمانەکانی کڕینی کراوە و بڕەکانی لە ڕێگادا"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Current Values"
 msgstr "Nirxên Niha"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days between replenishment checks (affects max qty)"
 msgstr "ڕۆژەکانی نێوان پشکنینەکانی پڕکردنەوە (کاریگەری لەسەر بڕی زۆرینە هەیە)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days of coverage above which a product is flagged as overstocked"
 msgstr "ڕۆژەکانی پوشین کە سەرووی ئەوە بەرهەم وەک زیادەی کۆگا نیشان دەکرێت"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days of coverage below which a product is flagged as understocked"
 msgstr "ڕۆژەکانی پوشین کە خوارەوەی ئەوە بەرهەم وەک کەمبوونی کۆگا نیشان دەکرێت"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Request"
 msgstr "Daxwaza Biryarê"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Requests"
 msgstr "Daxwazên Biryarê"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Decisions"
 msgstr "Biryarên"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Default Lead Time"
 msgstr "کاتی گەیاندنی بنەڕەت"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Max Qty"
 msgstr "کاتی گەیاندنی بنەڕەت"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Min Qty"
 msgstr "Default Min Qty"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "داگرتنی هەموو (ZIP)"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Excel"
 msgstr "داگرتنی Excel"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Forecast"
 msgstr "داگرتنی پێشبینی"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Inventory"
 msgstr "داگرتنی کۆگا"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Rules"
 msgstr "داگرتنی یاساکان"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Enable Mimir"
 msgstr "چالاککردنی Mimir"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Error"
 msgstr "هەڵە"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Excel File"
 msgstr "Pelê Excel"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Execute the forecast pipeline now with current settings"
 msgstr "ئێستا لوولەبەندی پێشبینی جێبەجێ بکە بە ڕێکخستنەکانی ئێستا"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "External Forecast Server"
 msgstr "چالاککردنی Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Fallback when no supplier info exists for a product"
 msgstr "بەهای یەدەک کاتێک هیچ زانیارییەکی دابینکەر بۆ بەرهەمێک نییە"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Files"
 msgstr "Pelên"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Forecast Horizon"
 msgstr "ئاسۆی پێشبینی"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Forecast Runs"
 msgstr "جێبەجێکردنەکانی پێشبینی"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Mimir"
 msgstr "Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Mimir reads directly from the latest Parqcast export run's attachments. "
 "No file paths needed."
@@ -189,191 +189,191 @@ msgstr ""
 "Mimir ڕاستەوخۆ لە هاوپێچەکانی دوایین ناردنی Parqcast دەخوێنێتەوە. "
 "پێویستی بە ڕێڕەوی فایل نییە."
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Global fallback Max Qty for products with insufficient history"
 msgstr "Pêşveçûna gerdûnî Max Qty ji bo hilberên bi dîroka kêm"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Global fallback Min Qty for products with insufficient history"
 msgstr "Pêşveçûna gerdûnî ya Min Qty ji bo hilberên bi dîroka kêm"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Granularity of demand aggregation for regression"
 msgstr "وردەکاری کۆکردنەوەی داواکاری بۆ ڕیگرێشن"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How many days ahead to project demand"
 msgstr "چەند ڕۆژ بۆ پێشەوە پێشبینی داواکاری بکرێت"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How to account for current inventory state"
 msgstr "چۆن بارودۆخی کۆگای ئێستا لەبەرچاو بگیرێت"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "In adjust mode, don't create orderpoints for overstocked products"
 msgstr "Di moda eyarkirinê de, ji bo hilberên zêde stokan xalên fermanê neafirînin"
 "لە شێوازی ڕێکخستن، خاڵەکانی داواکاری دروست مەکە بۆ بەرهەمەکانی زیادەی کۆگا"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "In adjust mode, raise service level by this for understocked products"
 msgstr "Di moda eyarkirinê de, ji bo hilberên kêmkirî bi vê yekê asta karûbarê bilind bikin"
 "لە شێوازی ڕێکخستن، ئاستی خزمەتگوزاری بەم بڕە بەرزبکەوە بۆ بەرهەمە کەمبووەکان"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Incoming Supply"
 msgstr "لەخۆگرتنی دابینکردنی هاتوو"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Outgoing Demand"
 msgstr "لەخۆگرتنی داواکاری دەرچوو"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Input"
 msgstr "Beyan"
 
-#: odoo_addon/views/mimir_run_views.xml
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_run_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Input Source"
 msgstr "سەرچاوەی داخلکردن"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Inventory Mode"
 msgstr "شێوازی کۆگا"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Mark Review"
 msgstr "Mark Review"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Data Points"
 msgstr "کەمترین خاڵەکانی داتا"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Demand Threshold"
 msgstr "کەمترین ئاستی داواکاری"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Minimum History Days"
 msgstr "Rojên Dîroka Kêmtirîn"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Needs Review"
 msgstr "Needs Review"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Odoo Attachments"
 msgstr "هاوپێچەکانی Odoo"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Overstock Threshold"
 msgstr "ئاستی زیادبوونی کۆگا"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Parameters"
 msgstr "پارامیتەرەکان"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Parquet Directories"
 msgstr "بوخچەکانی Parquet"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "Product Overrides"
 msgstr "بەرهەمە پێشبینیکراوەکان"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Proposed Changes"
 msgstr "Guhertinên Pêşniyar kirin"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Read Parqcast exports directly from an S3-compatible bucket"
 msgstr "Hinardekirina Parqcast rasterast ji kelekek S3-lihevhatî bixwînin"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Reject"
 msgstr "Refzkirin"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Require at least this many days of history to forecast"
 msgstr "لانیکەم ئەم ژمارە چاودێرییە پێویستە بۆ پێشبینی"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Require at least this many observations to forecast"
 msgstr "لانیکەم ئەم ژمارە چاودێرییە پێویستە بۆ پێشبینی"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Respect Reservations"
 msgstr "ڕێزگرتن لە حجزەکان"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Results"
 msgstr "ئەنجامەکان"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Review Period"
 msgstr "ماوەی پێداچوونەوە"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Run Info"
 msgstr "زانیاری جێبەجێکردن"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Now"
 msgstr "ئێستا جێبەجێ بکە"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Pipeline"
 msgstr "جێبەجێکردنی لوولەبەند"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run the forecast pipeline with current settings?"
 msgstr "لوولەبەندی پێشبینی بە ڕێکخستنەکانی ئێستا جێبەجێ بکەیت؟"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "S3 Configuration"
 msgstr "Veavakirina S3"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Server file paths for parqcast input and forecast output"
 msgstr "ڕێڕەوەکانی فایلی سێرڤەر بۆ داخلکردنی Parqcast و دەرچوونی پێشبینی"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Service Level"
 msgstr "ئاستی خزمەتگوزاری"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip Overstocked"
 msgstr "تێپەڕاندنی زیادە"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip products with daily demand below this"
 msgstr "تێپەڕاندنی بەرهەمەکان کە داواکاری ڕۆژانەیان لە ژێر ئەمەیە"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Subtract confirmed SO quantities (off by default to avoid double-counting)"
 msgstr ""
 "لابردنی بڕەکانی فەرمانی فرۆشی پشتڕاستکراو (بە بنەڕەت ناچالاکە بۆ "
 "دوورکەوتنەوە لە دووجار ژماردن)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Subtract reserved stock from available position (conservative)"
 msgstr "لابردنی کۆگای حجزکراو لە بارودۆخی بەردەست (بەئاگاهانە)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
 "items. Higher values need more safety stock."
@@ -381,103 +381,103 @@ msgstr ""
 "ڕێژەی پڕکردنەوەی ئامانج. بیکە بە ٠.٩٠ بۆ خزمەتگوزاری ستاندارد یان ٠.٩٥ بۆ "
 "بەرهەمە گرنگەکان. بەها بەرزترەکان کۆگای سەلامەتی زیاتر پێویستیان پێیە."
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Time Bucket"
 msgstr "ماوەی کاتی"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Turn on demand forecasting and replenishment rule generation"
 msgstr "چالاککردنی پێشبینیکردنی داواکاری و دروستکردنی یاساکانی پڕکردنەوە"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock SL Bump"
 msgstr "بەرزکردنەوەی ئ.خ. لە کەمبوون"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock Threshold"
 msgstr "ئاستی کەمبوونی کۆگا"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload & Update"
 msgstr "Barkirin & Nûvekirin"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Upload Excel Review"
 msgstr "داگرتنی Excel"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload Modified Excel"
 msgstr "Excel guherî barkirin"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Where to read parqcast export data from"
 msgstr "لەکوێوە داتای ناردنی Parqcast بخوێنرێتەوە"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "eu-central-1"
 msgstr "eu-central-1"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "mimir.category.override.list"
 msgstr "mimir.category.override.list"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "mimir.decision.request.form"
 msgstr "mimir.decision.request.form"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "mimir.decision.request.list"
 msgstr "mimir.decision.request.list"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "mimir.excel.upload.form"
 msgstr "mimir.excel.upload.form"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "mimir.product.override.list"
 msgstr "mimir.product.override.list"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "mimir.run.form"
 msgstr "هەڵەی Mimir"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "mimir.run.list"
 msgstr "مێژووی جێبەجێکردنی Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "https://api.mimir.com/v1/forecasts"
 msgstr "https://api.mimir.com/v1/forecasts"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "https://s3.datastruct.tech"
 msgstr "https://s3.datastruct.tech"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast"
 msgstr "Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast-v18-demo"
 msgstr "parqcast-v18-demo"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "res.config.settings.view.form.mimir"
 msgstr "res.config.settings.view.form.mimir"

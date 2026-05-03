@@ -5,405 +5,405 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "/data/mimir/output"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "/data/parqcast/exports/latest"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "123e4567-e89b-12d3-a456-426614174000"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "Approve"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "Approve & Apply"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Automatically update Odoo reorder rules after each forecast run"
 msgstr ""
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 msgid "Cancel"
 msgstr ""
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 msgid "Category Overrides"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Configure external HTTP server for demand processing"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Count open PO and in-transit quantities"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "Current Values"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days between replenishment checks (affects max qty)"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days of coverage above which a product is flagged as overstocked"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days of coverage below which a product is flagged as understocked"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "Decision Request"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "Decision Requests"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Decisions"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Default Lead Time"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Default Max Qty"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Default Min Qty"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download All (ZIP)"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Excel"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Forecast"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Inventory"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Rules"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Enable Mimir"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Error"
 msgstr ""
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 msgid "Excel File"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Execute the forecast pipeline now with current settings"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "External Forecast Server"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Fallback when no supplier info exists for a product"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Files"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Forecast Horizon"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Forecast Runs"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Mimir"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Mimir reads directly from the latest Parqcast export run's attachments. No file paths needed."
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Global fallback Max Qty for products with insufficient history"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Global fallback Min Qty for products with insufficient history"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Granularity of demand aggregation for regression"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How many days ahead to project demand"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How to account for current inventory state"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "In adjust mode, don't create orderpoints for overstocked products"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "In adjust mode, raise service level by this for understocked products"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Incoming Supply"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Outgoing Demand"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Input"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_run_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Input Source"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Inventory Mode"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "Mark Review"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Data Points"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Demand Threshold"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum History Days"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "Needs Review"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Odoo Attachments"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Overstock Threshold"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Parameters"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Parquet Directories"
 msgstr ""
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 msgid "Product Overrides"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "Proposed Changes"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Read Parqcast exports directly from an S3-compatible bucket"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "Reject"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Require at least this many days of history to forecast"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Require at least this many observations to forecast"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Respect Reservations"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Results"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Review Period"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Run Info"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Now"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Pipeline"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run the forecast pipeline with current settings?"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "S3 Configuration"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Server file paths for parqcast input and forecast output"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Service Level"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip Overstocked"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip products with daily demand below this"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Subtract reserved stock from available position (conservative)"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Time Bucket"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Turn on demand forecasting and replenishment rule generation"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock SL Bump"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock Threshold"
 msgstr ""
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 msgid "Upload & Update"
 msgstr ""
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Upload Excel Review"
 msgstr ""
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 msgid "Upload Modified Excel"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Where to read parqcast export data from"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "eu-central-1"
 msgstr ""
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 msgid "mimir.category.override.list"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "mimir.decision.request.form"
 msgstr ""
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "mimir.decision.request.list"
 msgstr ""
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 msgid "mimir.excel.upload.form"
 msgstr ""
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 msgid "mimir.product.override.list"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "mimir.run.form"
 msgstr ""
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "mimir.run.list"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "https://api.mimir.com/v1/forecasts"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "https://s3.datastruct.tech"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "parqcast"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "parqcast-v18-demo"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "res.config.settings.view.form.mimir"
 msgstr ""
 

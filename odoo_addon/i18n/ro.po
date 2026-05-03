@@ -18,177 +18,177 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
 "2:1));\n"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "/data/mimir/output"
 msgstr "/data/mimir/output"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "/data/parqcast/exports/latest"
 msgstr "/data/parqcast/exports/latest"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "123e4567-e89b-12d3-a456-426614174000"
 msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve"
 msgstr "Aproba"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve & Apply"
 msgstr "Aprobați și aplicați"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "Actualizare automată a regulilor de reaprovizionare"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Automatically update Odoo reorder rules after each forecast run"
 msgstr "Actualizați automat regulile de reordonare Odoo după fiecare rulare de prognoză"
 "Actualizează automat regulile de reaprovizionare Odoo după fiecare rulare a "
 "previziunii"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Cancel"
 msgstr "Anula"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "Category Overrides"
 msgstr "Anulări de categorii"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Configure external HTTP server for demand processing"
 msgstr "Configurați serverul HTTP extern pentru procesarea cererii"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Count open PO and in-transit quantities"
 msgstr "Numără comenzile de achiziție deschise și cantitățile în tranzit"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Current Values"
 msgstr "Valori curente"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days between replenishment checks (affects max qty)"
 msgstr "Zile între verificările de reaprovizionare (afectează cant. max.)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Days of coverage above which a product is flagged as overstocked"
 msgstr "Zile de acoperire peste care un produs este marcat ca suprastoc"
 "Numărul de zile de acoperire peste care un produs este marcat ca suprastocat"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Days of coverage below which a product is flagged as understocked"
 msgstr "Zile de acoperire sub care un produs este marcat ca fiind insuficient stocat"
 "Numărul de zile de acoperire sub care un produs este marcat ca substocat"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Request"
 msgstr "Cerere de decizie"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Requests"
 msgstr "Cereri de decizie"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Decisions"
 msgstr "Deciziile"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Default Lead Time"
 msgstr "Termen implicit de livrare"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Max Qty"
 msgstr "Termen implicit de livrare"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Min Qty"
 msgstr "Cant. min implicită"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "Descarcă tot (ZIP)"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Excel"
 msgstr "Descarcă Excel"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Forecast"
 msgstr "Descarcă previziunea"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Inventory"
 msgstr "Descarcă stocul"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Rules"
 msgstr "Descarcă regulile"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Enable Mimir"
 msgstr "Activează Mimir"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Error"
 msgstr "Eroare"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Excel File"
 msgstr "Fișier Excel"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Execute the forecast pipeline now with current settings"
 msgstr "Rulează procesul de previziune acum cu setările curente"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "External Forecast Server"
 msgstr "Activează Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Fallback when no supplier info exists for a product"
 msgstr "Rezervă atunci când nu există informații despre furnizor pentru un produs"
 "Valoare de rezervă când nu există informații despre furnizor pentru un produs"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Files"
 msgstr "Fișiere"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Forecast Horizon"
 msgstr "Orizont de previziune"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Forecast Runs"
 msgstr "Rulări de previziune"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Mimir"
 msgstr "Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Mimir reads directly from the latest Parqcast export run's attachments. "
 "No file paths needed."
@@ -196,195 +196,195 @@ msgstr ""
 "Mimir citește direct din atașamentele ultimei rulări de export Parqcast. "
 "Nu sunt necesare căi de fișiere."
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Global fallback Max Qty for products with insufficient history"
 msgstr "Cantitate maximă de rezervă globală pentru produse cu istoric insuficient"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Global fallback Min Qty for products with insufficient history"
 msgstr "Cantitate minimă alternativă globală pentru produse cu istoric insuficient"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Granularity of demand aggregation for regression"
 msgstr "Granularitatea agregării cererii pentru regresie"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How many days ahead to project demand"
 msgstr "Câte zile în avans să se proiecteze cererea"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How to account for current inventory state"
 msgstr "Cum se ia în considerare starea curentă a stocului"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "In adjust mode, don't create orderpoints for overstocked products"
 msgstr "În modul de ajustare, nu creați puncte de comandă pentru produsele supraaprovizionate"
 "În modul de ajustare, nu crea reguli de reaprovizionare pentru produsele "
 "suprastocate"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "In adjust mode, raise service level by this for understocked products"
 msgstr "În modul de reglare, ridicați nivelul de serviciu cu aceasta pentru produsele insuficient stocate"
 "În modul de ajustare, crește nivelul de serviciu cu această valoare pentru "
 "produsele substocate"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Incoming Supply"
 msgstr "Include aprovizionarea în curs"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Outgoing Demand"
 msgstr "Include cererea în curs de ieșire"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Input"
 msgstr "Intrare"
 
-#: odoo_addon/views/mimir_run_views.xml
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_run_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Input Source"
 msgstr "Sursă de date"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Inventory Mode"
 msgstr "Mod stoc"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Mark Review"
 msgstr "Mark Review"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Data Points"
 msgstr "Număr minim de puncte de date"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Demand Threshold"
 msgstr "Prag minim de cerere"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Minimum History Days"
 msgstr "Zile minime de istorie"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Needs Review"
 msgstr "Necesită revizuire"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Odoo Attachments"
 msgstr "Atașamente Odoo"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Overstock Threshold"
 msgstr "Prag de suprastoc"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Parameters"
 msgstr "Parametri"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Parquet Directories"
 msgstr "Directoare Parquet"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "Product Overrides"
 msgstr "Produse previzionate"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Proposed Changes"
 msgstr "Modificări propuse"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Read Parqcast exports directly from an S3-compatible bucket"
 msgstr "Citiți exporturile Parqcast direct dintr-un bucket compatibil S3"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Reject"
 msgstr "Respinge"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Require at least this many days of history to forecast"
 msgstr "Necesită cel puțin atâtea observații pentru previziune"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Require at least this many observations to forecast"
 msgstr "Necesită cel puțin atâtea observații pentru previziune"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Respect Reservations"
 msgstr "Respectă rezervările"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Results"
 msgstr "Rezultate"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Review Period"
 msgstr "Perioadă de revizuire"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Run Info"
 msgstr "Informații despre rulare"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Now"
 msgstr "Rulează acum"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Pipeline"
 msgstr "Rulează procesul"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run the forecast pipeline with current settings?"
 msgstr "Rulați procesul de previziune cu setările curente?"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "S3 Configuration"
 msgstr "Configurare S3"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Server file paths for parqcast input and forecast output"
 msgstr "Căile fișierelor server pentru intrarea parqcast și ieșirea prognozei"
 "Căile fișierelor pe server pentru intrarea Parqcast și ieșirea previziunii"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Service Level"
 msgstr "Nivel de serviciu"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip Overstocked"
 msgstr "Omite suprastocate"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip products with daily demand below this"
 msgstr "Omite produsele cu cererea zilnică sub această valoare"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Subtract confirmed SO quantities (off by default to avoid double-counting)"
 msgstr ""
 "Scade cantitățile confirmate din comenzile de vânzare (dezactivat implicit "
 "pentru a evita dubla contorizare)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Subtract reserved stock from available position (conservative)"
 msgstr "Scade stocul rezervat din poziția disponibilă (conservator)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
 "items. Higher values need more safety stock."
@@ -393,105 +393,105 @@ msgstr ""
 "pentru articole critice. Valorile mai mari necesită mai mult stoc de "
 "siguranță."
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Time Bucket"
 msgstr "Interval de timp"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Turn on demand forecasting and replenishment rule generation"
 msgstr "Activați estimarea cererii și generarea regulilor de reaprovizionare"
 "Activează previziunea cererii și generarea regulilor de reaprovizionare"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock SL Bump"
 msgstr "Creșterea nivelului de serviciu la substoc"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock Threshold"
 msgstr "Prag de substoc"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload & Update"
 msgstr "Încărcați și actualizați"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Upload Excel Review"
 msgstr "Descarcă Excel"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload Modified Excel"
 msgstr "Încărcați Excel modificat"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Where to read parqcast export data from"
 msgstr "De unde să se citească datele de export Parqcast"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "eu-central-1"
 msgstr "eu-central-1"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "mimir.category.override.list"
 msgstr "mimir.category.override.list"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "mimir.decision.request.form"
 msgstr "mimir.decision.request.form"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "mimir.decision.request.list"
 msgstr "mimir.decision.request.list"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "mimir.excel.upload.form"
 msgstr "mimir.excel.upload.form"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "mimir.product.override.list"
 msgstr "mimir.product.override.list"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "mimir.run.form"
 msgstr "Eroare Mimir"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "mimir.run.list"
 msgstr "Istoricul rulărilor Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "https://api.mimir.com/v1/forecasts"
 msgstr "https://api.mimir.com/v1/forecasts"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "https://s3.datastruct.tech"
 msgstr "https://s3.datastruct.tech"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast"
 msgstr "Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast-v18-demo"
 msgstr "parqcast-v18-demo"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "res.config.settings.view.form.mimir"
 msgstr "res.config.settings.view.form.mimir"

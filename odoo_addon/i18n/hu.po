@@ -16,181 +16,181 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "/data/mimir/output"
 msgstr "/data/mimir/output"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "/data/parqcast/exports/latest"
 msgstr "/data/parqcast/exports/latest"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "123e4567-e89b-12d3-a456-426614174000"
 msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve"
 msgstr "Jóváhagyni"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve & Apply"
 msgstr "Jóváhagyás és jelentkezés"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "Automatikus frissítés a rendelési pontokba"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Automatically update Odoo reorder rules after each forecast run"
 msgstr "Az Odoo átrendezési szabályainak automatikus frissítése minden előrejelzés futtatása után"
 "Odoo rendelési pontok automatikus frissítése minden előrejelzési futtatás "
 "után"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Cancel"
 msgstr "Mégse"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "Category Overrides"
 msgstr "Kategória felülírások"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Configure external HTTP server for demand processing"
 msgstr "Konfigurálja a külső HTTP-kiszolgálót az igényfeldolgozáshoz"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Count open PO and in-transit quantities"
 msgstr "Számolja meg a nyitott megrendeléseket és a szállítás alatti mennyiségeket"
 "Nyitott beszerzési rendelések és szállítás alatti mennyiségek számítása"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Current Values"
 msgstr "Jelenlegi értékek"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Days between replenishment checks (affects max qty)"
 msgstr "Az utánpótlási ellenőrzések közötti napok (a maximális mennyiséget érinti)"
 "Napok a feltöltési ellenőrzések között (hatással van a max mennyiségre)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Days of coverage above which a product is flagged as overstocked"
 msgstr "A lefedettség azon napjai, amelyek felett a termék túlkészletként van megjelölve"
 "Fedezettségi napok, amely felett a termék túlkészletezettként jelölődik"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Days of coverage below which a product is flagged as understocked"
 msgstr "A lefedettség azon napjai, amelyek alatt a termék alulkészletezettként van megjelölve"
 "Fedezettségi napok, amely alatt a termék alulkészletezettként jelölődik"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Request"
 msgstr "Határozati kérelem"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Requests"
 msgstr "Határozati kérelmek"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Decisions"
 msgstr "Döntések"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Default Lead Time"
 msgstr "Alapértelmezett átfutási idő"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Max Qty"
 msgstr "Alapértelmezett átfutási idő"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Min Qty"
 msgstr "Alapértelmezett minimális mennyiség"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "Összes letöltése (ZIP)"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Excel"
 msgstr "Excel letöltése"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Forecast"
 msgstr "Előrejelzés letöltése"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Inventory"
 msgstr "Készletadatok letöltése"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Rules"
 msgstr "Szabályok letöltése"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Enable Mimir"
 msgstr "Mimir engedélyezése"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Error"
 msgstr "Hiba"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Excel File"
 msgstr "Excel fájl"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Execute the forecast pipeline now with current settings"
 msgstr "Az előrejelzési folyamat végrehajtása most az aktuális beállításokkal"
 "Az előrejelzési folyamat azonnali végrehajtása az aktuális beállításokkal"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "External Forecast Server"
 msgstr "Mimir engedélyezése"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Fallback when no supplier info exists for a product"
 msgstr "Tartalék, ha a termékhez nincs beszállítói adat"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Files"
 msgstr "Fájlok"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Forecast Horizon"
 msgstr "Előrejelzési horizont"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Forecast Runs"
 msgstr "Előrejelzési futtatások"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Mimir"
 msgstr "Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Mimir reads directly from the latest Parqcast export run's attachments. "
 "No file paths needed."
@@ -198,195 +198,195 @@ msgstr ""
 "A Mimir közvetlenül a legutóbbi Parqcast export futtatás mellékleteiből "
 "olvas. Fájl elérési utak nem szükségesek."
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Global fallback Max Qty for products with insufficient history"
 msgstr "Globális tartalék Max. mennyiség az elégtelen előéletű termékekhez"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Global fallback Min Qty for products with insufficient history"
 msgstr "Globális tartalék minimális mennyiség az elégtelen előzményekkel rendelkező termékekhez"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Granularity of demand aggregation for regression"
 msgstr "A kereslet aggregálásának részletessége a regresszióhoz"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How many days ahead to project demand"
 msgstr "Hány napra előre vetítse a keresletet"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How to account for current inventory state"
 msgstr "Hogyan vegye figyelembe az aktuális készletállapotot"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "In adjust mode, don't create orderpoints for overstocked products"
 msgstr "Beállítás módban ne hozzon létre rendelési pontokat a túlzsúfolt termékekhez"
 "Igazítás módban ne hozzon létre rendelési pontokat túlkészletezett "
 "termékekhez"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "In adjust mode, raise service level by this for understocked products"
 msgstr "Beállítás módban emelje meg ezzel a szolgáltatási szintet az alulkészletezett termékeknél"
 "Igazítás módban emelje a kiszolgálási szintet ennyivel az alulkészletezett "
 "termékeknél"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Incoming Supply"
 msgstr "Bejövő készlet beszámítása"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Outgoing Demand"
 msgstr "Kimenő kereslet beszámítása"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Input"
 msgstr "Bemenet"
 
-#: odoo_addon/views/mimir_run_views.xml
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_run_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Input Source"
 msgstr "Bemeneti forrás"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Inventory Mode"
 msgstr "Készlet mód"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Mark Review"
 msgstr "Mark Review"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Data Points"
 msgstr "Minimális adatpontok"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Demand Threshold"
 msgstr "Minimális kereslet küszöbérték"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Minimum History Days"
 msgstr "Minimum Történelem Napok"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Needs Review"
 msgstr "Felülvizsgálatra szorul"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Odoo Attachments"
 msgstr "Odoo mellékletek"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Overstock Threshold"
 msgstr "Túlkészletezési küszöb"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Parameters"
 msgstr "Paraméterek"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Parquet Directories"
 msgstr "Parquet könyvtárak"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "Product Overrides"
 msgstr "Előrejelzett termékek"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Proposed Changes"
 msgstr "Javasolt változtatások"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Read Parqcast exports directly from an S3-compatible bucket"
 msgstr "Olvassa el a Parqcast exportjait közvetlenül egy S3-kompatibilis tárolóból"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Reject"
 msgstr "Elutasít"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Require at least this many days of history to forecast"
 msgstr "Legalább ennyi megfigyelés szükséges az előrejelzéshez"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Require at least this many observations to forecast"
 msgstr "Legalább ennyi megfigyelés szükséges az előrejelzéshez"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Respect Reservations"
 msgstr "Foglalások figyelembevétele"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Results"
 msgstr "Eredmények"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Review Period"
 msgstr "Felülvizsgálati időszak"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Run Info"
 msgstr "Futtatási adatok"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Now"
 msgstr "Futtatás most"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Pipeline"
 msgstr "Feldolgozási folyamat futtatása"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run the forecast pipeline with current settings?"
 msgstr "Lefuttatja az előrejelzési folyamatot az aktuális beállításokkal?"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "S3 Configuration"
 msgstr "S3 konfiguráció"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Server file paths for parqcast input and forecast output"
 msgstr "A parqcast bemeneti és előrejelzési kimeneti kiszolgáló fájl elérési útjai"
 "Szerver fájl elérési utak a Parqcast bemenethez és az előrejelzési kimenethez"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Service Level"
 msgstr "Kiszolgálási szint"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip Overstocked"
 msgstr "Túlkészletezettek kihagyása"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip products with daily demand below this"
 msgstr "Hagyja ki a napi kereslet ez alatti termékeket"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Subtract confirmed SO quantities (off by default to avoid double-counting)"
 msgstr ""
 "Visszaigazolt vevői rendelési mennyiségek levonása (alapértelmezés szerint "
 "ki van kapcsolva a dupla számolás elkerülése érdekében)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Subtract reserved stock from available position (conservative)"
 msgstr "Foglalt készlet levonása az elérhető pozícióból (konzervatív)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
 "items. Higher values need more safety stock."
@@ -394,103 +394,103 @@ msgstr ""
 "Cél kitöltési arány. Állítsa 0,90-re normál szolgáltatáshoz vagy 0,95-re "
 "kritikus cikkeknél. Magasabb értékek több biztonsági készletet igényelnek."
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Time Bucket"
 msgstr "Időszak"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Turn on demand forecasting and replenishment rule generation"
 msgstr "Kereslet-előrejelzés és feltöltési szabálygenerálás bekapcsolása"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock SL Bump"
 msgstr "Alulkészletezési kiszolgálási szint emelés"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock Threshold"
 msgstr "Alulkészletezési küszöb"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload & Update"
 msgstr "Feltöltés és frissítés"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Upload Excel Review"
 msgstr "Excel letöltése"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload Modified Excel"
 msgstr "Töltse fel a módosított Excelt"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Where to read parqcast export data from"
 msgstr "Honnan olvassa a Parqcast export adatokat"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "eu-central-1"
 msgstr "eu-central-1"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "mimir.category.override.list"
 msgstr "mimir.category.override.list"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "mimir.decision.request.form"
 msgstr "mimir.decision.request.form"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "mimir.decision.request.list"
 msgstr "mimir.decision.request.list"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "mimir.excel.upload.form"
 msgstr "mimir.excel.upload.form"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "mimir.product.override.list"
 msgstr "mimir.product.override.list"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "mimir.run.form"
 msgstr "Mimir hiba"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "mimir.run.list"
 msgstr "Mimir futtatási előzmények"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "https://api.mimir.com/v1/forecasts"
 msgstr "https://api.mimir.com/v1/forecasts"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "https://s3.datastruct.tech"
 msgstr "https://s3.datastruct.tech"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast"
 msgstr "Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast-v18-demo"
 msgstr "parqcast-v18-demo"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "res.config.settings.view.form.mimir"
 msgstr "res.config.settings.view.form.mimir"

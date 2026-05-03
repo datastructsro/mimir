@@ -16,167 +16,167 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "/data/mimir/output"
 msgstr "/data/mimir/output"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "/data/parqcast/exports/latest"
 msgstr "/data/parqcast/exports/latest"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "123e4567-e89b-12d3-a456-426614174000"
 msgstr "123e4567-e89b-12d3-a456-426614174000"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve"
 msgstr "Hyväksy"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Approve & Apply"
 msgstr "Hyväksy & Sovella"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Auto-push to Orderpoints"
 msgstr "Automaattinen päivitys tilauspisteisiin"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Automatically update Odoo reorder rules after each forecast run"
 msgstr "Päivitä Odoo-tilaussäännöt automaattisesti jokaisen ennusteajon jälkeen"
 "Päivitä Odoon tilauspisteet automaattisesti jokaisen ennusteajon jälkeen"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "Category Overrides"
 msgstr "Kategorian ohitukset"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Configure external HTTP server for demand processing"
 msgstr "Määritä ulkoinen HTTP-palvelin kysynnän käsittelyyn"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Count open PO and in-transit quantities"
 msgstr "Laske avoimet ostotilaukset ja kuljetuksessa olevat määrät"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Current Values"
 msgstr "Nykyiset arvot"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days between replenishment checks (affects max qty)"
 msgstr "Päivät täydennystarkastusten välillä (vaikuttaa enimmäismäärään)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days of coverage above which a product is flagged as overstocked"
 msgstr "Kattavuuspäivät, joiden yläpuolella tuote merkitään ylivarastoiduksi"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Days of coverage below which a product is flagged as understocked"
 msgstr "Kattavuuspäivät, joiden alapuolella tuote merkitään alivarastoiduksi"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Request"
 msgstr "Päätöspyyntö"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Decision Requests"
 msgstr "Päätöspyynnöt"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Decisions"
 msgstr "Päätökset"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Default Lead Time"
 msgstr "Oletustoimitusaika"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Max Qty"
 msgstr "Oletustoimitusaika"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Default Min Qty"
 msgstr "Oletus Min määrä"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download All (ZIP)"
 msgstr "Lataa kaikki (ZIP)"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Excel"
 msgstr "Lataa Excel"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Forecast"
 msgstr "Lataa ennuste"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Inventory"
 msgstr "Lataa varastotiedot"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Download Rules"
 msgstr "Lataa säännöt"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Enable Mimir"
 msgstr "Ota Mimir käyttöön"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Error"
 msgstr "Virhe"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Excel File"
 msgstr "Excel-tiedosto"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Execute the forecast pipeline now with current settings"
 msgstr "Suorita ennusteputkilinja nyt nykyisillä asetuksilla"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "External Forecast Server"
 msgstr "Ota Mimir käyttöön"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Fallback when no supplier info exists for a product"
 msgstr "Varahtoarvo, kun tuotteelle ei ole toimittajatietoja"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Files"
 msgstr "Tiedostot"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Forecast Horizon"
 msgstr "Ennustehorisontti"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Forecast Runs"
 msgstr "Ennusteajot"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Mimir"
 msgstr "Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Mimir reads directly from the latest Parqcast export run's attachments. "
 "No file paths needed."
@@ -184,186 +184,186 @@ msgstr ""
 "Mimir lukee suoraan viimeisimmän Parqcast-vientiajon liitteistä. "
 "Tiedostopolkuja ei tarvita."
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Global fallback Max Qty for products with insufficient history"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Global fallback Min Qty for products with insufficient history"
 msgstr ""
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Granularity of demand aggregation for regression"
 msgstr "Kysynnän koostamisen tarkkuustaso regressiota varten"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How many days ahead to project demand"
 msgstr "Kuinka monta päivää eteenpäin kysyntää ennustetaan"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "How to account for current inventory state"
 msgstr "Miten nykyinen varastotilanne huomioidaan"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "In adjust mode, don't create orderpoints for overstocked products"
 msgstr "Säätötilassa älä luo tilauspisteitä ylivarastoiduille tuotteille"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "In adjust mode, raise service level by this for understocked products"
 msgstr ""
 "Säätötilassa nosta palvelutasoa tällä määrällä alivarastoiduille tuotteille"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Incoming Supply"
 msgstr "Sisällytä tuleva tarjonta"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Include Outgoing Demand"
 msgstr "Sisällytä lähtevä kysyntä"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Input"
 msgstr "Syöte"
 
-#: odoo_addon/views/mimir_run_views.xml
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_run_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Input Source"
 msgstr "Syötelähde"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Inventory Mode"
 msgstr "Varastotila"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Mark Review"
 msgstr "Merkitse tarkistettavaksi"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Data Points"
 msgstr "Vähimmäisdatapisteet"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Minimum Demand Threshold"
 msgstr "Vähimmäiskysynnän kynnysarvo"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Minimum History Days"
 msgstr "Minimihistoriapäivät"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Needs Review"
 msgstr "Vaatii tarkistusta"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Odoo Attachments"
 msgstr "Odoo-liitteet"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Overstock Threshold"
 msgstr "Ylivarastoinnin kynnysarvo"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Parameters"
 msgstr "Parametrit"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Parquet Directories"
 msgstr "Parquet-hakemistot"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 #, fuzzy
 msgid "Product Overrides"
 msgstr "Ennustetut tuotteet"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Proposed Changes"
 msgstr "Ehdotetut muutokset"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Read Parqcast exports directly from an S3-compatible bucket"
 msgstr "Lue Parqcast-viennit suoraan S3-yhteensopivasta säilöstä"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 #, fuzzy
 msgid "Reject"
 msgstr "Hylkää"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "Require at least this many days of history to forecast"
 msgstr "Vaadi vähintään näin monta havaintoa ennustamiseen"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Require at least this many observations to forecast"
 msgstr "Vaadi vähintään näin monta havaintoa ennustamiseen"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Respect Reservations"
 msgstr "Huomioi varaukset"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Results"
 msgstr "Tulokset"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Review Period"
 msgstr "Tarkastusjakso"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 msgid "Run Info"
 msgstr "Ajotiedot"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Now"
 msgstr "Suorita nyt"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run Pipeline"
 msgstr "Suorita putkilinja"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Run the forecast pipeline with current settings?"
 msgstr "Suoritetaanko ennusteputkilinja nykyisillä asetuksilla?"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "S3 Configuration"
 msgstr "S3-kokoonpano"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Server file paths for parqcast input and forecast output"
 msgstr "Palvelimen tiedostopolut Parqcast-syötteelle ja ennustetulosteelle"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Service Level"
 msgstr "Palvelutaso"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip Overstocked"
 msgstr "Ohita ylivarastoidut"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Skip products with daily demand below this"
 msgstr "Ohita tuotteet, joiden päiväkysyntä on alle tämän"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Subtract confirmed SO quantities (off by default to avoid double-counting)"
 msgstr ""
 "Vähennä vahvistetut myyntitilausmäärät (oletuksena pois kaksinkertaisen "
 "laskennan välttämiseksi)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Subtract reserved stock from available position (conservative)"
 msgstr "Vähennä varattu varasto käytettävissä olevasta (varovainen)"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid ""
 "Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
 "items. Higher values need more safety stock."
@@ -371,94 +371,94 @@ msgstr ""
 "Tavoitetäyttöaste. Aseta 0,90 normaalille palvelulle tai 0,95 kriittisille "
 "tuotteille. Korkeammat arvot vaativat enemmän varmuusvarastoa."
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Time Bucket"
 msgstr "Aikajakso"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Turn on demand forecasting and replenishment rule generation"
 msgstr "Ota käyttöön kysynnän ennustaminen ja täydennyssääntöjen luonti"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock SL Bump"
 msgstr "Alivarastoinnin palvelutason korotus"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Understock Threshold"
 msgstr "Alivarastoinnin kynnysarvo"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload & Update"
 msgstr "Lataa & Päivitä"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "Upload Excel Review"
 msgstr "Lataa Excel"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 #, fuzzy
 msgid "Upload Modified Excel"
 msgstr "Lataa muokattu Excel"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "Where to read parqcast export data from"
 msgstr "Mistä Parqcast-vientitiedot luetaan"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "eu-central-1"
 msgstr "eu-central-1"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 msgid "mimir.category.override.list"
 msgstr "mimir.category.override.list"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "mimir.decision.request.form"
 msgstr "mimir.decision.request.form"
 
-#: odoo_addon/views/mimir_decision_views.xml
+#: mimir/views/mimir_decision_views.xml
 msgid "mimir.decision.request.list"
 msgstr "mimir.decision.request.list"
 
-#: odoo_addon/views/mimir_excel_wizard_views.xml
+#: mimir/views/mimir_excel_wizard_views.xml
 msgid "mimir.excel.upload.form"
 msgstr "mimir.excel.upload.form"
 
-#: odoo_addon/views/mimir_override_views.xml
+#: mimir/views/mimir_override_views.xml
 msgid "mimir.product.override.list"
 msgstr "mimir.product.override.list"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "mimir.run.form"
 msgstr "Mimir-virhe"
 
-#: odoo_addon/views/mimir_run_views.xml
+#: mimir/views/mimir_run_views.xml
 #, fuzzy
 msgid "mimir.run.list"
 msgstr "Mimir-ajohistoria"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "https://api.mimir.com/v1/forecasts"
 msgstr "https://api.mimir.com/v1/forecasts"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "https://s3.datastruct.tech"
 msgstr "https://s3.datastruct.tech"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 #, fuzzy
 msgid "parqcast"
 msgstr "Mimir"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "parqcast-v18-demo"
 msgstr "parqcast-v18-demo"
 
-#: odoo_addon/views/mimir_settings_views.xml
+#: mimir/views/mimir_settings_views.xml
 msgid "res.config.settings.view.form.mimir"
 msgstr "res.config.settings.view.form.mimir"
 
