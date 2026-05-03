@@ -124,6 +124,31 @@ def resolve_review_period(
     return config.review_period_days
 
 
+def resolve_empirical_lead_time(
+    product_id: int,
+    warehouse_id: int,
+    empirical_table: pa.Table | None,
+    min_observations: int = 3,
+) -> int:
+    """Resolve empirical lead time from pre-computed parquet.
+
+    Returns 0 if no reliable data is available.
+    """
+    if empirical_table is None or empirical_table.num_rows == 0:
+        return 0
+
+    pids = empirical_table.column("_odoo_product_id").to_pylist()
+    wids = empirical_table.column("_odoo_warehouse_id").to_pylist()
+    delays = empirical_table.column("median_delay_days").to_pylist()
+    counts = empirical_table.column("observation_count").to_pylist()
+
+    for pid, wid, delay, count in zip(pids, wids, delays, counts):
+        if pid == product_id and wid == warehouse_id and count >= min_observations:
+            return delay
+
+    return 0
+
+
 def _resolve_default_min_max(
     category_id: int | None,
     config: MimirConfig,
@@ -171,6 +196,7 @@ def calculate_rule(
     quantile_result: tuple[float, float] | None = None,
     inventory_position: InventoryPosition | None = None,
     inventory_config: InventoryConfig | None = None,
+    empirical_lead_times: pa.Table | None = None,
 ) -> ReplenishmentRule:
     """Calculate a single replenishment rule.
 
@@ -208,7 +234,7 @@ def calculate_rule(
 
     # Resolve parameters
     planned_lead_time = resolve_lead_time(pid, category_id, supplier_info, config)
-    empirical_lead_time = 0  # Placeholder: to be populated when parqcast exports PO receipts
+    empirical_lead_time = resolve_empirical_lead_time(pid, wid, empirical_lead_times)
     service_level = resolve_service_level(pid, category_id, config)
     review = resolve_review_period(pid, category_id, config)
 

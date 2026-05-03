@@ -66,6 +66,12 @@ def run_pipeline(
 
 
     try:
+        # 0. Pre-fetch empirical lead times (if available from mimir-server)
+        if config.forecast_source == "external" and config.external_forecast_uri:
+            from .providers import fetch_empirical_lead_times
+
+            fetch_empirical_lead_times(config, parquet_input_dir)
+
         # 1. Read parqcast exports
         logger.info("Reading parqcast exports from %s", parquet_input_dir)
         data = read_parqcast_export(parquet_input_dir)
@@ -138,6 +144,7 @@ def run_pipeline(
                 quantile_result=qr,
                 inventory_position=inv_pos,
                 inventory_config=inv_config,
+                empirical_lead_times=data.empirical_lead_times,
             )
             rules.append(rule)
 

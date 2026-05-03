@@ -41,6 +41,7 @@ class ParqcastData:
     warehouses: pa.Table
     orderpoints: pa.Table | None  # None if file missing
     manifest: ManifestMetadata | None = None  # None if manifest.json missing
+    empirical_lead_times: pa.Table | None = None  # None if file missing
 
 
 def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
@@ -101,6 +102,20 @@ def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
             ],
         )
 
+    # Empirical lead times (optional, computed by mimir-server lead_time_calculator)
+    elt_path = d / "empirical_lead_times.parquet"
+    if elt_path.exists():
+        tables["empirical_lead_times"] = pq.read_table(
+            elt_path,
+            columns=[
+                "_odoo_product_id",
+                "_odoo_warehouse_id",
+                "median_delay_days",
+                "observation_count",
+            ],
+        )
+        logger.info("Loaded %d empirical lead time entries", tables["empirical_lead_times"].num_rows)
+
     # Manifest metadata (temporal tracking)
     manifest = _read_manifest(d)
 
@@ -110,6 +125,7 @@ def read_parqcast_export(export_dir: str | Path) -> ParqcastData:
         supplier_info=tables.get("supplier_info"),
         orderpoints=tables.get("orderpoints"),
         manifest=manifest,
+        empirical_lead_times=tables.get("empirical_lead_times"),
     )
 
 

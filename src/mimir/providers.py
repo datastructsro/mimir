@@ -199,6 +199,55 @@ class ExternalHttpForecastProvider:
         return _table_to_forecast_results(table)
 
 
+# ── Lead Time Provider ──────────────────────────────────────────────────
+
+
+def fetch_empirical_lead_times(config: MimirConfig, output_dir: str | Path) -> bool:
+    """Fetch empirical lead times from mimir-server and save as parquet.
+
+    Downloads the lead times parquet from the server's /lead-times/latest
+    endpoint and saves it to the output directory so that reader.py
+    picks it up automatically.
+
+    Returns True if lead times were successfully fetched, False otherwise.
+    """
+    from pathlib import Path
+    from urllib.request import Request, urlopen
+
+    base_uri = config.external_forecast_uri
+    if not base_uri:
+        return False
+
+    # Derive the lead-times URL from the forecast URL
+    # e.g. https://mimir.datastruct.tech/forecasts/latest → .../lead-times/latest
+    lt_uri = base_uri.replace("/forecasts/latest", "/lead-times/latest")
+    if lt_uri == base_uri:
+        # Fallback: just append if pattern didn't match
+        parsed = urlparse(base_uri)
+        lt_uri = f"{parsed.scheme}://{parsed.netloc}/lead-times/latest"
+
+    api_key = config.external_forecast_api_key
+
+    logger.info("Fetching empirical lead times from %s", lt_uri)
+    try:
+        req = Request(lt_uri)
+        if api_key:
+            req.add_header("X-API-Key", api_key)
+
+        with urlopen(req, timeout=30) as resp:  # noqa: S310
+            data = resp.read()
+
+        # Write to output directory so reader.py picks it up
+        out_path = Path(output_dir) / "empirical_lead_times.parquet"
+        out_path.write_bytes(data)
+        logger.info("Saved empirical lead times to %s", out_path)
+        return True
+
+    except Exception as e:
+        logger.info("Could not fetch empirical lead times: %s (continuing without)", e)
+        return False
+
+
 # ── Factory ─────────────────────────────────────────────────────────────
 
 
