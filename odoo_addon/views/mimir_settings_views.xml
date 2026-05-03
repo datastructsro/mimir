@@ -257,4 +257,16 @@
             </xpath>
         </field>
     </record>
+
+    <record id="action_mimir_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'mimir', 'bin_size': False}</field>
+    </record>
+
+    <menuitem id="mimir_menu_configuration" name="Configuration" parent="mimir_menu_root" sequence="100"/>
+    <menuitem id="mimir_menu_settings" name="Settings" parent="mimir_menu_configuration" action="action_mimir_config_settings" sequence="10"/>
 </odoo>
