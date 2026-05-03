@@ -1,6 +1,6 @@
 {
     "name": "Mimir — Demand Forecasting",
-    "version": "3.0.0",
+    "version": "3.0.0.1",
     "category": "Supply Chain",
     "summary": "Linear regression demand forecasting with automatic replenishment rule updates",
     "description": """
