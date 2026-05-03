@@ -1,409 +1,1412 @@
-# Translation template for XML files
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mimir
+#
 msgid ""
 msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-03 18:27+0000\n"
+"PO-Revision-Date: 2026-05-03 18:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "/data/mimir/output"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "/data/parqcast/exports/latest"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "123e4567-e89b-12d3-a456-426614174000"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid ""
+"<strong>Mimir requires an access token to operate.</strong>\n"
+"                                <br/>\n"
+"                                Paste your API key below, or"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "API Key"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_external_api_key
+msgid "API Key for the external forecast server (Must be a UUID)"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Access"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_needaction
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_needaction
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__activity_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__activity_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__activity_exception_decoration
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__activity_exception_decoration
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__activity_state
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__activity_state
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__activity_type_icon
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__activity_type_icon
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__res_config_settings__mimir_inventory_mode__adjust
+msgid "Adjust (modify replenishment)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.constraint,message:mimir.constraint_mimir_category_override_category_unique
+msgid "An override already exists for this category."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.constraint,message:mimir.constraint_mimir_product_override_product_unique
+msgid "An override already exists for this product."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__res_config_settings__mimir_inventory_mode__analyze
+msgid "Analyze (add inventory columns)"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_list
 msgid "Approve"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_form
 msgid "Approve & Apply"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__mimir_decision_request__status__approved
+msgid "Approved & Applied"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_attachment_count
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_attachment_count
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_auto_push
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Auto-push to Orderpoints"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Automatically update Odoo reorder rules after each forecast run"
 msgstr ""
 
-#: mimir/views/mimir_excel_wizard_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_auto_push
+msgid "Automatically update orderpoints after forecast run (vs. parquet-only)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_external_forecast_uri
+msgid "Base URI for the external HTTP forecast server"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_s3_bucket
+msgid "Bucket where Parqcast wrote its export (e.g. parqcast-v18-demo)"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_excel_upload_view_form
 msgid "Cancel"
 msgstr ""
 
-#: mimir/views/mimir_override_views.xml
+#. module: mimir
+#: model:ir.actions.act_window,name:mimir.mimir_category_override_action
+#: model:ir.ui.menu,name:mimir.mimir_menu_category_override
 msgid "Category Overrides"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__mimir_run__status__complete
+msgid "Complete"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model,name:mimir.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Configure external HTTP server for demand processing"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Count open PO and in-transit quantities"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_include_incoming
+msgid "Count open PO and in-transit quantities as available inventory"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__create_uid
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__create_uid
+#: model:ir.model.fields,field_description:mimir.field_mimir_excel_upload__create_uid
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__create_uid
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__create_date
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__create_date
+#: model:ir.model.fields,field_description:mimir.field_mimir_excel_upload__create_date
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__create_date
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__current_max_qty
+msgid "Current Max Qty"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__current_min_qty
+msgid "Current Min Qty"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_form
 msgid "Current Values"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__res_config_settings__mimir_time_bucket__daily
+msgid "Daily"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Data Quality"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Days between replenishment checks (affects max qty)"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_review_period_days
+msgid "Days between replenishment reviews — affects max_qty calculation"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Days of coverage above which a product is flagged as overstocked"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Days of coverage below which a product is flagged as understocked"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__decision_id
+msgid "Decision ID"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_form
 msgid "Decision Request"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
+#. module: mimir
+#: model:ir.actions.act_window,name:mimir.mimir_decision_request_action
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_list
 msgid "Decision Requests"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__decision_count
+#: model:ir.ui.menu,name:mimir.mimir_menu_decisions
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Decisions"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Default Fallbacks"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Default Lead Time"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_default_lead_time
+msgid "Default Lead Time (days)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__default_max_qty
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Default Max Qty"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_default_max_qty
+msgid "Default Max Qty (Fallback)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__default_min_qty
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Default Min Qty"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_default_min_qty
+msgid "Default Min Qty (Fallback)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_default_max_qty
+msgid "Default maximum quantity if insufficient history"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_default_min_qty
+msgid "Default minimum quantity if insufficient history"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Demand Forecasting"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__display_name
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__display_name
+#: model:ir.model.fields,field_description:mimir.field_mimir_excel_upload__display_name
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__display_name
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Download All (ZIP)"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Download Excel"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Download Forecast"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Download Inventory"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Download Rules"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__duration_seconds
+msgid "Duration (s)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__service_level
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__service_level
+msgid "E.g., 0.95 for 95% service level"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__empirical_lead_time
+msgid "Empirical Lead Time (Days)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_enabled
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Enable Mimir"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__mimir_run__status__error
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Error"
 msgstr ""
 
-#: mimir/views/mimir_excel_wizard_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__error_message
+msgid "Error Message"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_excel_upload__excel_file
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_excel_upload_view_form
 msgid "Excel File"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__excluded
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__excluded
+msgid "Exclude from Forecast"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Execute the forecast pipeline now with current settings"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_external_api_key
+msgid "External API Key (UUID)"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "External Forecast Server"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_external_forecast_uri
+msgid "External Forecast URI"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_default_lead_time
+msgid "Fallback lead time when no supplier info exists for a product"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__default_max_qty
+msgid "Fallback max qty for products with insufficient history"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__default_min_qty
+msgid "Fallback min qty for products with insufficient history"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Fallback when no supplier info exists for a product"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_excel_upload__filename
+msgid "Filename"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_list
 msgid "Files"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_follower_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_follower_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_partner_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_partner_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__activity_type_icon
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__activity_type_icon
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_s3_endpoint_url
+msgid "For S3-compatible stores (MinIO, LocalStack). Leave empty for AWS."
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Forecast Horizon"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_horizon_days
+msgid "Forecast Horizon (days)"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Forecast Parameters"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__run_id
+msgid "Forecast Run"
+msgstr ""
+
+#. module: mimir
+#: model:ir.actions.act_window,name:mimir.mimir_run_action
+#: model:ir.ui.menu,name:mimir.mimir_menu_runs
 msgid "Forecast Runs"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
-msgid "Mimir"
-msgstr ""
-
-#: mimir/views/mimir_settings_views.xml
-msgid "Mimir reads directly from the latest Parqcast export run's attachments. No file paths needed."
-msgstr ""
-
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Global fallback Max Qty for products with insufficient history"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Global fallback Min Qty for products with insufficient history"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Granularity of demand aggregation for regression"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_time_bucket
+msgid ""
+"Granularity of demand requested from the forecast server (Daily vs. Weekly)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__has_message
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__has_message
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__forecast_horizon_days
+msgid "Horizon (days)"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "How many days ahead to project demand"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "How to account for current inventory state"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_inventory_mode
+msgid ""
+"How to account for current inventory when computing replenishment rules"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__id
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__id
+#: model:ir.model.fields,field_description:mimir.field_mimir_excel_upload__id
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__id
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__id
+msgid "ID"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__activity_exception_icon
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__activity_exception_icon
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__activity_exception_icon
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__activity_exception_icon
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__message_needaction
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__message_needaction
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__message_has_error
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__message_has_sms_error
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__message_has_error
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__message_has_sms_error
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__message_has_error
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__res_config_settings__mimir_inventory_mode__ignore
+msgid "Ignore (forecast only)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_overstock_skip
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "In adjust mode, don't create orderpoints for overstocked products"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_understock_bump
+msgid ""
+"In adjust mode, raise service level by this amount for understocked products"
+" (e.g. 0.95 → 0.98)"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "In adjust mode, raise service level by this for understocked products"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_include_incoming
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Include Incoming Supply"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_include_outgoing
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Include Outgoing Demand"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_list
 msgid "Input"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__parquet_source_dir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_input_source
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Input Source"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Integration"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_inventory_mode
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Inventory Mode"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Inventory Position"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Inventory Thresholds"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_is_follower
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_is_follower
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__write_uid
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__write_uid
+#: model:ir.model.fields,field_description:mimir.field_mimir_excel_upload__write_uid
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__write_uid
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__write_date
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__write_date
+#: model:ir.model.fields,field_description:mimir.field_mimir_excel_upload__write_date
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__write_date
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__lead_time_override_days
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__lead_time_override_days
+msgid "Lead Time (Days)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_s3_access_key_id
+msgid "Leave empty to use the boto3 default credential chain"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__location_id
+msgid "Location"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_list
 msgid "Mark Review"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__max_qty_ceiling
+msgid "Max Qty Ceiling"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_has_error
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_has_error
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: mimir
+#: model:ir.ui.menu,name:mimir.mimir_menu_root
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Mimir"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model,name:mimir.model_mimir_category_override
+msgid "Mimir Category Override"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model,name:mimir.model_mimir_decision_request
+msgid "Mimir Decision Request"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model,name:mimir.model_mimir_excel_upload
+msgid "Mimir Excel Upload Wizard"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model,name:mimir.model_mimir_product_override
+msgid "Mimir Product Override"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model,name:mimir.model_mimir_run
+msgid "Mimir Run History"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_s3_bucket
+msgid "Mimir S3 Bucket"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_s3_endpoint_url
+msgid "Mimir S3 Endpoint URL"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_s3_prefix
+msgid "Mimir S3 Prefix"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid ""
+"Mimir reads directly from the latest Parqcast export run's attachments. No "
+"file paths needed."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__min_data_points
+msgid "Min Data Points Override"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__min_qty_floor
+msgid "Min Qty Floor"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_min_data_points
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Minimum Data Points"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_min_demand_threshold
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Minimum Demand Threshold"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_min_history_days
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Minimum History Days"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_min_history_days
+msgid "Minimum number of days of history required to fit a regression"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_min_data_points
+msgid "Minimum number of observations required to fit a regression"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__my_activity_date_deadline
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__my_activity_date_deadline
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_form
 msgid "Needs Review"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__activity_date_deadline
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__activity_date_deadline
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__activity_summary
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__activity_summary
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__activity_type_id
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__activity_type_id
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_needaction_counter
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_needaction_counter
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_horizon_days
+msgid "Number of days to project demand forward"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_has_error_counter
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_has_error_counter
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__message_needaction_counter
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__message_needaction_counter
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__message_has_error_counter
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__message_has_error_counter
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Odoo Attachments"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__res_config_settings__mimir_input_source__attachment
+msgid "Odoo Attachments (from Parqcast)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__attachment_count
+msgid "Output Files"
+msgstr ""
+
+#. module: mimir
+#: model:ir.ui.menu,name:mimir.mimir_menu_overrides
+msgid "Overrides"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Overstock Threshold"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_overstock_days
+msgid "Overstock Threshold (days)"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Parameters"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Parquet Directories"
 msgstr ""
 
-#: mimir/views/mimir_override_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_parquet_input_dir
+msgid "Parquet Input Directory"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_parquet_output_dir
+msgid "Parquet Output Directory"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "Paste the UUID token you received by email"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_parquet_input_dir
+msgid "Path to parqcast export directory"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_parquet_output_dir
+msgid "Path to write forecast and rules parquet files"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__planned_lead_time
+msgid "Planned Lead Time (Days)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_s3_prefix
+msgid "Prefix under the bucket; Mimir looks at <prefix>/outbound/<run_uuid>/"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__product_id
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__product_id
+msgid "Product"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__category_id
+msgid "Product Category"
+msgstr ""
+
+#. module: mimir
+#: model:ir.actions.act_window,name:mimir.mimir_product_override_action
+#: model:ir.ui.menu,name:mimir.mimir_menu_product_override
 msgid "Product Overrides"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__products_analyzed
+msgid "Products Analyzed"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__products_forecasted
+msgid "Products Forecasted"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_understock_days
+msgid ""
+"Products with fewer than this many days of coverage are flagged as "
+"understock"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_overstock_days
+msgid ""
+"Products with more than this many days of coverage are flagged as overstock"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_form
 msgid "Proposed Changes"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__proposed_max_qty
+msgid "Proposed Max Qty"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__proposed_min_qty
+msgid "Proposed Min Qty"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__mimir_decision_request__status__draft
+msgid "Proposed by AI"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Read Parqcast exports directly from an S3-compatible bucket"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid ""
+"Reads parquet files from the latest completed Parqcast export.\n"
+"                                Output files are stored as attachments on the Forecast Run record."
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_form
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_decision_request_view_list
 msgid "Reject"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__mimir_decision_request__status__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Require at least this many days of history to forecast"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Require at least this many observations to forecast"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_respect_reservations
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Respect Reservations"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__activity_user_id
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__activity_user_id
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Results"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Review Period"
 msgstr ""
 
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__review_period_override_days
+msgid "Review Period (Days)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_review_period_days
+msgid "Review Period (days)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__rules_created
+msgid "Rules Created"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__rules_skipped
+msgid "Rules Skipped"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__rules_updated
+msgid "Rules Updated"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_excel_upload__run_id
+msgid "Run"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__run_date
+msgid "Run Date"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Run Info"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Run Now"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Run Pipeline"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Run the forecast pipeline with current settings?"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__mimir_run__status__running
+msgid "Running"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__res_config_settings__mimir_input_source__s3
+msgid "S3 (from Parqcast)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_s3_access_key_id
+msgid "S3 Access Key ID"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "S3 Configuration"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_s3_region
+msgid "S3 Region"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_s3_secret_access_key
+msgid "S3 Secret Access Key"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__message_has_sms_error
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__message_has_sms_error
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__safety_factor
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__safety_factor
+msgid "Safety Factor Override"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__safety_factor
+msgid "Safety Factor Used"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__res_config_settings__mimir_input_source__filesystem
+msgid "Server Filesystem"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Server file paths for parqcast input and forecast output"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__service_level
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__service_level
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_service_level
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Service Level"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Skip Overstocked"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_overstock_skip
+msgid "Skip Overstocked Products"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_min_demand_threshold
+msgid "Skip products with average daily demand below this value"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Skip products with daily demand below this"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
-msgid "Subtract confirmed SO quantities (off by default to avoid double-counting)"
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__status
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__status
+msgid "Status"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__activity_state
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__activity_state
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid ""
+"Subtract confirmed SO quantities (off by default to avoid double-counting)"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_include_outgoing
+msgid ""
+"Subtract confirmed SO quantities. Off by default to avoid double-counting "
+"with forecast."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_respect_reservations
+msgid ""
+"Subtract reserved quantities from on-hand (conservative). Disable to let "
+"planner reallocate all stock."
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Subtract reserved stock from available position (conservative)"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
-msgid "Target fill rate. Set to 0.90 for standard service or 0.95 for critical items. Higher values need more safety stock."
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_service_level
+msgid ""
+"Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for "
+"critical items. Higher values require more safety stock. Start at 0.85 and "
+"increase per category as needed."
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid ""
+"Target fill rate. Set to 0.90 for standard service or 0.95 for critical "
+"items. Higher values need more safety stock."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_run__time_bucket
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_time_bucket
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Time Bucket"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Turn on demand forecasting and replenishment rule generation"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__activity_exception_decoration
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__activity_exception_decoration
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__mimir_decision_request__status__review
+msgid "Under Review"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Understock SL Bump"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_understock_bump
+msgid "Understock Service Level Bump"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Understock Threshold"
 msgstr ""
 
-#: mimir/views/mimir_excel_wizard_views.xml
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_res_config_settings__mimir_understock_days
+msgid "Understock Threshold (days)"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_excel_upload_view_form
 msgid "Upload & Update"
 msgstr ""
 
-#: mimir/views/mimir_excel_wizard_views.xml
-#: mimir/views/mimir_run_views.xml
+#. module: mimir
+#: model:ir.actions.act_window,name:mimir.mimir_excel_upload_action
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_run_view_form
 msgid "Upload Excel Review"
 msgstr ""
 
-#: mimir/views/mimir_excel_wizard_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_excel_upload_view_form
 msgid "Upload Modified Excel"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.mimir_excel_upload_view_form
+msgid ""
+"Upload the modified \"Review\" sheet to update the proposed min/max "
+"quantities for this forecast run."
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,field_description:mimir.field_mimir_category_override__website_message_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_decision_request__website_message_ids
+#: model:ir.model.fields,field_description:mimir.field_mimir_product_override__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_mimir_category_override__website_message_ids
+#: model:ir.model.fields,help:mimir.field_mimir_decision_request__website_message_ids
+#: model:ir.model.fields,help:mimir.field_mimir_product_override__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields.selection,name:mimir.selection__res_config_settings__mimir_time_bucket__weekly
+msgid "Weekly"
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "Where to read parqcast export data from"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_input_source
+msgid "Where to read parqcast export files from"
+msgstr ""
+
+#. module: mimir
+#: model:ir.model.fields,help:mimir.field_res_config_settings__mimir_s3_region
+msgid "e.g. eu-central-1. Ignored for most S3-compatible stores."
+msgstr ""
+
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "eu-central-1"
 msgstr ""
 
-#: mimir/views/mimir_override_views.xml
-msgid "mimir.category.override.list"
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "https://mimir.datastruct.tech/forecasts/latest"
 msgstr ""
 
-#: mimir/views/mimir_decision_views.xml
-msgid "mimir.decision.request.form"
-msgstr ""
-
-#: mimir/views/mimir_decision_views.xml
-msgid "mimir.decision.request.list"
-msgstr ""
-
-#: mimir/views/mimir_excel_wizard_views.xml
-msgid "mimir.excel.upload.form"
-msgstr ""
-
-#: mimir/views/mimir_override_views.xml
-msgid "mimir.product.override.list"
-msgstr ""
-
-#: mimir/views/mimir_run_views.xml
-msgid "mimir.run.form"
-msgstr ""
-
-#: mimir/views/mimir_run_views.xml
-msgid "mimir.run.list"
-msgstr ""
-
-#: mimir/views/mimir_settings_views.xml
-msgid "https://api.mimir.com/v1/forecasts"
-msgstr ""
-
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "https://s3.datastruct.tech"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "parqcast"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
 msgid "parqcast-v18-demo"
 msgstr ""
 
-#: mimir/views/mimir_settings_views.xml
-msgid "res.config.settings.view.form.mimir"
+#. module: mimir
+#: model_terms:ir.ui.view,arch_db:mimir.res_config_settings_view_form_mimir
+msgid "request one here →"
 msgstr ""
-
