@@ -20,8 +20,8 @@
     "data": [
         "security/ir.model.access.csv",
         "data/ir_config_parameter.xml",
-        "views/mimir_settings_views.xml",
         "views/mimir_run_views.xml",
+        "views/mimir_settings_views.xml",
         "views/mimir_override_views.xml",
         "views/mimir_decision_views.xml",
         "views/mimir_excel_wizard_views.xml",
