@@ -17,47 +17,6 @@ class MimirSettings(models.TransientModel):
         string="Enable Mimir",
         config_parameter="mimir.enabled",
     )
-    mimir_input_source = fields.Selection(
-        [
-            ("attachment", "Odoo Attachments (from Parqcast)"),
-            ("filesystem", "Server Filesystem"),
-            ("s3", "S3 (from Parqcast)"),
-        ],
-        string="Input Source",
-        config_parameter="mimir.input_source",
-        default="attachment",
-        help="Where to read parqcast export files from",
-    )
-    mimir_s3_bucket = fields.Char(
-        string="Mimir S3 Bucket",
-        config_parameter="mimir.s3_bucket",
-        help="Bucket where Parqcast wrote its export (e.g. parqcast-v18-demo)",
-    )
-    mimir_s3_prefix = fields.Char(
-        string="Mimir S3 Prefix",
-        config_parameter="mimir.s3_prefix",
-        default="parqcast",
-        help="Prefix under the bucket; Mimir looks at <prefix>/outbound/<run_uuid>/",
-    )
-    mimir_s3_endpoint_url = fields.Char(
-        string="Mimir S3 Endpoint URL",
-        config_parameter="mimir.s3_endpoint_url",
-        help="For S3-compatible stores (MinIO, LocalStack). Leave empty for AWS.",
-    )
-    mimir_s3_access_key_id = fields.Char(
-        string="S3 Access Key ID",
-        config_parameter="mimir.s3_access_key_id",
-        help="Leave empty to use the boto3 default credential chain",
-    )
-    mimir_s3_secret_access_key = fields.Char(
-        string="S3 Secret Access Key",
-        config_parameter="mimir.s3_secret_access_key",
-    )
-    mimir_s3_region = fields.Char(
-        string="S3 Region",
-        config_parameter="mimir.s3_region",
-        help="e.g. eu-central-1. Ignored for most S3-compatible stores.",
-    )
     mimir_horizon_days = fields.Integer(
         string="Forecast Horizon (days)",
         config_parameter="mimir.horizon_days",
@@ -125,16 +84,6 @@ class MimirSettings(models.TransientModel):
         config_parameter="mimir.auto_push",
         default=False,
         help="Automatically update orderpoints after forecast run (vs. parquet-only)",
-    )
-    mimir_parquet_input_dir = fields.Char(
-        string="Parquet Input Directory",
-        config_parameter="mimir.parquet_input_dir",
-        help="Path to parqcast export directory",
-    )
-    mimir_parquet_output_dir = fields.Char(
-        string="Parquet Output Directory",
-        config_parameter="mimir.parquet_output_dir",
-        help="Path to write forecast and rules parquet files",
     )
     mimir_external_forecast_uri = fields.Char(
         string="External Server Base URL",
@@ -233,114 +182,33 @@ class MimirSettings(models.TransientModel):
         help="In adjust mode, raise service level by this amount for understocked products (e.g. 0.95 → 0.98)",
     )
 
-    def _latest_parqcast_run(self):
-        """Return (run_id, run_uuid) of the most recent completed parqcast export.
+    def _build_runtime_context(self, selected_warehouse, minmax_table):
+        """Build minimal local Odoo metadata needed to normalize remote rules."""
+        from mimir.runtime_context import PipelineRuntimeContext, extract_rule_product_ids
 
-        Raises ValueError if no completed run exists.
-        """
-        self.env.cr.execute(
-            "SELECT id, run_uuid FROM parqcast_export_run "
-            "WHERE state = 'done' ORDER BY finished_at DESC NULLS LAST LIMIT 1"
+        product_ids = extract_rule_product_ids(minmax_table)
+        products = self.env["product.product"].sudo().browse(product_ids).exists()
+        product_names = {product.id: product.display_name or product.name or str(product.id) for product in products}
+
+        missing_product_ids = [product_id for product_id in product_ids if product_id not in product_names]
+        if missing_product_ids:
+            missing_text = ", ".join(str(product_id) for product_id in missing_product_ids)
+            raise ValueError(f"Imported rules reference unknown Odoo product IDs: {missing_text}")
+
+        orderpoints = self.env["stock.warehouse.orderpoint"].sudo().search(
+            [
+                ("warehouse_id", "=", selected_warehouse.id),
+                ("product_id", "in", product_ids),
+            ]
         )
-        row = self.env.cr.fetchone()
-        if not row:
-            raise ValueError("No completed Parqcast export run found. Run Parqcast export first.")
-        return row[0], row[1]
+        existing_orderpoint_keys = {(orderpoint.product_id.id, orderpoint.warehouse_id.id) for orderpoint in orderpoints}
 
-    def _get_parqcast_input_dir(self):
-        """Materialize parqcast attachment files into a temp directory.
-
-        Finds the latest completed parqcast export run, downloads its
-        ir.attachment parquet files, and writes them to a temporary directory.
-        Returns the Path to the temp dir.
-        """
-        run_id, run_uuid = self._latest_parqcast_run()
-        attachments = (
-            self.env["ir.attachment"]
-            .sudo()
-            .search(
-                [
-                    ("res_model", "=", "parqcast.run"),
-                    ("res_id", "=", run_id),
-                ]
-            )
+        return PipelineRuntimeContext(
+            warehouse_code=selected_warehouse.code or "",
+            location_id=selected_warehouse.lot_stock_id.id,
+            product_names=product_names,
+            existing_orderpoint_keys=existing_orderpoint_keys,
         )
-        if not attachments:
-            raise ValueError(
-                f"Parqcast run {run_uuid[:8]} has no attachment files. "
-                "Check that Parqcast transport is set to 'Odoo Attachments'."
-            )
-
-        tmp_dir = Path(tempfile.mkdtemp(prefix="mimir_"))
-        for att in attachments:
-            (tmp_dir / att.name).write_bytes(base64.b64decode(att.datas))
-
-        _logger.info(
-            "Materialized %d parqcast attachments from run %s into %s",
-            len(attachments),
-            run_uuid[:8],
-            tmp_dir,
-        )
-        return tmp_dir
-
-    def _get_parqcast_input_dir_s3(self):
-        """Download the latest parqcast export from S3 into a temp directory.
-
-        Expects the parqcast layout <prefix>/outbound/<run_uuid>/*.parquet under
-        the configured bucket. Returns the Path to the temp dir.
-        """
-        try:
-            import boto3
-        except ImportError as e:
-            raise ValueError("S3 input source requires boto3. Install it in the Odoo environment.") from e
-
-        ICP = self.env["ir.config_parameter"].sudo()
-        bucket = ICP.get_param("mimir.s3_bucket", "").strip()
-        if not bucket:
-            raise ValueError("Please configure S3 Bucket in Mimir settings.")
-        prefix = ICP.get_param("mimir.s3_prefix", "parqcast").strip().rstrip("/") or "parqcast"
-        endpoint_url = ICP.get_param("mimir.s3_endpoint_url", "").strip() or None
-        access_key = ICP.get_param("mimir.s3_access_key_id", "").strip() or None
-        secret_key = ICP.get_param("mimir.s3_secret_access_key", "").strip() or None
-        region = ICP.get_param("mimir.s3_region", "").strip() or None
-
-        run_id, run_uuid = self._latest_parqcast_run()
-
-        s3 = boto3.client(
-            "s3",
-            endpoint_url=endpoint_url,
-            aws_access_key_id=access_key,
-            aws_secret_access_key=secret_key,
-            region_name=region,
-        )
-
-        s3_prefix = f"{prefix}/outbound/{run_uuid}/"
-        tmp_dir = Path(tempfile.mkdtemp(prefix="mimir_s3_"))
-        downloaded = 0
-        paginator = s3.get_paginator("list_objects_v2")
-        for page in paginator.paginate(Bucket=bucket, Prefix=s3_prefix):
-            for obj in page.get("Contents", []):
-                key = obj["Key"]
-                rel = key[len(s3_prefix) :]
-                if not rel or rel.endswith("/"):
-                    continue
-                dest = tmp_dir / rel
-                dest.parent.mkdir(parents=True, exist_ok=True)
-                s3.download_file(bucket, key, str(dest))
-                downloaded += 1
-
-        if not downloaded:
-            raise ValueError(f"No files found at s3://{bucket}/{s3_prefix} for parqcast run {run_uuid[:8]}")
-
-        _logger.info(
-            "Downloaded %d S3 objects from s3://%s/%s (run %s) into %s",
-            downloaded,
-            bucket,
-            s3_prefix,
-            run_uuid[:8],
-            tmp_dir,
-        )
-        return tmp_dir
 
     def _store_output_attachments(self, run_record, output_dir):
         """Store output parquet and Excel files as ir.attachment on the run record."""
@@ -361,54 +229,15 @@ class MimirSettings(models.TransientModel):
         _logger.info("Stored %d output files as attachments on run %d", stored, run_record.id)
 
     def action_run_mimir(self):
-        """Trigger a warehouse-scoped mimir import run from Settings."""
+        """Trigger a warehouse-scoped server-backed mimir import run from Settings."""
         ICP = self.env["ir.config_parameter"].sudo()
-        input_source = ICP.get_param("mimir.input_source", "attachment")
         auto_push = ICP.get_param("mimir.auto_push", "False") == "True"
         selected_warehouse_raw = ICP.get_param("mimir.warehouse_id", "").strip()
-
-        input_dir = None
-        tmp_dir = None
+        external_uri = ICP.get_param("mimir.external_forecast_uri", "").strip()
+        external_api_key = ICP.get_param("mimir.external_api_key", "").strip()
         output_dir = None
 
         try:
-            if input_source == "attachment":
-                tmp_dir = self._get_parqcast_input_dir()
-                input_dir = str(tmp_dir)
-            elif input_source == "s3":
-                tmp_dir = self._get_parqcast_input_dir_s3()
-                input_dir = str(tmp_dir)
-            else:
-                input_dir = ICP.get_param("mimir.parquet_input_dir", "")
-                if not input_dir:
-                    return {
-                        "type": "ir.actions.client",
-                        "tag": "display_notification",
-                        "params": {
-                            "title": "Mimir",
-                            "message": "Please configure Parquet Input Directory first.",
-                            "type": "warning",
-                            "sticky": False,
-                        },
-                    }
-
-            # For attachment/s3 modes, use a temp output dir too
-            if input_source in ("attachment", "s3"):
-                output_dir = str(Path(tempfile.mkdtemp(prefix="mimir_out_")))
-            else:
-                output_dir = ICP.get_param("mimir.parquet_output_dir", "")
-                if not output_dir:
-                    return {
-                        "type": "ir.actions.client",
-                        "tag": "display_notification",
-                        "params": {
-                            "title": "Mimir",
-                            "message": "Please configure Parquet Output Directory first.",
-                            "type": "warning",
-                            "sticky": False,
-                        },
-                    }
-
             if not selected_warehouse_raw:
                 return {
                     "type": "ir.actions.client",
@@ -421,34 +250,59 @@ class MimirSettings(models.TransientModel):
                     },
                 }
 
+            if not external_uri:
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": "Mimir Server",
+                        "message": "Please configure External Server Base URL first.",
+                        "type": "warning",
+                        "sticky": False,
+                    },
+                }
+
             selected_warehouse_id = int(selected_warehouse_raw)
-            selected_warehouse = self.env["stock.warehouse"].browse(selected_warehouse_id)
-            external_uri = ICP.get_param("mimir.external_forecast_uri", "").strip()
-            external_api_key = ICP.get_param("mimir.external_api_key", "").strip()
+            selected_warehouse = self.env["stock.warehouse"].sudo().browse(selected_warehouse_id).exists()
+            if not selected_warehouse:
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": "Mimir",
+                        "message": f"Warehouse {selected_warehouse_id} no longer exists.",
+                        "type": "warning",
+                        "sticky": False,
+                    },
+                }
 
-            if external_uri:
-                from mimir.server_client import MimirServerClient
+            from mimir.server_client import MimirServerClient
 
-                try:
-                    client = MimirServerClient(external_uri, external_api_key)
-                    client.preflight_warehouse(
-                        selected_warehouse_id=selected_warehouse_id,
-                        warehouse_code=selected_warehouse.code,
-                    )
-                except ValueError as exc:
-                    return {
-                        "type": "ir.actions.client",
-                        "tag": "display_notification",
-                        "params": {
-                            "title": "Mimir Server",
-                            "message": str(exc),
-                            "type": "warning",
-                            "sticky": False,
-                        },
-                    }
+            try:
+                client = MimirServerClient(external_uri, external_api_key)
+                client.preflight_warehouse(
+                    selected_warehouse_id=selected_warehouse_id,
+                    warehouse_code=selected_warehouse.code,
+                )
+            except ValueError as exc:
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": "Mimir Server",
+                        "message": str(exc),
+                        "type": "warning",
+                        "sticky": False,
+                    },
+                }
 
             from mimir.config import MimirConfig
             from mimir.excel_export import export_forecast_evidence_to_excel, export_to_excel
+            from mimir.importer import (
+                fetch_remote_empirical_lead_times_table,
+                fetch_remote_forecast_evidence_table,
+                fetch_remote_minmax_table,
+            )
             from mimir.pipeline import run_pipeline
 
             config = MimirConfig(
@@ -458,10 +312,22 @@ class MimirSettings(models.TransientModel):
                 external_forecast_api_key=external_api_key,
             )
 
+            minmax_table = fetch_remote_minmax_table(config, selected_warehouse_code=selected_warehouse.code)
+            runtime_context = self._build_runtime_context(selected_warehouse, minmax_table)
+            forecast_evidence = fetch_remote_forecast_evidence_table(
+                config,
+                selected_warehouse_code=runtime_context.warehouse_code,
+            )
+            empirical_lead_times = fetch_remote_empirical_lead_times_table(config)
+            output_dir = str(Path(tempfile.mkdtemp(prefix="mimir_out_")))
+
             stats = run_pipeline(
-                parquet_input_dir=input_dir,
                 parquet_output_dir=output_dir,
                 config=config,
+                runtime_context=runtime_context,
+                minmax_table=minmax_table,
+                forecast_evidence=forecast_evidence,
+                empirical_lead_times=empirical_lead_times,
             )
 
             try:
@@ -478,12 +344,7 @@ class MimirSettings(models.TransientModel):
             except Exception:
                 _logger.warning("Excel export failed (non-fatal)", exc_info=True)
 
-            if input_source == "attachment":
-                source_label = "parqcast attachments"
-            elif input_source == "s3":
-                source_label = f"parqcast s3://{ICP.get_param('mimir.s3_bucket', '')}"
-            else:
-                source_label = input_dir
+            source_label = external_uri
             run_record = (
                 self.env["mimir.run"]
                 .sudo()
@@ -553,16 +414,10 @@ class MimirSettings(models.TransientModel):
             }
         except Exception as e:
             _logger.exception("Mimir pipeline failed")
-            if input_source == "attachment":
-                source_label = "parqcast attachments"
-            elif input_source == "s3":
-                source_label = f"parqcast s3://{ICP.get_param('mimir.s3_bucket', '')}"
-            else:
-                source_label = input_dir or ""
             self.env["mimir.run"].sudo().create(
                 {
                     "warehouse_id": int(selected_warehouse_raw) if selected_warehouse_raw else False,
-                    "parquet_source_dir": source_label,
+                    "parquet_source_dir": external_uri,
                     "status": "error",
                     "error_message": str(e),
                 }
@@ -578,10 +433,7 @@ class MimirSettings(models.TransientModel):
                 },
             }
         finally:
-            # Clean up temp directories
             import shutil
 
-            if tmp_dir and Path(tmp_dir).exists():
-                shutil.rmtree(tmp_dir, ignore_errors=True)
-            if input_source in ("attachment", "s3") and output_dir:
+            if output_dir:
                 shutil.rmtree(output_dir, ignore_errors=True)

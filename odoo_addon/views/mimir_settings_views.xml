@@ -44,62 +44,8 @@
                     </block>
 
                     <block title="Integration" invisible="not mimir_enabled or not mimir_external_api_key">
-                        <setting string="Input Source" help="Where to read the parqcast export bundle from">
-                            <field name="mimir_input_source" widget="radio"/>
-                        </setting>
-                        <setting string="Odoo Attachments"
-                                 help="Mimir reads directly from the latest Parqcast export run's attachments."
-                                 invisible="mimir_input_source != 'attachment'">
-                            <div class="text-muted">
-                                Reads parquet files from the latest completed Parqcast export.
-                                Rule and evidence outputs are stored as attachments on the run record.
-                            </div>
-                        </setting>
-                        <setting string="Parquet Directories" help="Server file paths for parqcast input and Mimir output"
-                                 invisible="mimir_input_source != 'filesystem'">
-                            <div class="content-group">
-                                <div class="row mt-2">
-                                    <label class="col-lg-3" for="mimir_parquet_input_dir"/>
-                                    <field name="mimir_parquet_input_dir" class="col-lg-6" placeholder="/data/parqcast/exports/latest"/>
-                                </div>
-                                <div class="row mt-2">
-                                    <label class="col-lg-3" for="mimir_parquet_output_dir"/>
-                                    <field name="mimir_parquet_output_dir" class="col-lg-6" placeholder="/data/mimir/output"/>
-                                </div>
-                            </div>
-                        </setting>
-                        <setting string="S3 Configuration"
-                                 help="Read Parqcast exports directly from an S3-compatible bucket"
-                                 invisible="mimir_input_source != 's3'">
-                            <div class="content-group">
-                                <div class="row mt-2">
-                                    <label class="col-lg-3" for="mimir_s3_bucket"/>
-                                    <field name="mimir_s3_bucket" class="col-lg-6" placeholder="parqcast-v18-demo"/>
-                                </div>
-                                <div class="row mt-2">
-                                    <label class="col-lg-3" for="mimir_s3_prefix"/>
-                                    <field name="mimir_s3_prefix" class="col-lg-6" placeholder="parqcast"/>
-                                </div>
-                                <div class="row mt-2">
-                                    <label class="col-lg-3" for="mimir_s3_endpoint_url"/>
-                                    <field name="mimir_s3_endpoint_url" class="col-lg-6" placeholder="https://s3.datastruct.tech"/>
-                                </div>
-                                <div class="row mt-2">
-                                    <label class="col-lg-3" for="mimir_s3_access_key_id"/>
-                                    <field name="mimir_s3_access_key_id" class="col-lg-6"/>
-                                </div>
-                                <div class="row mt-2">
-                                    <label class="col-lg-3" for="mimir_s3_secret_access_key"/>
-                                    <field name="mimir_s3_secret_access_key" password="True" class="col-lg-6"/>
-                                </div>
-                                <div class="row mt-2">
-                                    <label class="col-lg-3" for="mimir_s3_region"/>
-                                    <field name="mimir_s3_region" class="col-lg-3" placeholder="eu-central-1"/>
-                                </div>
-                            </div>
-                        </setting>
                         <setting string="External Rules Server"
-                                 help="Optional. If configured, Mimir fetches warehouse-scoped min/max and forecast evidence from this server.">
+                                 help="Mimir fetches warehouse-scoped min/max and forecast evidence directly from this server.">
                             <div class="content-group">
                                 <div class="row mt-2">
                                     <label class="col-lg-3" for="mimir_external_forecast_uri"/>
@@ -109,6 +55,13 @@
                                     <label class="col-lg-3" for="mimir_external_api_key"/>
                                     <field name="mimir_external_api_key" password="True" class="col-lg-6" placeholder="123e4567-e89b-12d3-a456-426614174000"/>
                                 </div>
+                            </div>
+                        </setting>
+                        <setting string="Server-backed Import"
+                                 help="Mimir downloads rules from the configured server and stores outputs as run attachments.">
+                            <div class="text-muted">
+                                The server-published parquet artifacts are the only source of truth.
+                                Mimir only creates temporary local files while normalizing those remote artifacts.
                             </div>
                         </setting>
                         <setting string="Auto-push to Orderpoints" help="Automatically approve imported rules after each run">

@@ -1,7 +1,8 @@
-"""Tests for the forecast provider abstraction layer."""
+"""Tests for the remote forecast provider compatibility layer."""
+
+from __future__ import annotations
 
 from datetime import date
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pyarrow as pa
@@ -9,47 +10,34 @@ import pyarrow.parquet as pq
 import pytest
 
 from mimir.config import MimirConfig
-from mimir.providers import (
-    ExternalHttpForecastProvider,
-    ExternalParquetForecastProvider,
-    get_forecast_provider,
-)
+from mimir.providers import ExternalHttpForecastProvider, get_forecast_provider
 from mimir.schemas import EXTERNAL_FORECAST_SCHEMA
 from tests.mock_forecast_server import DemandPoint, MockForecastProvider
 
-# ── Factory tests ───────────────────────────────────────────────────────
 
-
-def test_factory_internal_removed():
+def test_factory_internal_removed() -> None:
     config = MimirConfig(forecast_source="internal")
     with pytest.raises(ValueError, match="forecast_source must be 'external'"):
         get_forecast_provider(config)
 
 
-def test_factory_external_local_path():
+def test_factory_rejects_non_http_sources() -> None:
     config = MimirConfig(forecast_source="external", external_forecast_uri="/tmp/forecast.parquet")
-    assert isinstance(get_forecast_provider(config), ExternalParquetForecastProvider)
+    with pytest.raises(ValueError, match="remote HTTP\\(S\\) forecast service"):
+        get_forecast_provider(config)
 
 
-def test_factory_external_s3():
-    config = MimirConfig(forecast_source="external", external_forecast_uri="s3://bucket/forecast.parquet")
-    assert isinstance(get_forecast_provider(config), ExternalParquetForecastProvider)
-
-
-def test_factory_external_http():
+def test_factory_external_http() -> None:
     config = MimirConfig(forecast_source="external", external_forecast_uri="http://localhost:8400/forecasts/latest")
     assert isinstance(get_forecast_provider(config), ExternalHttpForecastProvider)
 
 
-def test_factory_external_https():
+def test_factory_external_https() -> None:
     config = MimirConfig(forecast_source="external", external_forecast_uri="https://api.example.com/forecasts")
     assert isinstance(get_forecast_provider(config), ExternalHttpForecastProvider)
 
 
-# ── MockForecastProvider (Test Server) ───────────────────────────────────
-
-
-def test_mock_provider():
+def test_mock_provider() -> None:
     config = MimirConfig(forecast_source="external")
     demand_series = {
         (1, 10): [
@@ -68,110 +56,7 @@ def test_mock_provider():
     assert forecasts[0].forecasted_daily_demand > 0
 
 
-# ── ExternalParquetForecastProvider ─────────────────────────────────────
-
-
-def test_external_parquet_missing_uri():
-    config = MimirConfig(forecast_source="external")
-    provider = ExternalParquetForecastProvider()
-    with pytest.raises(ValueError, match="external_forecast_uri"):
-        provider.get_forecasts(config)
-
-
-def test_external_parquet_missing_columns(tmp_path: Path):
-    config = MimirConfig(
-        forecast_source="external",
-        external_forecast_uri=str(tmp_path / "bad.parquet"),
-    )
-    provider = ExternalParquetForecastProvider()
-
-    bad_table = pa.table({"_odoo_product_id": [1]})
-    pq.write_table(bad_table, tmp_path / "bad.parquet")
-
-    with pytest.raises(ValueError, match="missing required columns"):
-        provider.get_forecasts(config)
-
-
-def test_external_parquet_valid(tmp_path: Path):
-    uri = tmp_path / "external.parquet"
-    config = MimirConfig(
-        forecast_source="external",
-        external_forecast_uri=str(uri),
-    )
-
-    from datetime import datetime, timezone
-    now = datetime.now(timezone.utc)
-    good_table = pa.table(
-        {
-            "_odoo_product_id": [1, 2],
-            "_odoo_warehouse_id": [10, 10],
-            "first_observation": [now, now],
-            "last_observation": [now, now],
-            "avg_daily_demand": [15.0, 0.0],
-            "data_points": [2, 0],
-            "forecasted_daily_demand": [42.5, 100.0],
-            "confidence": ["high", "low"],
-            "quantile_min_qty": [10.0, None],
-            "quantile_max_qty": [20.0, None],
-        },
-        schema=EXTERNAL_FORECAST_SCHEMA,
-    )
-    pq.write_table(good_table, uri)
-
-    provider = ExternalParquetForecastProvider()
-    forecasts = provider.get_forecasts(config)
-
-    assert len(forecasts) == 2
-
-    f1 = next(f for f in forecasts if f.product_id == 1)
-    assert f1.warehouse_id == 10
-    assert f1.forecasted_daily_demand == 42.5
-    assert f1.confidence == "high"
-    assert f1.data_points == 2
-    assert f1.slope == 0.0
-    assert f1.quantile_min_qty == 10.0
-    assert f1.quantile_max_qty == 20.0
-
-    f2 = next(f for f in forecasts if f.product_id == 2)
-    assert f2.forecasted_daily_demand == 100.0
-    assert f2.confidence == "low"
-    assert f2.data_points == 0  # no historical data for product 2
-
-
-def test_external_parquet_without_confidence(tmp_path: Path):
-    """When confidence column is missing, it should default to 'external'."""
-    uri = tmp_path / "no_conf.parquet"
-    config = MimirConfig(
-        forecast_source="external",
-        external_forecast_uri=str(uri),
-    )
-
-    from datetime import datetime, timezone
-    now = datetime.now(timezone.utc)
-    table = pa.table(
-        {
-            "_odoo_product_id": pa.array([1], type=pa.int64()),
-            "_odoo_warehouse_id": pa.array([10], type=pa.int64()),
-            "first_observation": pa.array([now], type=pa.timestamp("us", tz="UTC")),
-            "last_observation": pa.array([now], type=pa.timestamp("us", tz="UTC")),
-            "avg_daily_demand": pa.array([55.0], type=pa.float64()),
-            "data_points": pa.array([10], type=pa.int64()),
-            "forecasted_daily_demand": pa.array([55.0], type=pa.float64()),
-        }
-    )
-    pq.write_table(table, uri)
-
-    provider = ExternalParquetForecastProvider()
-    forecasts = provider.get_forecasts(config)
-
-    assert len(forecasts) == 1
-    assert forecasts[0].confidence == "external"
-
-
-# ── ExternalHttpForecastProvider ────────────────────────────────────────
-
-
-def test_external_http_missing_uri():
+def test_external_http_missing_uri() -> None:
     config = MimirConfig(forecast_source="external")
     provider = ExternalHttpForecastProvider()
     with pytest.raises(ValueError, match="external_forecast_uri"):
@@ -179,7 +64,7 @@ def test_external_http_missing_uri():
 
 
 @patch("urllib.request.urlopen")
-def test_external_http_query_params(mock_urlopen):
+def test_external_http_query_params(mock_urlopen: MagicMock) -> None:
     import io
     from datetime import datetime, timezone
 
@@ -211,23 +96,22 @@ def test_external_http_query_params(mock_urlopen):
         schema=EXTERNAL_FORECAST_SCHEMA,
     )
 
-    buf = io.BytesIO()
-    pq.write_table(table, buf)
-    buf.seek(0)
+    buffer = io.BytesIO()
+    pq.write_table(table, buffer)
+    buffer.seek(0)
 
-    mock_resp = MagicMock()
-    mock_resp.read.return_value = buf.read()
-    mock_resp.__enter__.return_value = mock_resp
-    mock_urlopen.return_value = mock_resp
+    mock_response = MagicMock()
+    mock_response.read.return_value = buffer.read()
+    mock_response.__enter__.return_value = mock_response
+    mock_urlopen.return_value = mock_response
 
-    provider.get_forecasts(config)
+    forecasts = provider.get_forecasts(config)
 
+    assert len(forecasts) == 1
     mock_urlopen.assert_called_once()
-    req = mock_urlopen.call_args[0][0]
-
-    url = req.full_url
-    assert "time_bucket=weekly" in url
-    assert "forecast_horizon_days=60" in url
-    assert "tenant_id=test_tenant" in url
-    assert "min_history_days=30" in url
-    assert req.headers.get("X-api-key") == "123e4567-e89b-12d3-a456-426614174000"
+    request = mock_urlopen.call_args[0][0]
+    assert "time_bucket=weekly" in request.full_url
+    assert "forecast_horizon_days=60" in request.full_url
+    assert "tenant_id=test_tenant" in request.full_url
+    assert "min_history_days=30" in request.full_url
+    assert request.headers.get("X-api-key") == "123e4567-e89b-12d3-a456-426614174000"

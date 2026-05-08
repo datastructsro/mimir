@@ -33,10 +33,6 @@
             <field name="key">mimir.min_demand_threshold</field>
             <field name="value">0.1</field>
         </record>
-        <record id="mimir_input_source" model="ir.config_parameter">
-            <field name="key">mimir.input_source</field>
-            <field name="value">attachment</field>
-        </record>
         <record id="mimir_warehouse_id" model="ir.config_parameter">
             <field name="key">mimir.warehouse_id</field>
             <field name="value"></field>
@@ -77,14 +73,6 @@
         <record id="mimir_understock_service_level_bump" model="ir.config_parameter">
             <field name="key">mimir.understock_service_level_bump</field>
             <field name="value">0.03</field>
-        </record>
-        <record id="mimir_parquet_input_dir" model="ir.config_parameter">
-            <field name="key">mimir.parquet_input_dir</field>
-            <field name="value"></field>
-        </record>
-        <record id="mimir_parquet_output_dir" model="ir.config_parameter">
-            <field name="key">mimir.parquet_output_dir</field>
-            <field name="value"></field>
         </record>
     </data>
 </odoo>
