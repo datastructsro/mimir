@@ -88,6 +88,7 @@ dev = [
     { name = "pyarrow-stubs" },
     { name = "pyright" },
     { name = "pytest" },
+    { name = "ruff" },
     { name = "types-openpyxl" },
 ]
 
@@ -107,6 +108,7 @@ dev = [
     { name = "pyarrow-stubs", specifier = ">=20" },
     { name = "pyright", specifier = ">=1.1.408" },
     { name = "pytest", specifier = ">=9.0.3" },
+    { name = "ruff", specifier = ">=0.8" },
     { name = "types-openpyxl", specifier = ">=3.1" },
 ]
 
