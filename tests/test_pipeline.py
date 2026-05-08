@@ -8,10 +8,9 @@ from pathlib import Path
 import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
-
-from mimir.config import MimirConfig
-from mimir.pipeline import run_pipeline
-from mimir.runtime_context import PipelineRuntimeContext
+from mimir_core.config import MimirConfig
+from mimir_core.pipeline import run_pipeline
+from mimir_core.runtime_context import PipelineRuntimeContext
 
 
 def _runtime_context() -> PipelineRuntimeContext:

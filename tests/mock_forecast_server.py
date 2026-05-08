@@ -8,17 +8,18 @@ from datetime import date
 
 import numpy as np
 import pyarrow as pa
-
-from mimir.config import MimirConfig
-from mimir.forecaster import ForecastResult
+from mimir_core.config import MimirConfig
+from mimir_core.forecaster import ForecastResult
 
 
 @dataclass
 class DemandPoint:
     """Single demand observation for a time bucket."""
+
     bucket_date: date
     total_qty: float
     order_count: int
+
 
 def aggregate_demand(
     sale_order_lines: pa.Table,
@@ -284,6 +285,7 @@ class MockForecastProvider:
         config: MimirConfig,
     ) -> list[ForecastResult]:
         import uuid
+
         api_key = config.external_forecast_api_key
         if api_key:
             try:
@@ -296,6 +298,7 @@ class MockForecastProvider:
             from pathlib import Path
 
             import pyarrow.parquet as pq
+
             sol_path = Path(self.input_dir) / "sale_order_line.parquet"
             if sol_path.exists():
                 sol = pq.read_table(sol_path)

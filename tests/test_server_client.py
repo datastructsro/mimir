@@ -10,8 +10,7 @@ from urllib.error import HTTPError
 import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
-
-from mimir.server_client import MimirServerClient, normalize_server_base_uri, warehouse_aliases
+from mimir_core.server_client import MimirServerClient, normalize_server_base_uri, warehouse_aliases
 
 
 def _parquet_bytes(table: pa.Table) -> bytes:
@@ -41,7 +40,7 @@ def test_warehouse_aliases_include_numeric_id_and_code() -> None:
     assert warehouse_aliases(None, "WH10") == ["WH10"]
 
 
-@patch("mimir.server_client.urlopen")
+@patch("mimir_core.server_client.urlopen")
 def test_preflight_resolves_selected_warehouse_code_alias(mock_urlopen: MagicMock) -> None:
     responses = {
         "https://mimir.example/health": _response_with_bytes(json.dumps({"status": "ok"})),
@@ -57,7 +56,7 @@ def test_preflight_resolves_selected_warehouse_code_alias(mock_urlopen: MagicMoc
     assert result.selected_warehouse_ref == "WH10"
 
 
-@patch("mimir.server_client.urlopen")
+@patch("mimir_core.server_client.urlopen")
 def test_preflight_raises_when_remote_server_has_no_artifacts(mock_urlopen: MagicMock) -> None:
     responses = {
         "https://mimir.example/health": _response_with_bytes(json.dumps({"status": "ok"})),
@@ -71,7 +70,7 @@ def test_preflight_raises_when_remote_server_has_no_artifacts(mock_urlopen: Magi
         client.preflight_warehouse(selected_warehouse_id=10, warehouse_code="WH10")
 
 
-@patch("mimir.server_client.urlopen")
+@patch("mimir_core.server_client.urlopen")
 def test_download_rules_table_uses_api_key_header_and_expected_route(mock_urlopen: MagicMock) -> None:
     table = pa.table(
         {
@@ -92,7 +91,7 @@ def test_download_rules_table_uses_api_key_header_and_expected_route(mock_urlope
     assert result.to_pylist() == table.to_pylist()
 
 
-@patch("mimir.server_client.urlopen")
+@patch("mimir_core.server_client.urlopen")
 def test_remote_http_errors_include_server_detail(mock_urlopen: MagicMock) -> None:
     error = HTTPError(
         url="https://mimir.example/warehouses/WH10/rules/latest",

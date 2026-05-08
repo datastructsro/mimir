@@ -9,7 +9,7 @@ You are an expert Python Developer and Odoo Technical Consultant. Your task is t
 - Assume the user is operating on a macOS environment with `uv` installed.
 - The project targets Odoo 18 and 19. Do not use deprecated APIs from Odoo 17 or earlier.
 - The primary data interchange format is Parquet, driven by `pyarrow`.
-- Mathematical calculations and modeling primarily rely on `numpy` (e.g., for linear regressions in `src/mimir/forecaster.py`).
+- Mathematical calculations and modeling primarily rely on `numpy` (e.g., for linear regressions in `odoo_addon/mimir_core/forecaster.py`).
 
 ## 💡 Best Practices for Gemini
 - **Be Concise:** Provide direct answers and precise code blocks. Avoid unnecessary exposition.

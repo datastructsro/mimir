@@ -11,16 +11,17 @@ def escape_pot_string(s):
     if not s:
         return ""
     # Escape quotes and newlines
-    s = s.replace('\\', '\\\\')
+    s = s.replace("\\", "\\\\")
     s = s.replace('"', '\\"')
-    s = s.replace('\n', '\\n')
+    s = s.replace("\n", "\\n")
     return s
 
-def extract_strings():
-    translatable_attrs = {'string', 'help', 'confirm', 'placeholder', 'sum', 'avg'}
-    strings_found = {} # msgid -> set of files
 
-    for xml_file in glob.glob('odoo_addon/**/*.xml', recursive=True):
+def extract_strings():
+    translatable_attrs = {"string", "help", "confirm", "placeholder", "sum", "avg"}
+    strings_found = {}  # msgid -> set of files
+
+    for xml_file in glob.glob("odoo_addon/**/*.xml", recursive=True):
         try:
             tree = ET.parse(xml_file)
             root = tree.getroot()
@@ -34,7 +35,7 @@ def extract_strings():
                             strings_found.setdefault(val, set()).add(xml_file)
 
                 # Check <field name="name">Text</field>
-                if elem.tag == 'field' and elem.attrib.get('name') == 'name':
+                if elem.tag == "field" and elem.attrib.get("name") == "name":
                     if elem.text:
                         val = escape_pot_string(elem.text)
                         if val:
@@ -44,7 +45,7 @@ def extract_strings():
             print(f"Error parsing {xml_file}: {e}", file=sys.stderr)
 
     # Print to stdout in POT format
-    print('# Translation template for XML files')
+    print("# Translation template for XML files")
     print('msgid ""')
     print('msgstr ""')
     print('"MIME-Version: 1.0\\n"')
@@ -59,5 +60,6 @@ def extract_strings():
         print('msgstr ""')
         print()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     extract_strings()

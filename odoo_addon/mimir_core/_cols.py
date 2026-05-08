@@ -25,7 +25,7 @@ import pyarrow as pa
 def nonnull_pairs(tbl: pa.Table, key_col: str, val_col: str) -> Iterator[tuple]:
     """Yield (key, value) tuples from two columns, skipping rows where either is null.
 
-        dict(nonnull_pairs(products, "_odoo_product_id", "name"))
+    dict(nonnull_pairs(products, "_odoo_product_id", "name"))
     """
     keys = tbl.column(key_col).to_pylist()
     vals = tbl.column(val_col).to_pylist()

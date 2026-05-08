@@ -55,15 +55,16 @@ def _active_ws(wb: Workbook) -> Worksheet:
         ws = wb.create_sheet()
     return ws
 
+
 # Colors for inventory flags
 FLAG_FILLS = {
-    "ok": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),          # green
-    "overstock": PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid"),    # red
-    "understock": PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid"),   # yellow
-    "at_risk": PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid"),      # yellow
-    "no_stock": PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid"),     # red
-    "no_demand": PatternFill(start_color="D9E2F3", end_color="D9E2F3", fill_type="solid"),    # blue-gray
-    "no_data": PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid"),      # gray
+    "ok": PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"),  # green
+    "overstock": PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid"),  # red
+    "understock": PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid"),  # yellow
+    "at_risk": PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid"),  # yellow
+    "no_stock": PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid"),  # red
+    "no_demand": PatternFill(start_color="D9E2F3", end_color="D9E2F3", fill_type="solid"),  # blue-gray
+    "no_data": PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid"),  # gray
 }
 
 HEADER_FONT = Font(bold=True, size=11)
@@ -185,10 +186,10 @@ def _write_odoo_import_sheet(wb: Workbook, rules: list[RuleRow]):
     ws.title = "Odoo Import"
 
     headers = [
-        "id",                    # External ID for create/update
-        "product_id/.id",        # DB ID of product
-        "warehouse_id/.id",      # DB ID of warehouse
-        "location_id/.id",       # DB ID of stock location
+        "id",  # External ID for create/update
+        "product_id/.id",  # DB ID of product
+        "warehouse_id/.id",  # DB ID of warehouse
+        "location_id/.id",  # DB ID of stock location
         "product_min_qty",
         "product_max_qty",
         "trigger",
@@ -229,7 +230,7 @@ def _write_odoo_import_sheet(wb: Workbook, rules: list[RuleRow]):
     ws.cell(row=row_num + 1, column=1, value="")
     ws.cell(row=row_num + 2, column=1, value="Import instructions:")
     ws.cell(row=row_num + 3, column=1, value="1. In Odoo, go to Inventory > Operations > Replenishment")
-    ws.cell(row=row_num + 4, column=1, value='2. Click the gear icon > Import records')
+    ws.cell(row=row_num + 4, column=1, value="2. Click the gear icon > Import records")
     ws.cell(row=row_num + 5, column=1, value="3. Upload this file and select the 'Odoo Import' sheet")
     ws.cell(row=row_num + 6, column=1, value="4. Verify column mapping, then click Import")
     ws.cell(row=row_num + 7, column=1, value="The 'id' column ensures re-importing updates existing rules.")

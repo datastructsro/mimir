@@ -2,9 +2,9 @@
 
 from datetime import date
 
-from mimir.calculator import calculate_rule
-from mimir.config import MimirConfig
-from mimir.forecaster import ForecastResult
+from mimir_core.calculator import calculate_rule
+from mimir_core.config import MimirConfig
+from mimir_core.forecaster import ForecastResult
 
 
 def _make_forecast(
@@ -173,7 +173,6 @@ def test_short_history_default_fallback():
     assert rule.max_qty == 4.0
 
 
-
 def test_product_override_floor_ceiling():
     """Product overrides enforce min floor and max ceiling."""
     config = MimirConfig(
@@ -181,8 +180,13 @@ def test_product_override_floor_ceiling():
         service_level=0.95,
         review_period_days=7,
         product_overrides={
-            1: {"service_level": None, "min_qty_floor": 200.0, "max_qty_ceiling": 300.0,
-                "lead_time_override_days": None, "excluded": False},
+            1: {
+                "service_level": None,
+                "min_qty_floor": 200.0,
+                "max_qty_ceiling": 300.0,
+                "lead_time_override_days": None,
+                "excluded": False,
+            },
         },
     )
     forecast = _make_forecast(daily=10.0)
@@ -207,8 +211,13 @@ def test_excluded_product_skipped():
     """Excluded products are skipped."""
     config = MimirConfig(
         product_overrides={
-            1: {"excluded": True, "service_level": None, "min_qty_floor": None,
-                "max_qty_ceiling": None, "lead_time_override_days": None},
+            1: {
+                "excluded": True,
+                "service_level": None,
+                "min_qty_floor": None,
+                "max_qty_ceiling": None,
+                "lead_time_override_days": None,
+            },
         },
     )
     forecast = _make_forecast(daily=100.0)

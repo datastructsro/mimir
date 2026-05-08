@@ -18,7 +18,6 @@ Currently supported Odoo versions: **18, 19**
 - **Precomputed Rule Consumption:** Imports upstream `minmax.parquet` rules instead of recalculating them locally.
 - **Seamless Odoo Integration:** Stages imported rules directly on `stock.warehouse.orderpoint` review records.
 - **Multilingual Support:** Ships with UI translations for 19 languages out of the box.
-- **CLI Interface:** Provides a lightweight CLI for headless execution and scripting.
 
 ## 🛠️ Setup & Installation
 
@@ -48,21 +47,7 @@ The addon (located in the `odoo_addon/` directory) integrates directly into Odoo
 4. It stores the rule outputs and forecast evidence workbook as attachments on a `mimir.run` record.
 5. Optionally, it auto-approves those staged rules into `stock.warehouse.orderpoint`.
 
-### Command Line Interface (CLI)
-
-For standalone execution or pipeline integration, use the CLI:
-
-```bash
-uv run mimir /path/to/output \
-  --warehouse 10 \
-  --external-uri https://mimir.datastruct.tech \
-  --external-api-key 123e4567-e89b-12d3-a456-426614174000 \
-  --odoo-url https://odoo.example.com \
-  --odoo-db mydb \
-  --odoo-user admin \
-  --odoo-password secret \
-  --verbose
-```
+The import/forecast core is bundled directly inside the addon under `odoo_addon/mimir_core/`.
 
 ### External Server Contract
 

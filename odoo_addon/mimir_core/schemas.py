@@ -117,9 +117,7 @@ INVENTORY_ANALYSIS_SCHEMA = pa.schema(
 BucketType = Literal["daily", "weekly"]
 Confidence = Literal["high", "medium", "low", "insufficient_data"]
 Action = Literal["create", "update", "skip"]
-InventoryFlag = Literal[
-    "ok", "overstock", "understock", "at_risk", "no_stock", "no_demand", "no_data"
-]
+InventoryFlag = Literal["ok", "overstock", "understock", "at_risk", "no_stock", "no_demand", "no_data"]
 
 
 class ForecastRow(TypedDict):
@@ -196,9 +194,7 @@ class InventoryAnalysisRow(TypedDict):
 # parqcast-ingesters.  Keep it in lockstep with:
 #   parqcast/packages/parqcast-core/src/parqcast/schemas/inbound.py
 
-DecisionType = Literal[
-    "ORDERPOINT", "LEAD_TIME", "PO", "MO", "RESCHEDULE", "DISTRIBUTION"
-]
+DecisionType = Literal["ORDERPOINT", "LEAD_TIME", "PO", "MO", "RESCHEDULE", "DISTRIBUTION"]
 
 DECISIONS_SCHEMA = pa.schema(
     [
@@ -263,4 +259,3 @@ class DecisionRow(TypedDict):
     delay: int
     planned_lead_time_days: int
     empirical_lead_time_days: int
-

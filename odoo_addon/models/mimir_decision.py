@@ -62,15 +62,21 @@ class MimirDecisionRequest(models.Model):
 
             if orderpoint:
                 orderpoint.write(vals)
-                rec.message_post(body=f"Updated existing orderpoint with Min: {rec.proposed_min_qty}, Max: {rec.proposed_max_qty}")
+                rec.message_post(
+                    body=f"Updated existing orderpoint with Min: {rec.proposed_min_qty}, Max: {rec.proposed_max_qty}"
+                )
             else:
-                vals.update({
-                    "product_id": rec.product_id.id,
-                    "location_id": rec.location_id.id,
-                    "name": f"Mimir {rec.product_id.display_name}",
-                })
+                vals.update(
+                    {
+                        "product_id": rec.product_id.id,
+                        "location_id": rec.location_id.id,
+                        "name": f"Mimir {rec.product_id.display_name}",
+                    }
+                )
                 self.env["stock.warehouse.orderpoint"].create(vals)
-                rec.message_post(body=f"Created new orderpoint with Min: {rec.proposed_min_qty}, Max: {rec.proposed_max_qty}")
+                rec.message_post(
+                    body=f"Created new orderpoint with Min: {rec.proposed_min_qty}, Max: {rec.proposed_max_qty}"
+                )
 
             rec.status = "approved"
 

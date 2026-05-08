@@ -32,13 +32,13 @@ class InventoryPosition:
     reserved_qty: float = 0.0
 
     # Supply pipeline
-    incoming_po_qty: float = 0.0       # open PO lines: ordered - received
-    incoming_move_qty: float = 0.0     # stock moves TO internal locations (not done/cancel)
-    incoming_mo_qty: float = 0.0       # open MO output quantity
+    incoming_po_qty: float = 0.0  # open PO lines: ordered - received
+    incoming_move_qty: float = 0.0  # stock moves TO internal locations (not done/cancel)
+    incoming_mo_qty: float = 0.0  # open MO output quantity
 
     # Demand pipeline
-    outgoing_so_qty: float = 0.0       # open SO lines: ordered - delivered
-    outgoing_move_qty: float = 0.0     # stock moves FROM internal locations (not done/cancel)
+    outgoing_so_qty: float = 0.0  # open SO lines: ordered - delivered
+    outgoing_move_qty: float = 0.0  # stock moves FROM internal locations (not done/cancel)
     outgoing_mo_consumption: float = 0.0  # MO component demand
 
     # Computed
@@ -123,7 +123,7 @@ class InventoryConfig:
     understock_threshold_days: float = 3.0
 
     # Adjustment behavior (only in 'adjust' mode)
-    overstock_skip: bool = True                  # skip creating orderpoints for overstocked products
+    overstock_skip: bool = True  # skip creating orderpoints for overstocked products
     understock_service_level_bump: float = 0.03  # raise service level by this for understocked products
 
     # Edge cases
@@ -288,8 +288,12 @@ def _load_moves(export_dir: Path, location_to_warehouse: dict, config: Inventory
     table = pq.read_table(
         str(path),
         columns=[
-            "_odoo_product_id", "product_uom_qty", "state",
-            "_odoo_location_id", "_odoo_location_dest_id", "_odoo_warehouse_id",
+            "_odoo_product_id",
+            "product_uom_qty",
+            "state",
+            "_odoo_location_id",
+            "_odoo_location_dest_id",
+            "_odoo_warehouse_id",
         ],
     )
 

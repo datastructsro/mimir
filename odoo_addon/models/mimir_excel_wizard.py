@@ -56,21 +56,16 @@ class MimirExcelUpload(models.TransientModel):
             except (ValueError, TypeError):
                 continue
 
-            req = DecisionRequest.search([
-                ("run_id", "=", self.run_id.id),
-                ("decision_id", "=", decision_id)
-            ], limit=1)
+            req = DecisionRequest.search([("run_id", "=", self.run_id.id), ("decision_id", "=", decision_id)], limit=1)
 
             if req and req.status in ("draft", "review"):
                 old_min, old_max = req.proposed_min_qty, req.proposed_max_qty
 
                 if old_min != min_qty or old_max != max_qty:
-                    req.write({
-                        "proposed_min_qty": min_qty,
-                        "proposed_max_qty": max_qty,
-                        "status": "review"
-                    })
-                    req.message_post(body=f"Excel Upload updated Min: {old_min} -> {min_qty}, Max: {old_max} -> {max_qty}")
+                    req.write({"proposed_min_qty": min_qty, "proposed_max_qty": max_qty, "status": "review"})
+                    req.message_post(
+                        body=f"Excel Upload updated Min: {old_min} -> {min_qty}, Max: {old_max} -> {max_qty}"
+                    )
                     updates += 1
 
         return {

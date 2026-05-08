@@ -7,8 +7,6 @@ from pathlib import Path
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
-from ..tools.core_loader import bootstrap_mimir_core
-
 _logger = logging.getLogger(__name__)
 
 
@@ -186,8 +184,7 @@ class MimirSettings(models.TransientModel):
 
     def _build_runtime_context(self, selected_warehouse, minmax_table):
         """Build minimal local Odoo metadata needed to normalize remote rules."""
-        bootstrap_mimir_core()
-        from mimir_core.runtime_context import PipelineRuntimeContext, extract_rule_product_ids
+        from ..mimir_core.runtime_context import PipelineRuntimeContext, extract_rule_product_ids
 
         product_ids = extract_rule_product_ids(minmax_table)
         products = self.env["product.product"].sudo().browse(product_ids).exists()
@@ -285,8 +282,7 @@ class MimirSettings(models.TransientModel):
                     },
                 }
 
-            bootstrap_mimir_core()
-            from mimir_core.server_client import MimirServerClient
+            from ..mimir_core.server_client import MimirServerClient
 
             try:
                 client = MimirServerClient(external_uri, external_api_key)
@@ -306,14 +302,14 @@ class MimirSettings(models.TransientModel):
                     },
                 }
 
-            from mimir_core.config import MimirConfig
-            from mimir_core.excel_export import export_forecast_evidence_to_excel, export_to_excel
-            from mimir_core.importer import (
+            from ..mimir_core.config import MimirConfig
+            from ..mimir_core.excel_export import export_forecast_evidence_to_excel, export_to_excel
+            from ..mimir_core.importer import (
                 fetch_remote_empirical_lead_times_table,
                 fetch_remote_forecast_evidence_table,
                 fetch_remote_minmax_table,
             )
-            from mimir_core.pipeline import run_pipeline
+            from ..mimir_core.pipeline import run_pipeline
 
             config = MimirConfig(
                 selected_warehouse_id=selected_warehouse_id,

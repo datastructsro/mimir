@@ -4,10 +4,9 @@ import tempfile
 from datetime import datetime, timezone
 
 import pyarrow.parquet as pq
-
-from mimir.calculator import ReplenishmentRule
-from mimir.schemas import DECISIONS_SCHEMA
-from mimir.writer import write_decisions
+from mimir_core.calculator import ReplenishmentRule
+from mimir_core.schemas import DECISIONS_SCHEMA
+from mimir_core.writer import write_decisions
 
 
 def _make_rule(

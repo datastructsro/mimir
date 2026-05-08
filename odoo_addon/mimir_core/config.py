@@ -1,7 +1,7 @@
 """Configuration definitions for mimir.
 
 Stores global settings, per-category overrides, and per-product overrides.
-SQLite dependency has been removed in favor of Odoo ORM integration or CLI dict loading.
+SQLite dependency has been removed in favor of Odoo ORM integration and in-process config loading.
 """
 
 from __future__ import annotations
@@ -45,10 +45,7 @@ class MimirConfig:
     min_demand_threshold: float = 0.1
     default_min_qty: float = 0.0
     default_max_qty: float = 0.0
-    odoo_url: str = ""
     odoo_db: str = ""
-    odoo_user: str = ""
-    odoo_password: str = ""
 
     # Inventory position settings
     inventory_mode: str = "ignore"  # ignore | analyze | adjust

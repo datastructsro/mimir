@@ -10,14 +10,14 @@ Mimir is a linear-regression demand-forecasting tool for the **Parqcast** ecosys
 - **Maintainer:** DataStruct s.r.o.
 
 ## 🏗️ Architecture & Pipeline Specs
-The core application lives in `src/mimir/`. The main orchestrator is `pipeline.py`, which executes the following distinct phases:
-1. **Reader:** Loads parqcast Parquet exports using `pyarrow` (`reader.py`).
-2. **Inventory Loader:** Fetches current inventory positions, evaluating modes (e.g., handling reservations and incoming/outgoing stock logic via `inventory.py`).
-3. **Aggregator:** Buckets demand time series (`aggregator.py`).
-4. **Forecaster:** Runs linear regression (`fit_demand`) using NumPy and computes quantile reorder points (`forecaster.py`).
-5. **Calculator:** Applies lead times, review periods, and service levels to determine min/max rules (`calculator.py`).
-6. **Writer:** Outputs `forecasts.parquet`, `replenishment_rules.parquet`, and optionally `inventory_analysis.parquet` (`writer.py`).
-7. **Pusher:** Pushes finalized rules directly to Odoo via XML-RPC (`pusher.py`).
+The bundled import/forecast core lives in `odoo_addon/mimir_core/`. The main orchestrator is `pipeline.py`, which works with the following modules:
+1. **Server Client:** Talks to `mimir-server` health, warehouse, rules, forecast, and lead-time endpoints (`server_client.py`).
+2. **Importer:** Downloads remote artifacts and filters them for the selected warehouse (`importer.py`).
+3. **Runtime Context:** Resolves the minimal Odoo-side warehouse, product, and orderpoint context needed for normalization (`runtime_context.py`).
+4. **Calculator:** Applies lead times, review periods, service levels, and inventory adjustments to determine staged rules (`calculator.py`).
+5. **Inventory Logic:** Evaluates stock position, incoming/outgoing supply, and understock/overstock classification (`inventory.py`).
+6. **Writer / Excel Export:** Outputs `forecast_evidence.parquet`, `replenishment_rules.parquet`, `decisions.parquet`, and review workbooks (`writer.py`, `excel_export.py`).
+7. **Odoo Entry Point:** Runs the import pipeline from Odoo settings and stores results on `mimir.run` records (`odoo_addon/models/mimir_settings.py`).
 
 An SQLite database (`mimir_config.db`) is maintained locally for an audit trail of pipeline runs.
 
@@ -32,6 +32,5 @@ An SQLite database (`mimir_config.db`) is maintained locally for an audit trail 
 - Keep PRs scoped to a single logical change.
 
 ## 🛑 What NOT to do
-- Do not introduce breaking changes to the CLI arguments without updating the `README.md`.
 - Avoid hardcoding translations; use Odoo's standard `_()` translation functions.
 - Do not modify Pyright or Ruff configurations to bypass type checking or linting constraints.

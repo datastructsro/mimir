@@ -6,9 +6,8 @@ from unittest.mock import MagicMock, patch
 
 import pyarrow as pa
 import pytest
-
-from mimir.config import MimirConfig
-from mimir.importer import (
+from mimir_core.config import MimirConfig
+from mimir_core.importer import (
     fetch_remote_empirical_lead_times_table,
     fetch_remote_forecast_evidence_table,
     fetch_remote_minmax_table,
@@ -33,7 +32,7 @@ def test_fetch_remote_minmax_table_downloads_and_filters_selected_warehouse() ->
         }
     )
 
-    with patch("mimir.importer.MimirServerClient") as mock_client_cls:
+    with patch("mimir_core.importer.MimirServerClient") as mock_client_cls:
         mock_client = MagicMock()
         mock_client.resolve_warehouse_ref.return_value = "WH10"
         mock_client.download_rules_table.return_value = remote_rules
@@ -46,7 +45,7 @@ def test_fetch_remote_minmax_table_downloads_and_filters_selected_warehouse() ->
 
 
 def test_fetch_remote_minmax_table_does_not_fallback_when_remote_server_fails() -> None:
-    with patch("mimir.importer.MimirServerClient") as mock_client_cls:
+    with patch("mimir_core.importer.MimirServerClient") as mock_client_cls:
         mock_client = MagicMock()
         mock_client.resolve_warehouse_ref.return_value = "WH10"
         mock_client.download_rules_table.side_effect = ValueError("Remote rules are unavailable")
@@ -57,7 +56,7 @@ def test_fetch_remote_minmax_table_does_not_fallback_when_remote_server_fails() 
 
 
 def test_fetch_remote_forecast_evidence_table_is_optional() -> None:
-    with patch("mimir.importer.MimirServerClient") as mock_client_cls:
+    with patch("mimir_core.importer.MimirServerClient") as mock_client_cls:
         mock_client = MagicMock()
         mock_client.resolve_warehouse_ref.return_value = "WH10"
         mock_client.download_forecast_table.side_effect = ValueError("Remote forecast missing")
@@ -69,7 +68,7 @@ def test_fetch_remote_forecast_evidence_table_is_optional() -> None:
 
 
 def test_fetch_remote_empirical_lead_times_table_is_optional() -> None:
-    with patch("mimir.importer.MimirServerClient") as mock_client_cls:
+    with patch("mimir_core.importer.MimirServerClient") as mock_client_cls:
         mock_client = MagicMock()
         mock_client.download_lead_times_table.side_effect = ValueError("No lead times published")
         mock_client_cls.return_value = mock_client

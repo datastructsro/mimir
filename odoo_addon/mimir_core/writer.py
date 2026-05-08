@@ -221,4 +221,3 @@ def write_decisions(
     path = output_dir / "decisions.parquet"
     pq.write_table(table, path, compression="snappy")
     return path
-

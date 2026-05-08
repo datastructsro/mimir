@@ -181,14 +181,21 @@ def _make_skip_rule(
     review_period_days: int = 0,
 ) -> ReplenishmentRule:
     return ReplenishmentRule(
-        product_id=pid, product_name=product_name,
-        warehouse_id=wid, warehouse_code=warehouse_code,
+        product_id=pid,
+        product_name=product_name,
+        warehouse_id=wid,
+        warehouse_code=warehouse_code,
         location_id=location_id,
-        min_qty=0, max_qty=0, planned_lead_time_days=planned_lead_time_days,
+        min_qty=0,
+        max_qty=0,
+        planned_lead_time_days=planned_lead_time_days,
         empirical_lead_time_days=empirical_lead_time_days,
-        service_level=service_level, review_period_days=review_period_days,
+        service_level=service_level,
+        review_period_days=review_period_days,
         forecasted_daily_demand=forecasted_daily_demand,
-        trigger="auto", action="skip", skip_reason=skip_reason,
+        trigger="auto",
+        action="skip",
+        skip_reason=skip_reason,
     )
 
 
@@ -222,10 +229,7 @@ def calculate_rule(
     # Check history span
     history_span_days = (forecast.last_observation - forecast.first_observation).days
 
-    insufficient_history = (
-        forecast.confidence == "insufficient_data" or
-        history_span_days < config.min_history_days
-    )
+    insufficient_history = forecast.confidence == "insufficient_data" or history_span_days < config.min_history_days
 
     below_demand = daily < config.min_demand_threshold
 
@@ -269,8 +273,17 @@ def calculate_rule(
         if inventory_config.inventory_mode == "adjust":
             if inv_flag == "overstock" and inventory_config.overstock_skip:
                 rule = _make_skip_rule(
-                    pid, wid, product_name, warehouse_code, location_id, daily,
-                    "overstock_skip", planned_lead_time, empirical_lead_time, service_level, review,
+                    pid,
+                    wid,
+                    product_name,
+                    warehouse_code,
+                    location_id,
+                    daily,
+                    "overstock_skip",
+                    planned_lead_time,
+                    empirical_lead_time,
+                    service_level,
+                    review,
                 )
                 rule.on_hand_qty = inventory_position.on_hand_qty
                 rule.reserved_qty = inventory_position.reserved_qty

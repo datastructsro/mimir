@@ -20,6 +20,7 @@ def _make_points(quantities, start_date=date(2024, 1, 1)):
 
 # --- _interpolate_to_daily tests ---
 
+
 def test_interpolate_daily_no_gaps():
     """Consecutive daily points map directly."""
     points = _make_points([10, 20, 30])
@@ -36,8 +37,8 @@ def test_interpolate_daily_with_gaps():
     daily = _interpolate_to_daily(points, "daily")
     assert len(daily) == 4  # Jan 1, 2, 3, 4
     assert daily[0] == 10.0
-    assert daily[1] == 0.0   # gap
-    assert daily[2] == 0.0   # gap
+    assert daily[1] == 0.0  # gap
+    assert daily[2] == 0.0  # gap
     assert daily[3] == 40.0
 
 
@@ -52,9 +53,11 @@ def test_interpolate_weekly():
 
 # --- _rolling_quantile tests ---
 
+
 def test_rolling_quantile_basic():
     """Rolling 3-day windows of [10, 10, 10, 10] should all sum to 30."""
     import numpy as np
+
     daily = np.array([10.0, 10.0, 10.0, 10.0])
     q95 = _rolling_quantile(daily, 3, 95)
     assert q95 == 30.0  # all windows are identical
@@ -63,6 +66,7 @@ def test_rolling_quantile_basic():
 def test_rolling_quantile_variable():
     """Higher percentile should give a higher value for variable demand."""
     import numpy as np
+
     daily = np.array([5.0, 20.0, 5.0, 20.0, 5.0, 20.0, 5.0, 20.0, 5.0, 20.0])
     q50 = _rolling_quantile(daily, 3, 50)
     q95 = _rolling_quantile(daily, 3, 95)
@@ -72,12 +76,14 @@ def test_rolling_quantile_variable():
 def test_rolling_quantile_short_series():
     """Series shorter than window: scale proportionally."""
     import numpy as np
+
     daily = np.array([10.0, 10.0])
     result = _rolling_quantile(daily, 7, 95)
     assert result == 20.0 * 7 / 2  # 70.0
 
 
 # --- compute_quantile_reorder_points tests ---
+
 
 def test_quantile_reorder_steady_demand():
     """Steady demand of 10/day, lead_time=7: min should be ~70."""

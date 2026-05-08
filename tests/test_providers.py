@@ -8,10 +8,10 @@ from unittest.mock import MagicMock, patch
 import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
+from mimir_core.config import MimirConfig
+from mimir_core.providers import ExternalHttpForecastProvider, get_forecast_provider
+from mimir_core.schemas import EXTERNAL_FORECAST_SCHEMA
 
-from mimir.config import MimirConfig
-from mimir.providers import ExternalHttpForecastProvider, get_forecast_provider
-from mimir.schemas import EXTERNAL_FORECAST_SCHEMA
 from tests.mock_forecast_server import DemandPoint, MockForecastProvider
 
 

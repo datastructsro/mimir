@@ -2,8 +2,7 @@
 
 import pyarrow as pa
 import pyarrow.parquet as pq
-
-from mimir.inventory import (
+from mimir_core.inventory import (
     InventoryConfig,
     InventoryPosition,
     classify_inventory,
@@ -12,16 +11,25 @@ from mimir.inventory import (
 
 
 def _make_position(
-    on_hand=100.0, reserved=10.0,
-    incoming_po=50.0, incoming_move=0.0, incoming_mo=0.0,
-    outgoing_so=20.0, outgoing_move=0.0, outgoing_mo=0.0,
+    on_hand=100.0,
+    reserved=10.0,
+    incoming_po=50.0,
+    incoming_move=0.0,
+    incoming_mo=0.0,
+    outgoing_so=20.0,
+    outgoing_move=0.0,
+    outgoing_mo=0.0,
 ) -> InventoryPosition:
     return InventoryPosition(
-        product_id=1, warehouse_id=1,
-        on_hand_qty=on_hand, reserved_qty=reserved,
-        incoming_po_qty=incoming_po, incoming_move_qty=incoming_move,
+        product_id=1,
+        warehouse_id=1,
+        on_hand_qty=on_hand,
+        reserved_qty=reserved,
+        incoming_po_qty=incoming_po,
+        incoming_move_qty=incoming_move,
         incoming_mo_qty=incoming_mo,
-        outgoing_so_qty=outgoing_so, outgoing_move_qty=outgoing_move,
+        outgoing_so_qty=outgoing_so,
+        outgoing_move_qty=outgoing_move,
         outgoing_mo_consumption=outgoing_mo,
     )
 
@@ -40,6 +48,7 @@ def _default_config(**kwargs) -> InventoryConfig:
 
 
 # --- net_position tests ---
+
 
 def test_net_position_all_flags():
     """Net position with all flags enabled: on_hand - reserved + incoming - outgoing."""
@@ -78,6 +87,7 @@ def test_net_position_negative():
 
 # --- coverage_days tests ---
 
+
 def test_coverage_days_normal():
     pos = _make_position(on_hand=100, reserved=0, incoming_po=0)
     cov = pos.coverage_days(10.0, respect_reservations=False, include_incoming=False, include_outgoing=False)
@@ -104,6 +114,7 @@ def test_coverage_days_negative_position():
 
 
 # --- classify_inventory tests ---
+
 
 def test_classify_ok():
     config = _default_config(overstock_threshold_days=90, understock_threshold_days=3)
@@ -160,15 +171,18 @@ def test_classify_no_data():
 
 # --- load_inventory_positions tests ---
 
+
 def test_load_from_mock_parquets(tmp_dir):
     """Load inventory data from minimal mock parquets."""
     # Create stock_quant.parquet
-    quant_table = pa.table({
-        "_odoo_product_id": pa.array([1, 1, 2], type=pa.int64()),
-        "_odoo_warehouse_id": pa.array([10, 10, 10], type=pa.int64()),
-        "quantity": pa.array([50.0, 30.0, 100.0], type=pa.float64()),
-        "reserved_quantity": pa.array([5.0, 0.0, 10.0], type=pa.float64()),
-    })
+    quant_table = pa.table(
+        {
+            "_odoo_product_id": pa.array([1, 1, 2], type=pa.int64()),
+            "_odoo_warehouse_id": pa.array([10, 10, 10], type=pa.int64()),
+            "quantity": pa.array([50.0, 30.0, 100.0], type=pa.float64()),
+            "reserved_quantity": pa.array([5.0, 0.0, 10.0], type=pa.float64()),
+        }
+    )
     pq.write_table(quant_table, tmp_dir / "stock_quant.parquet")
 
     config = InventoryConfig(inventory_mode="analyze")

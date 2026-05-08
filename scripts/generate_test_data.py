@@ -31,12 +31,14 @@ PRODUCTS = []
 CATEGORIES = {1: "Beverages", 2: "Snacks", 3: "Dairy", 4: "Frozen"}
 for i in range(1, N_PRODUCTS + 1):
     cat_id = (i % 4) + 1
-    PRODUCTS.append({
-        "id": i,
-        "name": f"Product {i:03d} - {CATEGORIES[cat_id]}",
-        "code": f"P{i:04d}",
-        "categ_id": cat_id,
-    })
+    PRODUCTS.append(
+        {
+            "id": i,
+            "name": f"Product {i:03d} - {CATEGORIES[cat_id]}",
+            "code": f"P{i:04d}",
+            "categ_id": cat_id,
+        }
+    )
 
 
 def _demand_pattern(product_id: int, day: int) -> float:
@@ -87,37 +89,43 @@ def generate_sale_order_lines():
                 wcodes.append(wh_code)
                 qty_delivered.append(qty)  # all delivered for historical data
 
-    table = pa.table({
-        "_odoo_product_id": pa.array(pids, type=pa.int64()),
-        "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
-        "product_uom_qty": pa.array(qtys, type=pa.float64()),
-        "date_order": pa.array(dates, type=pa.timestamp("us", tz="UTC")),
-        "so_state": pa.array(states, type=pa.string()),
-        "product_name": pa.array(pnames, type=pa.string()),
-        "warehouse_code": pa.array(wcodes, type=pa.string()),
-        "qty_delivered": pa.array(qty_delivered, type=pa.float64()),
-    })
+    table = pa.table(
+        {
+            "_odoo_product_id": pa.array(pids, type=pa.int64()),
+            "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
+            "product_uom_qty": pa.array(qtys, type=pa.float64()),
+            "date_order": pa.array(dates, type=pa.timestamp("us", tz="UTC")),
+            "so_state": pa.array(states, type=pa.string()),
+            "product_name": pa.array(pnames, type=pa.string()),
+            "warehouse_code": pa.array(wcodes, type=pa.string()),
+            "qty_delivered": pa.array(qty_delivered, type=pa.float64()),
+        }
+    )
     pq.write_table(table, OUTPUT_DIR / "sale_order_line.parquet", compression="snappy")
     print(f"  sale_order_line.parquet: {table.num_rows} rows")
 
 
 def generate_products():
-    table = pa.table({
-        "_odoo_product_id": pa.array([p["id"] for p in PRODUCTS], type=pa.int64()),
-        "name": pa.array([p["name"] for p in PRODUCTS]),
-        "default_code": pa.array([p["code"] for p in PRODUCTS]),
-        "_odoo_categ_id": pa.array([p["categ_id"] for p in PRODUCTS], type=pa.int64()),
-    })
+    table = pa.table(
+        {
+            "_odoo_product_id": pa.array([p["id"] for p in PRODUCTS], type=pa.int64()),
+            "name": pa.array([p["name"] for p in PRODUCTS]),
+            "default_code": pa.array([p["code"] for p in PRODUCTS]),
+            "_odoo_categ_id": pa.array([p["categ_id"] for p in PRODUCTS], type=pa.int64()),
+        }
+    )
     pq.write_table(table, OUTPUT_DIR / "product.parquet", compression="snappy")
     print(f"  product.parquet: {table.num_rows} rows")
 
 
 def generate_warehouses():
-    table = pa.table({
-        "_odoo_warehouse_id": pa.array([w[0] for w in WAREHOUSES], type=pa.int64()),
-        "code": pa.array([w[1] for w in WAREHOUSES]),
-        "_odoo_lot_stock_id": pa.array([w[2] for w in WAREHOUSES], type=pa.int64()),
-    })
+    table = pa.table(
+        {
+            "_odoo_warehouse_id": pa.array([w[0] for w in WAREHOUSES], type=pa.int64()),
+            "code": pa.array([w[1] for w in WAREHOUSES]),
+            "_odoo_lot_stock_id": pa.array([w[2] for w in WAREHOUSES], type=pa.int64()),
+        }
+    )
     pq.write_table(table, OUTPUT_DIR / "stock_warehouse.parquet", compression="snappy")
     print(f"  stock_warehouse.parquet: {table.num_rows} rows")
 
@@ -148,37 +156,43 @@ def generate_stock_quants():
             qtys.append(round(on_hand, 2))
             reserved.append(round(on_hand * random.uniform(0, 0.2), 2))
 
-    table = pa.table({
-        "_odoo_product_id": pa.array(pids, type=pa.int64()),
-        "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
-        "quantity": pa.array(qtys, type=pa.float64()),
-        "reserved_quantity": pa.array(reserved, type=pa.float64()),
-    })
+    table = pa.table(
+        {
+            "_odoo_product_id": pa.array(pids, type=pa.int64()),
+            "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
+            "quantity": pa.array(qtys, type=pa.float64()),
+            "reserved_quantity": pa.array(reserved, type=pa.float64()),
+        }
+    )
     pq.write_table(table, OUTPUT_DIR / "stock_quant.parquet", compression="snappy")
     print(f"  stock_quant.parquet: {table.num_rows} rows")
 
 
 def generate_supplier_info():
     """Empty supplier info — all products use default lead time."""
-    table = pa.table({
-        "_odoo_product_id": pa.array([], type=pa.int64()),
-        "_odoo_product_tmpl_id": pa.array([], type=pa.int64()),
-        "delay": pa.array([], type=pa.int64()),
-    })
+    table = pa.table(
+        {
+            "_odoo_product_id": pa.array([], type=pa.int64()),
+            "_odoo_product_tmpl_id": pa.array([], type=pa.int64()),
+            "delay": pa.array([], type=pa.int64()),
+        }
+    )
     pq.write_table(table, OUTPUT_DIR / "product_supplierinfo.parquet", compression="snappy")
     print(f"  product_supplierinfo.parquet: {table.num_rows} rows")
 
 
 def generate_orderpoints():
     """Empty orderpoints — mimir will create all new."""
-    table = pa.table({
-        "_odoo_orderpoint_id": pa.array([], type=pa.int64()),
-        "_odoo_product_id": pa.array([], type=pa.int64()),
-        "_odoo_warehouse_id": pa.array([], type=pa.int64()),
-        "product_min_qty": pa.array([], type=pa.float64()),
-        "product_max_qty": pa.array([], type=pa.float64()),
-        "active": pa.array([], type=pa.bool_()),
-    })
+    table = pa.table(
+        {
+            "_odoo_orderpoint_id": pa.array([], type=pa.int64()),
+            "_odoo_product_id": pa.array([], type=pa.int64()),
+            "_odoo_warehouse_id": pa.array([], type=pa.int64()),
+            "product_min_qty": pa.array([], type=pa.float64()),
+            "product_max_qty": pa.array([], type=pa.float64()),
+            "active": pa.array([], type=pa.bool_()),
+        }
+    )
     pq.write_table(table, OUTPUT_DIR / "orderpoint.parquet", compression="snappy")
     print(f"  orderpoint.parquet: {table.num_rows} rows")
 
@@ -197,14 +211,16 @@ def generate_stock_moves():
                 src_locs.append(4)  # supplier location
                 dst_locs.append(lot_stock_id)
 
-    table = pa.table({
-        "_odoo_product_id": pa.array(pids, type=pa.int64()),
-        "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
-        "product_uom_qty": pa.array(qtys, type=pa.float64()),
-        "state": pa.array(states_list, type=pa.string()),
-        "_odoo_location_id": pa.array(src_locs, type=pa.int64()),
-        "_odoo_location_dest_id": pa.array(dst_locs, type=pa.int64()),
-    })
+    table = pa.table(
+        {
+            "_odoo_product_id": pa.array(pids, type=pa.int64()),
+            "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
+            "product_uom_qty": pa.array(qtys, type=pa.float64()),
+            "state": pa.array(states_list, type=pa.string()),
+            "_odoo_location_id": pa.array(src_locs, type=pa.int64()),
+            "_odoo_location_dest_id": pa.array(dst_locs, type=pa.int64()),
+        }
+    )
     pq.write_table(table, OUTPUT_DIR / "stock_move.parquet", compression="snappy")
     print(f"  stock_move.parquet: {table.num_rows} rows")
 
@@ -222,13 +238,15 @@ def generate_purchase_order_lines():
                 received.append(round(qty * random.uniform(0, 0.5), 2))
                 po_states.append("purchase")
 
-    table = pa.table({
-        "_odoo_product_id": pa.array(pids, type=pa.int64()),
-        "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
-        "product_qty": pa.array(ordered, type=pa.float64()),
-        "qty_received": pa.array(received, type=pa.float64()),
-        "po_state": pa.array(po_states, type=pa.string()),
-    })
+    table = pa.table(
+        {
+            "_odoo_product_id": pa.array(pids, type=pa.int64()),
+            "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
+            "product_qty": pa.array(ordered, type=pa.float64()),
+            "qty_received": pa.array(received, type=pa.float64()),
+            "po_state": pa.array(po_states, type=pa.string()),
+        }
+    )
     pq.write_table(table, OUTPUT_DIR / "purchase_order_line.parquet", compression="snappy")
     print(f"  purchase_order_line.parquet: {table.num_rows} rows")
 
