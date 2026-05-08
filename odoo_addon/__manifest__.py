@@ -16,7 +16,7 @@
     "author": "DataStruct s.r.o.",
     "website": "https://datastruct.tech",
     "support": "info@datastruct.tech",
-    "depends": ["stock", "parqcast"],
+    "depends": ["mail", "stock", "parqcast"],
     "data": [
         "security/ir.model.access.csv",
         "data/ir_config_parameter.xml",
