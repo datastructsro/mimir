@@ -11,7 +11,7 @@ class MimirRun(models.Model):
     _order = "run_date desc"
 
     run_date = fields.Datetime(string="Run Date", required=True, default=fields.Datetime.now)
-    warehouse_id = fields.Many2one("stock.warehouse", string="Warehouse", tracking=True)
+    warehouse_id = fields.Many2one("stock.warehouse", string="Warehouse")
     parquet_source_dir = fields.Char(string="Input Source")
     products_analyzed = fields.Integer(string="Rules Imported", default=0)
     products_forecasted = fields.Integer(string="Forecast Rows", default=0)
@@ -34,10 +34,16 @@ class MimirRun(models.Model):
 
     def _compute_attachment_count(self):
         for run in self:
-            run.attachment_count = self.env["ir.attachment"].sudo().search_count([
-                ("res_model", "=", "mimir.run"),
-                ("res_id", "=", run.id),
-            ])
+            run.attachment_count = (
+                self.env["ir.attachment"]
+                .sudo()
+                .search_count(
+                    [
+                        ("res_model", "=", "mimir.run"),
+                        ("res_id", "=", run.id),
+                    ]
+                )
+            )
 
     def _compute_decision_count(self):
         for run in self:
@@ -67,11 +73,18 @@ class MimirRun(models.Model):
 
     def _get_output_attachment(self, filename):
         """Find a specific output attachment by filename."""
-        return self.env["ir.attachment"].sudo().search([
-            ("res_model", "=", "mimir.run"),
-            ("res_id", "=", self.id),
-            ("name", "=", filename),
-        ], limit=1)
+        return (
+            self.env["ir.attachment"]
+            .sudo()
+            .search(
+                [
+                    ("res_model", "=", "mimir.run"),
+                    ("res_id", "=", self.id),
+                    ("name", "=", filename),
+                ],
+                limit=1,
+            )
+        )
 
     def action_download_forecast(self):
         self.ensure_one()
@@ -104,10 +117,16 @@ class MimirRun(models.Model):
     def action_download_all_zip(self):
         """Download all output files as a single ZIP."""
         self.ensure_one()
-        attachments = self.env["ir.attachment"].sudo().search([
-            ("res_model", "=", "mimir.run"),
-            ("res_id", "=", self.id),
-        ])
+        attachments = (
+            self.env["ir.attachment"]
+            .sudo()
+            .search(
+                [
+                    ("res_model", "=", "mimir.run"),
+                    ("res_id", "=", self.id),
+                ]
+            )
+        )
         if not attachments:
             return self._no_file_notification("output files")
 
@@ -117,11 +136,17 @@ class MimirRun(models.Model):
                 zf.writestr(att.name, base64.b64decode(att.datas))
         buf.seek(0)
 
-        zip_att = self.env["ir.attachment"].sudo().create({
-            "name": f"mimir_run_{self.id}.zip",
-            "datas": base64.b64encode(buf.read()).decode(),
-            "mimetype": "application/zip",
-        })
+        zip_att = (
+            self.env["ir.attachment"]
+            .sudo()
+            .create(
+                {
+                    "name": f"mimir_run_{self.id}.zip",
+                    "datas": base64.b64encode(buf.read()).decode(),
+                    "mimetype": "application/zip",
+                }
+            )
+        )
         return self._download_action(zip_att)
 
     def _download_action(self, attachment):
