@@ -38,6 +38,19 @@ def _normalize_observation_date(value: object) -> date:
     raise ValueError(f"External forecast returned an invalid observation date: {value!r}")
 
 
+def _coerce_optional_float(value: object) -> float | None:
+    if value is None:
+        return None
+    if isinstance(value, (int, float, str)):
+        return float(value)
+    float_method = getattr(value, "__float__", None)
+    if callable(float_method):
+        coerced = float_method()
+        if isinstance(coerced, (int, float)):
+            return float(coerced)
+    raise ValueError(f"External forecast returned an invalid numeric value: {value!r}")
+
+
 def _table_to_forecast_results(table: pa.Table) -> list[ForecastResult]:
     required_cols = {
         "_odoo_product_id",
@@ -75,15 +88,14 @@ def _table_to_forecast_results(table: pa.Table) -> list[ForecastResult]:
         if not confidence:
             confidence = "external"
 
-        quantile_min = None
-        if quantile_mins and quantile_mins[index] is not None:
-            quantile_min = float(quantile_mins[index])
+        quantile_min = _coerce_optional_float(quantile_mins[index]) if quantile_mins else None
 
-        quantile_max = None
-        if quantile_maxs and quantile_maxs[index] is not None:
-            quantile_max = float(quantile_maxs[index])
+        quantile_max = _coerce_optional_float(quantile_maxs[index]) if quantile_maxs else None
 
-        avg_daily_value = avg_daily_col[index]
+        avg_daily_value = _coerce_optional_float(avg_daily_col[index])
+        daily_value = _coerce_optional_float(daily)
+        if daily_value is None:
+            continue
         data_points_value = data_points_col[index]
         forecasts.append(
             ForecastResult(
@@ -92,11 +104,11 @@ def _table_to_forecast_results(table: pa.Table) -> list[ForecastResult]:
                 data_points=int(data_points_value) if data_points_value is not None else 0,
                 first_observation=_normalize_observation_date(first_obs_col[index]),
                 last_observation=_normalize_observation_date(last_obs_col[index]),
-                avg_daily_demand=round(float(avg_daily_value) if avg_daily_value is not None else 0.0, 4),
+                avg_daily_demand=round(avg_daily_value if avg_daily_value is not None else 0.0, 4),
                 slope=0.0,
                 intercept=0.0,
                 r_squared=0.0,
-                forecasted_daily_demand=round(float(daily), 4),
+                forecasted_daily_demand=round(daily_value, 4),
                 confidence=str(confidence),
                 quantile_min_qty=quantile_min,
                 quantile_max_qty=quantile_max,

@@ -143,8 +143,11 @@ def resolve_empirical_lead_time(
     counts = empirical_table.column("observation_count").to_pylist()
 
     for pid, wid, delay, count in zip(pids, wids, delays, counts):
-        if pid == product_id and wid == warehouse_id and count >= min_observations:
-            return delay
+        if pid != product_id or wid != warehouse_id:
+            continue
+        if count is None or count < min_observations or delay is None:
+            continue
+        return int(delay)
 
     return 0
 
@@ -309,10 +312,12 @@ def calculate_rule(
     # Apply product floor/ceiling overrides
     if pid in config.product_overrides:
         po = config.product_overrides[pid]
-        if po.get("min_qty_floor") is not None:
-            min_qty = max(min_qty, po["min_qty_floor"])
-        if po.get("max_qty_ceiling") is not None:
-            max_qty = min(max_qty, po["max_qty_ceiling"])
+        min_qty_floor = po.get("min_qty_floor")
+        if min_qty_floor is not None:
+            min_qty = max(min_qty, min_qty_floor)
+        max_qty_ceiling = po.get("max_qty_ceiling")
+        if max_qty_ceiling is not None:
+            max_qty = min(max_qty, max_qty_ceiling)
 
     max_qty = max(max_qty, min_qty)
     min_qty = round(min_qty, 2)
