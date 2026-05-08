@@ -48,7 +48,7 @@
     </record>
 
     <!-- Menus -->
-    <menuitem id="mimir_menu_overrides" name="Overrides" parent="mimir_menu_root" sequence="30"/>
-    <menuitem id="mimir_menu_category_override" name="Category Overrides" parent="mimir_menu_overrides" action="mimir_category_override_action" sequence="10"/>
-    <menuitem id="mimir_menu_product_override" name="Product Overrides" parent="mimir_menu_overrides" action="mimir_product_override_action" sequence="20"/>
+    <menuitem id="mimir_menu_overrides" name="Overrides" parent="mimir_menu_root" sequence="30" groups="base.group_no_one"/>
+    <menuitem id="mimir_menu_category_override" name="Category Overrides" parent="mimir_menu_overrides" action="mimir_category_override_action" sequence="10" groups="base.group_no_one"/>
+    <menuitem id="mimir_menu_product_override" name="Product Overrides" parent="mimir_menu_overrides" action="mimir_product_override_action" sequence="20" groups="base.group_no_one"/>
 </odoo>

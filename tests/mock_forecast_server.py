@@ -271,7 +271,11 @@ def _rolling_quantile(daily: np.ndarray, window_days: int, percentile: float) ->
 class MockForecastProvider:
     """Simulates the external mimir-server returning ForecastResults enriched with quantile computations."""
 
-    def __init__(self, demand_series: dict[tuple[int, int], list[DemandPoint]] | None = None, input_dir: str | None = None):
+    def __init__(
+        self,
+        demand_series: dict[tuple[int, int], list[DemandPoint]] | None = None,
+        input_dir: str | None = None,
+    ):
         self.demand_series = demand_series or {}
         self.input_dir = input_dir
 

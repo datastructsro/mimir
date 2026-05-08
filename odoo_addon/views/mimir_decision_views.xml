@@ -7,7 +7,6 @@
             <list string="Decision Requests" decoration-info="status == 'draft'" decoration-warning="status == 'review'" decoration-success="status == 'approved'" decoration-muted="status == 'rejected'">
                 <field name="run_id"/>
                 <field name="product_id"/>
-                <field name="location_id"/>
                 <field name="proposed_min_qty"/>
                 <field name="proposed_max_qty"/>
                 <field name="current_min_qty"/>

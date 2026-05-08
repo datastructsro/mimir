@@ -11,9 +11,10 @@ class MimirRun(models.Model):
     _order = "run_date desc"
 
     run_date = fields.Datetime(string="Run Date", required=True, default=fields.Datetime.now)
+    warehouse_id = fields.Many2one("stock.warehouse", string="Warehouse", tracking=True)
     parquet_source_dir = fields.Char(string="Input Source")
-    products_analyzed = fields.Integer(string="Products Analyzed", default=0)
-    products_forecasted = fields.Integer(string="Products Forecasted", default=0)
+    products_analyzed = fields.Integer(string="Rules Imported", default=0)
+    products_forecasted = fields.Integer(string="Forecast Rows", default=0)
     rules_created = fields.Integer(string="Rules Created", default=0)
     rules_updated = fields.Integer(string="Rules Updated", default=0)
     rules_skipped = fields.Integer(string="Rules Skipped", default=0)
@@ -74,9 +75,9 @@ class MimirRun(models.Model):
 
     def action_download_forecast(self):
         self.ensure_one()
-        att = self._get_output_attachment("forecast.parquet")
+        att = self._get_output_attachment("forecast_evidence.xlsx")
         if not att:
-            return self._no_file_notification("forecast.parquet")
+            return self._no_file_notification("forecast_evidence.xlsx")
         return self._download_action(att)
 
     def action_download_rules(self):
@@ -88,13 +89,9 @@ class MimirRun(models.Model):
 
     def action_download_excel(self):
         self.ensure_one()
-        att = self.env["ir.attachment"].sudo().search([
-            ("res_model", "=", "mimir.run"),
-            ("res_id", "=", self.id),
-            ("name", "=like", "%.xlsx"),
-        ], limit=1)
+        att = self._get_output_attachment("replenishment_rules.xlsx")
         if not att:
-            return self._no_file_notification("Excel file")
+            return self._no_file_notification("replenishment_rules.xlsx")
         return self._download_action(att)
 
     def action_download_inventory(self):

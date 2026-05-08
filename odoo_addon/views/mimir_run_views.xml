@@ -8,16 +8,15 @@
             <list>
                 <field name="run_date"/>
                 <field name="status" decoration-success="status == 'complete'" decoration-danger="status == 'error'" decoration-info="status == 'running'" widget="badge"/>
+                <field name="warehouse_id"/>
                 <field name="parquet_source_dir" string="Input"/>
-                <field name="products_analyzed"/>
+                <field name="products_analyzed" string="Rules"/>
                 <field name="products_forecasted"/>
                 <field name="rules_created"/>
                 <field name="rules_updated"/>
                 <field name="rules_skipped"/>
                 <field name="attachment_count" string="Files"/>
                 <field name="duration_seconds" widget="float_time"/>
-                <field name="forecast_horizon_days"/>
-                <field name="safety_factor"/>
             </list>
         </field>
     </record>
@@ -33,16 +32,13 @@
                             string="Download All (ZIP)" class="btn-primary" icon="fa-download"
                             invisible="status != 'complete' or attachment_count == 0"/>
                     <button name="action_download_excel" type="object"
-                            string="Download Excel" class="btn-secondary" icon="fa-file-excel-o"
+                            string="Download Rules Excel" class="btn-secondary" icon="fa-file-excel-o"
                             invisible="status != 'complete' or attachment_count == 0"/>
                     <button name="action_download_rules" type="object"
-                            string="Download Rules" class="btn-secondary" icon="fa-table"
+                            string="Download Rules Parquet" class="btn-secondary" icon="fa-table"
                             invisible="status != 'complete' or attachment_count == 0"/>
                     <button name="action_download_forecast" type="object"
-                            string="Download Forecast" class="btn-secondary" icon="fa-line-chart"
-                            invisible="status != 'complete' or attachment_count == 0"/>
-                    <button name="action_download_inventory" type="object"
-                            string="Download Inventory" class="btn-secondary" icon="fa-cubes"
+                            string="Download Forecast Excel" class="btn-secondary" icon="fa-line-chart"
                             invisible="status != 'complete' or attachment_count == 0"/>
                     <button name="action_open_excel_wizard" type="object"
                             string="Upload Excel Review" class="btn-secondary" icon="fa-upload"
@@ -58,19 +54,21 @@
                     <group>
                         <group string="Run Info">
                             <field name="run_date"/>
+                            <field name="warehouse_id"/>
                             <field name="parquet_source_dir" string="Input Source"/>
                             <field name="duration_seconds"/>
                             <field name="attachment_count"/>
                         </group>
-                        <group string="Parameters">
-                            <field name="forecast_horizon_days"/>
-                            <field name="safety_factor"/>
-                            <field name="time_bucket"/>
+                        <group string="Artifacts">
+                            <div class="text-muted">
+                                Rules are imported from <code>minmax.parquet</code>.
+                                Forecast data is retained only as Excel evidence for the selected warehouse.
+                            </div>
                         </group>
                     </group>
                     <group>
                         <group string="Results">
-                            <field name="products_analyzed"/>
+                            <field name="products_analyzed" string="Rules Imported"/>
                             <field name="products_forecasted"/>
                             <field name="rules_created"/>
                             <field name="rules_updated"/>
@@ -87,12 +85,12 @@
 
     <!-- Action -->
     <record id="mimir_run_action" model="ir.actions.act_window">
-        <field name="name">Forecast Runs</field>
+        <field name="name">Mimir Runs</field>
         <field name="res_model">mimir.run</field>
         <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menu -->
     <menuitem id="mimir_menu_root" name="Mimir" web_icon="mimir,static/description/icon.png" sequence="90"/>
-    <menuitem id="mimir_menu_runs" name="Forecast Runs" parent="mimir_menu_root" action="mimir_run_action" sequence="10"/>
+    <menuitem id="mimir_menu_runs" name="Runs" parent="mimir_menu_root" action="mimir_run_action" sequence="10"/>
 </odoo>

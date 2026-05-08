@@ -1,285 +1,190 @@
-"""Integration tests for the end-to-end pipeline."""
+"""Integration tests for the warehouse-scoped import pipeline."""
 
+from __future__ import annotations
+
+import json
 import tempfile
-from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from unittest.mock import patch
 
 import pyarrow as pa
 import pyarrow.parquet as pq
+import pytest
 
 from mimir.config import MimirConfig
 from mimir.pipeline import run_pipeline
-from tests.mock_forecast_server import DemandPoint, MockForecastProvider
 
 
-def _generate_test_demand_series(n_products=5, n_warehouses=2, n_days=60):
-    base_date = datetime.now(tz=timezone.utc).replace(microsecond=0) - timedelta(days=60)
-    series = {}
-    for p in range(1, n_products + 1):
-        for w in range(1, n_warehouses + 1):
-            wid = w * 10
-            points = []
-            for d in range(n_days):
-                qty = float(p * 10 + d)
-                date_val = (base_date + timedelta(days=d)).date()
-                points.append(DemandPoint(bucket_date=date_val, total_qty=qty, order_count=1))
-            series[(p, wid)] = points
-    return series
-
-
-
-def _create_test_parquets(base_dir: Path, n_products=5, n_warehouses=2, n_days=60):
-    """Create minimal parqcast export directory with known data.
-
-    Products have linearly increasing demand: product i has base_qty = (i+1)*10.
-    """
-    base_date = datetime.now(tz=timezone.utc).replace(microsecond=0) - timedelta(days=60)
-
-    # Sale order lines: n_products x n_warehouses x n_days rows
-    pids, wids, qtys, dates, states = [], [], [], [], []
-    for p in range(1, n_products + 1):
-        for w in range(1, n_warehouses + 1):
-            wid = w * 10
-            for d in range(n_days):
-                pids.append(p)
-                wids.append(wid)
-                qtys.append(float(p * 10 + d))  # linearly increasing
-                dates.append(base_date + timedelta(days=d))
-                states.append("sale")
-
-    sol_table = pa.table({
-        "_odoo_product_id": pa.array(pids, type=pa.int64()),
-        "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
-        "product_uom_qty": pa.array(qtys, type=pa.float64()),
-        "date_order": pa.array(dates, type=pa.timestamp("us", tz="UTC")),
-        "so_state": pa.array(states, type=pa.string()),
-        "product_name": pa.array([f"Product {p}" for p in pids], type=pa.string()),
-        "warehouse_code": pa.array([f"WH{w // 10}" for w in wids], type=pa.string()),
-        "qty_delivered": pa.array([0.0] * len(pids), type=pa.float64()),
-    })
-    pq.write_table(sol_table, base_dir / "sale_order_line.parquet")
-
-    # Products
-    product_table = pa.table({
-        "_odoo_product_id": pa.array(list(range(1, n_products + 1)), type=pa.int64()),
-        "name": pa.array([f"Product {i}" for i in range(1, n_products + 1)]),
-        "default_code": pa.array([f"P{i:04d}" for i in range(1, n_products + 1)]),
-        "_odoo_categ_id": pa.array([1] * n_products, type=pa.int64()),
-    })
+def _create_core_tables(base_dir: Path) -> None:
+    product_table = pa.table(
+        {
+            "_odoo_product_id": pa.array([1, 2, 3], type=pa.int64()),
+            "name": pa.array(["Product 1", "Product 2", "Product 3"], type=pa.string()),
+            "default_code": pa.array(["P001", "P002", "P003"], type=pa.string()),
+            "_odoo_categ_id": pa.array([1, 1, 2], type=pa.int64()),
+        }
+    )
     pq.write_table(product_table, base_dir / "product.parquet")
 
-    # Warehouses
-    warehouse_table = pa.table({
-        "_odoo_warehouse_id": pa.array([w * 10 for w in range(1, n_warehouses + 1)], type=pa.int64()),
-        "code": pa.array([f"WH{w}" for w in range(1, n_warehouses + 1)]),
-        "_odoo_lot_stock_id": pa.array([w * 100 for w in range(1, n_warehouses + 1)], type=pa.int64()),
-    })
+    warehouse_table = pa.table(
+        {
+            "_odoo_warehouse_id": pa.array([10, 20], type=pa.int64()),
+            "code": pa.array(["WH10", "WH20"], type=pa.string()),
+            "_odoo_lot_stock_id": pa.array([1000, 2000], type=pa.int64()),
+        }
+    )
     pq.write_table(warehouse_table, base_dir / "stock_warehouse.parquet")
 
-    # Empty supplier info and orderpoints (required by reader)
-    empty_si = pa.table({
-        "_odoo_product_id": pa.array([], type=pa.int64()),
-        "_odoo_product_tmpl_id": pa.array([], type=pa.int64()),
-        "delay": pa.array([], type=pa.int64()),
-    })
-    pq.write_table(empty_si, base_dir / "product_supplierinfo.parquet")
 
-    empty_op = pa.table({
-        "_odoo_orderpoint_id": pa.array([], type=pa.int64()),
-        "_odoo_product_id": pa.array([], type=pa.int64()),
-        "_odoo_warehouse_id": pa.array([], type=pa.int64()),
-        "product_min_qty": pa.array([], type=pa.float64()),
-        "product_max_qty": pa.array([], type=pa.float64()),
-        "active": pa.array([], type=pa.bool_()),
-    })
-    pq.write_table(empty_op, base_dir / "orderpoint.parquet")
+def _write_orderpoints(base_dir: Path) -> None:
+    orderpoint_table = pa.table(
+        {
+            "_odoo_orderpoint_id": pa.array([99], type=pa.int64()),
+            "_odoo_product_id": pa.array([1], type=pa.int64()),
+            "_odoo_warehouse_id": pa.array([10], type=pa.int64()),
+            "product_min_qty": pa.array([2.0], type=pa.float64()),
+            "product_max_qty": pa.array([5.0], type=pa.float64()),
+            "active": pa.array([True], type=pa.bool_()),
+        }
+    )
+    pq.write_table(orderpoint_table, base_dir / "orderpoint.parquet")
 
 
-def _create_stock_quants(base_dir: Path, n_products=5, n_warehouses=2):
-    """Create stock_quant.parquet with known on-hand quantities."""
-    pids, wids, qtys, reserved = [], [], [], []
-    for p in range(1, n_products + 1):
-        for w in range(1, n_warehouses + 1):
-            wid = w * 10
-            pids.append(p)
-            wids.append(wid)
-            # Product 1 gets very high stock (overstock), others get moderate
-            qtys.append(100000.0 if p == 1 else 50.0)
-            reserved.append(0.0)
-
-    quant_table = pa.table({
-        "_odoo_product_id": pa.array(pids, type=pa.int64()),
-        "_odoo_warehouse_id": pa.array(wids, type=pa.int64()),
-        "quantity": pa.array(qtys, type=pa.float64()),
-        "reserved_quantity": pa.array(reserved, type=pa.float64()),
-    })
-    pq.write_table(quant_table, base_dir / "stock_quant.parquet")
+def _write_minmax(base_dir: Path) -> None:
+    minmax_table = pa.table(
+        {
+            "product_id": pa.array(["1", "2", "3"], type=pa.string()),
+            "facility_id": pa.array(["10", "10", "20"], type=pa.string()),
+            "min_quantity": pa.array([5.0, 3.0, 7.0], type=pa.float64()),
+            "max_quantity": pa.array([10.0, 8.0, 12.0], type=pa.float64()),
+        }
+    )
+    pq.write_table(minmax_table, base_dir / "minmax.parquet")
 
 
-def test_pipeline_basic():
-    """Basic pipeline run with inventory_mode=ignore produces output parquets."""
+def _write_forecast(base_dir: Path) -> None:
+    forecast_table = pa.table(
+        {
+            "product_id": pa.array(["1", "1", "2", "3"], type=pa.string()),
+            "facility_id": pa.array(["10", "10", "10", "20"], type=pa.string()),
+            "date": pa.array(["2026-01-01", "2026-01-02", "2026-01-01", "2026-01-01"], type=pa.string()),
+            "qty_fc": pa.array([1.0, 2.0, 3.0, 4.0], type=pa.float64()),
+            "lower_80_qty_fc": pa.array([0.0, 1.0, 2.0, 3.0], type=pa.float64()),
+            "upper_80_qty_fc": pa.array([2.0, 3.0, 4.0, 5.0], type=pa.float64()),
+        }
+    )
+    pq.write_table(forecast_table, base_dir / "demand_forecast.parquet")
+
+
+def _write_lead_times(base_dir: Path) -> None:
+    lead_time_table = pa.table(
+        {
+            "facility_id": pa.array(["10", "20"], type=pa.string()),
+            "lead_time_days": pa.array([6, 12], type=pa.int64()),
+            "type": pa.array(["warehouse_lead_time", "warehouse_lead_time"], type=pa.string()),
+        }
+    )
+    pq.write_table(lead_time_table, base_dir / "input_lead_times.parquet")
+
+
+def _write_empirical_lead_times(base_dir: Path) -> None:
+    empirical_table = pa.table(
+        {
+            "_odoo_product_id": pa.array([1, 2], type=pa.int64()),
+            "_odoo_warehouse_id": pa.array([10, 10], type=pa.int64()),
+            "median_delay_days": pa.array([4, 5], type=pa.int64()),
+            "observation_count": pa.array([3, 1], type=pa.int64()),
+        }
+    )
+    pq.write_table(empirical_table, base_dir / "empirical_lead_times.parquet")
+
+
+def _create_bundle(base_dir: Path) -> None:
+    _create_core_tables(base_dir)
+    _write_orderpoints(base_dir)
+    _write_minmax(base_dir)
+    _write_forecast(base_dir)
+    _write_lead_times(base_dir)
+    _write_empirical_lead_times(base_dir)
+
+
+def test_pipeline_imports_selected_warehouse_only() -> None:
     with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
         input_path = Path(input_dir)
         output_path = Path(output_dir)
-        _create_test_parquets(input_path)
+        _create_bundle(input_path)
 
-        config = MimirConfig(inventory_mode="ignore", forecast_source="external")
-        mock_provider = MockForecastProvider(input_dir=str(input_path))
-        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
-            stats = run_pipeline(input_path, output_path, config)
-
-        # Check stats
-        assert stats["status"] == "complete"
-        assert stats["products_analyzed"] == 10  # 5 products x 2 warehouses
-        assert stats["products_forecasted"] == 10
-
-        # Check output files exist
-        assert (output_path / "forecast.parquet").exists()
-        assert (output_path / "replenishment_rules.parquet").exists()
-
-        # Read forecast and verify content
-        forecast = pq.read_table(str(output_path / "forecast.parquet"))
-        assert forecast.num_rows == 10
-
-        # All products have increasing demand => positive slopes
-        slopes = forecast.column("trend_slope").to_pylist()
-        assert all(s > 0 for s in slopes)
-
-        # Read rules and verify 22 columns (including inventory)
-        rules = pq.read_table(str(output_path / "replenishment_rules.parquet"))
-        assert rules.num_columns == 22
-        assert rules.num_rows == 10
-
-        # Inventory columns should be null when mode=ignore
-        on_hand = rules.column("on_hand_qty").to_pylist()
-        assert all(v is None for v in on_hand)
-
-        # Product names should be populated
-        names = rules.column("product_name").to_pylist()
-        assert all(n != "" for n in names if n is not None)
-
-
-def test_pipeline_inventory_analyze():
-    """Pipeline with inventory_mode=analyze populates inventory columns."""
-    with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
-        input_path = Path(input_dir)
-        output_path = Path(output_dir)
-        _create_test_parquets(input_path)
-        _create_stock_quants(input_path)
-
-        config = MimirConfig(inventory_mode="analyze", forecast_source="external")
-        mock_provider = MockForecastProvider(_generate_test_demand_series())
-        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
-            stats = run_pipeline(input_path, output_path, config)
+        config = MimirConfig(selected_warehouse_id=10)
+        stats = run_pipeline(input_path, output_path, config)
 
         assert stats["status"] == "complete"
-        assert "inventory_mode" in stats
-        assert stats["inventory_positions_loaded"] > 0
+        assert stats["warehouse_id"] == 10
+        assert stats["products_analyzed"] == 2
+        assert stats["products_forecasted"] == 3
+        assert stats["rules_created"] == 1
+        assert stats["rules_updated"] == 1
+        assert stats["rules_skipped"] == 0
 
-        # Rules should have inventory columns populated
-        rules = pq.read_table(str(output_path / "replenishment_rules.parquet"))
-        on_hand = rules.column("on_hand_qty").to_pylist()
-        flags = rules.column("inventory_flag").to_pylist()
-        # At least some should be non-null
-        assert any(v is not None for v in on_hand)
-        assert any(f is not None for f in flags)
+        rules = pq.read_table(str(output_path / "replenishment_rules.parquet")).to_pylist()
+        assert len(rules) == 2
+        assert all(rule["_odoo_warehouse_id"] == 10 for rule in rules)
+        assert {rule["_odoo_product_id"] for rule in rules} == {1, 2}
 
-        # inventory_analysis.parquet should exist
-        assert (output_path / "inventory_analysis.parquet").exists()
-        analysis = pq.read_table(str(output_path / "inventory_analysis.parquet"))
-        assert analysis.num_rows > 0
+        product_1 = next(rule for rule in rules if rule["_odoo_product_id"] == 1)
+        assert product_1["action"] == "update"
+        assert product_1["planned_lead_time_days"] == 6
+        assert product_1["empirical_lead_time_days"] == 4
+
+        product_2 = next(rule for rule in rules if rule["_odoo_product_id"] == 2)
+        assert product_2["action"] == "create"
+        assert product_2["empirical_lead_time_days"] == 0
+
+        decisions = pq.read_table(str(output_path / "decisions.parquet"))
+        assert decisions.num_rows == 2
+        assert (output_path / "forecast_evidence.parquet").exists()
+
+        forecast_evidence = pq.read_table(str(output_path / "forecast_evidence.parquet")).to_pylist()
+        assert len(forecast_evidence) == 3
+        assert all(row["facility_id"] == "10" for row in forecast_evidence)
 
 
-def test_pipeline_inventory_adjust_overstock_skip():
-    """In adjust mode, overstocked products are skipped."""
+def test_pipeline_requires_explicit_warehouse_for_multi_facility_rules() -> None:
+    with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
+        input_path = Path(input_dir)
+        _create_bundle(input_path)
+
+        with pytest.raises(ValueError, match="Select a warehouse before running Mimir"):
+            run_pipeline(input_path, output_dir, MimirConfig())
+
+
+def test_pipeline_infers_single_warehouse_when_rules_are_single_facility() -> None:
     with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
         input_path = Path(input_dir)
         output_path = Path(output_dir)
-        _create_test_parquets(input_path)
-        _create_stock_quants(input_path)  # Product 1 has 100000 on-hand
+        _create_core_tables(input_path)
+        _write_orderpoints(input_path)
+        _write_lead_times(input_path)
 
-        config = MimirConfig(inventory_mode="adjust", overstock_skip=True, forecast_source="external")
-        mock_provider = MockForecastProvider(_generate_test_demand_series())
-        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
-            stats = run_pipeline(input_path, output_path, config)
+        minmax_table = pa.table(
+            {
+                "product_id": pa.array(["1", "2"], type=pa.string()),
+                "facility_id": pa.array(["10", "10"], type=pa.string()),
+                "min_quantity": pa.array([5.0, 3.0], type=pa.float64()),
+                "max_quantity": pa.array([10.0, 8.0], type=pa.float64()),
+            }
+        )
+        pq.write_table(minmax_table, input_path / "minmax.parquet")
 
-        rules = pq.read_table(str(output_path / "replenishment_rules.parquet"))
-        actions = rules.column("action").to_pylist()
-        pids = rules.column("_odoo_product_id").to_pylist()
-        skip_reasons = rules.column("skip_reason").to_pylist()
-
-        # Product 1 (100K on-hand) should be skipped as overstock
-        for i, pid in enumerate(pids):
-            if pid == 1:
-                assert actions[i] == "skip"
-                assert skip_reasons[i] == "overstock_skip"
-
-        assert stats["overstock_count"] > 0
+        stats = run_pipeline(input_path, output_path, MimirConfig())
+        assert stats["warehouse_id"] == 10
+        assert stats["products_analyzed"] == 2
 
 
-def test_pipeline_empty_input():
-    """Pipeline handles zero SOL rows gracefully."""
+def test_pipeline_manifest_parsing() -> None:
     with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
         input_path = Path(input_dir)
         output_path = Path(output_dir)
-        _create_test_parquets(input_path, n_products=0, n_warehouses=2, n_days=0)
+        _create_bundle(input_path)
 
-        config = MimirConfig(forecast_source="external")
-        mock_provider = MockForecastProvider({})
-        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
-            stats = run_pipeline(input_path, output_path, config)
-
-        assert stats["products_analyzed"] == 0
-        assert stats["products_forecasted"] == 0
-
-
-def test_pipeline_decisions_output():
-    """Pipeline produces decisions.parquet with temporal columns."""
-    with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
-        input_path = Path(input_dir)
-        output_path = Path(output_dir)
-        _create_test_parquets(input_path)
-
-        config = MimirConfig(inventory_mode="ignore", forecast_source="external")
-        mock_provider = MockForecastProvider(_generate_test_demand_series())
-        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
-            stats = run_pipeline(input_path, output_path, config)
-
-        # decisions.parquet must exist
-        decisions_path = output_path / "decisions.parquet"
-        assert decisions_path.exists()
-
-        decisions = pq.read_table(str(decisions_path))
-
-        # All rows should have the same run_uuid
-        uuids = decisions.column("run_uuid").to_pylist()
-        assert len(set(uuids)) == 1  # all the same
-        assert uuids[0] == stats["run_uuid"]
-
-        # decision_timestamp should be populated
-        timestamps = decisions.column("decision_timestamp").to_pylist()
-        assert all(t is not None for t in timestamps)
-
-        # decision_type should be ORDERPOINT
-        types = decisions.column("decision_type").to_pylist()
-        assert all(t == "ORDERPOINT" for t in types)
-
-        # Legacy outputs should still exist
-        assert (output_path / "forecast.parquet").exists()
-        assert (output_path / "replenishment_rules.parquet").exists()
-
-
-def test_pipeline_manifest_parsing():
-    """Pipeline reads manifest.json and populates parent_reference."""
-    import json
-
-    with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
-        input_path = Path(input_dir)
-        output_path = Path(output_dir)
-        _create_test_parquets(input_path)
-
-        # Write a mock manifest.json
         source_uuid = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
         manifest = {
             "version": "0.1.0",
@@ -293,14 +198,29 @@ def test_pipeline_manifest_parsing():
         }
         (input_path / "manifest.json").write_text(json.dumps(manifest))
 
-        config = MimirConfig(inventory_mode="ignore", forecast_source="external")
-        mock_provider = MockForecastProvider(_generate_test_demand_series())
-        with patch("mimir.pipeline.get_forecast_provider", return_value=mock_provider):
-            stats = run_pipeline(input_path, output_path, config)
+        stats = run_pipeline(input_path, output_path, MimirConfig(selected_warehouse_id=10))
 
         assert stats.get("source_run_uuid") == source_uuid
 
         decisions = pq.read_table(str(output_path / "decisions.parquet"))
         parent_refs = decisions.column("parent_reference").to_pylist()
-        assert all(r == source_uuid for r in parent_refs)
+        assert all(reference == source_uuid for reference in parent_refs)
 
+
+def test_pipeline_raises_for_unknown_product_ids() -> None:
+    with tempfile.TemporaryDirectory() as input_dir, tempfile.TemporaryDirectory() as output_dir:
+        input_path = Path(input_dir)
+        _create_core_tables(input_path)
+
+        bad_minmax = pa.table(
+            {
+                "product_id": pa.array(["999"], type=pa.string()),
+                "facility_id": pa.array(["10"], type=pa.string()),
+                "min_quantity": pa.array([1.0], type=pa.float64()),
+                "max_quantity": pa.array([2.0], type=pa.float64()),
+            }
+        )
+        pq.write_table(bad_minmax, input_path / "minmax.parquet")
+
+        with pytest.raises(ValueError, match="unknown product_id '999'"):
+            run_pipeline(input_path, output_dir, MimirConfig(selected_warehouse_id=10))

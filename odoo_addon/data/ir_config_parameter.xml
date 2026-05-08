@@ -37,6 +37,10 @@
             <field name="key">mimir.input_source</field>
             <field name="value">attachment</field>
         </record>
+        <record id="mimir_warehouse_id" model="ir.config_parameter">
+            <field name="key">mimir.warehouse_id</field>
+            <field name="value"></field>
+        </record>
         <record id="mimir_auto_push" model="ir.config_parameter">
             <field name="key">mimir.auto_push</field>
             <field name="value">False</field>

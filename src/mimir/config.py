@@ -33,6 +33,8 @@ class ProductOverride(TypedDict):
 class MimirConfig:
     """Resolved configuration values for a single run."""
 
+    selected_warehouse_id: int | None = None
+
     forecast_horizon_days: int = 30
     time_bucket: str = "daily"
     min_data_points: int = 4

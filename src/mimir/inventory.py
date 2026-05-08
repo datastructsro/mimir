@@ -60,7 +60,12 @@ class InventoryPosition:
     def total_outgoing(self) -> float:
         return self.outgoing_so_qty + self.outgoing_move_qty + self.outgoing_mo_consumption
 
-    def net_position(self, respect_reservations: bool = True, include_incoming: bool = True, include_outgoing: bool = False) -> float:
+    def net_position(
+        self,
+        respect_reservations: bool = True,
+        include_incoming: bool = True,
+        include_outgoing: bool = False,
+    ) -> float:
         """Compute net inventory position based on config flags.
 
         Args:
@@ -80,7 +85,13 @@ class InventoryPosition:
 
         return base
 
-    def coverage_days(self, daily_demand: float, respect_reservations: bool = True, include_incoming: bool = True, include_outgoing: bool = False) -> float | None:
+    def coverage_days(
+        self,
+        daily_demand: float,
+        respect_reservations: bool = True,
+        include_incoming: bool = True,
+        include_outgoing: bool = False,
+    ) -> float | None:
         """How many days of demand does current position cover?
 
         Returns None if daily_demand is 0 (infinite coverage / no demand).

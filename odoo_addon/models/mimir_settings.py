@@ -137,15 +137,20 @@ class MimirSettings(models.TransientModel):
         help="Path to write forecast and rules parquet files",
     )
     mimir_external_forecast_uri = fields.Char(
-        string="External Forecast URI",
+        string="External Server Base URL",
         config_parameter="mimir.external_forecast_uri",
-        default="https://mimir.datastruct.tech/forecasts/latest",
-        help="Base URI for the external HTTP forecast server",
+        default="https://mimir.datastruct.tech",
+        help="Base URL for the optional warehouse-scoped rules server",
     )
     mimir_external_api_key = fields.Char(
         string="External API Key (UUID)",
         config_parameter="mimir.external_api_key",
-        help="API Key for the external forecast server (Must be a UUID)",
+        help="API Key for the optional warehouse-scoped rules server (Must be a UUID)",
+    )
+    mimir_warehouse_id = fields.Many2one(
+        "stock.warehouse",
+        string="Warehouse",
+        help="Mimir imports one warehouse at a time and stages rules only for this warehouse.",
     )
 
     @api.constrains('mimir_external_api_key')
@@ -156,6 +161,18 @@ class MimirSettings(models.TransientModel):
                     uuid.UUID(record.mimir_external_api_key)
                 except ValueError:
                     raise ValidationError("External API Key must be a valid UUID format (e.g. 123e4567-e89b-12d3-a456-426614174000).")
+
+    @api.model
+    def get_values(self):
+        res = super().get_values()
+        warehouse_id = self.env["ir.config_parameter"].sudo().get_param("mimir.warehouse_id", "")
+        res["mimir_warehouse_id"] = int(warehouse_id) if warehouse_id else False
+        return res
+
+    def set_values(self):
+        super().set_values()
+        warehouse_id = self.mimir_warehouse_id.id if self.mimir_warehouse_id else ""
+        self.env["ir.config_parameter"].sudo().set_param("mimir.warehouse_id", warehouse_id)
 
     # Removed config_db_path as we use ORM models now
 
@@ -328,10 +345,11 @@ class MimirSettings(models.TransientModel):
         _logger.info("Stored %d output files as attachments on run %d", stored, run_record.id)
 
     def action_run_mimir(self):
-        """Trigger a mimir pipeline run from Settings."""
+        """Trigger a warehouse-scoped mimir import run from Settings."""
         ICP = self.env["ir.config_parameter"].sudo()
         input_source = ICP.get_param("mimir.input_source", "attachment")
         auto_push = ICP.get_param("mimir.auto_push", "False") == "True"
+        selected_warehouse_raw = ICP.get_param("mimir.warehouse_id", "").strip()
 
         input_dir = None
         tmp_dir = None
@@ -375,77 +393,49 @@ class MimirSettings(models.TransientModel):
                         },
                     }
 
+            if not selected_warehouse_raw:
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": "Mimir",
+                        "message": "Please select a warehouse first.",
+                        "type": "warning",
+                        "sticky": False,
+                    },
+                }
+
+            selected_warehouse_id = int(selected_warehouse_raw)
+            selected_warehouse = self.env["stock.warehouse"].browse(selected_warehouse_id)
+
             from mimir.config import MimirConfig
+            from mimir.excel_export import export_forecast_evidence_to_excel, export_to_excel
             from mimir.pipeline import run_pipeline
 
-            # Build config from Odoo settings natively
             config = MimirConfig(
-                forecast_horizon_days=int(ICP.get_param("mimir.horizon_days", "30")),
-                time_bucket=ICP.get_param("mimir.time_bucket", "daily"),
-                min_data_points=int(ICP.get_param("mimir.min_data_points", "4")),
-                min_history_days=int(ICP.get_param("mimir.min_history_days", "36")),
-                service_level=float(ICP.get_param("mimir.service_level", "0.85")),
-                review_period_days=int(ICP.get_param("mimir.review_period_days", "7")),
-                default_lead_time_days=int(ICP.get_param("mimir.default_lead_time", "7")),
-                min_demand_threshold=float(ICP.get_param("mimir.min_demand_threshold", "0.1")),
-                default_min_qty=float(ICP.get_param("mimir.default_min_qty", "0.0")),
-                default_max_qty=float(ICP.get_param("mimir.default_max_qty", "0.0")),
-                inventory_mode=ICP.get_param("mimir.inventory_mode", "ignore"),
-                respect_reservations=ICP.get_param("mimir.respect_reservations", "True") == "True",
-                include_incoming_supply=ICP.get_param("mimir.include_incoming_supply", "True") == "True",
-                include_outgoing_demand=ICP.get_param("mimir.include_outgoing_demand", "False") == "True",
-                overstock_threshold_days=float(ICP.get_param("mimir.overstock_threshold_days", "90.0")),
-                understock_threshold_days=float(ICP.get_param("mimir.understock_threshold_days", "3.0")),
-                overstock_skip=ICP.get_param("mimir.overstock_skip", "True") == "True",
-                understock_service_level_bump=float(ICP.get_param("mimir.understock_service_level_bump", "0.03")),
+                selected_warehouse_id=selected_warehouse_id,
                 odoo_db=self.env.cr.dbname,
                 external_forecast_uri=ICP.get_param("mimir.external_forecast_uri", "").strip(),
                 external_forecast_api_key=ICP.get_param("mimir.external_api_key", "").strip(),
             )
 
-            # Load overrides from ORM
-            cat_overrides = self.env["mimir.category.override"].search([])
-            for co in cat_overrides:
-                if co.excluded:
-                    continue
-                config.category_overrides[co.category_id.id] = {
-                    "safety_factor": co.safety_factor or None,
-                    "min_data_points": co.min_data_points or None,
-                    "lead_time_override_days": co.lead_time_override_days or None,
-                    "review_period_override_days": co.review_period_override_days or None,
-                    "service_level": co.service_level or None,
-                    "default_min_qty": co.default_min_qty or None,
-                    "default_max_qty": co.default_max_qty or None,
-                }
-
-            prod_overrides = self.env["mimir.product.override"].search([])
-            for po in prod_overrides:
-                config.product_overrides[po.product_id.id] = {
-                    "safety_factor": po.safety_factor or None,
-                    "min_qty_floor": po.min_qty_floor or None,
-                    "max_qty_ceiling": po.max_qty_ceiling or None,
-                    "lead_time_override_days": po.lead_time_override_days or None,
-                    "excluded": po.excluded,
-                    "service_level": po.service_level or None,
-                }
-
             stats = run_pipeline(
                 parquet_input_dir=input_dir,
                 parquet_output_dir=output_dir,
                 config=config,
-                push_to_odoo=False,  # Replaced by collaborative staging model
             )
 
-            # Generate Excel export
             try:
-                from mimir.excel_export import export_to_excel
                 rules_path = Path(output_dir) / "replenishment_rules.parquet"
-                forecast_path = Path(output_dir) / "forecast.parquet"
+                decisions_path = Path(output_dir) / "decisions.parquet"
                 if rules_path.exists():
                     export_to_excel(
                         rules_parquet=rules_path,
-                        forecast_parquet=forecast_path if forecast_path.exists() else None,
+                        decisions_parquet=decisions_path if decisions_path.exists() else None,
                     )
+                forecast_evidence_path = Path(output_dir) / "forecast_evidence.parquet"
+                if forecast_evidence_path.exists():
+                    export_forecast_evidence_to_excel(forecast_evidence_path)
             except Exception:
                 _logger.warning("Excel export failed (non-fatal)", exc_info=True)
 
@@ -456,6 +446,7 @@ class MimirSettings(models.TransientModel):
             else:
                 source_label = input_dir
             run_record = self.env["mimir.run"].sudo().create({
+                "warehouse_id": selected_warehouse_id,
                 "parquet_source_dir": source_label,
                 "products_analyzed": stats.get("products_analyzed", 0),
                 "products_forecasted": stats.get("products_forecasted", 0),
@@ -474,7 +465,7 @@ class MimirSettings(models.TransientModel):
                 decision_dicts = table.to_pylist()
                 DecisionRequest = self.env["mimir.decision.request"].sudo()
                 for d in decision_dicts:
-                    if d.get("decision_type") == "ORDERPOINT" and d.get("action") != "skip":
+                    if d.get("decision_type") == "ORDERPOINT":
                         DecisionRequest.create({
                             "run_id": run_record.id,
                             "decision_id": d["decision_id"],
@@ -500,7 +491,8 @@ class MimirSettings(models.TransientModel):
                 "params": {
                     "title": "Mimir Complete",
                     "message": (
-                        f"Analyzed {stats['products_analyzed']} products, "
+                        f"Imported {stats['products_analyzed']} rules for "
+                        f"{selected_warehouse.display_name}, "
                         f"created {stats['rules_created']} rules, "
                         f"updated {stats['rules_updated']} rules "
                         f"in {stats['duration_seconds']}s."
@@ -518,6 +510,7 @@ class MimirSettings(models.TransientModel):
             else:
                 source_label = input_dir or ""
             self.env["mimir.run"].sudo().create({
+                "warehouse_id": int(selected_warehouse_raw) if selected_warehouse_raw else False,
                 "parquet_source_dir": source_label,
                 "status": "error",
                 "error_message": str(e),

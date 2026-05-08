@@ -1,17 +1,17 @@
 {
-    "name": "Mimir — Demand Forecasting",
-    "version": "18.0.3.0.1",
+    "name": "Mimir — Replenishment Review",
+    "version": "18.0.4.0.0",
     "category": "Supply Chain",
-    "summary": "Linear regression demand forecasting with automatic replenishment rule updates",
+    "summary": "Warehouse-scoped replenishment rule import and review for Parqcast exports",
     "description": """
-        Mimir reads parqcast parquet exports, runs linear regression on historical
-        demand, and computes min/max replenishment rules for stock.warehouse.orderpoint.
+        Mimir reads parqcast parquet exports, imports precomputed min/max
+        replenishment rules, and stages them for review in Odoo.
 
         Features:
-        - Configurable forecast horizon (days/weeks)
-        - Per-product and per-category safety factor overrides
-        - Automatic or manual push to orderpoints
-        - Full audit trail of forecast runs
+        - Single-warehouse review workflow
+        - Optional warehouse-scoped remote rules server
+        - Excel exports for rule import and forecast evidence review
+        - Automatic or manual approval to stock.warehouse.orderpoint
     """,
     "author": "DataStruct s.r.o.",
     "website": "https://datastruct.tech",

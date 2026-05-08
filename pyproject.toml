@@ -1,7 +1,7 @@
 [project]
 name = "mimir"
 version = "0.3.0"
-description = "Demand forecasting client — reads parqcast parquet exports, fetches forecasts, writes replenishment rules back to Odoo 18/19"
+description = "Warehouse-scoped replenishment review client for Parqcast exports and Odoo 18/19"
 authors = [
     { name = "DataStruct s.r.o.", email = "info@datastruct.tech" }
 ]

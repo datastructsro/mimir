@@ -168,9 +168,17 @@ def _resolve_default_min_max(
 
 
 def _make_skip_rule(
-    pid: int, wid: int, product_name: str, warehouse_code: str,
-    location_id: int, forecasted_daily_demand: float, skip_reason: str,
-    planned_lead_time_days: int = 0, empirical_lead_time_days: int = 0, service_level: float = 0, review_period_days: int = 0,
+    pid: int,
+    wid: int,
+    product_name: str,
+    warehouse_code: str,
+    location_id: int,
+    forecasted_daily_demand: float,
+    skip_reason: str,
+    planned_lead_time_days: int = 0,
+    empirical_lead_time_days: int = 0,
+    service_level: float = 0,
+    review_period_days: int = 0,
 ) -> ReplenishmentRule:
     return ReplenishmentRule(
         product_id=pid, product_name=product_name,
