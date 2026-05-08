@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import io
 import logging
+from datetime import date, datetime
 from pathlib import Path
 from typing import Protocol
 from urllib.parse import urlparse
@@ -18,6 +19,7 @@ import pyarrow.parquet as pq
 
 from .config import MimirConfig
 from .forecaster import ForecastResult
+from .server_client import MimirServerClient
 
 logger = logging.getLogger(__name__)
 
@@ -36,12 +38,31 @@ class ForecastProvider(Protocol):
 # ── Shared helpers ──────────────────────────────────────────────────────
 
 
+def _normalize_observation_date(value: object) -> date:
+    """Normalize pyarrow scalar values to a date instance."""
+    if isinstance(value, datetime):
+        return value.date()
+    if isinstance(value, date):
+        return value
+    date_method = getattr(value, "date", None)
+    if callable(date_method):
+        normalized = date_method()
+        if isinstance(normalized, date):
+            return normalized
+    raise ValueError(f"External forecast returned an invalid observation date: {value!r}")
+
+
 def _table_to_forecast_results(table: pa.Table) -> list[ForecastResult]:
     """Convert a validated PyArrow table to a list of ForecastResult objects."""
     # Validate required columns
     required_cols = {
-        "_odoo_product_id", "_odoo_warehouse_id", "forecasted_daily_demand",
-        "first_observation", "last_observation", "avg_daily_demand", "data_points"
+        "_odoo_product_id",
+        "_odoo_warehouse_id",
+        "forecasted_daily_demand",
+        "first_observation",
+        "last_observation",
+        "avg_daily_demand",
+        "data_points",
     }
     missing = required_cols - set(table.column_names)
     if missing:
@@ -82,19 +103,26 @@ def _table_to_forecast_results(table: pa.Table) -> list[ForecastResult]:
         if not conf:
             conf = "external"
 
-        first_obs = first_obs_col[i]
-        if hasattr(first_obs, "date"):
-            first_obs = first_obs.date()
+        first_obs = _normalize_observation_date(first_obs_col[i])
+        last_obs = _normalize_observation_date(last_obs_col[i])
 
-        last_obs = last_obs_col[i]
-        if hasattr(last_obs, "date"):
-            last_obs = last_obs.date()
+        avg_daily_value = avg_daily_col[i]
+        avg_daily = float(avg_daily_value) if avg_daily_value is not None else 0.0
 
-        avg_daily = float(avg_daily_col[i]) if avg_daily_col[i] is not None else 0.0
-        data_points = int(data_points_col[i]) if data_points_col[i] is not None else 0
+        data_points_value = data_points_col[i]
+        data_points = int(data_points_value) if data_points_value is not None else 0
 
-        q_min = float(quantile_mins[i]) if quantile_mins and quantile_mins[i] is not None else None
-        q_max = float(quantile_maxs[i]) if quantile_maxs and quantile_maxs[i] is not None else None
+        q_min = None
+        if quantile_mins:
+            q_min_value = quantile_mins[i]
+            if q_min_value is not None:
+                q_min = float(q_min_value)
+
+        q_max = None
+        if quantile_maxs:
+            q_max_value = quantile_maxs[i]
+            if q_max_value is not None:
+                q_max = float(q_max_value)
 
         forecasts.append(
             ForecastResult(
@@ -120,9 +148,6 @@ def _table_to_forecast_results(table: pa.Table) -> list[ForecastResult]:
 # ── Providers ───────────────────────────────────────────────────────────
 
 
-
-
-
 class ExternalParquetForecastProvider:
     """Loads pre-computed forecasts from an external Parquet file (local or S3)."""
 
@@ -143,7 +168,7 @@ class ExternalParquetForecastProvider:
 
 
 class ExternalHttpForecastProvider:
-    """Fetches pre-computed forecasts from an HTTP server (e.g. mimir-server).
+    """Fetches pre-computed forecasts from a legacy HTTP endpoint.
 
     Expects the server to return a Parquet file as an octet-stream response.
     Authenticates via X-API-Key header using config.external_forecast_api_key.
@@ -164,6 +189,7 @@ class ExternalHttpForecastProvider:
         api_key = config.external_forecast_api_key
         if api_key:
             import uuid
+
             try:
                 uuid.UUID(api_key)
             except ValueError:
@@ -213,34 +239,19 @@ def fetch_empirical_lead_times(config: MimirConfig, output_dir: str | Path) -> b
     Returns True if lead times were successfully fetched, False otherwise.
     """
     from pathlib import Path
-    from urllib.request import Request, urlopen
 
     base_uri = config.external_forecast_uri
     if not base_uri:
         return False
 
-    # Derive the lead-times URL from the forecast URL
-    # e.g. https://mimir.datastruct.tech/forecasts/latest → .../lead-times/latest
-    lt_uri = base_uri.replace("/forecasts/latest", "/lead-times/latest")
-    if lt_uri == base_uri:
-        # Fallback: just append if pattern didn't match
-        parsed = urlparse(base_uri)
-        lt_uri = f"{parsed.scheme}://{parsed.netloc}/lead-times/latest"
-
-    api_key = config.external_forecast_api_key
-
-    logger.info("Fetching empirical lead times from %s", lt_uri)
     try:
-        req = Request(lt_uri)
-        if api_key:
-            req.add_header("X-API-Key", api_key)
-
-        with urlopen(req, timeout=30) as resp:  # noqa: S310
-            data = resp.read()
+        client = MimirServerClient(base_uri, config.external_forecast_api_key, timeout=30)
+        logger.info("Fetching empirical lead times from %s/lead-times/latest", client.base_uri)
+        table = client.download_lead_times_table()
 
         # Write to output directory so reader.py picks it up
         out_path = Path(output_dir) / "empirical_lead_times.parquet"
-        out_path.write_bytes(data)
+        pq.write_table(table, out_path, compression="snappy")
         logger.info("Saved empirical lead times to %s", out_path)
         return True
 

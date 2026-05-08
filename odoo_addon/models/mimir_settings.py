@@ -76,7 +76,7 @@ class MimirSettings(models.TransientModel):
         config_parameter="mimir.service_level",
         default=0.85,
         help="Target fill rate (0.0-1.0). Set to 0.90 for standard service or 0.95 for critical items. "
-             "Higher values require more safety stock. Start at 0.85 and increase per category as needed.",
+        "Higher values require more safety stock. Start at 0.85 and increase per category as needed.",
     )
     mimir_review_period_days = fields.Integer(
         string="Review Period (days)",
@@ -153,14 +153,16 @@ class MimirSettings(models.TransientModel):
         help="Mimir imports one warehouse at a time and stages rules only for this warehouse.",
     )
 
-    @api.constrains('mimir_external_api_key')
+    @api.constrains("mimir_external_api_key")
     def _check_external_api_key(self):
         for record in self:
             if record.mimir_external_api_key:
                 try:
                     uuid.UUID(record.mimir_external_api_key)
                 except ValueError:
-                    raise ValidationError("External API Key must be a valid UUID format (e.g. 123e4567-e89b-12d3-a456-426614174000).")
+                    raise ValidationError(
+                        "External API Key must be a valid UUID format (e.g. 123e4567-e89b-12d3-a456-426614174000)."
+                    )
 
     @api.model
     def get_values(self):
@@ -178,7 +180,11 @@ class MimirSettings(models.TransientModel):
 
     # Inventory position settings
     mimir_inventory_mode = fields.Selection(
-        [("ignore", "Ignore (forecast only)"), ("analyze", "Analyze (add inventory columns)"), ("adjust", "Adjust (modify replenishment)")],
+        [
+            ("ignore", "Ignore (forecast only)"),
+            ("analyze", "Analyze (add inventory columns)"),
+            ("adjust", "Adjust (modify replenishment)"),
+        ],
         string="Inventory Mode",
         config_parameter="mimir.inventory_mode",
         default="ignore",
@@ -249,10 +255,16 @@ class MimirSettings(models.TransientModel):
         Returns the Path to the temp dir.
         """
         run_id, run_uuid = self._latest_parqcast_run()
-        attachments = self.env["ir.attachment"].sudo().search([
-            ("res_model", "=", "parqcast.run"),
-            ("res_id", "=", run_id),
-        ])
+        attachments = (
+            self.env["ir.attachment"]
+            .sudo()
+            .search(
+                [
+                    ("res_model", "=", "parqcast.run"),
+                    ("res_id", "=", run_id),
+                ]
+            )
+        )
         if not attachments:
             raise ValueError(
                 f"Parqcast run {run_uuid[:8]} has no attachment files. "
@@ -265,7 +277,9 @@ class MimirSettings(models.TransientModel):
 
         _logger.info(
             "Materialized %d parqcast attachments from run %s into %s",
-            len(attachments), run_uuid[:8], tmp_dir,
+            len(attachments),
+            run_uuid[:8],
+            tmp_dir,
         )
         return tmp_dir
 
@@ -278,9 +292,7 @@ class MimirSettings(models.TransientModel):
         try:
             import boto3
         except ImportError as e:
-            raise ValueError(
-                "S3 input source requires boto3. Install it in the Odoo environment."
-            ) from e
+            raise ValueError("S3 input source requires boto3. Install it in the Odoo environment.") from e
 
         ICP = self.env["ir.config_parameter"].sudo()
         bucket = ICP.get_param("mimir.s3_bucket", "").strip()
@@ -309,7 +321,7 @@ class MimirSettings(models.TransientModel):
         for page in paginator.paginate(Bucket=bucket, Prefix=s3_prefix):
             for obj in page.get("Contents", []):
                 key = obj["Key"]
-                rel = key[len(s3_prefix):]
+                rel = key[len(s3_prefix) :]
                 if not rel or rel.endswith("/"):
                     continue
                 dest = tmp_dir / rel
@@ -318,13 +330,15 @@ class MimirSettings(models.TransientModel):
                 downloaded += 1
 
         if not downloaded:
-            raise ValueError(
-                f"No files found at s3://{bucket}/{s3_prefix} for parqcast run {run_uuid[:8]}"
-            )
+            raise ValueError(f"No files found at s3://{bucket}/{s3_prefix} for parqcast run {run_uuid[:8]}")
 
         _logger.info(
             "Downloaded %d S3 objects from s3://%s/%s (run %s) into %s",
-            downloaded, bucket, s3_prefix, run_uuid[:8], tmp_dir,
+            downloaded,
+            bucket,
+            s3_prefix,
+            run_uuid[:8],
+            tmp_dir,
         )
         return tmp_dir
 
@@ -334,13 +348,15 @@ class MimirSettings(models.TransientModel):
         stored = 0
         for pattern in ["*.parquet", "*.xlsx"]:
             for fpath in output_path.glob(pattern):
-                self.env["ir.attachment"].sudo().create({
-                    "name": fpath.name,
-                    "datas": base64.b64encode(fpath.read_bytes()).decode(),
-                    "res_model": "mimir.run",
-                    "res_id": run_record.id,
-                    "mimetype": "application/octet-stream",
-                })
+                self.env["ir.attachment"].sudo().create(
+                    {
+                        "name": fpath.name,
+                        "datas": base64.b64encode(fpath.read_bytes()).decode(),
+                        "res_model": "mimir.run",
+                        "res_id": run_record.id,
+                        "mimetype": "application/octet-stream",
+                    }
+                )
                 stored += 1
         _logger.info("Stored %d output files as attachments on run %d", stored, run_record.id)
 
@@ -407,6 +423,29 @@ class MimirSettings(models.TransientModel):
 
             selected_warehouse_id = int(selected_warehouse_raw)
             selected_warehouse = self.env["stock.warehouse"].browse(selected_warehouse_id)
+            external_uri = ICP.get_param("mimir.external_forecast_uri", "").strip()
+            external_api_key = ICP.get_param("mimir.external_api_key", "").strip()
+
+            if external_uri:
+                from mimir.server_client import MimirServerClient
+
+                try:
+                    client = MimirServerClient(external_uri, external_api_key)
+                    client.preflight_warehouse(
+                        selected_warehouse_id=selected_warehouse_id,
+                        warehouse_code=selected_warehouse.code,
+                    )
+                except ValueError as exc:
+                    return {
+                        "type": "ir.actions.client",
+                        "tag": "display_notification",
+                        "params": {
+                            "title": "Mimir Server",
+                            "message": str(exc),
+                            "type": "warning",
+                            "sticky": False,
+                        },
+                    }
 
             from mimir.config import MimirConfig
             from mimir.excel_export import export_forecast_evidence_to_excel, export_to_excel
@@ -415,8 +454,8 @@ class MimirSettings(models.TransientModel):
             config = MimirConfig(
                 selected_warehouse_id=selected_warehouse_id,
                 odoo_db=self.env.cr.dbname,
-                external_forecast_uri=ICP.get_param("mimir.external_forecast_uri", "").strip(),
-                external_forecast_api_key=ICP.get_param("mimir.external_api_key", "").strip(),
+                external_forecast_uri=external_uri,
+                external_forecast_api_key=external_api_key,
             )
 
             stats = run_pipeline(
@@ -445,42 +484,53 @@ class MimirSettings(models.TransientModel):
                 source_label = f"parqcast s3://{ICP.get_param('mimir.s3_bucket', '')}"
             else:
                 source_label = input_dir
-            run_record = self.env["mimir.run"].sudo().create({
-                "warehouse_id": selected_warehouse_id,
-                "parquet_source_dir": source_label,
-                "products_analyzed": stats.get("products_analyzed", 0),
-                "products_forecasted": stats.get("products_forecasted", 0),
-                "rules_created": stats.get("rules_created", 0),
-                "rules_updated": stats.get("rules_updated", 0),
-                "rules_skipped": stats.get("rules_skipped", 0),
-                "duration_seconds": stats.get("duration_seconds", 0),
-                "status": "complete",
-            })
+            run_record = (
+                self.env["mimir.run"]
+                .sudo()
+                .create(
+                    {
+                        "warehouse_id": selected_warehouse_id,
+                        "parquet_source_dir": source_label,
+                        "products_analyzed": stats.get("products_analyzed", 0),
+                        "products_forecasted": stats.get("products_forecasted", 0),
+                        "rules_created": stats.get("rules_created", 0),
+                        "rules_updated": stats.get("rules_updated", 0),
+                        "rules_skipped": stats.get("rules_skipped", 0),
+                        "duration_seconds": stats.get("duration_seconds", 0),
+                        "status": "complete",
+                    }
+                )
+            )
 
             # Parse decisions.parquet to create staging records
             decisions_path = Path(output_dir) / "decisions.parquet"
             if decisions_path.exists():
                 import pyarrow.parquet as pq
+
                 table = pq.read_table(decisions_path)
                 decision_dicts = table.to_pylist()
                 DecisionRequest = self.env["mimir.decision.request"].sudo()
                 for d in decision_dicts:
                     if d.get("decision_type") == "ORDERPOINT":
-                        DecisionRequest.create({
-                            "run_id": run_record.id,
-                            "decision_id": d["decision_id"],
-                            "product_id": d["_odoo_product_id"],
-                            "location_id": d["_odoo_location_id"],
-                            "proposed_min_qty": d["min_quantity"],
-                            "proposed_max_qty": d["max_quantity"],
-                            "planned_lead_time": d.get("planned_lead_time_days", d.get("delay", 0)),
-                            "empirical_lead_time": d.get("empirical_lead_time_days", 0),
-                            "status": "draft",
-                        })
+                        DecisionRequest.create(
+                            {
+                                "run_id": run_record.id,
+                                "decision_id": d["decision_id"],
+                                "product_id": d["_odoo_product_id"],
+                                "location_id": d["_odoo_location_id"],
+                                "proposed_min_qty": d["min_quantity"],
+                                "proposed_max_qty": d["max_quantity"],
+                                "planned_lead_time": d.get("planned_lead_time_days", d.get("delay", 0)),
+                                "empirical_lead_time": d.get("empirical_lead_time_days", 0),
+                                "status": "draft",
+                            }
+                        )
 
             # Auto-approve if configured
             if auto_push:
-                run_record.env["mimir.decision.request"].search([("run_id", "=", run_record.id), ("status", "=", "draft")]).action_approve()
+                run_record.env["mimir.decision.request"].search(
+                    [("run_id", "=", run_record.id), ("status", "=", "draft")]
+                ).action_approve()
 
             # Store output files as attachments
             self._store_output_attachments(run_record, output_dir)
@@ -509,12 +559,14 @@ class MimirSettings(models.TransientModel):
                 source_label = f"parqcast s3://{ICP.get_param('mimir.s3_bucket', '')}"
             else:
                 source_label = input_dir or ""
-            self.env["mimir.run"].sudo().create({
-                "warehouse_id": int(selected_warehouse_raw) if selected_warehouse_raw else False,
-                "parquet_source_dir": source_label,
-                "status": "error",
-                "error_message": str(e),
-            })
+            self.env["mimir.run"].sudo().create(
+                {
+                    "warehouse_id": int(selected_warehouse_raw) if selected_warehouse_raw else False,
+                    "parquet_source_dir": source_label,
+                    "status": "error",
+                    "error_message": str(e),
+                }
+            )
             return {
                 "type": "ir.actions.client",
                 "tag": "display_notification",
@@ -528,6 +580,7 @@ class MimirSettings(models.TransientModel):
         finally:
             # Clean up temp directories
             import shutil
+
             if tmp_dir and Path(tmp_dir).exists():
                 shutil.rmtree(tmp_dir, ignore_errors=True)
             if input_source in ("attachment", "s3") and output_dir:

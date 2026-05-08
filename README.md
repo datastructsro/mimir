@@ -55,6 +55,23 @@ For standalone execution or pipeline integration, use the CLI:
 uv run mimir /path/to/parqcast/exports /path/to/output --verbose
 ```
 
+### External Server Contract
+
+When `--external-uri` or the Odoo "External Server Base URL" is configured, Mimir treats that server as the source of truth for imported rules.
+
+- Configure the server root, for example `https://mimir.datastruct.tech`
+- Authenticate with the `X-API-Key` header
+- Preflight checks call `/health` and `/warehouses`
+- Rules are downloaded from `/warehouses/{warehouse}/rules/latest`
+- Forecast evidence is downloaded from `/warehouses/{warehouse}/forecast/latest`
+
+Warehouse-scoped artifacts may identify a warehouse by either:
+
+- Odoo warehouse ID via `_odoo_warehouse_id`
+- Warehouse code via `facility_id`
+
+Mimir resolves both forms against `stock_warehouse.parquet` before importing.
+
 ## 🧪 Testing & Development
 
 ### Test Data Generation

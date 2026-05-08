@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
-import io
 import logging
 from pathlib import Path
-from urllib.request import Request, urlopen
 
 import pyarrow as pa
 import pyarrow.compute as pc
 import pyarrow.parquet as pq
 
 from .config import MimirConfig
+from .server_client import MimirServerClient, warehouse_aliases
 
 logger = logging.getLogger(__name__)
 
@@ -19,39 +18,30 @@ _MINMAX_REQUIRED_COLUMNS = {"product_id", "facility_id", "min_quantity", "max_qu
 _WAREHOUSE_LEAD_TIME_REQUIRED_COLUMNS = {"facility_id", "lead_time_days", "type"}
 
 
-def normalize_server_base_uri(uri: str) -> str:
-    """Trim artifact-specific suffixes so callers can store either a base URL or an old endpoint."""
-    base_uri = uri.strip().rstrip("/")
-    for suffix in (
-        "/forecasts/latest",
-        "/forecast/latest",
-        "/rules/latest",
-        "/warehouses",
-    ):
-        if base_uri.endswith(suffix):
-            base_uri = base_uri[: -len(suffix)]
-            break
-    return base_uri.rstrip("/")
-
-
 def load_minmax_table(
     export_dir: str | Path,
     config: MimirConfig,
-    warehouse_id_lookup: dict[str, int],
+    warehouse_alias_lookup: dict[str, int],
+    warehouse_codes: dict[int, str],
 ) -> tuple[pa.Table, int]:
     """Load the selected warehouse's min/max table from a local bundle or a warehouse-scoped HTTP server."""
+    selected_warehouse_code = (
+        warehouse_codes.get(config.selected_warehouse_id) if config.selected_warehouse_id is not None else None
+    )
     if config.external_forecast_uri and config.selected_warehouse_id is not None:
-        try:
-            table = fetch_remote_artifact_table(
-                config.external_forecast_uri,
-                config.external_forecast_api_key,
-                str(config.selected_warehouse_id),
-                artifact="rules",
-            )
-            _validate_minmax_columns(table)
-            return _filter_minmax_for_selected_warehouse(table, config.selected_warehouse_id, warehouse_id_lookup)
-        except Exception:
-            logger.warning("Falling back to local minmax.parquet after remote rules fetch failed", exc_info=True)
+        client = MimirServerClient(config.external_forecast_uri, config.external_forecast_api_key)
+        remote_warehouse_ref = client.resolve_warehouse_ref(
+            selected_warehouse_id=config.selected_warehouse_id,
+            warehouse_code=selected_warehouse_code,
+        )
+        table = client.download_rules_table(remote_warehouse_ref)
+        _validate_minmax_columns(table)
+        return _filter_minmax_for_selected_warehouse(
+            table,
+            config.selected_warehouse_id,
+            warehouse_alias_lookup,
+            selected_warehouse_code,
+        )
 
     path = Path(export_dir) / "minmax.parquet"
     if not path.exists():
@@ -59,24 +49,31 @@ def load_minmax_table(
 
     table = pq.read_table(path)
     _validate_minmax_columns(table)
-    return _filter_minmax_for_selected_warehouse(table, config.selected_warehouse_id, warehouse_id_lookup)
+    return _filter_minmax_for_selected_warehouse(
+        table,
+        config.selected_warehouse_id,
+        warehouse_alias_lookup,
+        selected_warehouse_code,
+    )
 
 
 def load_forecast_evidence_table(
     export_dir: str | Path,
     config: MimirConfig,
     warehouse_id: int,
+    warehouse_code: str,
 ) -> pa.Table | None:
     """Load warehouse-scoped raw forecast evidence for Excel export."""
+    aliases = warehouse_aliases(warehouse_id, warehouse_code)
     if config.external_forecast_uri:
         try:
-            table = fetch_remote_artifact_table(
-                config.external_forecast_uri,
-                config.external_forecast_api_key,
-                str(warehouse_id),
-                artifact="forecast",
+            client = MimirServerClient(config.external_forecast_uri, config.external_forecast_api_key)
+            remote_warehouse_ref = client.resolve_warehouse_ref(
+                selected_warehouse_id=warehouse_id,
+                warehouse_code=warehouse_code,
             )
-            return _filter_table_for_warehouse(table, str(warehouse_id))
+            table = client.download_forecast_table(remote_warehouse_ref)
+            return _filter_table_for_warehouse(table, aliases)
         except Exception:
             logger.warning(
                 "Remote forecast evidence fetch failed; falling back to local demand_forecast.parquet",
@@ -88,7 +85,7 @@ def load_forecast_evidence_table(
         return None
 
     table = pq.read_table(path)
-    return _filter_table_for_warehouse(table, str(warehouse_id))
+    return _filter_table_for_warehouse(table, aliases)
 
 
 def load_warehouse_lead_times(export_dir: str | Path) -> dict[str, int]:
@@ -119,28 +116,6 @@ def load_warehouse_lead_times(export_dir: str | Path) -> dict[str, int]:
     return lead_times
 
 
-def fetch_remote_artifact_table(
-    base_uri: str,
-    api_key: str,
-    warehouse_id: str,
-    *,
-    artifact: str,
-) -> pa.Table:
-    """Download a warehouse-scoped Parquet artifact from mimir-server."""
-    normalized = normalize_server_base_uri(base_uri)
-    uri = f"{normalized}/warehouses/{warehouse_id}/{artifact}/latest"
-    logger.info("Fetching %s artifact from %s", artifact, uri)
-
-    req = Request(uri)
-    if api_key:
-        req.add_header("X-API-Key", api_key)
-
-    with urlopen(req, timeout=60) as resp:  # noqa: S310
-        payload = resp.read()
-
-    return pq.read_table(io.BytesIO(payload))
-
-
 def _validate_minmax_columns(table: pa.Table) -> None:
     missing = _MINMAX_REQUIRED_COLUMNS.difference(table.column_names)
     if missing:
@@ -151,15 +126,10 @@ def _validate_minmax_columns(table: pa.Table) -> None:
 def _filter_minmax_for_selected_warehouse(
     table: pa.Table,
     selected_warehouse_id: int | None,
-    warehouse_id_lookup: dict[str, int],
+    warehouse_alias_lookup: dict[str, int],
+    selected_warehouse_code: str | None,
 ) -> tuple[pa.Table, int]:
-    facilities = sorted(
-        {
-            str(value)
-            for value in table.column("facility_id").to_pylist()
-            if value is not None and str(value) != ""
-        }
-    )
+    facilities = _table_warehouse_values(table)
     if not facilities:
         raise ValueError("minmax data does not contain any facility_id values")
 
@@ -169,22 +139,36 @@ def _filter_minmax_for_selected_warehouse(
             raise ValueError(f"Select a warehouse before running Mimir. Available facilities: {facility_list}")
         selected_key = facilities[0]
     else:
-        selected_key = str(selected_warehouse_id)
-        if selected_key not in facilities:
+        matching_aliases = warehouse_aliases(selected_warehouse_id, selected_warehouse_code)
+        selected_key = next((alias for alias in matching_aliases if alias in facilities), None)
+        if selected_key is None:
             facility_list = ", ".join(facilities)
+            warehouse_suffix = f" ({selected_warehouse_code})" if selected_warehouse_code else ""
             raise ValueError(
                 "Selected warehouse "
-                f"{selected_key} is not present in the imported rules. Available facilities: {facility_list}"
+                f"{selected_warehouse_id}{warehouse_suffix} is not present in the imported rules. "
+                f"Available facilities: {facility_list}"
             )
 
-    warehouse_id = warehouse_id_lookup.get(selected_key)
+    warehouse_id = warehouse_alias_lookup.get(selected_key)
     if warehouse_id is None:
         raise ValueError(f"Facility {selected_key} is missing from stock_warehouse.parquet")
 
-    return _filter_table_for_warehouse(table, selected_key), warehouse_id
+    return _filter_table_for_warehouse(table, [selected_key]), warehouse_id
 
 
-def _filter_table_for_warehouse(table: pa.Table, warehouse_id: str) -> pa.Table:
+def _table_warehouse_values(table: pa.Table) -> list[str]:
+    if "facility_id" in table.column_names:
+        values = table.column("facility_id").to_pylist()
+    elif "_odoo_warehouse_id" in table.column_names:
+        values = table.column("_odoo_warehouse_id").to_pylist()
+    else:
+        return []
+
+    return sorted({str(value) for value in values if value is not None and str(value) != ""})
+
+
+def _filter_table_for_warehouse(table: pa.Table, warehouse_keys: str | list[str]) -> pa.Table:
     """Filter a table to one warehouse using either facility_id or _odoo_warehouse_id."""
     if "facility_id" in table.column_names:
         column = table.column("facility_id")
@@ -193,5 +177,18 @@ def _filter_table_for_warehouse(table: pa.Table, warehouse_id: str) -> pa.Table:
     else:
         return table
 
-    mask = pc.equal(pc.cast(column, pa.string()), pa.scalar(str(warehouse_id), type=pa.string()))
+    if isinstance(warehouse_keys, str):
+        normalized_keys = [warehouse_keys]
+    else:
+        normalized_keys = [str(key) for key in warehouse_keys if str(key)]
+
+    if not normalized_keys:
+        return table
+
+    string_column = pc.cast(column, pa.string())
+    if len(normalized_keys) == 1:
+        mask = pc.equal(string_column, pa.scalar(normalized_keys[0], type=pa.string()))
+    else:
+        mask = pc.is_in(string_column, value_set=pa.array(normalized_keys, type=pa.string()))
+
     return table.filter(mask)
