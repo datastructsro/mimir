@@ -1,6 +1,6 @@
 {
     "name": "Mimir — Replenishment Review",
-    "version": "18.0.5.0.0",
+    "version": "18.0.6.0.0",
     "category": "Supply Chain",
     "summary": "Warehouse-scoped replenishment rule import and review for Parqcast exports",
     "description": """
